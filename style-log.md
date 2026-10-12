@@ -17,3 +17,4 @@
 - 2026-10-11 22:00 | Nadella emergency brake | skeleton principles checklist | bg #efe8d8 accent #2f3eb5
 - 2026-10-11 | AI早报视频 | 杂志栏/近黑+电光紫 | #121212 + #a78bfa + 骨白卡 #faf8f5
 - 2026-10-12 12:00 | Anatomy skill | 骨架：问答/用法拆解(封面标题+三步装/指令/产出+主能力模块SVG/WebGL/抽象+安装callout+通栏判断) | 背景深墨绿 #0d1f18，强调琥珀金 #f0b429，卡面骨白 #f7f3ea
+- 2026-10-12 22:00 | Agent session secrets | 骨架：风险清单（封面大标题+一句判断 + 四类风险条 + 防护清单主模块 + 通栏结论） | 背景冷石板 #1a2332，强调电光青 #22d3ee，卡面冷白 #eef2f7
