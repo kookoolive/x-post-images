@@ -16,3 +16,4 @@
 - 2026-10-11 12:00 | Claude Code Projects 候补全放行 | 骨架：流程拆解(协调者→并行线程→PR汇总)+要点清单+限制卡片+通栏判断 | 背景深海军蓝 #0b1f33，强调色珊瑚 #ff6b4a
 - 2026-10-11 22:00 | Nadella emergency brake | skeleton principles checklist | bg #efe8d8 accent #2f3eb5
 - 2026-10-11 | AI早报视频 | 杂志栏/近黑+电光紫 | #121212 + #a78bfa + 骨白卡 #faf8f5
+- 2026-10-12 12:00 | Anatomy skill | 骨架：问答/用法拆解(封面标题+三步装/指令/产出+主能力模块SVG/WebGL/抽象+安装callout+通栏判断) | 背景深墨绿 #0d1f18，强调琥珀金 #f0b429，卡面骨白 #f7f3ea

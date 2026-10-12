@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anatomy · 一句话 → 能转能拆的解剖图</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Oswald:wght@500;700&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d1f18;
+    --ink-deep: #06140f;
+    --line: #1a3a2a;
+    --amber: #f0b429;
+    --bone: #f7f3ea;
+    --char: #1a1a1a;
+    --gray: #5a5a5a;
+    --sans: "Noto Sans CJK SC","Noto Sans SC","Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+    --serif: "Noto Serif CJK SC","Noto Serif SC","Source Han Serif SC","Songti SC",serif;
+    --num: "Oswald","Inter","Noto Sans CJK SC",sans-serif;
+    --mono: "JetBrains Mono","DejaVu Sans Mono","Menlo","Consolas",monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; width: 1500px; height: 2000px; background: var(--ink); }
+  body { font-family: var(--sans); color: var(--bone); -webkit-font-smoothing: antialiased; }
+
+  .frame { width: 1500px; height: 2000px; position: relative; overflow: hidden; background: var(--ink); }
+  .frame::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .04; z-index: 5;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+  /* isometric grid wash */
+  .frame::after {
+    content: ""; position: absolute; left: 0; right: 0; top: 0; height: 640px; pointer-events: none; opacity: .5;
+    background-image:
+      repeating-linear-gradient(30deg, rgba(26,58,42,.55) 0 1px, transparent 1px 46px),
+      repeating-linear-gradient(150deg, rgba(26,58,42,.55) 0 1px, transparent 1px 46px);
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 100%);
+            mask-image: linear-gradient(180deg, #000 0%, transparent 100%);
+  }
+  .card { position: relative; z-index: 2; width: 100%; height: 100%; padding: 44px 48px 36px; display: flex; flex-direction: column; }
+
+  /* 1. top bar */
+  .topbar { display: flex; align-items: center; justify-content: space-between; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+  .topbar .l { display: flex; align-items: center; gap: 18px; }
+  .tag { background: var(--amber); color: var(--ink-deep); font-weight: 700; font-size: 17px; letter-spacing: .12em; padding: 6px 14px; }
+  .date { font-family: var(--num); font-size: 20px; letter-spacing: .08em; color: rgba(247,243,234,.75); }
+  .handle { font-family: "Inter", var(--sans); font-size: 16px; color: rgba(247,243,234,.6); letter-spacing: .04em; }
+
+  /* 2. hero */
+  .hero { padding: 30px 0 26px; display: grid; grid-template-columns: 1fr 300px; gap: 36px; align-items: end; }
+  .kicker { font-family: "Inter", var(--sans); font-size: 18px; font-weight: 600; letter-spacing: .22em; color: var(--amber); text-transform: uppercase; margin-bottom: 22px; }
+  .kicker::before { content: ""; display: inline-block; width: 48px; height: 5px; background: var(--amber); vertical-align: middle; margin-right: 16px; transform: translateY(-2px); }
+  h1 { margin: 0; font-family: var(--serif); font-weight: 900; font-size: 104px; line-height: 1.18; letter-spacing: -.01em; color: var(--bone); }
+  h1 .arrow { color: var(--amber); font-family: "Inter", var(--sans); font-weight: 700; padding: 0 8px; }
+  h1 em { font-style: normal; color: var(--amber); }
+  .deck { margin-top: 26px; font-size: 26px; line-height: 1.5; color: rgba(247,243,234,.86); padding-left: 22px; border-left: 5px solid var(--amber); }
+  .hero-side { border: 1px solid var(--line); background: rgba(6,20,15,.7); padding: 22px 22px 18px; }
+  .hero-side .lbl { font-size: 14px; letter-spacing: .16em; color: var(--amber); margin-bottom: 10px; }
+  .hero-side .v { font-family: var(--mono); font-size: 30px; font-weight: 700; color: var(--bone); line-height: 1.2; }
+  .hero-side .s { font-size: 16px; color: rgba(247,243,234,.62); margin-top: 8px; line-height: 1.5; }
+  .hero-side hr { border: 0; border-top: 1px dashed var(--line); margin: 16px 0; }
+
+  /* 3. steps */
+  .steps { display: grid; grid-template-columns: 1fr 1.25fr 1fr; border-top: 5px solid var(--amber); background: var(--ink-deep); }
+  .step { padding: 24px 28px 26px; border-right: 1px solid var(--line); position: relative; }
+  .step:last-child { border-right: 0; }
+  .step .head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 14px; }
+  .step .n { font-family: var(--num); font-weight: 700; font-size: 44px; line-height: 1; color: var(--amber); }
+  .step .t { font-size: 26px; font-weight: 700; color: var(--bone); }
+  .step .t small { font-size: 15px; font-weight: 500; color: rgba(247,243,234,.55); margin-left: 8px; letter-spacing: .08em; }
+  .code { font-family: var(--mono); font-size: 18px; line-height: 1.5; color: var(--amber); background: rgba(240,180,41,.08); border: 1px solid rgba(240,180,41,.35); padding: 10px 12px; word-break: break-all; }
+  .code .p { color: rgba(247,243,234,.45); margin-right: 8px; }
+  .step .d { font-size: 18px; line-height: 1.55; color: rgba(247,243,234,.75); margin-top: 12px; }
+  .out { list-style: none; margin: 0; padding: 0; }
+  .out li { font-size: 19px; line-height: 1.5; padding: 6px 0; border-bottom: 1px dashed var(--line); display: flex; justify-content: space-between; color: var(--bone); }
+  .out li:last-child { border-bottom: 0; }
+  .out li b { font-weight: 700; }
+  .pill { font-size: 13px; letter-spacing: .08em; padding: 2px 8px; border: 1px solid var(--line); color: rgba(247,243,234,.7); align-self: center; }
+  .pill.main { background: var(--amber); border-color: var(--amber); color: var(--ink-deep); font-weight: 700; }
+
+  /* 4. primary module */
+  .primary { margin-top: 30px; background: var(--bone); color: var(--char); display: grid; grid-template-columns: 500px 1fr; position: relative; }
+  .primary::before { content: ""; position: absolute; left: 0; top: 0; width: 100%; height: 6px; background: var(--ink); }
+  .viz { background: #efe9dc; border-right: 1px solid #d9d1bf; padding: 30px 26px 24px; display: flex; flex-direction: column; }
+  .viz .cap { font-size: 14px; letter-spacing: .16em; color: var(--gray); display: flex; justify-content: space-between; }
+  .viz svg { display: block; margin: 8px auto 0; }
+  .viz .legend { margin-top: auto; padding-top: 12px; border-top: 1px solid #d9d1bf; font-size: 15px; line-height: 1.55; color: var(--gray); }
+  .viz .legend b { color: var(--char); }
+  .caps { padding: 34px 38px 30px; }
+  .caps h2 { margin: 0; font-family: var(--serif); font-weight: 900; font-size: 54px; line-height: 1.2; color: var(--char); display: flex; align-items: baseline; justify-content: space-between; }
+  .caps h2 span { font-family: "Inter", var(--sans); font-size: 16px; font-weight: 600; letter-spacing: .18em; color: var(--gray); }
+  .caps .intro { font-size: 19px; color: var(--gray); margin: 10px 0 18px; line-height: 1.55; }
+  .cap-row { display: grid; grid-template-columns: 68px 1fr; gap: 18px; padding: 17px 0; border-top: 2px solid var(--char); }
+  .cap-row + .cap-row { border-top: 1px solid #d3cbb8; }
+  .cap-row .ix { font-family: var(--num); font-weight: 700; font-size: 46px; line-height: 1; color: #c9bfa8; }
+  .cap-row.hot .ix { color: var(--amber); }
+  .cap-row h3 { margin: 0 0 6px; font-size: 28px; font-weight: 700; color: var(--char); display: flex; align-items: center; gap: 12px; }
+  .cap-row h3 .badge { font-size: 13px; font-weight: 700; letter-spacing: .1em; padding: 3px 9px; background: var(--ink); color: var(--amber); }
+  .cap-row h3 .badge.opt { background: transparent; color: var(--gray); border: 1px solid #b9b09b; }
+  .cap-row p { margin: 0; font-size: 20px; line-height: 1.55; color: var(--char); }
+  .cap-row p .hl { background: linear-gradient(180deg, transparent 58%, rgba(240,180,41,.55) 58%); font-weight: 700; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .chips span { font-size: 15px; padding: 3px 10px; background: #ebe4d4; color: var(--char); border-left: 3px solid var(--ink); }
+
+  /* 5. callout */
+  .callout { margin-top: 30px; background: var(--ink-deep); border: 1px solid var(--line); border-left: 6px solid var(--amber); display: grid; grid-template-columns: 1fr 340px; }
+  .callout .cmd { padding: 26px 32px; }
+  .callout .lbl { font-size: 15px; letter-spacing: .18em; color: var(--amber); margin-bottom: 12px; }
+  .callout .big { font-family: var(--mono); font-size: 38px; font-weight: 700; color: var(--bone); letter-spacing: -.01em; white-space: nowrap; }
+  .callout .big .p { color: var(--amber); margin-right: 14px; }
+  .callout .big .a { color: var(--amber); }
+  .callout .sub { margin-top: 10px; font-size: 18px; color: rgba(247,243,234,.65); }
+  .callout .sub code { font-family: var(--mono); color: var(--amber); }
+  .callout .who { border-left: 1px solid var(--line); padding: 24px 28px; display: flex; flex-direction: column; justify-content: center; gap: 12px; }
+  .who .row { display: flex; flex-direction: column; }
+  .who .k { font-size: 13px; letter-spacing: .16em; color: rgba(247,243,234,.5); }
+  .who .v { font-family: var(--mono); font-size: 21px; color: var(--bone); font-weight: 700; }
+
+  /* 6. judgment */
+  .judge { margin-top: 30px; background: var(--amber); color: var(--ink-deep); padding: 30px 40px; display: grid; grid-template-columns: 150px 1fr; gap: 28px; align-items: center; }
+  .judge .lab { font-family: var(--num); font-size: 22px; font-weight: 700; letter-spacing: .12em; border-right: 3px solid var(--ink-deep); padding-right: 20px; line-height: 1.3; }
+  .judge .lab small { display: block; font-family: var(--sans); font-size: 15px; letter-spacing: .1em; font-weight: 500; }
+  .judge q { quotes: none; font-family: var(--serif); font-weight: 900; font-size: 42px; line-height: 1.4; }
+  .judge q b { background: var(--ink-deep); color: var(--amber); padding: 0 10px; }
+
+  /* 7. footer */
+  .footer { margin-top: auto; padding-top: 18px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; font-size: 15px; color: rgba(247,243,234,.58); letter-spacing: .04em; }
+  .footer .src b { color: var(--bone); font-family: var(--mono); font-weight: 500; }
+
+  @media (max-width: 760px) {
+    html, body { width: auto; height: auto; }
+    .frame { width: 100%; height: auto; }
+    .card { padding: 24px; }
+    .hero, .steps, .primary, .callout, .judge { grid-template-columns: 1fr; }
+    h1 { font-size: 52px; }
+    .callout .big { font-size: 22px; white-space: normal; word-break: break-all; }
+    .viz svg { width: 100%; height: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="card">
+
+    <!-- 1. top bar -->
+    <div class="topbar">
+      <div class="l">
+        <span class="tag">开源 Skill</span>
+        <span class="date">2026-10-12</span>
+      </div>
+      <span class="handle">@leozhangai</span>
+    </div>
+
+    <!-- 2. hero -->
+    <section class="hero">
+      <div>
+        <div class="kicker">Claude Code Skill · Anatomy</div>
+        <h1>一句话<span class="arrow">→</span><br>能转能拆的<em>解剖图</em></h1>
+        <div class="deck">把机器与抽象系统画成可交互等轴测图</div>
+      </div>
+      <aside class="hero-side">
+        <div class="lbl">入口命令</div>
+        <div class="v">/anatomy</div>
+        <div class="s">在 Claude Code 里一句话描述对象</div>
+        <hr>
+        <div class="lbl">输出形态</div>
+        <div class="s" style="color:#f7f3ea;font-size:18px;">SVG 交互 · WebGL 可选 · 3D 实验</div>
+      </aside>
+    </section>
+
+    <!-- 3. steps -->
+    <section class="steps">
+      <div class="step">
+        <div class="head"><span class="n">01</span><span class="t">装<small>INSTALL</small></span></div>
+        <div class="code"><span class="p">$</span>npx skills add wheresryan22/anatomy</div>
+        <div class="d">一行命令装进本地 skills</div>
+      </div>
+      <div class="step">
+        <div class="head"><span class="n">02</span><span class="t">指令<small>PROMPT</small></span></div>
+        <div class="code"><span class="p">›</span>/anatomy explain …, interactive</div>
+        <div class="d">在 Claude Code 里调用，把 “…” 换成你想看懂的机器或系统；加 <b style="color:#f0b429">interactive</b> 要可操作版本</div>
+      </div>
+      <div class="step">
+        <div class="head"><span class="n">03</span><span class="t">产出<small>OUTPUT</small></span></div>
+        <ul class="out">
+          <li><b>交互 SVG</b><span class="pill main">默认</span></li>
+          <li>WebGL 特效<span class="pill">可选</span></li>
+          <li>3D 视图<span class="pill">实验性</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 4. primary -->
+    <section class="primary">
+      <div class="viz">
+        <div class="cap"><span>FIG.01 · 等轴测拆解示意</span><span>EXPLODED</span></div>
+        <svg width="440" height="470" viewBox="0 0 440 470" fill="none" stroke-linejoin="round">
+          <!-- guide axis -->
+          <line x1="220" y1="20" x2="220" y2="450" stroke="#b9b09b" stroke-width="1.5" stroke-dasharray="4 6"/>
+          <!-- top lid -->
+          <g transform="translate(0,0)">
+            <polygon points="220,40 340,100 220,160 100,100" fill="#f7f3ea" stroke="#1a1a1a" stroke-width="2.5"/>
+            <polygon points="100,100 220,160 220,180 100,120" fill="#e3dccb" stroke="#1a1a1a" stroke-width="2.5"/>
+            <polygon points="340,100 220,160 220,180 340,120" fill="#d2c9b4" stroke="#1a1a1a" stroke-width="2.5"/>
+            <circle cx="220" cy="100" r="16" fill="none" stroke="#1a1a1a" stroke-width="2"/>
+          </g>
+          <!-- middle core (amber) -->
+          <g>
+            <polygon points="220,170 300,210 220,250 140,210" fill="#f0b429" stroke="#1a1a1a" stroke-width="2.5"/>
+            <polygon points="140,210 220,250 220,300 140,260" fill="#d99a14" stroke="#1a1a1a" stroke-width="2.5"/>
+            <polygon points="300,210 220,250 220,300 300,260" fill="#b97f0b" stroke="#1a1a1a" stroke-width="2.5"/>
+            <line x1="168" y1="224" x2="168" y2="270" stroke="#1a1a1a" stroke-width="1.5"/>
+            <line x1="192" y1="236" x2="192" y2="282" stroke="#1a1a1a" stroke-width="1.5"/>
+            <line x1="248" y1="236" x2="248" y2="282" stroke="#1a1a1a" stroke-width="1.5"/>
+            <line x1="272" y1="224" x2="272" y2="270" stroke="#1a1a1a" stroke-width="1.5"/>
+          </g>
+          <!-- base -->
+          <g>
+            <polygon points="220,300 360,370 220,440 80,370" fill="#0d1f18" stroke="#1a1a1a" stroke-width="2.5"/>
+            <polygon points="80,370 220,440 220,458 80,388" fill="#06140f" stroke="#1a1a1a" stroke-width="2.5"/>
+            <polygon points="360,370 220,440 220,458 360,388" fill="#1a3a2a" stroke="#1a1a1a" stroke-width="2.5"/>
+            <polygon points="220,330 290,365 220,400 150,365" fill="none" stroke="#f0b429" stroke-width="2" stroke-dasharray="6 5"/>
+          </g>
+          <!-- callout leaders -->
+          <g stroke="#1a1a1a" stroke-width="1.5">
+            <line x1="340" y1="100" x2="404" y2="68"/><circle cx="404" cy="68" r="4" fill="#1a1a1a"/>
+            <line x1="300" y1="230" x2="404" y2="210"/><circle cx="404" cy="210" r="4" fill="#f0b429"/>
+            <line x1="80" y1="370" x2="28" y2="340"/><circle cx="28" cy="340" r="4" fill="#1a1a1a"/>
+          </g>
+          <g font-family="Oswald, Inter, sans-serif" font-size="18" font-weight="700" fill="#1a1a1a">
+            <text x="388" y="56">A</text><text x="388" y="198">B</text><text x="16" y="328">C</text>
+          </g>
+          <!-- rotate hint -->
+          <path d="M60 60 A 40 40 0 1 1 52 104" stroke="#5a5a5a" stroke-width="2" fill="none"/>
+          <polygon points="46,98 60,108 48,114" fill="#5a5a5a"/>
+        </svg>
+        <div class="legend"><b>可拆</b>：部件沿轴分离，看清层级 · <b>可转</b>：拖动换视角<br>示意图为本卡绘制，非工具实际输出</div>
+      </div>
+
+      <div class="caps">
+        <h2>能画什么<span>CAPABILITIES</span></h2>
+        <div class="intro">不是一张静态插图，而是一台可以拆开、转动、动手摸的模型。</div>
+
+        <div class="cap-row hot">
+          <div class="ix">01</div>
+          <div>
+            <h3>SVG 交互<span class="badge">核心</span></h3>
+            <p>精修<span class="hl">等轴测线框</span>，部件可拆可转；浏览器直接打开就能操作。</p>
+            <div class="chips"><span>拆解视图</span><span>旋转视角</span><span>部件分层</span></div>
+          </div>
+        </div>
+
+        <div class="cap-row">
+          <div class="ix">02</div>
+          <div>
+            <h3>WebGL 特效<span class="badge opt">可选</span></h3>
+            <p>火 / 水 / 等离子体等 <span class="hl">shader 特效</span>，让流动、燃烧这类过程动起来。</p>
+          </div>
+        </div>
+
+        <div class="cap-row hot">
+          <div class="ix">03</div>
+          <div>
+            <h3>抽象系统<span class="badge">不只物理机器</span></h3>
+            <p>连接池、CDN 缓存这类看不见的系统，也能画成<span class="hl">「能操作的机器」</span>。</p>
+            <div class="chips"><span>连接池</span><span>CDN 缓存</span><span>…你的系统</span></div>
+          </div>
+        </div>
+
+        <div class="cap-row">
+          <div class="ix">04</div>
+          <div>
+            <h3>3D 视图<span class="badge opt">实验性</span></h3>
+            <p>还在实验阶段，能用，但别当成稳定功能来依赖。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. callout -->
+    <section class="callout">
+      <div class="cmd">
+        <div class="lbl">一行安装 · INSTALL</div>
+        <div class="big"><span class="p">$</span>npx skills add <span class="a">wheresryan22/anatomy</span></div>
+        <div class="sub">装好后在 Claude Code 输入 <code>/anatomy explain …, interactive</code></div>
+      </div>
+      <div class="who">
+        <div class="row"><span class="k">作者 AUTHOR</span><span class="v">@wheresryan22</span></div>
+        <div class="row"><span class="k">GITHUB</span><span class="v">wheresryan22/anatomy</span></div>
+      </div>
+    </section>
+
+    <!-- 6. judgment -->
+    <section class="judge">
+      <div class="lab">JUDGMENT<small>一句判断</small></div>
+      <q>下一波好文档的门槛，不是文笔，<br>是能不能让人<b>动手摸懂</b>。</q>
+    </section>
+
+    <!-- 7. footer -->
+    <footer class="footer">
+      <span class="src">来源：GitHub <b>wheresryan22/anatomy</b> · 开源 Claude Code Skill</span>
+      <span>@leozhangai</span>
+    </footer>
+
+  </div>
+</div>
+</body>
+</html>
