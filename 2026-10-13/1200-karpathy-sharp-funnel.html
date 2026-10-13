@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>你卡在漏斗第几层？</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Oswald:wght@500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f4ebe0;
+    --indigo: #3730a3;
+    --deep: #1e1b4b;
+    --vermilion: #ea580c;
+    --ink: #1c1917;
+    --gray: #78716c;
+    --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", "Noto Serif CJK SC", serif;
+    --sans: "Inter", "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+    --num: "Oswald", "Bebas Neue", "Impact", "Arial Narrow", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 1500px; height: 2000px; background: var(--paper); }
+  .frame { width: 1500px; height: 2000px; position: relative; overflow: hidden; }
+  .card {
+    width: 100%; height: 100%;
+    padding: 64px 72px 52px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    display: flex; flex-direction: column;
+    position: relative;
+  }
+  .card::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .045;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* topbar */
+  .topbar { display: flex; justify-content: space-between; align-items: center; font-size: 17px; letter-spacing: .12em; color: var(--gray); }
+  .tag { display: inline-flex; align-items: center; gap: 12px; font-weight: 700; color: var(--indigo); }
+  .tag i { width: 12px; height: 12px; background: var(--vermilion); display: inline-block; }
+  .topbar .src { font-family: var(--num); font-weight: 500; letter-spacing: .18em; }
+
+  /* hero */
+  .hero { margin-top: 34px; border-top: 6px solid var(--ink); padding-top: 34px; position: relative; }
+  .hero-ghost {
+    position: absolute; right: -10px; top: 6px; font-family: var(--num); font-weight: 700;
+    font-size: 300px; line-height: 1; color: var(--indigo); opacity: .07; letter-spacing: -.02em;
+  }
+  h1 { margin: 0; font-family: var(--serif); font-weight: 900; font-size: 132px; line-height: 1.12; letter-spacing: -.01em; position: relative; }
+  h1 em { font-style: normal; color: var(--indigo); }
+  .deck {
+    margin-top: 30px; display: flex; gap: 22px; align-items: stretch; max-width: 1180px;
+  }
+  .deck b { flex: 0 0 6px; background: var(--vermilion); }
+  .deck p { margin: 0; font-family: var(--serif); font-weight: 700; font-size: 36px; line-height: 1.5; }
+
+  /* funnel */
+  .funnel { margin-top: 58px; }
+  .sec-head { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid var(--ink); padding-bottom: 12px; margin-bottom: 18px; }
+  .sec-head h2 { margin: 0; font-size: 26px; font-weight: 700; letter-spacing: .04em; }
+  .sec-head span { font-size: 16px; color: var(--gray); letter-spacing: .08em; }
+  .bars { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+  .bar {
+    display: grid; grid-template-columns: 270px 1fr; align-items: center;
+    height: 132px; padding: 0 34px; position: relative;
+  }
+  .bar .n { font-family: var(--num); font-weight: 700; font-size: 62px; line-height: 1; letter-spacing: -.01em; white-space: nowrap; }
+  .bar .n small { font-size: 26px; font-weight: 500; margin-left: 4px; }
+  .bar .lv { font-size: 15px; letter-spacing: .14em; font-weight: 700; opacity: .7; }
+  .bar .t { font-size: 26px; font-weight: 700; margin: 4px 0 4px; }
+  .bar .d { font-size: 19px; line-height: 1.4; }
+  .b1 { width: 100%; background: #e6d7c3; color: var(--ink); }
+  .b2 { width: 86%; background: #c9c4e8; color: var(--deep); }
+  .b3 { width: 72%; background: var(--indigo); color: #fff; }
+  .b4 { width: 58%; background: var(--deep); color: #fff; box-shadow: inset 6px 0 0 var(--vermilion); }
+  .b4 .n { color: #fdba74; }
+  .b1 .n small { color: var(--gray); }
+  .drop {
+    position: absolute; right: calc(100% + 18px); top: 50%; transform: translateY(-50%);
+    font-size: 15px; color: var(--vermilion); font-weight: 700; letter-spacing: .06em; white-space: nowrap;
+    text-align: right; line-height: 1.35;
+  }
+  .drop::after { content: " ↓"; }
+  .side {
+    position: absolute; left: calc(100% + 18px); top: 50%; transform: translateY(-50%);
+    font-size: 15px; color: var(--gray); letter-spacing: .06em; white-space: nowrap; line-height: 1.35;
+  }
+
+  /* lower */
+  .lower { margin-top: 54px; display: grid; grid-template-columns: 1.55fr 1fr; gap: 32px; }
+  .up { background: rgba(55,48,163,.07); border-top: 6px solid var(--indigo); padding: 30px 34px 30px; }
+  .up h3 { margin: 0; font-family: var(--serif); font-weight: 900; font-size: 40px; color: var(--indigo); }
+  .up .sub { margin-top: 6px; font-size: 17px; color: var(--gray); letter-spacing: .04em; }
+  .up ol { list-style: none; margin: 20px 0 0; padding: 0; }
+  .up li { display: grid; grid-template-columns: 52px 1fr; align-items: baseline; padding: 17px 0; border-top: 1px solid rgba(28,25,23,.14); font-size: 21px; line-height: 1.5; }
+  .up li:first-child { border-top: 0; }
+  .up li span { font-family: var(--num); font-weight: 700; font-size: 26px; color: var(--indigo); }
+  .up li.last { color: var(--ink); font-weight: 700; }
+  .up li.last span { color: var(--vermilion); }
+
+  .gap { border-top: 6px solid var(--ink); padding: 30px 6px 0; display: flex; flex-direction: column; }
+  .gap h3 { margin: 0; font-family: var(--serif); font-weight: 900; font-size: 32px; line-height: 1.35; }
+  .gap .sub { margin-top: 6px; font-size: 17px; color: var(--gray); }
+  .row { margin-top: 20px; padding-left: 18px; border-left: 4px solid var(--c); }
+  .row .k { font-size: 15px; font-weight: 700; letter-spacing: .12em; color: var(--c); }
+  .row .v { font-size: 20px; line-height: 1.5; margin-top: 4px; }
+  .note { margin-top: auto; padding-top: 22px; font-size: 17px; line-height: 1.55; color: var(--gray); }
+  .note b { color: var(--ink); }
+
+  /* conclusion */
+  .verdict {
+    margin-top: 50px; background: var(--deep); color: #fff; padding: 34px 44px;
+    display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: center;
+  }
+  .verdict .lab { font-family: var(--num); font-size: 22px; letter-spacing: .2em; color: #fdba74; border-right: 2px solid rgba(255,255,255,.25); padding-right: 32px; line-height: 1.3; }
+  .verdict p { margin: 0; font-family: var(--serif); font-weight: 700; font-size: 33px; line-height: 1.5; }
+  .verdict p em { font-style: normal; color: #fdba74; }
+
+  .footer { margin-top: auto; padding-top: 22px; display: flex; justify-content: space-between; font-size: 15px; color: var(--gray); letter-spacing: .08em; }
+  .footer .brand { font-weight: 700; color: var(--ink); }
+
+  @media (max-width: 900px) {
+    html, body { width: auto; height: auto; }
+    .frame { width: 100%; height: auto; }
+    .card { padding: 28px 20px; height: auto; }
+    h1 { font-size: 56px; }
+    .deck p { font-size: 22px; }
+    .hero-ghost { font-size: 140px; }
+    .bar { width: 100% !important; grid-template-columns: 1fr; height: auto; padding: 18px; }
+    .drop, .side { display: none; }
+    .lower { grid-template-columns: 1fr; }
+    .verdict { grid-template-columns: 1fr; }
+    .verdict .lab { border: 0; padding: 0; }
+    .verdict p { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+<div class="card">
+
+  <div class="topbar">
+    <div class="tag"><i></i>AI / Agent · 2026-10-13</div>
+    <div class="src">KARPATHY · CAPABILITY FUNNEL</div>
+  </div>
+
+  <header class="hero">
+    
+    <h1>你卡在<em>漏斗</em>第几层？</h1>
+    <div class="deck"><b></b><p>AI 能力之争不是观点对立，是站在漏斗不同层的人在描述不同的产品。</p></div>
+  </header>
+
+  <section class="funnel">
+    <div class="sec-head">
+      <h2>四层漏斗 · 按 LLM 真实使用深度排</h2>
+      <span>每往上一层，人数掉 1–2 个数量级</span>
+    </div>
+    <div class="bars">
+      <div class="bar b1">
+        <div><div class="lv">LAYER 01</div><div class="n">~60<small>亿</small></div></div>
+        <div><div class="t">未接触 <span style="font-weight:500;color:var(--gray);font-size:20px">· 约占 75%</span></div><div class="d">几乎没用过 LLM，AI 还是新闻里的词</div></div>
+      </div>
+      <div class="bar b2">
+        <div class="drop">人数<br>骤降</div>
+        <div><div class="lv">LAYER 02</div><div class="n">~10–20<small>亿</small></div></div>
+        <div><div class="t">聊天用户</div><div class="d">免费聊天框 = 更好的搜索 + 写作助手</div></div>
+        <div class="side">讨论：<br>写 prompt</div>
+      </div>
+      <div class="bar b3">
+        <div class="drop">再掉<br>两个量级</div>
+        <div><div class="lv">LAYER 03</div><div class="n">~2000<small>万</small></div></div>
+        <div><div class="t">专业 Agent 用户</div><div class="d">写代码/做数学，项目从几个月压到几天</div></div>
+        <div class="side">讨论：<br>上下文怎么喂</div>
+      </div>
+      <div class="bar b4">
+        <div class="drop">只剩<br>塔尖</div>
+        <div><div class="lv">LAYER 04</div><div class="n">~5000<small>人</small></div></div>
+        <div><div class="t">前沿实验室</div><div class="d">多 Agent 系统，机器速度、机器规模干活</div></div>
+        <div class="side">讨论：<br>跑一整夜不崩</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lower">
+    <div class="up">
+      <h3>往上一层</h3>
+      <div class="sub">不靠多看教程，靠换一种用法</div>
+      <ol>
+        <li><span>01</span><div>从「提一个问题」换成「交一个带验收标准的任务」</div></li>
+        <li><span>02</span><div>让 Agent 自己跑测试、读报错、再修，你只看 diff</div></li>
+        <li><span>03</span><div>一个任务拆给两个 Agent 并行，你做 reviewer</div></li>
+        <li><span>04</span><div>把每次失败写进指令或工具，而不是重开对话</div></li>
+        <li class="last"><span>05</span><div>本周只交出一个原本要你亲手盯的完整任务</div></li>
+      </ol>
+    </div>
+    <div class="gap">
+      <h3>同一个词「AI」，<br>指的是三种东西</h3>
+      <div class="sub">你们都没说谎，只是不在同一层</div>
+      <div class="row" style="--c:#6d63c9"><div class="k">第 2 层在问</div><div class="v">会不会写 prompt？</div></div>
+      <div class="row" style="--c:var(--indigo)"><div class="k">第 3 层在问</div><div class="v">上下文怎么喂、任务怎么拆？</div></div>
+      <div class="row" style="--c:var(--vermilion)"><div class="k">再往上在问</div><div class="v">Agent 在重试、超时、报错里怎么活下来？</div></div>
+      <div class="note"><b>自测：</b>一问一答、每步要人盯、出错就重开——那还只是 IDE 里更聪明的聊天框。</div>
+    </div>
+  </section>
+
+  <section class="verdict">
+    <div class="lab">THE<br>VERDICT</div>
+    <p>能力差距不是辩论问题，是<em>漏斗位置问题</em>——本周只做一件把你往上挪一层的事。</p>
+  </section>
+
+  <footer class="footer">
+    <span>框架来源：Karpathy · 能力理解漏斗</span>
+    <span class="brand">@leozhangai</span>
+  </footer>
+
+</div>
+</div>
+</body>
+</html>
