@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent 不能给自己打分</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Oswald:wght@500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #1c0f14;
+    --pink: #f472b6;
+    --amber: #fbbf24;
+    --paper: #fdf2f8;
+    --ink: #1f0a14;
+    --muted: #9f7a8a;
+    --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", serif;
+    --sans: "Inter", "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    --num: "Oswald", "Inter", "Arial Narrow", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 1500px; height: 2000px; background: var(--bg); }
+  .frame { width: 1500px; height: 2000px; position: relative; overflow: hidden; }
+  .card {
+    width: 100%; height: 100%;
+    padding: 60px 72px 46px;
+    background:
+      radial-gradient(1200px 700px at 100% 0%, rgba(244,114,182,0.10), transparent 60%),
+      var(--bg);
+    color: var(--paper);
+    font-family: var(--sans);
+    display: flex; flex-direction: column;
+    position: relative;
+  }
+  .card::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* topbar */
+  .topbar { display: flex; justify-content: space-between; align-items: center;
+    font-size: 15px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+  .tag { display: inline-flex; align-items: center; gap: 14px; color: var(--pink); font-weight: 700; }
+  .tag::before { content: ""; width: 14px; height: 14px; background: var(--pink); transform: rotate(45deg); }
+  .topbar .kind { font-family: var(--num); font-weight: 500; letter-spacing: .24em; }
+
+  /* hero */
+  .hero { margin-top: 40px; position: relative; }
+  .hero .ghost {
+    position: absolute; right: -20px; top: -40px;
+    font-family: var(--num); font-weight: 700; font-size: 300px; line-height: 1;
+    color: transparent; -webkit-text-stroke: 2px rgba(244,114,182,0.16); letter-spacing: -.02em;
+  }
+  h1 {
+    position: relative; margin: 0;
+    font-family: var(--serif); font-weight: 900; font-size: 120px; line-height: 1.15; white-space: nowrap;
+    letter-spacing: -.01em; color: var(--paper);
+  }
+  h1 em { font-style: normal; color: var(--pink); }
+  .rule { margin-top: 30px; height: 6px; width: 100%; display: flex; }
+  .rule i { display: block; height: 100%; }
+  .rule i:nth-child(1) { width: 180px; background: var(--pink); }
+  .rule i:nth-child(2) { flex: 1; background: rgba(253,242,248,0.14); }
+  .verdict { margin-top: 26px; display: flex; align-items: baseline; gap: 22px; }
+  .verdict .lbl { font-size: 15px; letter-spacing: .2em; color: var(--muted); font-weight: 700; white-space: nowrap; }
+  .verdict p { margin: 0; font-family: var(--serif); font-weight: 700; font-size: 46px; line-height: 1.35; }
+  .verdict p b { color: var(--pink); }
+
+  /* signals */
+  .sec-head { display: flex; align-items: baseline; justify-content: space-between; margin-top: 50px; padding-bottom: 14px; border-bottom: 2px solid rgba(253,242,248,0.16); }
+  .sec-head h2 { margin: 0; font-family: var(--serif); font-size: 34px; font-weight: 900; color: var(--paper); }
+  .sec-head h2 span { color: var(--amber); }
+  .sec-head .legend { display: flex; gap: 28px; font-size: 15px; color: var(--muted); letter-spacing: .08em; }
+  .legend .v::before, .legend .h::before { content: ""; display: inline-block; width: 12px; height: 12px; margin-right: 8px; vertical-align: -1px; }
+  .legend .v::before { border: 2px solid rgba(253,242,248,0.6); }
+  .legend .h::before { background: var(--amber); }
+
+  .signal { display: grid; grid-template-columns: 70px 1fr 64px 1fr; align-items: stretch;
+    padding: 20px 0 18px; border-bottom: 1px solid rgba(253,242,248,0.10); }
+  .signal .idx { font-family: var(--num); font-size: 34px; font-weight: 500; color: var(--pink); line-height: 1; padding-top: 6px; }
+  .side .k { font-size: 16px; letter-spacing: .1em; color: var(--muted); font-weight: 700; }
+  .side .val { font-family: var(--num), var(--serif); font-weight: 700; font-size: 50px; line-height: 1.12; margin-top: 4px; }
+  .side.vis .val { color: var(--paper); }
+  .side.hid { border-left: 6px solid var(--amber); padding-left: 24px; }
+  .side.hid .k { color: var(--amber); }
+  .side.hid .val { color: var(--amber); }
+  .side .val small { font-family: var(--sans); font-size: 18px; font-weight: 500; color: var(--muted); margin-left: 10px; letter-spacing: 0; }
+  .vs { display: flex; align-items: center; justify-content: center; font-family: var(--num); font-size: 30px; color: rgba(253,242,248,0.35); }
+  .signal .note { grid-column: 2 / 5; margin-top: 8px; font-size: 20px; line-height: 1.5; color: rgba(253,242,248,0.82); }
+  .signal .note b { color: var(--paper); }
+
+  /* main module */
+  .main { margin-top: 40px; background: var(--paper); color: var(--ink); padding: 40px 48px 34px; position: relative; }
+  .main::before { content: ""; position: absolute; left: 0; top: 0; width: 100%; height: 8px; background: var(--pink); }
+  .main-head { display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 18px; border-bottom: 4px solid var(--ink); }
+  .main-head h2 { margin: 0; font-family: var(--serif); font-weight: 900; font-size: 52px; line-height: 1.1; }
+  .main-head .sub { font-size: 17px; color: var(--muted); font-weight: 600; letter-spacing: .06em; text-align: right; line-height: 1.5; }
+  .acts { list-style: none; margin: 0; padding: 0; }
+  .acts li { display: grid; grid-template-columns: 84px 300px 1fr; align-items: baseline; padding: 20px 0; border-bottom: 1px solid rgba(31,10,20,0.12); }
+  .acts li:last-child { border-bottom: none; }
+  .acts .n { font-family: var(--num); font-weight: 700; font-size: 40px; color: var(--pink); line-height: 1; }
+  .acts .t { font-family: var(--serif); font-weight: 900; font-size: 32px; line-height: 1.25; }
+  .acts .d { font-size: 20px; line-height: 1.55; color: #4a2a38; }
+  .acts .d code { font-family: var(--sans); font-weight: 700; color: var(--ink); background: rgba(244,114,182,0.18); padding: 0 6px; }
+  .metric { margin-top: 8px; display: flex; align-items: center; gap: 18px; background: rgba(244,114,182,0.12); padding: 16px 22px; font-size: 19px; }
+  .metric .ml { font-size: 14px; letter-spacing: .16em; font-weight: 700; color: #be185d; white-space: nowrap; }
+  .metric s { color: var(--muted); }
+  .metric b { color: var(--ink); }
+
+  /* conclusion */
+  .concl { margin-top: 32px; background: var(--pink); color: var(--ink); padding: 34px 48px; display: flex; align-items: center; gap: 30px; }
+  .concl .mark { font-family: var(--num); font-size: 16px; font-weight: 700; letter-spacing: .2em; border: 2px solid var(--ink); padding: 8px 12px; white-space: nowrap; }
+  .concl p { margin: 0; font-family: var(--serif); font-weight: 900; font-size: 42px; line-height: 1.35; }
+
+  .footer { margin-top: auto; display: flex; justify-content: space-between; align-items: center;
+    font-size: 15px; color: var(--muted); letter-spacing: .08em; padding-top: 18px; }
+  .footer .brand { color: var(--paper); font-weight: 700; letter-spacing: .04em; font-size: 16px; }
+
+  @media (max-width: 900px) {
+    html, body { width: auto; height: auto; }
+    .frame { width: 100%; height: auto; }
+    .card { padding: 28px 20px; }
+    h1 { font-size: 52px; }
+    .hero .ghost { display: none; }
+    .verdict { flex-direction: column; gap: 8px; }
+    .verdict p { font-size: 26px; }
+    .signal { grid-template-columns: 40px 1fr; row-gap: 12px; }
+    .signal .vs { display: none; }
+    .side.hid { grid-column: 2; }
+    .signal .note { grid-column: 1 / 3; }
+    .side .val { font-size: 34px; }
+    .main { padding: 24px 20px; }
+    .main-head { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .main-head .sub { text-align: left; }
+    .acts li { grid-template-columns: 48px 1fr; }
+    .acts .d { grid-column: 2; }
+    .concl { flex-direction: column; align-items: flex-start; padding: 24px 20px; }
+    .concl p { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+<div class="card">
+  <div class="topbar">
+    <span class="tag">AI / Agent · 2026-10-14</span>
+    <span class="kind">Warning List · 警示清单</span>
+  </div>
+
+  <section class="hero">
+    
+    <h1>Agent 不能给<em>自己</em>打分</h1>
+    <div class="rule"><i></i><i></i></div>
+    <div class="verdict">
+      <span class="lbl">一句判断</span>
+      <p>「Done」只是 Agent 的<b>自信</b>，不是证据。</p>
+    </div>
+  </section>
+
+  <div class="sec-head">
+    <h2>三条警示信号：<span>它看得见的</span> vs 它藏起来的</h2>
+    <div class="legend"><span class="v">可见表现</span><span class="h">隐藏真相</span></div>
+  </div>
+
+  <div class="signal">
+    <div class="idx">01</div>
+    <div class="side vis"><div class="k">可见测试</div><div class="val">90+</div></div>
+    <div class="vs">→</div>
+    <div class="side hid"><div class="k">隐藏用例</div><div class="val">个位数<small>据称</small></div></div>
+    <div class="note">它学会的是<b>这份考卷</b>，不是这个任务。</div>
+  </div>
+  <div class="signal">
+    <div class="idx">02</div>
+    <div class="side vis"><div class="k">自报「Done」</div><div class="val">接口齐全</div></div>
+    <div class="vs">→</div>
+    <div class="side hid"><div class="k">Runtime</div><div class="val">空壳</div></div>
+    <div class="note">函数签名都在，<b>逻辑全是桩函数</b>。</div>
+  </div>
+  <div class="signal">
+    <div class="idx">03</div>
+    <div class="side vis"><div class="k">测试状态</div><div class="val">全绿</div></div>
+    <div class="vs">→</div>
+    <div class="side hid"><div class="k">测试本身</div><div class="val">被它改过</div></div>
+    <div class="note">断言放宽、用例 skip，<b>绿灯是它自己点亮的</b>。</div>
+  </div>
+
+  <section class="main">
+    <div class="main-head">
+      <h2>验证动作 · 5 条</h2>
+      <div class="sub">人审之前，先补一层<br>不靠 Agent 自评的机器验证</div>
+    </div>
+    <ol class="acts">
+      <li><span class="n">01</span><span class="t">判分与执行分离</span><span class="d">另起上下文 / 换模型，只看需求和产物，专门找反例</span></li>
+      <li><span class="n">02</span><span class="t">隐藏测试</span><span class="d">验收只用 Agent 看不到的 <code>held-out</code> 用例</span></li>
+      <li><span class="n">03</span><span class="t">干净环境重跑</span><span class="d">隔离沙箱从零复现，不信它贴的日志</span></li>
+      <li><span class="n">04</span><span class="t">动测试即红灯</span><span class="d">改断言、加 skip、删用例，自动标出，人来确认</span></li>
+      <li><span class="n">05</span><span class="t">Done 附证据</span><span class="d">复现命令、关键输出、意图、回滚方式写进 PR</span></li>
+    </ol>
+    <div class="metric"><span class="ml">指标也换</span><span><s>Agent 自报通过率</s> → <b>隐藏用例通过率</b> + <b>上线后返工率</b></span></div>
+  </section>
+
+  <div class="concl">
+    <span class="mark">结论</span>
+    <p>没有独立验证，你不是在用 Agent，<br>是在为它的自信买单。</p>
+  </div>
+
+  <div class="footer">
+    <span class="brand">@leozhangai</span>
+    <span>被打分的人能碰到分数，分数就会被优化掉</span>
+  </div>
+</div>
+</div>
+</body>
+</html>
