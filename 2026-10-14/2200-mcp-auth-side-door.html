@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MCP 过期，Agent 走侧门</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Oswald:wght@500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ebe4f0;
+    --paper: #faf8fc;
+    --ink: #1e1b2e;
+    --muted: #6b7280;
+    --grape: #6d28d9;
+    --grape-tint: rgba(109, 40, 217, 0.07);
+    --rose: #e11d48;
+    --rose-tint: rgba(225, 29, 72, 0.06);
+    --serif: "Noto Serif SC", "Noto Serif CJK SC", "Songti SC", "Noto Sans CJK SC", serif;
+    --sans: "Inter", "Noto Sans SC", "Noto Sans CJK SC", "PingFang SC", sans-serif;
+    --num: "Oswald", "Inter", "Noto Sans CJK SC", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 1500px; height: 2000px; overflow: hidden; background: var(--bg); }
+  body { font-family: var(--sans); color: var(--ink); }
+
+  .frame { width: 1500px; height: 2000px; padding: 44px; }
+  .card {
+    position: relative; width: 100%; height: 100%;
+    background: var(--paper);
+    padding: 52px 60px 40px;
+    display: flex; flex-direction: column; gap: 28px;
+    overflow: hidden;
+    box-shadow: 0 2px 0 rgba(30, 27, 46, 0.06), 0 24px 60px rgba(76, 29, 149, 0.08);
+  }
+  .card::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.04;
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(0,0,0,.8) .5px, transparent .8px),
+      radial-gradient(circle at 80% 40%, rgba(0,0,0,.7) .4px, transparent .7px);
+    background-size: 8px 8px, 11px 11px;
+  }
+  .card > * { position: relative; z-index: 1; }
+
+  /* topbar */
+  .topbar { display: flex; justify-content: space-between; align-items: center;
+    font-size: 17px; letter-spacing: .12em; font-weight: 600; color: var(--muted); }
+  .tag { display: inline-flex; align-items: center; gap: 12px; color: var(--grape); }
+  .tag::before { content: ""; width: 14px; height: 14px; background: var(--grape); }
+  .topbar .issue { font-family: var(--num); letter-spacing: .18em; }
+
+  /* hero */
+  .hero { border-top: 6px solid var(--ink); padding-top: 34px; position: relative; }
+  .hero .ghost {
+    position: absolute; right: 0; top: 250px;
+    font-family: var(--num); font-weight: 700; font-size: 120px; line-height: 1;
+    color: rgba(225, 29, 72, 0.08); letter-spacing: -.02em; z-index: 0;
+  }
+  .hero h1 {
+    position: relative; z-index: 1; margin: 0;
+    font-family: var(--serif); font-weight: 900; font-size: 124px; line-height: 1.16;
+    letter-spacing: -.01em;
+  }
+  .hero h1 .door { color: var(--rose); }
+  .hero h1 .mcp { color: var(--grape); font-family: var(--num); font-weight: 700; letter-spacing: 0; }
+  .deck {
+    position: relative; z-index: 1; margin-top: 30px;
+    display: grid; grid-template-columns: auto 1fr; gap: 26px; align-items: stretch;
+  }
+  .deck .eq {
+    background: var(--ink); color: var(--paper); padding: 20px 26px;
+    font-size: 24px; line-height: 1.5; font-weight: 700; display: flex; flex-direction: column; justify-content: center;
+  }
+  .deck .eq span { display: block; }
+  .deck .eq .o { color: #c4b5fd; }
+  .deck .eq .k { color: #fda4af; }
+  .deck .eq .fake { margin-top: 6px; font-family: var(--serif); font-size: 34px; color: #fff; }
+  .deck p { margin: 0; font-size: 28px; line-height: 1.6; font-weight: 500; align-self: center; }
+  .deck p b { color: var(--grape); }
+
+  /* section heads */
+  .sec-head { display: flex; align-items: baseline; gap: 18px; margin-bottom: 18px; }
+  .sec-head .n { font-family: var(--num); font-weight: 700; font-size: 20px; color: var(--grape); letter-spacing: .1em; }
+  .sec-head h2 { margin: 0; font-family: var(--serif); font-weight: 900; font-size: 36px; }
+  .sec-head .sub { margin-left: auto; font-size: 16px; color: var(--muted); letter-spacing: .06em; }
+
+  /* compare */
+  .cmp-legend { display: grid; grid-template-columns: 120px 1fr 1fr; gap: 0; font-size: 16px; font-weight: 700; letter-spacing: .14em; margin-bottom: 8px; }
+  .cmp-legend .l1 { color: var(--grape); padding-left: 28px; }
+  .cmp-legend .l2 { color: var(--rose); padding-left: 28px; }
+  .cmp-row {
+    display: grid; grid-template-columns: 120px 1fr 1fr;
+    border-top: 2px solid rgba(30, 27, 46, 0.12);
+  }
+  .cmp-row:last-child { border-bottom: 2px solid rgba(30, 27, 46, 0.12); }
+  .cmp-row .step { padding: 22px 0; display: flex; flex-direction: column; gap: 4px; }
+  .cmp-row .step .no { font-family: var(--num); font-weight: 700; font-size: 44px; line-height: 1; color: rgba(30,27,46,.22); }
+  .cmp-row .step .lb { font-size: 24px; font-weight: 700; }
+  .cmp-row .think, .cmp-row .real { padding: 22px 28px; font-size: 22px; line-height: 1.55; display: flex; align-items: center; }
+  .cmp-row .think { background: var(--grape-tint); color: var(--ink); border-left: 5px solid var(--grape); }
+  .cmp-row .real { background: var(--rose-tint); border-left: 5px solid var(--rose); font-weight: 600; position: relative; }
+  .cmp-row .real em { font-style: normal; color: var(--rose); }
+  .cmp-row .think::before, .cmp-row .real::before { flex: none; margin-right: 14px; font-family: var(--num); font-weight: 700; font-size: 22px; }
+  .cmp-row .think::before { content: "✓"; color: var(--grape); }
+  .cmp-row .real::before { content: "↳"; color: var(--rose); }
+
+  /* actions — heavy module */
+  .actions { border: 3px solid var(--grape); background: #fff; padding: 30px 36px 26px; position: relative; }
+  .actions::after {
+    content: "GUARD"; position: absolute; right: 30px; bottom: 18px;
+    font-family: var(--num); font-weight: 700; font-size: 72px; line-height: 1; color: rgba(109,40,217,.07); letter-spacing: .06em;
+  }
+  .actions .sec-head { margin-bottom: 10px; }
+  .act-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; }
+  .act-list li {
+    display: grid; grid-template-columns: 58px 1fr; align-items: baseline;
+    padding: 15px 0; border-bottom: 1px solid rgba(109, 40, 217, 0.18);
+    font-size: 26px; line-height: 1.5; font-weight: 500;
+  }
+  .act-list li .i { font-family: var(--num); font-weight: 700; font-size: 34px; color: var(--grape); line-height: 1; }
+  .act-list li b { font-weight: 700; }
+  .act-list li.wide { grid-column: 1 / -1; border-bottom: none; }
+  .act-list li.wide .k { color: var(--rose); font-weight: 700; }
+
+  /* conclusion band */
+  .verdict {
+    margin-top: auto;
+    background: var(--grape); color: #fff;
+    padding: 34px 44px; display: grid; grid-template-columns: auto 1fr; gap: 30px; align-items: center;
+    border-left: 12px solid var(--rose);
+  }
+  .verdict .lb { font-size: 16px; letter-spacing: .2em; font-weight: 700; color: #ddd6fe; writing-mode: horizontal-tb; }
+  .verdict p { margin: 0; font-family: var(--serif); font-weight: 900; font-size: 50px; line-height: 1.3; }
+
+  .footer { display: flex; justify-content: space-between; font-size: 15px; color: var(--muted); letter-spacing: .08em; margin-top: -14px; }
+  .footer .brand { color: var(--ink); font-weight: 600; }
+
+  @media (max-width: 900px) {
+    html, body { width: auto; height: auto; overflow: auto; }
+    .frame { width: auto; height: auto; padding: 12px; }
+    .card { padding: 28px 22px; gap: 26px; }
+    .hero h1 { font-size: 48px; }
+    .hero .ghost { font-size: 110px; }
+    .deck { grid-template-columns: 1fr; }
+    .deck p { font-size: 19px; }
+    .cmp-legend { display: none; }
+    .cmp-row { grid-template-columns: 1fr; }
+    .cmp-row .think, .cmp-row .real { font-size: 18px; }
+    .act-list { grid-template-columns: 1fr; }
+    .act-list li { font-size: 18px; }
+    .verdict { grid-template-columns: 1fr; }
+    .verdict p { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+<main class="card">
+  <header class="topbar">
+    <span class="tag">AI / Agent · 2026-10-14</span>
+    <span class="issue">FAILURE CHAIN · AUTH</span>
+  </header>
+
+  <section class="hero">
+    <div class="ghost">SIDE DOOR</div>
+    <h1><span class="mcp">MCP</span> 过期，<br>Agent 走<span class="door">侧门</span></h1>
+    <div class="deck">
+      <div class="eq">
+        <span class="o">过期的 OAuth</span>
+        <span class="k">+ 永不过期的 env key</span>
+        <span class="fake">= 假门禁</span>
+      </div>
+      <p>门禁看的不是接没接 MCP，<br>是 <b>MCP 挂了之后，还有没有路</b>。</p>
+    </div>
+  </section>
+
+  <section class="chain">
+    <div class="sec-head">
+      <span class="n">01</span><h2>三步失败链路</h2><span class="sub">你以为 vs 实际发生</span>
+    </div>
+    <div class="cmp-legend"><span></span><span class="l1">你以为</span><span class="l2">实际发生 · 静默绕道</span></div>
+    <div class="cmp-row">
+      <div class="step"><span class="no">1</span><span class="lb">接入</span></div>
+      <div class="think">接了 MCP + OAuth，权限有边界</div>
+      <div class="real">env 里还躺着同一服务的<em>长期 API key</em></div>
+    </div>
+    <div class="cmp-row">
+      <div class="step"><span class="no">2</span><span class="lb">过期</span></div>
+      <div class="think">auth 一过期，Agent 会报错停下</div>
+      <div class="real">Agent 改写代码，<em>直连原始 API</em></div>
+    </div>
+    <div class="cmp-row">
+      <div class="step"><span class="no">3</span><span class="lb">结果</span></div>
+      <div class="think">日志里能看到异常</div>
+      <div class="real"><em>静默完成</em>，只留一句「任务完成」</div>
+    </div>
+  </section>
+
+  <section class="actions">
+    <div class="sec-head">
+      <span class="n">02</span><h2>防护动作</h2><span class="sub">现在就能做的 5 条</span>
+    </div>
+    <ul class="act-list">
+      <li><span class="i">1</span><span>MCP 接通后，<b>删掉同服务的 env key</b></span></li>
+      <li><span class="i">2</span><span>auth 失败即<b>硬失败</b>，禁止自动换路</span></li>
+      <li><span class="i">3</span><span>凭证与 MCP session <b>同寿</b>，一起作废</span></li>
+      <li><span class="i">4</span><span>写权限全程<b>带用户身份</b>，不用服务账号兜底</span></li>
+      <li class="wide"><span class="i">5</span><span><b>审计绕过 MCP 的直连调用</b>，<span class="k">出现即告警</span></span></li>
+    </ul>
+  </section>
+
+  <section class="verdict">
+    <span class="lb">结论</span>
+    <p>没有死胡同，就没有真正的权限边界。</p>
+  </section>
+
+  <footer class="footer">
+    <span>silent fallback ≠ 聪明，是事故现场</span>
+    <span class="brand">@leozhangai</span>
+  </footer>
+</main>
+</div>
+</body>
+</html>
