@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>能跑 ≠ 能上线</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Oswald:wght@500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a1f1a;
+    --accent: #c8f542;
+    --paper: #f4f7f0;
+    --ink: #0c1612;
+    --muted: #8aa396;
+    --gate-ok: #c8f542;
+    --gate-fail: #f4f7f0;
+    --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+    --sans: "Inter", "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    --num: "Oswald", "Inter", "Arial Narrow", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 1500px; height: 2000px; background: var(--bg); }
+  .frame { width: 1500px; height: 2000px; position: relative; overflow: hidden; }
+  .card {
+    width: 100%; height: 100%;
+    padding: 54px 68px 40px;
+    background:
+      radial-gradient(780px 520px at 8% 0%, rgba(200,245,66,0.14), transparent 55%),
+      radial-gradient(700px 480px at 100% 90%, rgba(200,245,66,0.06), transparent 50%),
+      var(--bg);
+    color: var(--paper);
+    font-family: var(--sans);
+    display: flex; flex-direction: column;
+    position: relative;
+  }
+  .card::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .045;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .topbar { display: flex; justify-content: space-between; align-items: center;
+    font-size: 15px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+  .tag { display: inline-flex; align-items: center; gap: 14px; color: var(--accent); font-weight: 700; }
+  .tag::before { content: ""; width: 14px; height: 14px; background: var(--accent); border-radius: 2px; }
+  .topbar .kind { font-family: var(--num); font-weight: 500; letter-spacing: .22em; color: rgba(244,247,240,0.55); }
+
+  .hero { margin-top: 28px; position: relative; }
+  .hero .ghost {
+    position: absolute; right: -8px; top: -48px;
+    font-family: var(--num); font-weight: 700; font-size: 260px; line-height: 1;
+    color: transparent; -webkit-text-stroke: 2px rgba(200,245,66,0.14); letter-spacing: -.03em;
+  }
+  h1 {
+    position: relative; margin: 0;
+    font-family: var(--serif); font-weight: 900; font-size: 96px; line-height: 1.16;
+    letter-spacing: -.01em; color: var(--paper);
+  }
+  h1 em { font-style: normal; color: var(--accent); }
+  .rule { margin-top: 22px; height: 6px; width: 100%; display: flex; }
+  .rule i { display: block; height: 100%; }
+  .rule i:nth-child(1) { width: 160px; background: var(--accent); }
+  .rule i:nth-child(2) { flex: 1; background: rgba(244,247,240,0.12); }
+  .verdict { margin-top: 20px; display: flex; align-items: baseline; gap: 20px; }
+  .verdict .lbl { font-size: 14px; letter-spacing: .2em; color: var(--muted); font-weight: 700; white-space: nowrap; }
+  .verdict p { margin: 0; font-family: var(--serif); font-weight: 700; font-size: 32px; line-height: 1.4; color: rgba(244,247,240,0.92); }
+  .verdict p b { color: var(--accent); }
+
+  /* Dual gate strip */
+  .gates {
+    margin-top: 34px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 220px;
+    gap: 18px;
+    align-items: stretch;
+  }
+  .gate {
+    background: rgba(244,247,240,0.06);
+    border: 1px solid rgba(244,247,240,0.12);
+    padding: 26px 28px 24px;
+    position: relative;
+  }
+  .gate.pass { border-color: rgba(200,245,66,0.45); background: rgba(200,245,66,0.08); }
+  .gate.fail { border-color: rgba(244,247,240,0.22); }
+  .gate .lbl {
+    font-size: 14px; letter-spacing: .16em; font-weight: 700; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 10px;
+  }
+  .gate.pass .lbl { color: var(--accent); }
+  .gate .name {
+    font-family: var(--serif); font-weight: 900; font-size: 36px; line-height: 1.2; margin-bottom: 14px;
+  }
+  .gate .pct {
+    font-family: var(--num); font-weight: 700; font-size: 72px; line-height: 1;
+    letter-spacing: -.02em;
+  }
+  .gate.pass .pct { color: var(--accent); }
+  .gate.fail .pct { color: var(--paper); }
+  .gate .hint { margin-top: 10px; font-size: 18px; line-height: 1.45; color: rgba(244,247,240,0.72); }
+  .gate .hint b { color: var(--paper); font-weight: 700; }
+
+  .bigstat {
+    background: var(--accent); color: var(--bg);
+    padding: 22px 20px 20px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .bigstat .k { font-size: 13px; letter-spacing: .14em; font-weight: 700; text-transform: uppercase; opacity: .75; }
+  .bigstat .n { font-family: var(--num); font-weight: 700; font-size: 64px; line-height: 1; letter-spacing: -.03em; margin: 8px 0; }
+  .bigstat .d { font-family: var(--serif); font-weight: 900; font-size: 22px; line-height: 1.35; }
+
+  /* Rules main module */
+  .main {
+    margin-top: 28px;
+    background: var(--paper); color: var(--ink);
+    padding: 32px 40px 26px;
+    position: relative;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.28);
+  }
+  .main::before { content: ""; position: absolute; left: 0; top: 0; width: 100%; height: 8px; background: var(--accent); }
+  .main-head {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    padding-bottom: 14px; border-bottom: 4px solid var(--ink);
+  }
+  .main-head h2 { margin: 0; font-family: var(--serif); font-weight: 900; font-size: 40px; line-height: 1.1; }
+  .main-head .sub { font-size: 15px; color: #5a6b62; font-weight: 600; letter-spacing: .04em; text-align: right; line-height: 1.45; max-width: 380px; }
+  .acts { list-style: none; margin: 0; padding: 0; }
+  .acts li {
+    display: grid; grid-template-columns: 70px 300px 1fr; align-items: baseline;
+    padding: 14px 0; border-bottom: 1px solid rgba(12,22,18,0.10);
+  }
+  .acts li:last-child { border-bottom: none; }
+  .acts .n { font-family: var(--num); font-weight: 700; font-size: 32px; color: #5a7a20; line-height: 1; }
+  .acts .t { font-family: var(--serif); font-weight: 900; font-size: 26px; line-height: 1.25; }
+  .acts .d { font-size: 18px; line-height: 1.5; color: #33443c; }
+
+  .concl {
+    margin-top: 22px;
+    background: var(--accent); color: var(--bg);
+    padding: 28px 40px;
+    display: flex; align-items: center; gap: 24px;
+  }
+  .concl .mark {
+    font-family: var(--num); font-size: 14px; font-weight: 700; letter-spacing: .18em;
+    border: 2px solid var(--bg); color: var(--bg); padding: 8px 12px; white-space: nowrap;
+  }
+  .concl p { margin: 0; font-family: var(--serif); font-weight: 900; font-size: 34px; line-height: 1.35; }
+
+  .footer {
+    margin-top: auto; display: flex; justify-content: space-between; align-items: center;
+    font-size: 15px; color: var(--muted); letter-spacing: .06em; padding-top: 14px;
+  }
+  .footer .brand { color: var(--accent); font-weight: 700; letter-spacing: .04em; font-size: 16px; }
+</style>
+</head>
+<body>
+<div class="frame">
+<div class="card">
+  <div class="topbar">
+    <span class="tag">AI / Agent · 2026-10-15</span>
+    <span class="kind">SECURE CODE BENCHMARK</span>
+  </div>
+
+  <section class="hero">
+    <div class="ghost">25%</div>
+    <h1>能跑 <em>≠</em> 能上线</h1>
+    <div class="rule"><i></i><i></i></div>
+    <div class="verdict">
+      <span class="lbl">判断</span>
+      <p>绿测是功能门；安全是第二道门。<b>没有第二道门，别碰 auth / 支付 / 删除 / 对外发布。</b></p>
+    </div>
+  </section>
+
+  <section class="gates">
+    <div class="gate pass">
+      <div class="lbl">Gate 01 · 功能门</div>
+      <div class="name">功能通过</div>
+      <div class="pct">74–91%</div>
+      <div class="hint">六种前沿 agent · 规格只写功能</div>
+    </div>
+    <div class="gate fail">
+      <div class="lbl">Gate 02 · 安全门</div>
+      <div class="name">功能 + 安全</div>
+      <div class="pct">≤25.1%</div>
+      <div class="hint">其余约 16–25% · 基准最高档</div>
+    </div>
+    <div class="bigstat">
+      <div class="k">粗算</div>
+      <div class="n">3/4</div>
+      <div class="d">四个「能跑」里大约三个带洞</div>
+    </div>
+  </section>
+
+  <section class="main">
+    <div class="main-head">
+      <h2>本周可改 · 5 条门禁</h2>
+      <div class="sub">给正在用 coding agent 的人<br>上线门禁怎么改</div>
+    </div>
+    <ul class="acts">
+      <li>
+        <span class="n">01</span>
+        <span class="t">验收双测</span>
+        <span class="d">功能测过了不算完；安全测不过，不 merge</span>
+      </li>
+      <li>
+        <span class="n">02</span>
+        <span class="t">Guidelines → Skills</span>
+        <span class="d">Secure coding 写成 agent 必读技能，规格显式写安全约束</span>
+      </li>
+      <li>
+        <span class="n">03</span>
+        <span class="t">Confirm hook</span>
+        <span class="d">auth / 支付 / 删文件 / 对外发布：动手前必须人确认</span>
+      </li>
+      <li>
+        <span class="n">04</span>
+        <span class="t">禁改测试变绿</span>
+        <span class="d">不得删断言、放宽断言、跳过安全用例换通过率</span>
+      </li>
+      <li>
+        <span class="n">05</span>
+        <span class="t">高风险人工复核</span>
+        <span class="d">密钥 / 会话 / 鉴权边界 / 数据出口的 diff，人过再合</span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="concl">
+    <span class="mark">结论</span>
+    <p>能跑是最低门槛，不是上线许可。</p>
+  </section>
+
+  <div class="footer">
+    <span>Last Secure Code Benchmark · arxiv 2610.14766</span>
+    <span class="brand">@leozhangai</span>
+  </div>
+</div>
+</div>
+</body>
+</html>
