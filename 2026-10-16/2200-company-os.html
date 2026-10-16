@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>别造公司大脑，造公司 OS</title>
+<style>
+  :root{
+    --bg:#e6ebe3; --paper:#f7f9f4; --pine:#14532d; --pine2:#1f6b3d; --tomato:#dc2626;
+    --ink:#121a14; --soft:#3b463e; --muted:#6b776e; --line:rgba(18,26,20,.13);
+    --sans:"Noto Sans CJK SC","Noto Sans SC","PingFang SC",sans-serif;
+    --num:"DejaVu Sans Condensed","Noto Sans CJK SC",sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;width:1500px;height:2000px;background:var(--bg);overflow:hidden}
+  .card{width:1500px;height:2000px;padding:60px 72px 46px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+    background:linear-gradient(transparent 0 0),repeating-linear-gradient(90deg,rgba(20,83,45,.035) 0 1px,transparent 1px 75px),var(--bg)}
+  .top{display:flex;justify-content:space-between;align-items:center;font-size:17px;letter-spacing:.16em;color:var(--muted);font-weight:700}
+  .top .pill{background:var(--pine);color:var(--paper);padding:9px 16px;letter-spacing:.14em}
+  .hero{margin-top:28px;display:grid;grid-template-columns:1fr 400px;gap:30px;align-items:end}
+  h1{margin:0;font-weight:900;font-size:112px;line-height:1.08;letter-spacing:-.02em}
+  h1 s{text-decoration:none;color:var(--muted);position:relative}
+  h1 s::after{content:"";position:absolute;left:-4px;right:-4px;top:54%;height:9px;background:var(--tomato);transform:rotate(-3deg)}
+  h1 em{font-style:normal;color:var(--pine)}
+  .src{border-left:6px solid var(--pine);padding:6px 0 6px 20px;font-size:20px;line-height:1.5;color:var(--soft)}
+  .src b{display:block;font-size:38px;color:var(--pine);font-family:var(--num);font-weight:800;line-height:1.05}
+  .verdict{margin-top:30px;background:var(--pine);color:var(--paper);padding:26px 34px;font-size:36px;font-weight:800;line-height:1.38}
+  .verdict span{color:#fca5a5}
+  .h2{margin-top:36px;display:flex;justify-content:space-between;align-items:baseline;border-bottom:3px solid var(--ink);padding-bottom:10px}
+  .h2 h2{margin:0;font-size:32px;font-weight:900}
+  .h2 i{font-style:normal;font-size:17px;color:var(--muted);letter-spacing:.06em}
+  .road{margin-top:22px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;position:relative}
+  .stage{padding:28px 26px 26px;background:var(--paper);border:1px solid var(--line);position:relative}
+  .stage+.stage{border-left:none}
+  .stage .no{font-family:var(--num);font-weight:800;font-size:15px;letter-spacing:.2em;color:var(--muted)}
+  .stage .t{margin-top:6px;font-size:36px;font-weight:900}
+  .stage .e{margin-top:8px;font-size:21px;color:var(--soft);line-height:1.45}
+  .stage.now{background:var(--ink);color:var(--paper)}
+  .stage.now .t{color:#86efac}.stage.now .e{color:#cbd5cf}.stage.now .no{color:#fca5a5}
+  .stage:not(:last-child)::after{content:"→";position:absolute;right:-19px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;
+    background:var(--tomato);color:#fff;font-weight:900;font-size:22px;display:flex;align-items:center;justify-content:center;z-index:2}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:24px}
+  th{font-size:17px;letter-spacing:.14em;color:var(--muted);text-align:left;padding:10px 14px;font-weight:700}
+  th.os{color:var(--pine)}
+  td{padding:17px 14px;border-top:1px solid var(--line);line-height:1.4;vertical-align:top}
+  td.k{font-weight:900;width:170px;font-size:23px}
+  td.b{color:var(--muted);width:470px}
+  td.o{color:var(--ink);font-weight:700;background:rgba(20,83,45,.07);border-left:4px solid var(--pine)}
+  .acts{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .act{background:var(--paper);border:1px solid var(--line);padding:21px 26px;display:grid;grid-template-columns:54px 1fr;gap:12px}
+  .act .n{font-family:var(--num);font-weight:800;font-size:34px;color:var(--tomato);line-height:1}
+  .act .t{font-size:28px;font-weight:900;line-height:1.25}
+  .act .d{margin-top:8px;font-size:20px;color:var(--soft);line-height:1.45}
+  .act.wide{grid-column:1/3}
+  .concl{margin-top:28px;border:3px solid var(--ink);padding:30px 34px;display:flex;gap:24px;align-items:center;background:var(--paper)}
+  .concl .m{background:var(--tomato);color:#fff;font-weight:900;font-size:16px;letter-spacing:.18em;padding:10px 12px;white-space:nowrap}
+  .concl p{margin:0;font-size:36px;font-weight:900;line-height:1.38}
+  .concl p em{font-style:normal;color:var(--pine)}
+  .foot{margin-top:auto;padding-top:14px;display:flex;justify-content:space-between;font-size:16px;color:var(--muted);letter-spacing:.04em}
+</style>
+</head>
+<body><div class="card">
+  <div class="top"><span>COMPANY OS · 2026.10.16</span><span class="pill">AGENT × ORG</span></div>
+  <div class="hero">
+    <h1>别造公司<s>大脑</s><br>造公司 <em>OS</em></h1>
+    <div class="src"><b>565 赞 / 568 收藏</b>BabyAGI 作者 Yohei Nakajima 做 FirmOS 时掉头：人和 Agent 共用的 CompanyOS，而不是 Company Brain</div>
+  </div>
+  <div class="verdict">公司大脑卡住，不是检索不够好——是没回答 <span>谁能看、谁能改、谁负责</span>。</div>
+
+  <div class="h2"><h2>Agent 接管的下一层</h2><i>Harrison Chase 画的路线</i></div>
+  <div class="road">
+    <div class="stage"><div class="no">STAGE 01</div><div class="t">Coding agents</div><div class="e">Claude Code、Codex<br>管代码库</div></div>
+    <div class="stage"><div class="no">STAGE 02</div><div class="t">Personal agents</div><div class="e">管你的一天<br>邮件、日程、杂事</div></div>
+    <div class="stage now"><div class="no">STAGE 03 · ???</div><div class="t">CompanyOS</div><div class="e">管整个组织<br>人 + Agent 共用</div></div>
+  </div>
+
+  <div class="h2"><h2>大脑 vs OS</h2><i>差别不在装多少，在怎么管</i></div>
+  <table>
+    <tr><th></th><th>COMPANY BRAIN</th><th class="os">COMPANY OS</th></tr>
+    <tr><td class="k">存什么</td><td class="b">所有知识、记忆、数据一锅端</td><td class="o">规则、流程、该用哪个工具</td></tr>
+    <tr><td class="k">真源</td><td class="b">复制一份进「大脑」，慢慢过期</td><td class="o">留在 CRM / 文档 / 工单，只链接</td></tr>
+    <tr><td class="k">谁来改</td><td class="b">建好就静态，靠人定期灌</td><td class="o">人和 Agent 每天一起改，活着更新</td></tr>
+    <tr><td class="k">权限</td><td class="b">一个入口，人人问得到</td><td class="o">跟着 Agent 代表的那个人走</td></tr>
+  </table>
+
+  <div class="h2"><h2>本周可以先做的 5 件事</h2><i>想在团队里试 CompanyOS</i></div>
+  <div class="acts">
+    <div class="act"><div class="n">01</div><div><div class="t">不搬数据</div><div class="d">OS 只存规则 + 流程 + 工具用法，链接回原系统</div></div></div>
+    <div class="act"><div class="n">02</div><div><div class="t">权限跟人走</div><div class="d">每个 Agent 绑一个人，继承他的可见范围</div></div></div>
+    <div class="act"><div class="n">03</div><div><div class="t">改动留痕</div><div class="d">人和 Agent 都能改流程：有作者、有 diff、能回滚</div></div></div>
+    <div class="act"><div class="n">04</div><div><div class="t">每条流程一个 owner</div><div class="d">Agent 跑、具名的人收口；没 owner 不上线</div></div></div>
+    <div class="act wide"><div class="n">05</div><div><div class="t">先定离职边界</div><div class="d">哪些上下文属于公司、哪些属于个人，现在就写下来，别等人走了再吵</div></div></div>
+  </div>
+
+  <div class="concl"><span class="m">判断</span><p>拼的不是谁的大脑装得多，是谁的 <em>OS 权限分得清</em>。</p></div>
+  <div class="foot"><span>来源：@yoheinakajima · @hwchase17 · X 讨论区</span><span>@leozhangai</span></div>
+</div></body></html>
