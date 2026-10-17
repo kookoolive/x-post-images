@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><title>模型开始为自己的 harness 训练</title>
+<style>
+:root{--bg:#f3e3d3;--ink:#2a1810;--rust:#b93a12;--teal:#115e59;--paper:#fffaf5;--muted:#7a5a48;--line:rgba(42,24,16,.16);
+--sans:"Noto Sans CJK SC","Noto Sans SC",sans-serif;--num:"DejaVu Sans Condensed","Noto Sans CJK SC",sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:56px 72px 46px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+background:repeating-linear-gradient(0deg,rgba(42,24,16,.035) 0 1px,transparent 1px 40px),repeating-linear-gradient(90deg,rgba(42,24,16,.035) 0 1px,transparent 1px 40px),var(--bg)}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:18px;font-weight:800;letter-spacing:.14em;color:var(--muted)}
+.top .pill{border:2px solid var(--rust);color:var(--rust);padding:7px 16px;border-radius:999px}
+.hero{margin-top:30px}
+.eq{display:flex;align-items:center;gap:22px;font-family:var(--num);font-weight:900}
+.eq .box{background:var(--ink);color:var(--paper);font-size:78px;padding:10px 30px;border-radius:18px;letter-spacing:-.01em}
+.eq .box.h{background:var(--rust)}
+.eq .op{font-size:90px;color:var(--rust)}
+.eq .res{font-family:var(--sans);font-size:44px;line-height:1.15;color:var(--teal);border-left:6px solid var(--teal);padding-left:22px}
+h1{margin:30px 0 0;font-size:88px;line-height:1.1;font-weight:900;letter-spacing:-.01em}
+h1 em{font-style:normal;color:var(--rust)}
+.sub{margin-top:18px;font-size:28px;line-height:1.5;color:#4a3426;font-weight:600;max-width:1300px}
+.sub b{background:var(--paper);border:2px solid var(--ink);padding:0 8px;border-radius:6px}
+.charts{margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.panel{background:var(--paper);border-radius:22px;padding:24px 28px 22px;border:2px solid var(--line)}
+.panel .k{font-size:18px;font-weight:900;letter-spacing:.14em;color:var(--muted)}
+.panel h3{margin:6px 0 16px;font-size:32px;font-weight:900}
+.bar{display:grid;grid-template-columns:200px 1fr 92px;align-items:center;gap:12px;margin:12px 0;font-size:22px;font-weight:700}
+.bar .t{height:30px;background:rgba(42,24,16,.08);border-radius:999px;overflow:hidden}
+.bar .f{height:100%;border-radius:999px;background:#b8a597}
+.bar.me .f{background:var(--rust)}
+.bar.me{color:var(--rust)}
+.bar .v{font-family:var(--num);font-weight:900;text-align:right;font-size:26px}
+.note{margin-top:10px;font-size:16px;color:var(--muted);font-weight:700}
+.split{margin-top:22px;display:grid;grid-template-columns:1fr 70px 1fr;align-items:stretch}
+.side{border:3px solid var(--ink);border-radius:22px;padding:22px 26px;background:var(--paper)}
+.side.a{border-color:var(--teal)}
+.side.b{border-color:var(--rust)}
+.side .k{font-size:18px;font-weight:900;letter-spacing:.12em}
+.side.a .k{color:var(--teal)} .side.b .k{color:var(--rust)}
+.side .s{margin-top:10px;font-family:var(--num);font-weight:900;font-size:58px;letter-spacing:-.02em}
+.side .s small{font-size:26px;color:var(--muted);font-weight:800}
+.side p{margin:8px 0 0;font-size:23px;line-height:1.45;font-weight:600}
+.vs{display:flex;align-items:center;justify-content:center;font-family:var(--num);font-size:30px;font-weight:900;color:var(--muted)}
+.verdict{margin-top:24px;background:var(--teal);color:var(--paper);border-radius:22px;padding:26px 34px;font-size:37px;font-weight:900;line-height:1.38}
+.verdict span{color:#fcd9c6;text-decoration:underline;text-decoration-thickness:4px;text-underline-offset:8px}
+.row{margin-top:22px;display:grid;grid-template-columns:1fr 400px;gap:20px;flex:1}
+.todo{background:var(--paper);border-radius:22px;padding:22px 28px;border:2px solid var(--line)}
+.todo .k{font-size:18px;font-weight:900;letter-spacing:.14em;color:var(--rust)}
+.todo ol{margin:8px 0 0;padding:0;list-style:none;counter-reset:n}
+.todo li{counter-increment:n;display:flex;gap:16px;font-size:24px;line-height:1.4;padding:9px 0;border-top:1px solid var(--line);font-weight:600}
+.todo li:first-child{border-top:0}
+.todo li::before{content:counter(n);flex:0 0 38px;height:38px;border-radius:50%;background:var(--ink);color:var(--paper);font-family:var(--num);font-weight:900;font-size:20px;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.warn{background:var(--rust);color:var(--paper);border-radius:22px;padding:24px 26px;display:flex;flex-direction:column;transform:rotate(-1.2deg)}
+.warn .k{font-size:18px;font-weight:900;letter-spacing:.14em;opacity:.85}
+.warn .big{margin-top:12px;font-family:var(--num);font-size:46px;font-weight:900;line-height:1.1}
+.warn .big s{opacity:.6}
+.warn p{margin:12px 0 0;font-size:22px;line-height:1.45;font-weight:600}
+.warn .free{margin-top:auto;padding-top:14px;border-top:2px dashed rgba(255,250,245,.5);font-size:20px;line-height:1.45;font-weight:700}
+.end{margin-top:22px;display:flex;justify-content:space-between;align-items:flex-end;border-top:4px solid var(--ink);padding-top:16px}
+.end .c{font-size:34px;font-weight:900;line-height:1.35}
+.end .c b{color:var(--rust)}
+.end .by{font-size:17px;color:var(--muted);font-weight:800;letter-spacing:.06em;text-align:right;line-height:1.5}
+</style></head>
+<body><div class="card">
+<div class="top"><span>AGENT 观察 · 2026.10.17 晚</span><span class="pill">DeepSeek-V4.1-Flash-1017</span></div>
+
+<div class="hero">
+  <div class="eq"><div class="box">模型</div><div class="op">×</div><div class="box h">Harness</div><div class="op">=</div><div class="res">一起训的<br>一个产品</div></div>
+  <h1>模型开始为<em>自己的 loop</em> 训练了</h1>
+  <div class="sub">DeepSeek 官方：新模型「训练时专门为 <b>DeepSeek Harness</b> 做了优化」，完整效果要升级到 Harness 0.2.1-rc.1。Claude Code 配 Anthropic，Codex 配 OpenAI，现在 DeepSeek 也有了自己的那套。</div>
+</div>
+
+<div class="charts">
+  <div class="panel">
+    <div class="k">DEEPSWE v1.1 · PASS@1</div>
+    <h3>得分：它第一</h3>
+    <div class="bar me"><span>V4.1-Flash-1017</span><div class="t"><div class="f" style="width:96%"></div></div><span class="v">77.0</span></div>
+    <div class="bar"><span>Claude Opus 5</span><div class="t"><div class="f" style="width:92.5%"></div></div><span class="v">74.0</span></div>
+    <div class="bar"><span>GPT-5.6-Sol</span><div class="t"><div class="f" style="width:91%"></div></div><span class="v">73.0</span></div>
+    <div class="bar"><span>上一版 V4.1-Flash</span><div class="t"><div class="f" style="width:92.7%"></div></div><span class="v">74.2</span></div>
+    <div class="note">官方自报，条长按 0–80 分</div>
+  </div>
+  <div class="panel">
+    <div class="k">同榜 · 平均每任务成本（max 档）</div>
+    <h3>成本：差约 60 倍</h3>
+    <div class="bar me"><span>V4.1-Flash-1017</span><div class="t"><div class="f" style="width:3%"></div></div><span class="v">≈$0.2</span></div>
+    <div class="bar"><span>Claude Opus 5</span><div class="t"><div class="f" style="width:100%"></div></div><span class="v">≈$12</span></div>
+    <div class="bar"><span>GPT-6 Astra</span><div class="t"><div class="f" style="width:63%"></div></div><span class="v">≈$7.5</span></div>
+    <div class="bar"><span>GPT-6.1 Sol</span><div class="t"><div class="f" style="width:13%"></div></div><span class="v">≈$1.6</span></div>
+    <div class="note">读自 DeepSeek 官方散点图（对数轴），约数</div>
+  </div>
+</div>
+
+<div class="split">
+  <div class="side a"><div class="k">DEEPSWE · mini-SWE 框架</div><div class="s">77.0 <small>vs Opus 5 74.0</small></div><p>领先 3 分，成本约 1/60。</p></div>
+  <div class="vs">≠</div>
+  <div class="side b"><div class="k">TERMINAL-BENCH 4.0 · 在 Claude Code 里跑</div><div class="s">42.3 <small>vs Opus 5 51.8</small></div><p>落后 9.5 分。两个榜、两套 loop，结论相反。</p></div>
+</div>
+
+<div class="verdict">「哪个模型最强」会越来越没意义。该问的是：<span>放进我的 harness、跑我的任务</span>，做得怎样，每个任务花多少钱。</div>
+
+<div class="row">
+  <div class="todo"><div class="k">做 AGENT 产品 · 本周 5 件事</div><ol>
+    <li>攒 20 个自己的真实任务，换模型先在自己 harness 里重跑，不看榜单直接切</li>
+    <li>评测记录同时写模型版本和 harness 版本</li>
+    <li>按「每个任务花多少钱」算账，不按每百万 token 单价</li>
+    <li>用厂商自带 harness 跑一遍做对照，看自己的封装吃掉多少能力</li>
+    <li>免费期写进日历，到期前决定留不留</li>
+  </ol></div>
+  <div class="warn"><div class="k">版本坑</div><div class="big"><s>0.2.0-rc.2</s><br>→ 0.2.1-rc.1</div><p>npx 现在装到的还是旧版，跑不出新模型效果，要从官方仓库自己构建（@AM09_21 提醒）。</p>
+    <div class="free">Search / Fetch 服务端调用：在 DeepSeek Harness、Claude Code、Codex 里暂免费，北京时间 11/1 0 点起每千次 $0.75</div></div>
+</div>
+
+<div class="end"><div class="c">模型在变便宜，「模型 + loop」却越来越难拆。<br><b>选模型，连它的 harness 一起选。</b></div><div class="by">数据：@deepseek_ai 官方发布帖<br>@leozhangai</div></div>
+</div></body></html>

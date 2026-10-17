@@ -1,0 +1,24 @@
+DeepSeek 今天发了 V4.1-Flash-1017，1.5 万赞。最值得看的不是榜单，是这句：新模型「训练时专门为 DeepSeek Harness 做了优化」，要完整效果，得升级到 Harness 0.2.1-rc.1。
+
+模型和跑它的那套 loop，开始一起训了。
+---
+Claude Code 配 Anthropic，Codex 配 OpenAI，现在 DeepSeek 也有了自己的那套。
+
+官方自报：DeepSWE v1.1 拿 77.0，Opus 5 是 74.0。官方图上每个任务约 $0.2，Opus 5 约 $12。
+---
+注意脚注：Terminal-Bench 4.0 是放在 Claude Code 里跑的，它 42.3，Opus 5 是 51.8；DeepSWE 用的是 mini-SWE 框架。
+
+两个榜、两套 loop，结论正好相反。还有个坑：npx 装到的 Harness 还是 0.2.0-rc.2，跑不出新模型的效果。
+---
+我的判断：「哪个模型最强」会越来越没意义。该问的是：这个模型放进我的 harness、跑我的任务，做得怎样，每个任务花多少钱。
+
+上午说 harness 不是护城河；对模型厂来说，它正在变成模型的一部分。
+---
+本周 5 件事：
+· 攒 20 个自己的真实任务，换模型先在自己 harness 里重跑
+· 评测同时记模型版本和 harness 版本
+· 按每任务成本算账，不按 token 单价
+· 用厂商自带 harness 跑一遍做对照
+· 免费期进日历：DeepSeek Search/Fetch 10/31 后每千次 $0.75
+---
+模型在变便宜，「模型 + loop」这对组合却越来越难拆。选模型，连它的 harness 一起选。
