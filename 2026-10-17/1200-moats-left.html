@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><title>AI 时代还剩的 6 条护城河</title>
+<style>
+:root{--bg:#f2d64b;--ink:#111111;--cobalt:#1d4ed8;--paper:#fffbea;--soft:#2b2a22;--muted:#5c5638;--line:rgba(17,17,17,.18);
+--sans:"Noto Sans CJK SC","Noto Sans SC",sans-serif;--num:"DejaVu Sans Condensed","Noto Sans CJK SC",sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:58px 70px 44px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+background:radial-gradient(rgba(17,17,17,.07) 1.2px,transparent 1.3px) 0 0/22px 22px,var(--bg)}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:18px;font-weight:800;letter-spacing:.16em}
+.top .pill{background:var(--ink);color:var(--bg);padding:9px 18px}
+.hero{margin-top:26px;display:grid;grid-template-columns:330px 1fr;gap:34px;align-items:center;border-top:6px solid var(--ink);border-bottom:6px solid var(--ink);padding:22px 0}
+.big{font-family:var(--num);font-weight:900;font-size:340px;line-height:.82;color:var(--cobalt);letter-spacing:-.04em;text-align:center}
+h1{margin:0;font-size:92px;line-height:1.08;font-weight:900;letter-spacing:-.01em}
+.quote{margin-top:18px;font-size:27px;line-height:1.45;color:var(--soft);font-weight:600}
+.quote b{background:var(--ink);color:var(--bg);padding:0 8px}
+.label{margin-top:30px;display:flex;justify-content:space-between;align-items:baseline}
+.label h2{margin:0;font-size:31px;font-weight:900}
+.label i{font-style:normal;font-size:18px;color:var(--muted);font-weight:700}
+.grid{margin-top:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tile{background:var(--paper);border:3px solid var(--ink);padding:22px 22px 18px;display:flex;flex-direction:column;min-height:300px;position:relative}
+.tile.hot{background:var(--cobalt);color:#fff;border-color:var(--cobalt)}
+.tile .no{font-family:var(--num);font-weight:900;font-size:18px;letter-spacing:.18em;color:var(--muted)}
+.tile.hot .no{color:#bfdbfe}
+.tile h3{margin:6px 0 10px;font-size:36px;font-weight:900;line-height:1.15}
+.tile p{margin:0;font-size:24px;line-height:1.5;flex:1}
+.tile .meter{margin-top:14px;display:flex;align-items:center;gap:8px;font-size:16px;font-weight:800;letter-spacing:.06em}
+.dot{width:20px;height:20px;border-radius:50%;border:3px solid currentColor}
+.dot.on{background:currentColor}
+.tag{position:absolute;top:-16px;right:16px;background:var(--ink);color:var(--bg);font-size:16px;font-weight:900;padding:5px 12px;letter-spacing:.08em}
+.verdict{margin-top:26px;background:var(--ink);color:var(--paper);padding:26px 34px;font-size:39px;font-weight:900;line-height:1.35}
+.verdict span{color:var(--bg)}
+.row{margin-top:24px;display:grid;grid-template-columns:520px 1fr;gap:22px}
+.test{border:4px dashed var(--ink);padding:24px 26px;background:rgba(255,251,234,.55)}
+.test .k{font-size:18px;font-weight:900;letter-spacing:.16em;color:var(--cobalt)}
+.test .q{margin-top:14px;font-size:38px;line-height:1.4;font-weight:900}
+.test .s{margin-top:12px;font-size:17px;color:var(--muted);font-weight:700}
+.todo{background:var(--paper);border:3px solid var(--ink);padding:20px 26px}
+.todo .k{font-size:18px;font-weight:900;letter-spacing:.16em}
+.todo ol{margin:10px 0 0;padding:0;list-style:none;counter-reset:n}
+.todo li{counter-increment:n;display:flex;gap:14px;font-size:25px;line-height:1.38;padding:10px 0;border-top:1px solid var(--line);font-weight:600}
+.todo li:first-child{border-top:none}
+.todo li::before{content:counter(n);flex:none;width:34px;height:34px;border-radius:50%;background:var(--cobalt);color:#fff;font-family:var(--num);font-weight:900;font-size:19px;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.close{margin-top:auto;padding-top:22px;font-size:34px;font-weight:900;line-height:1.4;border-top:6px solid var(--ink)}
+.close span{color:var(--cobalt)}
+.foot{margin-top:14px;display:flex;justify-content:space-between;font-size:17px;color:var(--muted);font-weight:700}
+</style></head><body><div class="card">
+<div class="top"><span>AI / AGENT 观察 · 2026.10.17</span><span class="pill">MOAT CHECK</span></div>
+<div class="hero">
+  <div class="big">6</div>
+  <div>
+    <h1>AI 时代<br>还剩的护城河</h1>
+    <div class="quote">「技术护城河基本结束了。」<br>— Nikita Bier（前 X 产品负责人）<b>2.5 万赞 · 1.3 万收藏</b><br>levelsio 补成六条，并逐条改了自己的产品。</div>
+  </div>
+</div>
+<div class="label"><h2>六条护城河 × levelsio 的真实动作</h2><i>圆点 = 我的打分：Agent 小团队够不够得着</i></div>
+<div class="grid">
+  <div class="tile hot"><span class="tag">每天能攒</span><div class="no">01</div><h3>专有数据 / 内容</h3><p>Nomads 城市数据做成付费 API，年费 $2,490–$9,990</p><div class="meter"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>&nbsp;够得着</div></div>
+  <div class="tile"><div class="no">02</div><h3>网络效应 / 社区</h3><p>社区门槛从 $99 降到 $1，人越多越值钱</p><div class="meter"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span>&nbsp;要时间</div></div>
+  <div class="tile hot"><span class="tag">每天能攒</span><div class="no">03</div><h3>受众 / 分发</h3><p>邮件 + Telegram 订阅 18.7 万人，不只靠 X 推荐</p><div class="meter"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>&nbsp;够得着</div></div>
+  <div class="tile"><div class="no">04</div><h3>物理实体</h3><p>30 天排 8 场线下聚会；在做 90 年代复古 PC 硬件</p><div class="meter"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span>&nbsp;挑场景</div></div>
+  <div class="tile"><div class="no">05</div><h3>资本</h3><p>重仓 AI 公司，债券 ETF 对冲泡沫，买海边土地</p><div class="meter"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>&nbsp;多数够不着</div></div>
+  <div class="tile"><div class="no">06</div><h3>牌照 / 监管</h3><p>他自己直说：不擅长，不碰</p><div class="meter"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>&nbsp;多数够不着</div></div>
+</div>
+<div class="verdict">最新一批 YC 全是「Cursor for 某行业」的 harness。<br>我的判断：<span>harness 不是护城河，是生产护城河的机器。</span></div>
+<div class="row">
+  <div class="test"><div class="k">复刻测试</div><div class="q">AI 明天用代码复刻一个更便宜的你，用户还有理由选你吗？</div><div class="s">测试题来自 @ecombeckett · 答不上来 = 还没护城河</div></div>
+  <div class="todo"><div class="k">做 Agent 产品，本周 5 件事</div><ol>
+    <li>单独记下用户的纠错、偏好、被拒方案</li>
+    <li>每周看一次：这些数据有没有让 Agent 变好</li>
+    <li>建一个不靠平台推荐的触达渠道</li>
+    <li>加一个真实世界触点：聚会或交付到手的结果</li>
+    <li>写下复刻测试的唯一答案</li></ol></div>
+</div>
+<div class="close">模型每个季度都在变便宜。<span>能被一次 prompt 复刻的，都不算你的。</span></div>
+<div class="foot"><span>来源：@nikitabier · @levelsio · @ecombeckett · X 讨论区</span><span>@leozhangai</span></div>
+</div></body></html>
