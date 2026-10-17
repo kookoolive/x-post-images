@@ -19,6 +19,6 @@ Claude Code 配 Anthropic，Codex 配 OpenAI，现在 DeepSeek 也有了自己�
 · 评测同时记模型版本和 harness 版本
 · 按每任务成本算账，不按 token 单价
 · 用厂商自带 harness 跑一遍做对照
-· 免费期进日历：DeepSeek Search/Fetch 10/31 后每千次 $0.75
+· 免费期进日历：DeepSeek Search/Fetch 11/1 起每千次 $0.75
 ---
 模型在变便宜，「模型 + loop」这对组合却越来越难拆。选模型，连它的 harness 一起选。
