@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<title>API Key = 现金</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500;700;900&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a1628; --paper:#f0f4f8; --ink:#0b1220; --muted:#64748b;
+  --amber:#f59e0b; --teal:#2dd4bf; --soft:#cbd5e1; --warn:#fb7185;
+  --sans:"Noto Sans SC","Noto Sans CJK SC",sans-serif;
+  --num:"Oswald","Noto Sans SC",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{
+  width:1500px;height:2000px;padding:52px 64px 44px;
+  font-family:var(--sans);color:var(--paper);
+  display:flex;flex-direction:column;
+  background:
+    radial-gradient(ellipse 80% 50% at 100% 0%,rgba(45,212,191,.12),transparent 55%),
+    radial-gradient(ellipse 60% 40% at 0% 100%,rgba(245,158,11,.10),transparent 50%),
+    linear-gradient(165deg,#0a1628 0%,#0f1f38 55%,#0a1628 100%);
+}
+.top{display:flex;justify-content:space-between;align-items:center;
+  font-size:18px;font-weight:700;letter-spacing:.18em;color:var(--teal)}
+.top .pill{background:var(--amber);color:var(--ink);padding:8px 16px;letter-spacing:.12em;font-weight:900}
+.hero{margin-top:28px;border-top:5px solid var(--amber);border-bottom:5px solid var(--teal);padding:28px 0 24px}
+.kicker{font-size:22px;font-weight:700;letter-spacing:.2em;color:var(--amber);margin-bottom:14px}
+h1{margin:0;font-size:78px;line-height:1.12;font-weight:900;letter-spacing:-.01em}
+h1 em{font-style:normal;color:var(--amber)}
+.sub{margin-top:18px;font-size:28px;line-height:1.45;color:var(--soft);font-weight:500;max-width:1280px}
+.facts{margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.fact{background:rgba(240,244,248,.06);border:2px solid rgba(45,212,191,.35);padding:22px 24px;min-height:168px}
+.fact .n{font-family:var(--num);font-size:64px;font-weight:700;color:var(--amber);line-height:1;letter-spacing:-.02em}
+.fact .l{margin-top:12px;font-size:22px;line-height:1.4;font-weight:700;color:var(--paper)}
+.verdict{margin-top:26px;background:var(--amber);color:var(--ink);padding:26px 32px;font-size:36px;font-weight:900;line-height:1.35}
+.verdict span{background:var(--ink);color:var(--amber);padding:2px 10px}
+.mid{margin-top:26px;display:grid;grid-template-columns:1fr 1.15fr;gap:22px;flex:1}
+.box{background:var(--paper);color:var(--ink);border:3px solid var(--teal);padding:24px 28px}
+.box.dark{background:rgba(15,31,56,.85);color:var(--paper);border-color:var(--amber)}
+.box .lab{font-size:16px;font-weight:900;letter-spacing:.16em;color:var(--teal)}
+.box.dark .lab{color:var(--amber)}
+.box h2{margin:10px 0 14px;font-size:34px;font-weight:900;line-height:1.25}
+.box p{margin:0;font-size:24px;line-height:1.5;font-weight:600}
+.box ol{margin:8px 0 0;padding:0;list-style:none;counter-reset:s}
+.box ol li{counter-increment:s;display:grid;grid-template-columns:46px 1fr;gap:14px;align-items:start;
+  padding:12px 0;border-top:1px solid rgba(11,18,32,.12);font-size:23px;line-height:1.4;font-weight:700}
+.box ol li:first-child{border-top:none;padding-top:4px}
+.box ol li::before{content:counter(s);font-family:var(--num);font-size:28px;font-weight:700;color:var(--amber);line-height:1.2}
+.foot{margin-top:24px;border-top:4px solid var(--teal);padding-top:20px;font-size:30px;font-weight:900;line-height:1.4;color:var(--paper)}
+.foot b{color:var(--amber)}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="top"><span>AGENT 钥匙卫生 · 2026.10.18</span><span class="pill">BREAKING</span></div>
+  <div class="hero">
+    <div class="kicker">OPENCODE 遭蒸馏攻击</div>
+    <h1>API Key 就是<br>带 HTTP 头的<em>现金</em></h1>
+    <p class="sub">第三方 Console 里存 Provider Key，等于把信用卡留在别人店里。柜越大，一次侧门的爆炸半径越大。</p>
+  </div>
+  <div class="facts">
+    <div class="fact"><div class="n">1.4%</div><div class="l">Console 用户被波及<br>仅存过外部 Provider Key 的人</div></div>
+    <div class="fact"><div class="n">$400+</div><div class="l">有人一夜异常账单<br>钥匙被拿去刷模型</div></div>
+    <div class="fact"><div class="n">LEGACY</div><div class="l">正在下线的旧系统被打穿<br>三家模型厂一起清</div></div>
+  </div>
+  <div class="verdict">判断：方便存 Key ≠ 安全。<span>Harness 越强，钥匙柜越大。</span></div>
+  <div class="mid">
+    <div class="box dark">
+      <div class="lab">别被「蒸馏」带偏</div>
+      <h2>攻击者要的不是 prompt</h2>
+      <p>要的是钥匙背后那台能无限刷模型的计费账户。没收到邮件的不受影响；收到的人，先轮换 Key，再查账单。</p>
+    </div>
+    <div class="box">
+      <div class="lab">本周 5 件事 · 今天就能做</div>
+      <ol>
+        <li>盘点工具 / Console / 插件里还躺着哪些 Provider Key</li>
+        <li>凡「为方便」存过的地方，先轮换一次</li>
+        <li>每把 Key 开花费上限 + 告警</li>
+        <li>本机只留环境变量；会话记录当 ~/.ssh</li>
+        <li>第三方优先 OAuth / 短时令牌；非要存就用低预算专用 Key</li>
+      </ol>
+    </div>
+  </div>
+  <div class="foot">模型在变便宜，Key 泄漏的代价没有。<b>钥匙管理不是运维细节，是产品能力。</b></div>
+</div>
+</body>
+</html>
