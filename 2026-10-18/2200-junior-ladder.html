@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><title>新人的台阶被 Agent 拿走了</title>
+<style>
+:root{--bg:#26272b;--ink:#f2f0eb;--hot:#ff5a36;--sky:#7cc4ff;--card:#f2f0eb;--dark:#1a1b1e;--muted:#a7a6a1;--line:rgba(242,240,235,.14);
+--sans:"Noto Sans CJK SC","Noto Sans SC",sans-serif;--num:"DejaVu Sans Condensed","Noto Sans CJK SC",sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:56px 72px 44px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+background:radial-gradient(circle at 1px 1px,rgba(242,240,235,.06) 1.5px,transparent 0) 0 0/28px 28px,var(--bg)}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:19px;font-weight:800;letter-spacing:.16em;color:var(--muted)}
+.top .pill{background:var(--hot);color:#fff;padding:8px 18px;border-radius:6px;letter-spacing:.1em}
+.hero{display:grid;grid-template-columns:1fr 520px;gap:30px;margin-top:34px;align-items:end}
+h1{margin:0;font-size:92px;line-height:1.08;font-weight:900;letter-spacing:-.01em}
+h1 em{font-style:normal;color:var(--hot)}
+.sub{margin-top:22px;font-size:29px;line-height:1.5;color:#d6d4ce;font-weight:600}
+.sub b{color:var(--sky)}
+/* staircase */
+.stairs{position:relative;height:430px}
+.step{position:absolute;border-radius:6px 6px 0 0;display:flex;align-items:flex-start;justify-content:center;padding-top:12px;font-size:21px;font-weight:900}
+.s1,.s2{border:3px dashed var(--hot);background:rgba(255,90,54,.07);color:var(--hot)}
+.s3,.s4{background:var(--card);color:var(--dark)}
+.s1{left:0;bottom:0;width:130px;height:90px}
+.s2{left:130px;bottom:0;width:130px;height:180px}
+.s3{left:260px;bottom:0;width:130px;height:280px}
+.s4{left:390px;bottom:0;width:130px;height:380px}
+.step span{display:block;text-align:center;line-height:1.25}
+.gap{position:absolute;left:8px;bottom:205px;font-size:20px;font-weight:800;color:var(--hot);line-height:1.35}
+.gap{bottom:200px;left:4px;font-size:22px}
+/* stats */
+.stats{margin-top:40px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.st{background:var(--dark);border:2px solid var(--line);border-radius:14px;padding:20px 22px 18px}
+.st .n{font-family:var(--num);font-weight:900;font-size:58px;line-height:1;color:var(--ink);letter-spacing:-.02em}
+.st .n i{font-style:normal;color:var(--hot)}
+.st .n small{font-size:30px;color:var(--muted)}
+.st .l{margin-top:10px;font-size:21px;line-height:1.4;color:#cfcdc7;font-weight:600}
+.st.h{border-color:var(--hot)}
+/* compare */
+.cmp{margin-top:32px;display:grid;grid-template-columns:1fr 84px 1fr;align-items:stretch}
+.col{border-radius:18px;padding:24px 28px}
+.col.a{background:transparent;border:3px dashed rgba(242,240,235,.35)}
+.col.b{background:var(--card);color:var(--dark)}
+.col .k{font-size:19px;font-weight:900;letter-spacing:.14em}
+.col.a .k{color:var(--muted)} .col.b .k{color:var(--hot)}
+.col h3{margin:8px 0 14px;font-size:36px;font-weight:900}
+.col.a h3{color:#bdbbb5;text-decoration:line-through;text-decoration-color:var(--hot);text-decoration-thickness:4px}
+.col ul{margin:0;padding:0;list-style:none}
+.col li{font-size:24px;line-height:1.5;padding:6px 0;border-top:1px solid rgba(127,127,127,.25);font-weight:600}
+.col.a li{color:#bdbbb5}
+.arrow{display:flex;align-items:center;justify-content:center;font-size:64px;font-weight:900;color:var(--hot)}
+/* judgement band */
+.band{margin-top:32px;background:var(--hot);color:#fff;border-radius:14px;padding:22px 30px;font-size:33px;font-weight:900;line-height:1.4}
+.band small{display:block;font-size:22px;font-weight:700;opacity:.92;margin-top:4px}
+.quotes{margin-top:24px;display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:16px}
+.qt{border-left:6px solid var(--sky);background:rgba(124,196,255,.07);border-radius:0 14px 14px 0;padding:20px 22px}
+.qt .w{font-size:25px;line-height:1.45;font-weight:800}
+.qt .who{margin-top:10px;font-size:18px;color:var(--muted);font-weight:700}
+.sec{margin-top:28px;font-size:19px;font-weight:900;letter-spacing:.16em;color:var(--muted)}
+/* todo */
+.todo{margin-top:24px;display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.t{background:var(--dark);border-top:5px solid var(--sky);border-radius:10px;padding:18px 18px 22px}
+.t .i{font-family:var(--num);font-size:34px;font-weight:900;color:var(--sky)}
+.t .x{margin-top:6px;font-size:23px;line-height:1.42;font-weight:700}
+.end{margin-top:auto;border-top:4px solid var(--ink);padding-top:20px;display:flex;justify-content:space-between;align-items:flex-end}
+.end .q{font-size:44px;font-weight:900;line-height:1.35}
+.end .q em{font-style:normal;color:var(--hot)}
+.end .src{font-size:17px;color:var(--muted);text-align:right;line-height:1.5}
+</style></head><body><div class="card">
+<div class="top"><span>LEO · AGENT 工作观察</span><span class="pill">ANTHROPIC 用工报告 · 10.16</span></div>
+<div class="hero">
+ <div>
+  <h1>新人的<br>前两级台阶，<br>被 <em>Agent</em> 拿走了</h1>
+  <div class="sub">初级岗在技术招聘里的占比 <b>27% → 9%</b>。不是不要新人，是"写代码、找 bug"这两级入门台阶，最先被 Claude 接走。</div>
+ </div>
+ <div class="stairs">
+  <div class="gap">入门台阶<br>没了</div>
+  <div class="step s1"><span>写代码</span></div>
+  <div class="step s2"><span>找 bug</span></div>
+  <div class="step s3"><span>写 spec<br>审输出</span></div>
+  <div class="step s4"><span>判断<br>拍板</span></div>
+ </div>
+</div>
+<div class="stats">
+ <div class="st h"><div class="n">27<small>%</small><i>→</i>9<small>%</small></div><div class="l">初级岗占技术招聘<br>（2025 初至今）</div></div>
+ <div class="st"><div class="n">6<i>:</i>1</div><div class="l">8 月交互式 Agent 工时<br>对员工工时</div></div>
+ <div class="st"><div class="n">~80<small>%</small></div><div class="l">Claude 会话时间<br>在等人回话</div></div>
+ <div class="st"><div class="n">10<small>%</small><i>→</i>22<small>%</small></div><div class="l">"管 Agent"的工作<br>占会话比重</div></div>
+</div>
+<div class="cmp">
+ <div class="col a"><div class="k">以前的入门</div><h3>先学会写</h3><ul><li>接小 bug，修到熟</li><li>照着需求写实现</li><li>拼领域专长</li></ul></div>
+ <div class="arrow">→</div>
+ <div class="col b"><div class="k">现在的入门</div><h3>先学会判断</h3><ul><li>写 spec，派给多个 Agent</li><li>让一个 Agent 审另一个</li><li>面试看自主性和判断力</li></ul></div>
+</div>
+<div class="band">门槛从"会写"挪到了"会判断"——可判断力，恰恰是写着写着、错着错着才练出来的。<small>报告原话：保护在职员工，帮不了那些根本没被录用的人。</small></div>
+<div class="sec">报告里的员工原话</div>
+<div class="quotes">
+ <div class="qt"><div class="w">"像面对一支 Claude 大军，每一个都在要我的注意力。"</div><div class="who">一位工程师</div></div>
+ <div class="qt"><div class="w">"原来 20% 的战略部分，变成了工作的 90%。"</div><div class="who">非技术岗员工</div></div>
+ <div class="qt"><div class="w">"一件事做到第二次，就想怎么让 Claude 替我做第三次。"</div><div class="who">一位销售</div></div>
+</div>
+<div class="sec">本周可以先做 5 件事</div>
+<div class="todo" style="margin-top:12px">
+ <div class="t"><div class="i">01</div><div class="x">看看你的 Agent 会话有多少时间在等你</div></div>
+ <div class="t"><div class="i">02</div><div class="x">同一件事做到第二次，就写成 skill</div></div>
+ <div class="t"><div class="i">03</div><div class="x">每周留块时间写 spec、搭审阅回路</div></div>
+ <div class="t"><div class="i">04</div><div class="x">面试加一道"判断 Agent 输出对不对"</div></div>
+ <div class="t"><div class="i">05</div><div class="x">给新人派"审产出、写评估"，不只派 bug</div></div>
+</div>
+<div class="end">
+ <div class="q">不招新人，三年后谁来当能拍板的老人？<br><em>学徒制得重新设计，而不是直接取消。</em></div>
+ <div class="src">来源：Anthropic《How employment is<br>changing at Anthropic》2026-10-16<br>@leozhangai</div>
+</div>
+</div></body></html>
