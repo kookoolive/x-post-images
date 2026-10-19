@@ -41,3 +41,4 @@
 - 2026-10-18 | AI早报视频 v2 | 剪报墙：倾斜±2°奶白剪报卡+柠檬黄胶带+序号01/06+原图contain+衬线大标题+柠檬黄数字胶囊+两行摘要+来源行；OpenCode/Addy 做深酒红原帖引用卡（英文打字机体+中译）；判断屏三张胶带卡（马善政大字）；静图+0.25s 交叉淡化，无 zoompan | 酒红 #3b0d1a + 柠檬黄 #fde047 + 奶白卡 #fff8e7；封面 Higgsfield gpt_image_2_5 酒红剪报墙+金钥匙；Leo@atempo1.4 正文≈98.8s，总≈113.8s
 - 2026-10-18 | AI早报视频 片头叠字改版 | 底部署字：AI早报黄手写(Ma Shan Zheng)+本期标题 Noto Sans CJK Bold 白字黄描边黑影+日期右下角 YYYY.MMDD；去掉酒红半透明底框与上半胸口马善政主标题；参考 bumpers/title-style-ref.png · make_start_title_overlay.py
 - 2026-10-19 12:00 | Sphinx quiz gate | 骨架：暖羊皮纸封面+旋转QUIZ圆章+三步门禁条(停住/出题/放行)+靛紫判断带+YOLO虚线警示+双栏(语义缺口vs五件事)+通栏结论 | 背景暖羊皮 #f3ebe1，强调靛紫 #3730a3，点缀珊瑚 #e11d48，卡面近白 #fffaf5
+- 2026-10-19 | AI早报视频 10-18 片头叠字定稿 | HTML(start-title-overlay.html)→透明RGBA PNG overlay：主标题资源圆体 Heavy 纯白无描边+多层硬影至8px、字距偏紧约960px居中；黄贴纸「AI早报」+日期猫啃麦圆(日期白描边加粗，2026.10.18)；停用马善政/Noto/黄描边 | 白 #fff + 黑硬影 #000 + 贴纸柠檬黄 #fde047
