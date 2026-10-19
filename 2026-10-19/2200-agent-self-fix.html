@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<title>合并不是完工</title>
+<style>
+:root{
+  --bg:#1a1028; --paper:#f0fdfa; --ink:#0f172a; --muted:#64748b;
+  --mint:#2dd4bf; --pink:#f472b6; --line:rgba(45,212,191,.22);
+  --soft:#334155; --deep:#0b1220;
+  --sans:"Noto Sans CJK SC","Noto Sans SC",sans-serif;
+  --num:"DejaVu Sans Condensed","Noto Sans CJK SC",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{
+  width:1500px;height:2000px;padding:52px 60px 40px;
+  font-family:var(--sans);color:#e2e8f0;
+  display:flex;flex-direction:column;
+  background:
+    repeating-linear-gradient(135deg,transparent,transparent 18px,rgba(45,212,191,.045) 18px,rgba(45,212,191,.045) 19px),
+    radial-gradient(ellipse 55% 35% at 0% 0%,rgba(244,114,182,.18),transparent 55%),
+    radial-gradient(ellipse 50% 40% at 100% 100%,rgba(45,212,191,.12),transparent 50%),
+    var(--bg);
+}
+.top{display:flex;justify-content:space-between;align-items:center;
+  font-size:18px;font-weight:800;letter-spacing:.18em;color:var(--mint)}
+.top .pill{background:var(--pink);color:#1a1028;padding:9px 18px;letter-spacing:.12em;font-weight:900}
+.hero{margin-top:22px;display:grid;grid-template-columns:1fr 340px;gap:28px;align-items:stretch}
+.hero-left{border-left:8px solid var(--mint);padding:8px 0 8px 28px}
+.kicker{font-size:20px;font-weight:900;letter-spacing:.2em;color:var(--pink);margin-bottom:10px}
+h1{margin:0;font-size:72px;line-height:1.08;font-weight:900;letter-spacing:-.015em;color:#f8fafc}
+h1 em{font-style:normal;color:var(--mint)}
+.sub{margin-top:16px;font-size:26px;line-height:1.45;color:#cbd5e1;font-weight:600;max-width:900px}
+.bigbox{
+  background:var(--paper);color:var(--ink);border-radius:8px;padding:28px 20px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  border:4px solid var(--mint);box-shadow:0 12px 0 rgba(45,212,191,.25)
+}
+.bigbox .n{font-family:var(--num);font-size:96px;font-weight:900;color:#0f766e;line-height:1}
+.bigbox .l{margin-top:8px;font-size:22px;font-weight:900;letter-spacing:.12em;color:var(--soft)}
+.rates{margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.rate{background:rgba(15,23,42,.55);border:3px solid var(--line);padding:22px 26px;min-height:150px}
+.rate.hi{border-color:var(--mint);background:rgba(45,212,191,.1)}
+.rate .lab{font-size:20px;font-weight:800;letter-spacing:.14em;color:var(--mint)}
+.rate .pct{font-family:var(--num);font-size:64px;font-weight:900;line-height:1.05;margin-top:8px;color:#f8fafc}
+.rate .note{margin-top:8px;font-size:22px;font-weight:600;color:#94a3b8}
+.who{margin-top:22px}
+.who h2{margin:0 0 14px;font-size:28px;font-weight:900;letter-spacing:.08em;color:var(--pink)}
+.who-grid{display:grid;grid-template-columns:1.4fr 1fr 0.8fr;gap:14px}
+.who-card{background:var(--paper);color:var(--ink);padding:20px 22px;border-top:6px solid var(--mint);min-height:130px}
+.who-card.mid{border-top-color:var(--pink)}
+.who-card.lo{border-top-color:#94a3b8}
+.who-card .p{font-family:var(--num);font-size:52px;font-weight:900;line-height:1;color:#0f766e}
+.who-card.mid .p{color:#be185d}
+.who-card.lo .p{color:#64748b}
+.who-card .t{margin-top:8px;font-size:24px;font-weight:900}
+.who-card .d{margin-top:4px;font-size:20px;font-weight:600;color:var(--muted)}
+.verdict{margin-top:22px;background:var(--mint);color:#042f2e;padding:24px 30px;font-size:32px;font-weight:900;line-height:1.35}
+.verdict span{background:#042f2e;color:var(--mint);padding:2px 12px}
+.actions{margin-top:20px;flex:1;display:flex;flex-direction:column}
+.actions h2{margin:0 0 12px;font-size:26px;font-weight:900;letter-spacing:.1em;color:#f8fafc}
+.act-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;flex:1}
+.act{background:rgba(240,253,250,.95);color:var(--ink);padding:16px 14px;border-left:5px solid var(--pink);min-height:160px}
+.act .n{font-family:var(--num);font-size:36px;font-weight:900;color:var(--pink);line-height:1}
+.act p{margin:10px 0 0;font-size:20px;line-height:1.35;font-weight:700}
+.foot{margin-top:18px;border-top:5px solid var(--pink);padding-top:16px;
+  font-size:28px;font-weight:900;line-height:1.35;color:#f8fafc}
+.foot b{color:var(--mint)}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="top">
+    <span>AGENT · POST-MERGE</span>
+    <span class="pill">研究笔记</span>
+  </div>
+  <div class="hero">
+    <div class="hero-left">
+      <div class="kicker">6774 条已合并 Agent PR</div>
+      <h1>合并不是<em>完工</em></h1>
+      <p class="sub">Agent 合并后 30 天内「核实修复」几率是人类的 1.62 倍。约七成修复，还是同一个 Agent 回来擦的。</p>
+    </div>
+    <div class="bigbox">
+      <div class="n">1.62×</div>
+      <div class="l">修复几率倍率</div>
+    </div>
+  </div>
+  <div class="rates">
+    <div class="rate hi">
+      <div class="lab">AGENT 合并</div>
+      <div class="pct">4.5%</div>
+      <div class="note">30 天内核实后续修复</div>
+    </div>
+    <div class="rate">
+      <div class="lab">人类 PR</div>
+      <div class="pct">2.3%</div>
+      <div class="note">同仓库 · 同时段对照</div>
+    </div>
+  </div>
+  <div class="who">
+    <h2>谁来修 Agent 的合并？</h2>
+    <div class="who-grid">
+      <div class="who-card">
+        <div class="p">69.6%</div>
+        <div class="t">同一个 Agent</div>
+        <div class="d">Copilot 自修约 95%</div>
+      </div>
+      <div class="who-card mid">
+        <div class="p">27.4%</div>
+        <div class="t">人类</div>
+        <div class="d">只占约四分之一</div>
+      </div>
+      <div class="who-card lo">
+        <div class="p">3%</div>
+        <div class="t">别的 Agent</div>
+        <div class="d">跨工具很少</div>
+      </div>
+    </div>
+  </div>
+  <div class="verdict">判断：<span>Merge 率</span>测的是放行；<span>30 天修复率</span>才测对不对。看板别只盯前者。</div>
+  <div class="actions">
+    <h2>本周 5 件事</h2>
+    <div class="act-grid">
+      <div class="act"><div class="n">01</div><p>加 30 天合并后修复率查询</p></div>
+      <div class="act"><div class="n">02</div><p>按 Agent / 仓 / 任务拆开看</p></div>
+      <div class="act"><div class="n">03</div><p>修 Bug 喂回原 PR + spec</p></div>
+      <div class="act"><div class="n">04</div><p>PR 强制写意图与约束</p></div>
+      <div class="act"><div class="n">05</div><p>短审少评的合并多盯一周</p></div>
+    </div>
+  </div>
+  <div class="foot">绝对差不大：大约每百条约多 <b>2</b> 修。值得追踪，不值得恐慌——但别再把「合并了」当成完工。</div>
+</div>
+</body>
+</html>
