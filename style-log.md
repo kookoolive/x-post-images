@@ -39,3 +39,4 @@
 - 2026-10-17 | AI早报视频 v2@1.4x | 正文Leo atempo=1.4、去s01问候；总~99.9s | 全屏3:4+封面+Start/End×1.4 #0d2620+#ff7849+#fbf5ea
 - 2026-10-18 22:00 | Junior ladder (Anthropic employment report) | 骨架：左大标题+右断阶梯图(前两级虚线缺失)+四大数字格+以前vs现在入门双栏(删除线)+橙红判断带+三条员工原话引用+五件事横排卡+粗线通栏结论 | 背景石墨灰 #26272b（点阵），强调荧光橙红 #ff5a36，点缀天蓝 #7cc4ff，卡面骨白 #f2f0eb
 - 2026-10-18 | AI早报视频 v2 | 剪报墙：倾斜±2°奶白剪报卡+柠檬黄胶带+序号01/06+原图contain+衬线大标题+柠檬黄数字胶囊+两行摘要+来源行；OpenCode/Addy 做深酒红原帖引用卡（英文打字机体+中译）；判断屏三张胶带卡（马善政大字）；静图+0.25s 交叉淡化，无 zoompan | 酒红 #3b0d1a + 柠檬黄 #fde047 + 奶白卡 #fff8e7；封面 Higgsfield gpt_image_2_5 酒红剪报墙+金钥匙；Leo@atempo1.4 正文≈98.8s，总≈113.8s
+- 2026-10-18 | AI早报视频 片头叠字改版 | 底部署字：AI早报黄手写(Ma Shan Zheng)+本期标题 Noto Sans CJK Bold 白字黄描边黑影+日期右下角 YYYY.MMDD；去掉酒红半透明底框与上半胸口马善政主标题；参考 bumpers/title-style-ref.png · make_start_title_overlay.py
