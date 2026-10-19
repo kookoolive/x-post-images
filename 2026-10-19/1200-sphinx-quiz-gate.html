@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<title>Push 前先考试</title>
+<style>
+:root{
+  --bg:#f3ebe1; --paper:#fffaf5; --ink:#1c1917; --muted:#78716c;
+  --indigo:#3730a3; --coral:#e11d48; --line:rgba(28,25,23,.14);
+  --soft:#44403c; --pass:#0f766e;
+  --sans:"Noto Sans CJK SC","Noto Sans SC",sans-serif;
+  --num:"DejaVu Sans Condensed","Noto Sans CJK SC",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{
+  width:1500px;height:2000px;padding:54px 64px 42px;
+  font-family:var(--sans);color:var(--ink);
+  display:flex;flex-direction:column;
+  background:
+    repeating-linear-gradient(0deg,transparent,transparent 31px,rgba(55,48,163,.04) 31px,rgba(55,48,163,.04) 32px),
+    radial-gradient(ellipse 70% 40% at 100% 0%,rgba(225,29,72,.08),transparent 55%),
+    var(--bg);
+}
+.top{display:flex;justify-content:space-between;align-items:center;
+  font-size:18px;font-weight:800;letter-spacing:.16em;color:var(--indigo)}
+.top .pill{background:var(--coral);color:#fff;padding:9px 18px;letter-spacing:.14em;font-weight:900}
+.hero{margin-top:26px;border-top:6px solid var(--indigo);border-bottom:6px solid var(--coral);padding:26px 0 22px;
+  display:grid;grid-template-columns:1fr 280px;gap:28px;align-items:center}
+.kicker{font-size:20px;font-weight:900;letter-spacing:.22em;color:var(--coral);margin-bottom:12px}
+h1{margin:0;font-size:76px;line-height:1.1;font-weight:900;letter-spacing:-.01em}
+h1 em{font-style:normal;color:var(--indigo);background:rgba(55,48,163,.1);padding:0 8px}
+.sub{margin-top:16px;font-size:27px;line-height:1.45;color:var(--soft);font-weight:600;max-width:980px}
+.stamp{width:260px;height:260px;border:8px solid var(--indigo);border-radius:50%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  transform:rotate(-8deg);background:rgba(255,250,245,.85);box-shadow:0 8px 0 rgba(55,48,163,.15)}
+.stamp .big{font-family:var(--num);font-size:72px;font-weight:900;color:var(--indigo);line-height:1;letter-spacing:.04em}
+.stamp .sm{margin-top:8px;font-size:22px;font-weight:900;color:var(--coral);letter-spacing:.18em}
+.steps{margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.step{background:var(--paper);border:3px solid var(--indigo);padding:22px 24px;min-height:180px;position:relative}
+.step .n{font-family:var(--num);font-size:48px;font-weight:900;color:var(--indigo);line-height:1}
+.step h3{margin:8px 0 10px;font-size:32px;font-weight:900}
+.step p{margin:0;font-size:23px;line-height:1.4;font-weight:600;color:var(--soft)}
+.step.mid{border-color:var(--coral)}
+.step.mid .n{color:var(--coral)}
+.verdict{margin-top:24px;background:var(--indigo);color:#fff;padding:26px 32px;font-size:34px;font-weight:900;line-height:1.35}
+.verdict span{background:var(--coral);padding:2px 12px}
+.yolo{margin-top:18px;background:rgba(225,29,72,.1);border:3px dashed var(--coral);padding:18px 26px;
+  font-size:26px;font-weight:800;line-height:1.4;color:var(--ink)}
+.yolo b{color:var(--coral)}
+.mid{margin-top:22px;display:grid;grid-template-columns:1fr 1.2fr;gap:20px;flex:1}
+.box{background:var(--paper);border:3px solid var(--indigo);padding:22px 26px}
+.box .lab{font-size:16px;font-weight:900;letter-spacing:.16em;color:var(--indigo)}
+.box h2{margin:10px 0 12px;font-size:32px;font-weight:900;line-height:1.25}
+.box p{margin:0;font-size:23px;line-height:1.5;font-weight:600;color:var(--soft)}
+.box.list ol{margin:6px 0 0;padding:0;list-style:none;counter-reset:s}
+.box.list ol li{counter-increment:s;display:grid;grid-template-columns:42px 1fr;gap:12px;align-items:start;
+  padding:11px 0;border-top:1px solid var(--line);font-size:22px;line-height:1.4;font-weight:700}
+.box.list ol li:first-child{border-top:none;padding-top:4px}
+.box.list ol li::before{content:counter(s);font-family:var(--num);font-size:26px;font-weight:900;color:var(--coral);line-height:1.2}
+.foot{margin-top:20px;border-top:5px solid var(--indigo);padding-top:18px;font-size:29px;font-weight:900;line-height:1.4}
+.foot b{color:var(--coral)}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="top"><span>AGENT 交付门禁 · 2026.10.19</span><span class="pill">SHOW HN</span></div>
+  <div class="hero">
+    <div>
+      <div class="kicker">SPHINX · PRE-PUSH QUIZ</div>
+      <h1>Push 之前<br>先<em>考试</em></h1>
+      <p class="sub">AI 写得比人看得懂还快。Sphinx 用 Git 钩子拦下保护分支的推送：只读本次 diff，就失败模式出题——答对才放行。</p>
+    </div>
+    <div class="stamp"><div class="big">QUIZ</div><div class="sm">GATE</div></div>
+  </div>
+  <div class="steps">
+    <div class="step"><div class="n">01</div><h3>停住</h3><p>往 main / master 推时，Git 先挂起，不急着上船。</p></div>
+    <div class="step mid"><div class="n">02</div><h3>出题</h3><p>独立评审模型读 diff，问「失败时会怎样」——不是复述代码。</p></div>
+    <div class="step"><div class="n">03</div><h3>放行</h3><p>答错先讲解再换场景；答对继续推。yolo 可跳，但留痕。</p></div>
+  </div>
+  <div class="verdict">判断：验证回路可以交给 Agent。<span>「我懂不懂」不能。</span></div>
+  <div class="yolo">⚠️ <b>sphinx yolo</b> 不是作弊按钮——是诚实日志。每周看跳过记录，比假装看过了有用。</div>
+  <div class="mid">
+    <div class="box">
+      <div class="lab">它在治什么</div>
+      <h2>语义缺口，不是语法错误</h2>
+      <p>测试绿、PR 过，仍说不清 webhook 重试为何漏扣款。Agent 最爱留下这种「能跑但没人懂」的仓库。</p>
+    </div>
+    <div class="box list">
+      <div class="lab">本周 5 件事 · 今天就能做</div>
+      <ol>
+        <li>保护分支装 pre-push 理解检查，先只拦生产向</li>
+        <li>题库优先：重试 / 超时 / 幂等 / 权限降级</li>
+        <li>出题模型与写码 Agent 分开；答案不回灌会话</li>
+        <li>允许 yolo，每周复盘跳过日志找盲区</li>
+        <li>新人第一周：派「解释 Agent 刚写的 diff」</li>
+      </ol>
+    </div>
+  </div>
+  <div class="foot">门禁如果只拦语法和测试，<b>拦不住「没人看懂」的仓库</b>。</div>
+</div>
+</body>
+</html>
