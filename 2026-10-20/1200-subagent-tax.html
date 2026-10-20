@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>子 Agent 不是免费加速</title>
+<style>
+:root{--bg:#e9d8bb;--paper:#fbf6ec;--ink:#1c1917;--muted:#57534e;--red:#dc2626;--green:#15803d;--line:#1c1917;
+--sans:"Noto Sans CJK SC","Noto Sans SC",sans-serif;--mono:"DejaVu Sans Mono",monospace;--num:"DejaVu Sans Condensed","Noto Sans CJK SC",sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:50px 60px 38px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+background:radial-gradient(circle at 20% 10%,rgba(255,255,255,.35),transparent 40%),
+repeating-linear-gradient(0deg,rgba(28,25,23,.035) 0 1px,transparent 1px 4px),var(--bg)}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:19px;font-weight:900;letter-spacing:.16em}
+.top .pill{border:3px solid var(--ink);padding:7px 16px;font-family:var(--mono);font-size:17px;letter-spacing:.06em;background:var(--paper)}
+.hero{margin-top:22px;display:grid;grid-template-columns:1fr 330px;gap:30px;align-items:center}
+.kicker{font-size:22px;font-weight:900;letter-spacing:.2em;color:var(--red)}
+h1{margin:8px 0 0;font-size:96px;line-height:1.04;font-weight:900;letter-spacing:-.02em}
+h1 s{text-decoration:none;position:relative;color:var(--muted)}
+h1 s:after{content:"";position:absolute;left:-4px;right:-4px;top:52%;height:10px;background:var(--red);transform:rotate(-4deg)}
+.sub{margin-top:16px;font-size:28px;line-height:1.45;font-weight:700;color:#292524}
+.stamp{width:300px;height:300px;border-radius:50%;border:6px double var(--red);color:var(--red);display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-8deg);background:rgba(251,246,236,.6)}
+.stamp .n{font-family:var(--num);font-size:84px;font-weight:900;line-height:1}
+.stamp .l{font-size:22px;font-weight:900;letter-spacing:.14em;margin-top:6px}
+.stamp .s{font-size:19px;font-weight:700;margin-top:10px;color:#7f1d1d;text-align:center;line-height:1.4}
+.sec{margin-top:24px;background:var(--paper);border:4px solid var(--ink);box-shadow:8px 8px 0 var(--ink);padding:22px 30px}
+.sec h2{margin:0 0 14px;font-size:24px;font-weight:900;letter-spacing:.12em;display:flex;justify-content:space-between}
+.sec h2 span{font-family:var(--mono);font-size:17px;color:var(--muted);letter-spacing:0;font-weight:700}
+.row{display:grid;grid-template-columns:190px 1fr 210px;align-items:center;gap:18px;margin:12px 0}
+.row .name{font-size:27px;font-weight:900}
+.bars{position:relative;height:56px}
+.bar{position:absolute;left:0;height:24px}
+.bar.off{top:0;background:#a8a29e}
+.bar.on{top:30px;background:var(--red)}
+.bar.on.eq{background:#44403c}
+.bar i{position:absolute;right:-64px;top:-3px;font-style:normal;font-family:var(--num);font-size:22px;font-weight:900}
+.row .delta{font-family:var(--num);font-size:42px;font-weight:900;color:var(--red);text-align:right}
+.row .delta.eq{color:#44403c}
+.legend{font-size:18px;font-weight:700;color:var(--muted);margin-top:4px}
+.legend b{display:inline-block;width:18px;height:14px;margin:0 6px 0 16px;vertical-align:middle}
+.tiles{margin-top:24px;display:grid;grid-template-columns:1fr 1fr 1fr 1.25fr;gap:16px}
+.tile{background:var(--paper);border:3px solid var(--ink);padding:18px 18px}
+.tile .n{font-family:var(--num);font-size:46px;font-weight:900;line-height:1.05}
+.tile .l{margin-top:8px;font-size:20px;font-weight:700;line-height:1.35;color:#292524}
+.tile.win{background:var(--green);color:#f0fdf4;border-color:var(--green)}
+.tile.win .l{color:#dcfce7}
+.inc{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.ticket{border:3px dashed var(--ink);padding:16px 18px;background:#fff}
+.ticket .id{font-family:var(--mono);font-size:17px;font-weight:700;color:var(--red)}
+.ticket .t{font-size:30px;font-weight:900;margin-top:4px}
+.ticket .p{font-family:var(--num);font-size:40px;font-weight:900;color:var(--red);line-height:1.1;margin-top:4px}
+.ticket .d{font-size:20px;font-weight:700;color:#44403c;margin-top:6px;line-height:1.35}
+.band{margin-top:26px;background:var(--ink);color:var(--bg);padding:24px 32px;font-size:40px;font-weight:900;letter-spacing:.01em;line-height:1.3}
+.band em{font-style:normal;color:#fca5a5}
+.cols{margin-top:22px;display:grid;grid-template-columns:0.9fr 1.1fr;gap:20px}
+.box{background:var(--paper);border:3px solid var(--ink);padding:20px 24px}
+.box h3{margin:0 0 10px;font-size:23px;font-weight:900;letter-spacing:.12em}
+.box.g h3{color:var(--green)}
+.box ul,.box ol{margin:0;padding-left:30px;font-size:22px;font-weight:700;line-height:1.55}
+.box li::marker{font-family:var(--num);font-weight:900;color:var(--red)}
+.box.g li::marker{color:var(--green)}
+.foot{margin-top:auto;border-top:6px solid var(--ink);padding-top:16px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
+.foot .c{font-size:30px;font-weight:900;line-height:1.35}
+.foot .src{font-size:16px;font-weight:700;color:var(--muted);text-align:right;line-height:1.5;white-space:nowrap}
+</style></head><body><div class="card">
+<div class="top"><div>AI · AGENT 干货 · 2026.10.20</div><div class="pill">PAPER · arXiv 2610.10263</div></div>
+<div class="hero"><div>
+<div class="kicker">同一个 Agent · 同一个模型 · 只拨一个开关</div>
+<h1>子 Agent<br>不是<s>免费</s>加速</h1>
+<div class="sub">Codex / Claude Code / Kimi Code，子 Agent 开 vs 关：小修小补开了反而变差，钱和时间一起涨。</div>
+</div>
+<div class="stamp"><div class="n">2124</div><div class="l">次运行</div><div class="s">354 个任务<br>≈ $20.8K API 费</div></div></div>
+
+<div class="sec"><h2>SWE-bench VERIFIED · 小 bug 修复通过率 <span>off → on</span></h2>
+<div class="row"><div class="name">Claude Code</div><div class="bars"><div class="bar off" style="width:83%"><i>83</i></div><div class="bar on" style="width:59%"><i>59</i></div></div><div class="delta">−24</div></div>
+<div class="row"><div class="name">Kimi Code</div><div class="bars"><div class="bar off" style="width:77%"><i>77</i></div><div class="bar on" style="width:59%"><i>59</i></div></div><div class="delta">−18</div></div>
+<div class="row"><div class="name">Codex</div><div class="bars"><div class="bar off" style="width:71%"><i>71</i></div><div class="bar on eq" style="width:71%"><i>71</i></div></div><div class="delta eq">±0</div></div>
+<div class="legend"><b style="background:#a8a29e"></b>子 Agent 关（串行）<b style="background:var(--red)"></b>子 Agent 开（并发）· 单位 %</div>
+</div>
+
+<div class="tiles">
+<div class="tile"><div class="n">1.41–3.31×</div><div class="l">token 用量<br>对比串行</div></div>
+<div class="tile"><div class="n">14 / 15</div><div class="l">组对照里<br>反而更慢</div></div>
+<div class="tile"><div class="n">17.5→27.8</div><div class="l">Claude Code<br>单题分钟数</div></div>
+<div class="tile win"><div class="n">7.1→21.4%</div><div class="l">唯一明显赚到：最长任务 LoopsBench（28 题，样本小）</div></div>
+</div>
+
+<div class="sec"><h2>失败读起来像后端事故单 <span>1062 次并发运行 · 人工标注</span></h2>
+<div class="inc">
+<div class="ticket"><div class="id">INC-01 · DATA RACE</div><div class="t">共享状态冲突</div><div class="p">33.2%</div><div class="d">子 Agent 互相覆盖<br>对方的交付物</div></div>
+<div class="ticket"><div class="id">INC-02 · UNJOINED</div><div class="t">执行治理</div><div class="p">29.0%</div><div class="d">没跑完就被掐断<br>结果到得不是时候</div></div>
+<div class="ticket"><div class="id">INC-03 · POOL EXHAUSTED</div><div class="t">任务编排</div><div class="p">28.5%</div><div class="d">一路 fan-out<br>烧光时间预算</div></div>
+</div></div>
+
+<div class="band">判断：子 Agent 是<em>一次并发编程</em>，不是性能开关。<br>谁拥有哪些文件、在哪汇合，得你先写清。</div>
+
+<div class="cols">
+<div class="box g"><h3>什么时候开（论文里的三种赢面）</h3><ul>
+<li>能互补拆分的活：边角文件与检查外包，主 Agent 写核心</li>
+<li>两套方案并行，择优合并</li>
+<li>独立验证：子 Agent 专挑主 Agent 的错</li></ul></div>
+<div class="box"><h3>本周 5 件事</h3><ol>
+<li>小 bug、单文件改动默认串行</li>
+<li>开并发前写清：哪个子 Agent 拥有哪些文件、谁负责合并</li>
+<li>fan-out 设上限，给整合留出时间</li>
+<li>只在三种赢面里开，别当全局默认</li>
+<li>按「每个解决任务的 token」记账，不只看通过率</li></ol></div>
+</div>
+
+<div class="foot"><div class="c">并发从来不免费。<br>人类学了几十年的这一课，Agent 不会自动跳过。</div>
+<div class="src">来源：Li et al., arXiv 2610.10263<br>7 月版本快照 · 每组只跑一次<br>@leozhangai</div></div>
+</div></body></html>
