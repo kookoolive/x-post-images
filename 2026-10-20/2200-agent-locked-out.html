@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>网站开始给 Agent 关门</title>
+<style>
+:root{--bg:#d6d3cc;--card:#f8f7f4;--ink:#111827;--muted:#4b5563;--red:#d7263d;--blue:#1f4e9a;--ok:#0f766e;
+--sans:"Noto Sans CJK SC","Noto Sans SC",sans-serif;--mono:"DejaVu Sans Mono",monospace;--num:"DejaVu Sans Condensed","Noto Sans CJK SC",sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:48px 60px 40px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+background:radial-gradient(rgba(17,24,39,.07) 1.2px,transparent 1.4px) 0 0/14px 14px,var(--bg)}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:19px;font-weight:900;letter-spacing:.16em}
+.top .code{background:var(--red);color:#fff;font-family:var(--mono);font-size:19px;letter-spacing:.08em;padding:8px 16px}
+.hero{margin-top:22px;display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:end}
+.kicker{font-size:22px;font-weight:900;letter-spacing:.2em;color:var(--blue)}
+h1{margin:10px 0 0;font-size:100px;line-height:1.04;font-weight:900;letter-spacing:-.02em}
+h1 em{font-style:normal;color:var(--red)}
+.sub{margin-top:16px;font-size:28px;line-height:1.45;font-weight:700;color:#1f2937}
+.door{height:330px;background:var(--ink);color:#f8f7f4;border-radius:12px 12px 0 0;position:relative;padding:26px 26px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:10px 10px 0 var(--red)}
+.door:before{content:"";position:absolute;right:26px;top:150px;width:18px;height:18px;border-radius:50%;background:#f8f7f4}
+.door .n{font-family:var(--num);font-size:110px;font-weight:900;line-height:.9;color:#fca5a5}
+.door .l{font-size:22px;font-weight:900;letter-spacing:.14em}
+.door .s{font-size:19px;font-weight:700;color:#d1d5db;line-height:1.4}
+.sec{margin-top:30px}
+.sec h2{margin:0 0 12px;font-size:24px;font-weight:900;letter-spacing:.12em;display:flex;justify-content:space-between;align-items:baseline}
+.sec h2 span{font-family:var(--mono);font-size:16px;color:var(--muted);letter-spacing:0;font-weight:700}
+.plates{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.plate{background:var(--card);border:3px solid var(--ink);padding:16px 16px 18px;position:relative}
+.plate .b{font-family:var(--mono);font-size:20px;font-weight:700;letter-spacing:.04em}
+.plate .st{margin-top:10px;display:inline-block;background:var(--red);color:#fff;font-size:24px;font-weight:900;padding:4px 12px}
+.plate .st.ro{background:var(--blue)}
+.plate .st.pay{background:#b45309}
+.plate .d{margin-top:12px;font-size:21px;font-weight:700;line-height:1.45;color:#1f2937}
+.meta{margin-top:14px;background:var(--card);border:3px dashed var(--ink);padding:14px 22px;font-size:22px;font-weight:700;display:flex;gap:16px;align-items:center}
+.meta b{font-family:var(--mono);font-size:18px;background:var(--ink);color:#fff;padding:3px 10px;font-weight:700}
+.ladder{display:grid;grid-template-columns:repeat(4,1fr);border:4px solid var(--ink);background:var(--card)}
+.step{padding:18px 20px;border-right:3px solid var(--ink)}
+.step:last-child{border-right:none}
+.step .k{font-size:34px;font-weight:900}
+.step .v{margin-top:6px;font-family:var(--num);font-size:30px;font-weight:900}
+.step .v.yes{color:var(--ok)} .step .v.no{color:var(--red)}
+.step .w{margin-top:6px;font-size:19px;font-weight:700;color:var(--muted);line-height:1.4}
+.step.open{background:#e6f2f0}
+.band{margin-top:28px;background:var(--red);color:#fff;padding:24px 32px;font-size:40px;font-weight:900;line-height:1.3}
+.band small{display:block;margin-top:8px;font-size:24px;font-weight:700;color:#fee2e2}
+.q{margin-top:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.qq{background:var(--ink);color:#f8f7f4;padding:18px 22px}
+.qq .i{font-family:var(--mono);font-size:17px;color:#fca5a5;font-weight:700}
+.qq .t{font-size:34px;font-weight:900;margin-top:4px}
+.qq .d{font-size:20px;font-weight:700;color:#d1d5db;margin-top:6px;line-height:1.4}
+.todo{margin-top:22px;background:var(--card);border:4px solid var(--ink);box-shadow:8px 8px 0 var(--blue);padding:20px 28px}
+.todo h3{margin:0 0 10px;font-size:24px;font-weight:900;letter-spacing:.12em;color:var(--blue)}
+.todo ol{margin:0;padding-left:34px;font-size:25px;font-weight:700;line-height:1.62}
+.todo li{break-inside:avoid}
+.todo li::marker{font-family:var(--num);font-weight:900;color:var(--red)}
+.foot{margin-top:auto;border-top:6px solid var(--ink);padding-top:16px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
+.foot .c{font-size:30px;font-weight:900;line-height:1.35}
+.foot .src{font-family:var(--mono);font-size:15px;color:var(--muted);text-align:right;line-height:1.6;white-space:nowrap}
+</style></head><body><div class="card">
+<div class="top"><span>@LEOZHANGAI · AGENT 观察</span><span class="code">HTTP 403 · AGENT FORBIDDEN</span></div>
+<div class="hero">
+ <div>
+  <div class="kicker">2026.10 · 网站开始表态</div>
+  <h1>网站拦的不是 AI，<br/>是<em>「冒充你」</em></h1>
+  <div class="sub">Delta、摩根大通、嘉信、Yelp、Amazon 先后把第三方 Agent 挡在「干活」的那一步之前。没有一家在说模型不行——它们问的是：你是谁、凭什么、出了事谁负责。</div>
+ </div>
+ <div class="door"><div class="l">CLOSED</div><div><div class="n">5</div><div class="s">家大站公开设限<br/>@trikcode 汇总帖 2 万赞 · 466 万浏览</div></div></div>
+</div>
+
+<div class="sec"><h2>五块门牌<span>The Verge 10/17 · CNBC 10/13 · TechCrunch 10/06</span></h2>
+<div class="plates">
+ <div class="plate"><div class="b">AMAZON</div><div class="st">拦截</div><div class="d">9/20 起拦 Meta Muse：上线约 12 天，未事先告知、浏览时不表明自己是 AI</div></div>
+ <div class="plate"><div class="b">DELTA</div><div class="st">不对接</div><div class="d">没有任何让第三方 Agent 替你订票的合作或接入</div></div>
+ <div class="plate"><div class="b">JPMORGAN</div><div class="st ro">只读</div><div class="d">开放银行可读余额；拿密码登录代你转账、付款，不行</div></div>
+ <div class="plate"><div class="b">SCHWAB</div><div class="st">拦动钱</div><div class="d">CEO：「我们控制不了，客户也控制不了，出了事谁负责？」</div></div>
+ <div class="plate"><div class="b">YELP</div><div class="st pay">付费放行</div><div class="d">只放行买了数据授权的 Agent，其余非人类流量一律不许</div></div>
+</div>
+<div class="meta"><b>META</b>「拒绝个人 Agent，就是拒绝它背后的客户。」——另一边已在接 Walmart、Best Buy、Sephora 等官方入口</div>
+</div>
+
+<div class="sec"><h2>门开到哪一级<span>权限越靠右，门越紧</span></h2>
+<div class="ladder">
+ <div class="step open"><div class="k">读</div><div class="v yes">部分开</div><div class="w">开放银行只读余额</div></div>
+ <div class="step"><div class="k">订</div><div class="v no">关</div><div class="w">Delta 无第三方接入</div></div>
+ <div class="step"><div class="k">买</div><div class="v no">关</div><div class="w">Amazon 拦 Muse</div></div>
+ <div class="step"><div class="k">动钱</div><div class="v no">关</div><div class="w">摩根 / 嘉信 拦截</div></div>
+</div></div>
+
+<div class="band">拿着你的密码、装成真人点页面的 Agent，在风控眼里和盗号没区别。<small>Agent 的下一道门槛不是模型够不够聪明，而是身份、授权和兜底。</small></div>
+
+<div class="q">
+ <div class="qq"><div class="i">Q1 · IDENTITY</div><div class="t">它是谁</div><div class="d">如实表明是 Agent、替谁办事，不伪装成人</div></div>
+ <div class="qq"><div class="i">Q2 · SCOPE</div><div class="t">能做什么</div><div class="d">委托授权、不碰密码；读和动钱是两种权限</div></div>
+ <div class="qq"><div class="i">Q3 · LIABILITY</div><div class="t">谁来兜底</div><div class="d">动钱前人点头，出错有据可查、有人负责</div></div>
+</div>
+
+<div class="todo"><h3>做 AGENT 产品的，本周 5 件事</h3>
+<ol>
+ <li>访问时如实表明自己是 Agent</li>
+ <li>不收用户密码，走委托授权</li>
+ <li>读数据与转账拆成两种权限</li>
+ <li>下单、动钱前先复述，等人点头</li>
+ <li>被拦时讲清是网站拒绝还是 Agent 出错</li>
+ <li style="list-style:none;color:#4b5563">＋ 路线图先画合作方地图：机票、银行、大电商靠接入，不靠爬</li>
+</ol></div>
+
+<div class="foot"><div class="c">爬虫时代，网站用 robots.txt 说不；<br/>Agent 时代，网站要一个能追责的身份。</div>
+<div class="src">theverge.com/…/ai-agents-blocked-web<br/>cnbc.com/2026/10/13/jpmorgan-ai-agents…<br/>techcrunch.com/2026/10/06/…let-them-in</div></div>
+</div></body></html>
