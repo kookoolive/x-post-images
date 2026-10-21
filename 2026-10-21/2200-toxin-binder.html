@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>结合不是解药</title>
+<style>
+:root{
+  --bg:#f0e6d8; --card:#fffaf5; --ink:#1c1917; --muted:#78716c;
+  --teal:#0f766e; --scorp:#c41e3a; --sand:#e8dcc8; --line:#d6c7b0;
+  --sans:"Noto Sans CJK SC","Noto Sans SC","Source Han Sans SC",sans-serif;
+  --mono:"DejaVu Sans Mono","Noto Sans Mono CJK SC",monospace;
+  --num:"DejaVu Sans Condensed","Noto Sans CJK SC",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:1080px;height:1440px;overflow:hidden;background:var(--bg)}
+.card{
+  width:1080px;height:1440px;padding:34px 40px 26px;
+  font-family:var(--sans);color:var(--ink);
+  display:flex;flex-direction:column;
+  background:
+    repeating-linear-gradient(135deg, rgba(28,25,23,.035) 0 1px, transparent 1px 14px),
+    radial-gradient(ellipse at 12% 0%, #f7efe4 0%, var(--bg) 55%);
+}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:15px;font-weight:900;letter-spacing:.14em;color:var(--teal)}
+.top .tag{background:var(--teal);color:#fff;padding:7px 14px;letter-spacing:.1em;font-size:14px}
+.kicker{margin-top:18px;font-size:15px;font-weight:900;letter-spacing:.2em;color:var(--scorp)}
+h1{margin:8px 0 0;font-size:62px;line-height:1.08;font-weight:900;letter-spacing:-.02em}
+h1 em{font-style:normal;color:var(--teal)}
+.sub{margin-top:12px;font-size:21px;line-height:1.45;font-weight:700;color:#44403c;max-width:980px}
+.funnel{margin-top:22px;display:grid;grid-template-columns:1.35fr 1fr .75fr .85fr;gap:10px}
+.f{background:var(--card);border:3px solid var(--ink);padding:14px 12px 16px;position:relative;min-height:118px}
+.f:before{content:"";position:absolute;top:50%;right:-14px;width:0;height:0;border:10px solid transparent;border-left-color:var(--ink);transform:translateY(-50%);z-index:2}
+.f:last-child:before{display:none}
+.f .k{font-family:var(--mono);font-size:12px;font-weight:900;letter-spacing:.08em;color:var(--muted)}
+.f .v{margin-top:6px;font-family:var(--num);font-size:34px;font-weight:900;letter-spacing:-.03em;line-height:1}
+.f .d{margin-top:8px;font-size:15px;font-weight:700;color:#57534e;line-height:1.35}
+.f.hit{border-color:var(--teal);background:#ecfdf8}
+.f.hit .v{color:var(--teal)}
+.f.zero{border-color:var(--scorp);background:#fff1f2}
+.f.zero .v{color:var(--scorp);font-size:40px}
+.band{margin-top:18px;background:var(--teal);color:#fff;padding:16px 22px;font-size:26px;font-weight:900;line-height:1.35;box-shadow:8px 8px 0 var(--scorp)}
+.band small{display:block;margin-top:6px;font-size:16px;font-weight:700;color:#99f6e4}
+.pair{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.box{background:var(--card);border:3px solid var(--ink);padding:16px 18px 18px;min-height:250px}
+.box h3{margin:0;font-size:18px;font-weight:900;letter-spacing:.12em}
+.box.did h3{color:var(--teal)}
+.box.not h3{color:var(--scorp)}
+.box ul{margin:12px 0 0;padding-left:22px;font-size:18px;font-weight:700;line-height:1.55}
+.box li::marker{font-weight:900;color:var(--ink)}
+.todo{margin-top:14px;background:var(--ink);color:#fffaf5;border:3px solid var(--teal);padding:16px 20px 14px}
+.todo h3{margin:0 0 8px;font-size:17px;font-weight:900;letter-spacing:.16em;color:#5eead4}
+.todo ol{margin:0;padding-left:28px;font-size:18px;font-weight:700;line-height:1.5;columns:2;column-gap:28px}
+.todo li{break-inside:avoid;margin-bottom:4px}
+.todo li::marker{font-family:var(--num);font-weight:900;color:#5eead4}
+.foot{margin-top:auto;border-top:5px solid var(--scorp);padding-top:12px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
+.foot .c{font-size:23px;font-weight:900;line-height:1.35}
+.foot .src{font-family:var(--mono);font-size:12px;color:var(--muted);text-align:right;line-height:1.55}
+</style></head><body><div class="card">
+<div class="top"><span>@LEOZHANGAI · AGENT 观察</span><span class="tag">ANTHROPIC · 10.20</span></div>
+<div class="kicker">CLAUDE SCIENCE · 蝎毒 BINDER</div>
+<h1>结合<em>不是</em><br/>解药</h1>
+<div class="sub">Claude 用 64 小时主要自主设计蝎毒 minibinder。Agent 压扁了设计漏斗；验证、中和、可及性才是产品。</div>
+
+<div class="funnel">
+  <div class="f">
+    <div class="k">GENERATED</div>
+    <div class="v">318,484</div>
+    <div class="d">设计候选<br/>1 prompt + 4 follow-up</div>
+  </div>
+  <div class="f">
+    <div class="k">LAB-TESTED</div>
+    <div class="v">211</div>
+    <div class="d">180 自选 + 31 补入<br/>Adaptyv / Twist</div>
+  </div>
+  <div class="f hit">
+    <div class="k">BINDERS</div>
+    <div class="v">17</div>
+    <div class="d">覆盖 4/5 毒素<br/>Ts1 = 0</div>
+  </div>
+  <div class="f zero">
+    <div class="k">NEUTRALIZE</div>
+    <div class="v">0</div>
+    <div class="d">未做细胞<br/>未做动物</div>
+  </div>
+</div>
+
+<div class="band">
+  结合 ≠ 解药。设计漏斗能压到几天，临床与供应链压不了。
+  <small>Cn2-B1/B2 达个位数 nM，并与中和抗体 LR 竞争——仍不是血清。</small>
+</div>
+
+<div class="pair">
+  <div class="box did">
+    <h3>做了什么</h3>
+    <ul>
+      <li>64 小时主要自主设计</li>
+      <li>211 设计送结合实验</li>
+      <li>17 个达 binder 标准</li>
+      <li>Cn2 最强：个位数 nM</li>
+      <li>与中和抗体 LR 竞争位点</li>
+      <li>公开全部 211 设计与数据</li>
+    </ul>
+  </div>
+  <div class="box not">
+    <h3>还没做</h3>
+    <ul>
+      <li>细胞中和实验</li>
+      <li>动物保护实验</li>
+      <li>天然毒液（非重组）验证</li>
+      <li>多毒素同时结合：0</li>
+      <li>可及药物：安全/便宜/送达</li>
+      <li>不宣称已做出抗毒血清</li>
+    </ul>
+  </div>
+</div>
+
+<div class="todo">
+  <h3>本周 5 件事</h3>
+  <ol>
+    <li>拆开讲 binder ≠ antivenom</li>
+    <li>实验写清做到哪步、谁验证</li>
+    <li>漏斗报全：生成/送测/命中/未验证</li>
+    <li>多靶点失败也写进结论</li>
+    <li>成功标准加可及性</li>
+  </ol>
+</div>
+
+<div class="foot">
+  <div class="c">Agent 压缩的是搜索空间，<br/>不是临床与供应链。</div>
+  <div class="src">anthropic.com/research<br/>claude-scorpion-toxin-binder<br/>@leozhangai</div>
+</div>
+</div></body></html>
