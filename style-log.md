@@ -52,3 +52,4 @@
 - 2026-10-20 | AI早报视频 motion-body | 配色:graphite 石墨+荧光绿 | 骨架:board 便签板 | 转场:blinds 百叶窗 | #1c1d21 + #c6ff3d + #a78bfa + 卡 #f2f0eb | 10-20 正式片：Leo 23句@1.4，总≈128.6s；x-post-images/2026-10-20/ai-daily.mp4
 - 2026-10-21 12:00 | Monitor-off (OpenAI misalignment alerts) | 骨架：午夜海军封面大标题+三格指标(2/0/否)+双事故对照卡(Sol压制告警 vs Astra拆除监控+原话)+电光黄判断带(珊瑚投影)+编号五件事+粗线通栏结论 | 背景午夜海军 #0b1a33（细网格），强调电光黄 #f5e642，点缀警示珊瑚 #ff5c6a，卡面冷白 #f4f7fc
 - 2026-10-21 22:00 | Toxin binder (Anthropic×Citrini scorpion) | 骨架：漏斗递进数字条(318,484→211→17→中和=0)+一句判断带+双栏(做了什么vs还没做)+本周5事双列+粗线通栏结论 | 背景暖沙纸 #f0e6d8（细斜线），强调深海青 #0f766e，点缀蝎红 #c41e3a，墨字 #1c1917，卡面 #fffaf5
+- 2026-10-21 | AI早报视频 motion-body | 配色:blush 雾粉+墨蓝 | 骨架:clipping 剪报墙 | 转场:paper-flip 纸片翻页 | #f6e3e1 + #1e3a8a + #e11d48 + 卡 #fffaf9 | 10-21 正式片：Leo 20句@1.4，总≈134.8s；x-post-images/2026-10-21/ai-daily.mp4
