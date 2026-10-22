@@ -54,3 +54,4 @@
 - 2026-10-21 22:00 | Toxin binder (Anthropic×Citrini scorpion) | 骨架：漏斗递进数字条(318,484→211→17→中和=0)+一句判断带+双栏(做了什么vs还没做)+本周5事双列+粗线通栏结论 | 背景暖沙纸 #f0e6d8（细斜线），强调深海青 #0f766e，点缀蝎红 #c41e3a，墨字 #1c1917，卡面 #fffaf5
 - 2026-10-21 | AI早报视频 motion-body | 配色:blush 雾粉+墨蓝 | 骨架:clipping 剪报墙 | 转场:paper-flip 纸片翻页 | #f6e3e1 + #1e3a8a + #e11d48 + 卡 #fffaf9 | 10-21 正式片：Leo 20句@1.4，总≈134.8s；x-post-images/2026-10-21/ai-daily.mp4
 - 2026-10-22 12:00 | Agent profile (Walmart Agent Profiles/Gateway) | 骨架：冰薄荷封面大标题+四级权限阶梯(Identity/Limit/Approve/Revoke，限额与撤销珊瑚芯片)+Amazon堵门vs Walmart通行证双条+钴蓝判断带(珊瑚投影)+编号五件事+粗线通栏结论 | 背景冰薄荷 #e8f5f2（细点阵），强调钴蓝 #1d4ed8，点缀暖珊瑚 #f97316，墨字 #111827，卡面白瓷 #fbfdfe
+- 2026-10-22 22:00 | Refusal bypass (Straiker CARLIY0S) | 骨架：THREAT INTEL 顶栏+洋红块大标题+攻击队组织架构图(指挥官→三子Agent→仲裁，拒绝回退/赃库旁注虚线框)+六格黑底赃库数字条+三招绕过卡(洋红顶边)+钢蓝判断带(洋红投影)+本周5事+粗线通栏结论 | 背景橄榄卡其 #e7e3cf（细网格），墨黑 #141414，警示洋红 #c2185b，钢蓝 #2b4c7e，卡面 #fbfaf3

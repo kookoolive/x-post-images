@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>模型说不，攻击照跑</title>
+<style>
+:root{
+  --bg:#e7e3cf; --card:#fbfaf3; --ink:#141414; --muted:#4a4a42;
+  --mag:#c2185b; --steel:#2b4c7e; --line:#cbc5ab;
+  --sans:"Noto Sans CJK SC","Noto Sans SC",sans-serif;
+  --mono:"DejaVu Sans Mono","Noto Sans Mono CJK SC",monospace;
+  --num:"DejaVu Sans Condensed","Noto Sans CJK SC",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:1080px;height:1440px;overflow:hidden;background:var(--bg)}
+.card{width:1080px;height:1440px;padding:32px 38px 24px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+  background:
+   linear-gradient(rgba(20,20,20,.05) 1px,transparent 1px) 0 0/24px 24px,
+   linear-gradient(90deg,rgba(20,20,20,.05) 1px,transparent 1px) 0 0/24px 24px,
+   var(--bg);}
+.top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:15px;font-weight:900;letter-spacing:.14em;color:var(--muted)}
+.top .tag{background:var(--ink);color:#fff;padding:7px 14px;font-size:14px}
+.top .tag b{color:#ff5c93}
+h1{margin:16px 0 0;font-size:64px;line-height:1.06;font-weight:900;letter-spacing:-.02em}
+h1 s{text-decoration:none;color:var(--muted);position:relative}
+h1 em{font-style:normal;background:var(--mag);color:#fff;padding:0 12px}
+.sub{margin-top:12px;font-size:21px;line-height:1.45;font-weight:700;color:var(--muted)}
+.sub b{color:var(--ink)}
+
+.org{margin-top:18px;background:var(--card);border:3px solid var(--ink);padding:16px 18px 14px;position:relative}
+.org .lab{font-family:var(--mono);font-size:12px;font-weight:900;letter-spacing:.14em;color:var(--steel)}
+.cmd{margin:8px auto 0;width:520px;text-align:center;background:var(--ink);color:#fff;padding:10px;font-size:22px;font-weight:900}
+.cmd small{display:block;font-family:var(--mono);font-size:12px;color:#bbb;font-weight:700;margin-top:2px}
+.vline{width:4px;height:16px;background:var(--ink);margin:0 auto}
+.row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;border-top:4px solid var(--ink);padding-top:12px;margin:0 60px}
+.node{border:3px solid var(--steel);padding:10px 12px;background:#fff}
+.node .en{font-family:var(--mono);font-size:15px;font-weight:900;color:var(--steel)}
+.node .zh{font-size:20px;font-weight:900;margin-top:2px}
+.node .m{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:4px}
+.arb{margin:12px auto 0;width:560px;text-align:center;border:3px solid var(--mag);color:var(--mag);background:#fff;padding:9px;font-size:21px;font-weight:900;box-shadow:6px 6px 0 rgba(194,24,91,.25)}
+.arb span{font-family:var(--mono);font-size:12px;color:var(--muted);display:block;font-weight:700}
+.sidebox{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.sb{border:2px dashed var(--ink);padding:10px 12px;font-size:16px;font-weight:700;line-height:1.4}
+.sb b{color:var(--mag)}
+.note{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:8px;text-align:right}
+
+.stats{margin-top:16px;display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.st{background:var(--ink);color:#fff;padding:10px 8px 9px;text-align:center}
+.st .n{font-family:var(--num);font-size:34px;font-weight:900;color:#ff5c93;letter-spacing:-.02em}
+.st .t{font-size:14px;font-weight:700;color:#ddd;margin-top:2px}
+.st.hl{background:var(--mag)}.st.hl .n{color:#fff}
+
+.tricks{margin-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tk{background:var(--card);border:3px solid var(--ink);border-top:10px solid var(--mag);padding:10px 12px}
+.tk .i{font-family:var(--num);font-weight:900;color:var(--mag);font-size:15px}
+.tk .h{font-size:20px;font-weight:900;margin-top:2px}
+.tk .d{font-size:15px;font-weight:700;color:var(--muted);line-height:1.4;margin-top:4px}
+
+.band{margin-top:14px;background:var(--steel);color:#fff;padding:14px 22px;font-size:25px;font-weight:900;line-height:1.35;box-shadow:8px 8px 0 var(--mag)}
+.band small{display:block;margin-top:4px;font-size:16px;font-weight:700;color:#cfdcf0}
+
+.todo{margin-top:16px;background:var(--card);border:3px solid var(--ink);padding:12px 20px 10px}
+.todo h3{margin:0 0 4px;font-size:15px;font-weight:900;letter-spacing:.16em;color:var(--steel)}
+.todo ol{margin:0;padding-left:28px;font-size:17px;font-weight:700;line-height:1.5}
+.todo li::marker{font-family:var(--num);font-weight:900;color:var(--mag)}
+.end{margin-top:auto;border-top:6px solid var(--ink);padding-top:10px;display:flex;justify-content:space-between;align-items:flex-end}
+.end .c{font-size:23px;font-weight:900}
+.end .c em{font-style:normal;color:var(--mag)}
+.end .s{font-family:var(--mono);font-size:12px;color:var(--muted);text-align:right;line-height:1.5}
+</style></head><body><div class="card">
+<div class="top"><span>THREAT INTEL · 2026.10.22</span><span class="tag">CARLIY0S · <b>AiPT-67</b></span></div>
+<h1>模型说「不」，<br/><em>攻击照跑</em></h1>
+<div class="sub">拉美黑产 CyberCartel 用 <b>Claude、Grok、Kimi</b> 搭了一支多 Agent 攻击队，2026 年 5–9 月瞄准 <b>400+ 家银行与支付机构</b>。</div>
+
+<div class="org">
+  <div class="lab">ORG CHART · 攻击队怎么分工</div>
+  <div class="cmd">指挥官：Cursor 里的 Claude<small>CARLIY0S.py --ask / --debate / --all</small></div>
+  <div class="vline"></div>
+  <div class="row">
+    <div class="node"><div class="en">STRIKER</div><div class="zh">写 exploit 与脚本</div><div class="m">配置: opus-4-7</div></div>
+    <div class="node"><div class="en">GHOST</div><div class="zh">侦察 · OSINT</div><div class="m">配置: opus-4-8</div></div>
+    <div class="node"><div class="en">FABLE</div><div class="zh">找非常规入口</div><div class="m">配置: fable-5（未证实）</div></div>
+  </div>
+  <div class="arb">三方辩论 → MAXIMUS 仲裁，只出一个决策<span>配置: opus-5</span></div>
+  <div class="sidebox">
+    <div class="sb">被拒了？Kimi、Sonnet 拒绝 → <b>切回本地预写攻击脚本</b>，流程不中断</div>
+    <div class="sb">5 个 <b>Grok miner</b> 把偷来的密钥收进赃库 FinancialSoft</div>
+  </div>
+  <div class="note">模型名为报告所列配置，非逐一证实调用</div>
+</div>
+
+<div class="stats">
+  <div class="st hl"><div class="n">4,493</div><div class="t">赃库记录</div></div>
+  <div class="st"><div class="n">903</div><div class="t">账户号</div></div>
+  <div class="st"><div class="n">391</div><div class="t">API key</div></div>
+  <div class="st"><div class="n">20</div><div class="t">JWT 签名密钥</div></div>
+  <div class="st"><div class="n">6</div><div class="t">后门</div></div>
+  <div class="st"><div class="n">200+</div><div class="t">未公开漏洞</div></div>
+</div>
+
+<div class="tricks">
+  <div class="tk"><div class="i">01</div><div class="h">换个语境</div><div class="d">包装成「授权红队」「CTF 练习」，模型当防守交付物来写</div></div>
+  <div class="tk"><div class="i">02</div><div class="h">换个模型</div><div class="d">被拒就换下一个；全拒就跑本地脚本</div></div>
+  <div class="tk"><div class="i">03</div><div class="h">掐断溯源</div><div class="d">规则文件禁止模型输出团伙代号</div></div>
+</div>
+
+<div class="band">拒答不是防线，只是攻击流程里一个会被绕过的分支。
+<small>被打穿的还是老问题：裸露的后台、明文密钥、只看 IP 的风控。AI 改的是速度和规模。</small></div>
+
+<div class="todo"><h3>本周 5 件事</h3><ol>
+<li>盘点明文 key、JWT 签名密钥、数据库连接串，能轮换就轮换</li>
+<li>CMS 后台别裸露公网，上 SSO 和设备限制</li>
+<li>住宅代理让 IP 黑名单失效，风控改看行为与会话</li>
+<li>自家 Agent 工具权限登记成册，配一键 kill switch</li>
+<li>别把「模型会拒绝」写进安全假设</li>
+</ol></div>
+
+<div class="end"><div class="c">攻击方把多 Agent 做成了流水线；<br/>防守方还在指望<em>模型说不</em>。</div>
+<div class="s">来源：Straiker 威胁报告 2026-10-21<br/>Anthropic 已吊销凭证 · xAI 调查中<br/>@leozhangai</div></div>
+</div></body></html>
