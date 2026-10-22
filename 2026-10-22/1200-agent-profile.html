@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>Agent 要有独立身份</title>
+<style>
+:root{
+  --bg:#e8f5f2; --card:#fbfdfe; --ink:#111827; --muted:#4b5563;
+  --cobalt:#1d4ed8; --coral:#f97316; --line:#b7d5ce; --soft:#d1eae3;
+  --sans:"Noto Sans CJK SC","Noto Sans SC","Source Han Sans SC",sans-serif;
+  --mono:"DejaVu Sans Mono","Noto Sans Mono CJK SC",monospace;
+  --num:"DejaVu Sans Condensed","Noto Sans CJK SC",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:1080px;height:1440px;overflow:hidden;background:var(--bg)}
+.card{
+  width:1080px;height:1440px;padding:34px 38px 26px;
+  font-family:var(--sans);color:var(--ink);
+  display:flex;flex-direction:column;
+  background:
+    radial-gradient(circle, rgba(29,78,216,.07) 1.2px, transparent 1.3px) 0 0/18px 18px,
+    linear-gradient(180deg, #f2fbf8 0%, var(--bg) 42%, #dff0eb 100%);
+}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:15px;font-weight:900;letter-spacing:.16em;color:var(--muted)}
+.top .tag{background:var(--cobalt);color:#fff;padding:7px 14px;letter-spacing:.12em;font-size:14px}
+.kicker{margin-top:18px;font-size:15px;font-weight:900;letter-spacing:.2em;color:var(--cobalt)}
+h1{margin:8px 0 0;font-size:58px;line-height:1.08;font-weight:900;letter-spacing:-.02em}
+h1 em{font-style:normal;color:var(--cobalt);border-bottom:8px solid var(--coral);padding-bottom:2px}
+.sub{margin-top:12px;font-size:21px;line-height:1.45;font-weight:700;color:var(--muted);max-width:980px}
+
+.ladder{margin-top:22px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;position:relative}
+.ladder:before{
+  content:"";position:absolute;left:8%;right:8%;top:28px;height:6px;
+  background:linear-gradient(90deg,var(--cobalt),var(--coral));z-index:0;border-radius:3px;
+}
+.step{background:var(--card);border:3px solid var(--ink);padding:16px 14px 14px;position:relative;z-index:1;min-height:168px}
+.step .n{width:40px;height:40px;border-radius:50%;background:var(--cobalt);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--num);font-weight:900;font-size:18px;margin-bottom:10px}
+.step.hot .n{background:var(--coral)}
+.step .en{font-family:var(--mono);font-size:12px;font-weight:900;letter-spacing:.08em;color:var(--cobalt)}
+.step.hot .en{color:var(--coral)}
+.step .zh{margin-top:6px;font-size:26px;font-weight:900;letter-spacing:-.01em}
+.step .d{margin-top:8px;font-size:15px;font-weight:700;line-height:1.4;color:var(--muted)}
+.step.hot{border-color:var(--coral);box-shadow:6px 6px 0 rgba(249,115,22,.25)}
+.chip{display:inline-block;margin-top:8px;background:var(--coral);color:#fff;font-size:13px;font-weight:900;padding:3px 8px}
+
+.strip{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.side{padding:16px 18px;border:3px solid var(--ink);min-height:110px}
+.side.block{background:#111827;color:#fff}
+.side.pass{background:var(--card);border-color:var(--cobalt)}
+.side .lab{font-family:var(--mono);font-size:12px;font-weight:900;letter-spacing:.12em}
+.side.block .lab{color:#f97316}
+.side.pass .lab{color:var(--cobalt)}
+.side .ttl{margin-top:6px;font-size:28px;font-weight:900}
+.side .txt{margin-top:6px;font-size:17px;font-weight:700;line-height:1.4;opacity:.9}
+
+.band{margin-top:16px;background:var(--cobalt);color:#fff;padding:16px 22px;font-size:26px;font-weight:900;line-height:1.35;box-shadow:8px 8px 0 var(--coral)}
+.band small{display:block;margin-top:6px;font-size:16px;font-weight:700;color:#c7d7ff}
+
+.todo{margin-top:16px;background:var(--card);border:3px solid var(--ink);padding:16px 20px 14px}
+.todo h3{margin:0 0 8px;font-size:16px;font-weight:900;letter-spacing:.16em;color:var(--cobalt)}
+.todo ol{margin:0;padding-left:28px;font-size:18px;font-weight:700;line-height:1.5;color:var(--ink)}
+.todo li::marker{font-family:var(--num);font-weight:900;color:var(--coral)}
+
+.foot{margin-top:auto;border-top:6px solid var(--ink);padding-top:12px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
+.foot .c{font-size:23px;font-weight:900;line-height:1.35}
+.foot .src{font-family:var(--mono);font-size:12px;color:var(--muted);text-align:right;line-height:1.55}
+</style></head><body><div class="card">
+<div class="top"><span>@LEOZHANGAI · AGENT 观察</span><span class="tag">WALMART · 10.21</span></div>
+<div class="kicker">AGENT PERMISSION LADDER · 通行证要写边界</div>
+<h1>Agent 要有<br/><em>独立身份</em></h1>
+<div class="sub">Walmart Agent Profiles + Agent Gateway：不是「让模型进店」，是身份、限额、默认审批、可撤销——对照 Amazon 堵门。</div>
+
+<div class="ladder">
+  <div class="step">
+    <div class="n">01</div>
+    <div class="en">IDENTITY</div>
+    <div class="zh">独立档案</div>
+    <div class="d">每 Agent 一个 profile，购买与本人分账可见</div>
+  </div>
+  <div class="step hot">
+    <div class="n">02</div>
+    <div class="en">LIMIT</div>
+    <div class="zh">花费限额</div>
+    <div class="d">$50 / $100 / $200 一类上限</div>
+    <div class="chip">CAP</div>
+  </div>
+  <div class="step">
+    <div class="n">03</div>
+    <div class="en">APPROVE</div>
+    <div class="zh">默认审批</div>
+    <div class="d">每笔要批；额度内仍可加确认</div>
+  </div>
+  <div class="step hot">
+    <div class="n">04</div>
+    <div class="en">REVOKE</div>
+    <div class="zh">随时撤销</div>
+    <div class="d">像删持卡人；违约即封禁</div>
+    <div class="chip">REVOKE</div>
+  </div>
+</div>
+
+<div class="strip">
+  <div class="side block">
+    <div class="lab">AMAZON</div>
+    <div class="ttl">堵门</div>
+    <div class="txt">拦截 Agent 进站，便宜但边界在墙外。</div>
+  </div>
+  <div class="side pass">
+    <div class="lab">WALMART</div>
+    <div class="ttl">通行证</div>
+    <div class="txt">MCP Gateway + 条款：卡号隔离、同价、可退。</div>
+  </div>
+</div>
+
+<div class="band">
+  通行证上必须写清权限边界。没有独立身份，出事分不清是人还是模型。
+  <small>先发身份，再谈放权——邮箱、代码仓、账单同理。</small>
+</div>
+
+<div class="todo">
+  <h3>本周 5 件事</h3>
+  <ol>
+    <li>能动钱 / 写权限的 Agent 建独立身份，日志分开</li>
+    <li>默认每笔审批；额度只做例外通道</li>
+    <li>支付凭证与 Agent 运行时隔离</li>
+    <li>优先 MCP / 正式 API，别再浏览器刮页</li>
+    <li>一键关 profile；退货与追责路径写清</li>
+  </ol>
+</div>
+
+<div class="foot">
+  <div class="c">没有独立身份的 Agent，<br/>只是借你的账号在瞎逛。</div>
+  <div class="src">corporate.walmart.com<br/>Agent Profiles · Gateway<br/>@leozhangai</div>
+</div>
+</div></body></html>
