@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>点批准 ≠ 更安全</title>
+<style>
+:root{
+  --bg:#0f172a; --card:#f8fafc; --ink:#0f172a; --muted:#64748b;
+  --lime:#bef264; --coral:#fb7185; --line:#334155; --soft:#1e293b;
+  --sans:"Noto Sans CJK SC","Noto Sans SC","Source Han Sans SC",sans-serif;
+  --mono:"DejaVu Sans Mono","Noto Sans Mono CJK SC",monospace;
+  --num:"DejaVu Sans Condensed","Noto Sans CJK SC",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:1080px;height:1440px;overflow:hidden;background:var(--bg)}
+.card{
+  width:1080px;height:1440px;padding:34px 38px 28px;
+  font-family:var(--sans);color:#e2e8f0;
+  display:flex;flex-direction:column;
+  background:
+    radial-gradient(circle at 1px 1px, rgba(190,242,100,.07) 1px, transparent 0) 0 0 / 18px 18px,
+    linear-gradient(165deg, #111827 0%, var(--bg) 50%, #0b1220 100%);
+}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:15px;font-weight:900;letter-spacing:.16em;color:#94a3b8}
+.top .tag{background:var(--lime);color:#0f172a;padding:7px 14px;letter-spacing:.12em;font-size:14px}
+.kicker{margin-top:16px;font-size:15px;font-weight:900;letter-spacing:.2em;color:var(--lime)}
+h1{margin:8px 0 0;font-size:54px;line-height:1.08;font-weight:900;letter-spacing:-.02em;color:#f8fafc}
+h1 em{font-style:normal;color:var(--lime);border-bottom:8px solid var(--coral);padding-bottom:2px}
+.sub{margin-top:12px;font-size:20px;line-height:1.45;font-weight:700;color:#94a3b8;max-width:980px}
+
+.metrics{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.m{
+  background:var(--card);color:var(--ink);border:3px solid #0f172a;
+  padding:18px 20px;min-height:148px;
+  box-shadow:8px 8px 0 rgba(190,242,100,.35);
+}
+.m.bad{box-shadow:8px 8px 0 rgba(251,113,133,.4)}
+.m .lab{font-family:var(--mono);font-size:13px;font-weight:900;letter-spacing:.1em;color:var(--muted)}
+.m .num{margin-top:6px;font-family:var(--num);font-size:72px;font-weight:900;line-height:1;letter-spacing:-.04em}
+.m.good .num{color:#3f6212}
+.m.bad .num{color:#be123c}
+.m .cap{margin-top:6px;font-size:18px;font-weight:800;line-height:1.3}
+
+.flip{margin-top:18px;display:grid;grid-template-columns:1fr 48px 1fr;gap:10px;align-items:stretch}
+.box{background:var(--soft);border:3px solid var(--line);padding:16px 18px}
+.box.on{background:var(--card);color:var(--ink);border-color:var(--lime);box-shadow:6px 6px 0 rgba(190,242,100,.28)}
+.box .lab{font-family:var(--mono);font-size:12px;font-weight:900;letter-spacing:.12em;color:#94a3b8}
+.box.on .lab{color:#3f6212}
+.box .ttl{margin-top:6px;font-size:24px;font-weight:900;line-height:1.25}
+.arrow{display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:900;color:var(--lime)}
+
+.judge{
+  margin-top:18px;background:var(--lime);color:#0f172a;
+  border:3px solid #0f172a;padding:16px 20px;
+  box-shadow:8px 8px 0 rgba(251,113,133,.55);
+  font-size:22px;font-weight:900;line-height:1.4;
+}
+
+.five{margin-top:16px;background:var(--card);color:var(--ink);border:3px solid #0f172a;padding:16px 20px 14px;flex:1}
+.five .lab{font-family:var(--mono);font-size:13px;font-weight:900;letter-spacing:.14em;color:var(--muted)}
+.five ol{margin:10px 0 0;padding:0 0 0 28px;font-size:19px;font-weight:800;line-height:1.55}
+.five li{margin:2px 0}
+
+.foot{
+  margin-top:14px;border-top:5px solid var(--lime);padding-top:12px;
+  font-size:20px;font-weight:900;line-height:1.35;color:#f8fafc;
+}
+.foot span{color:var(--lime)}
+</style></head>
+<body><div class="card">
+  <div class="top"><span class="tag">DEFAULT FLIP</span><span>2026.10.23 · 22:00</span></div>
+  <div class="kicker">CLAUDE AUTO MODE</div>
+  <h1>点批准 <em>≠</em> 更安全</h1>
+  <div class="sub">下周起网页 / 桌面 / 手机新会话，Pro·Max·Team 默认进 auto mode。分类器先拦，人随时可切回。</div>
+
+  <div class="metrics">
+    <div class="m good">
+      <div class="lab">AUTO MODE 拦下</div>
+      <div class="num">89%</div>
+      <div class="cap">危险命令 · 分类器</div>
+    </div>
+    <div class="m bad">
+      <div class="lab">人点 APPROVE 抓到</div>
+      <div class="num">14%</div>
+      <div class="cap">同一批付费测试</div>
+    </div>
+  </div>
+
+  <div class="flip">
+    <div class="box">
+      <div class="lab">以前默认</div>
+      <div class="ttl">每步问人<br/>橡皮图章批准</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="box on">
+      <div class="lab">现在默认</div>
+      <div class="ttl">护栏先拦<br/>人只守硬闸</div>
+    </div>
+  </div>
+
+  <div class="judge">判断：权限疲劳比弹窗更危险。该守的是不可逆 / 动钱删库，不是「有没有点过批准」。</div>
+
+  <div class="five">
+    <div class="lab">本周 5 件事</div>
+    <ol>
+      <li>划定仍须手动：动钱 / 删库 / 发生产 / 外发</li>
+      <li>别把 Approve 点击当审计日志</li>
+      <li>自建 Agent：策略层放在 UI 确认前</li>
+      <li>用自家危险命令压一遍护栏</li>
+      <li>Enterprise 仍 opt-in，先定 managed settings</li>
+    </ol>
+  </div>
+
+  <div class="foot">默认一翻，比的是<span>护栏能不能拦</span>，不是人能不能点。</div>
+</div></body></html>
