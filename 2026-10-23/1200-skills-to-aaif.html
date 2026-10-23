@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>Skill 该中立托管</title>
+<style>
+:root{
+  --bg:#ebe7f2; --card:#faf8ff; --ink:#1c1917; --muted:#57534e;
+  --grape:#5b21b6; --amber:#f59e0b; --line:#c4b5d9; --soft:#ddd6fe;
+  --sans:"Noto Sans CJK SC","Noto Sans SC","Source Han Sans SC",sans-serif;
+  --mono:"DejaVu Sans Mono","Noto Sans Mono CJK SC",monospace;
+  --num:"DejaVu Sans Condensed","Noto Sans CJK SC",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:1080px;height:1440px;overflow:hidden;background:var(--bg)}
+.card{
+  width:1080px;height:1440px;padding:34px 38px 26px;
+  font-family:var(--sans);color:var(--ink);
+  display:flex;flex-direction:column;
+  background:
+    repeating-linear-gradient(-18deg, transparent, transparent 11px, rgba(91,33,182,.04) 11px, rgba(91,33,182,.04) 12px),
+    linear-gradient(180deg, #f4f0fa 0%, var(--bg) 45%, #e0d8ef 100%);
+}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:15px;font-weight:900;letter-spacing:.16em;color:var(--muted)}
+.top .tag{background:var(--grape);color:#fff;padding:7px 14px;letter-spacing:.12em;font-size:14px}
+.kicker{margin-top:18px;font-size:15px;font-weight:900;letter-spacing:.2em;color:var(--grape)}
+h1{margin:8px 0 0;font-size:56px;line-height:1.08;font-weight:900;letter-spacing:-.02em}
+h1 em{font-style:normal;color:var(--grape);border-bottom:8px solid var(--amber);padding-bottom:2px}
+.sub{margin-top:12px;font-size:21px;line-height:1.45;font-weight:700;color:var(--muted);max-width:980px}
+
+.handoff{margin-top:20px;display:grid;grid-template-columns:1fr 56px 1fr;gap:10px;align-items:stretch}
+.box{background:var(--card);border:3px solid var(--ink);padding:16px 18px;min-height:112px}
+.box.aaif{border-color:var(--grape);box-shadow:6px 6px 0 rgba(91,33,182,.22)}
+.box .lab{font-family:var(--mono);font-size:12px;font-weight:900;letter-spacing:.12em;color:var(--muted)}
+.box.aaif .lab{color:var(--grape)}
+.box .ttl{margin-top:6px;font-size:28px;font-weight:900}
+.box .txt{margin-top:6px;font-size:16px;font-weight:700;line-height:1.4;color:var(--muted)}
+.arrow{display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:900;color:var(--amber)}
+
+.metrics{margin-top:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.m{background:var(--ink);color:#fff;padding:14px 12px;min-height:108px}
+.m .n{font-family:var(--num);font-size:34px;font-weight:900;color:var(--amber);letter-spacing:-.02em}
+.m .l{margin-top:6px;font-size:15px;font-weight:700;line-height:1.35;color:#e7e5e4}
+
+.band{margin-top:16px;background:var(--grape);color:#fff;padding:16px 22px;font-size:25px;font-weight:900;line-height:1.35;box-shadow:8px 8px 0 var(--amber)}
+.band small{display:block;margin-top:6px;font-size:16px;font-weight:700;color:#ddd6fe}
+
+.todo{margin-top:16px;background:var(--card);border:3px solid var(--ink);padding:16px 20px 14px;flex:1}
+.todo h3{margin:0 0 8px;font-size:16px;font-weight:900;letter-spacing:.16em;color:var(--grape)}
+.todo ol{margin:0;padding-left:28px;font-size:18px;font-weight:700;line-height:1.55;color:var(--ink)}
+.todo li::marker{font-family:var(--num);font-weight:900;color:var(--amber)}
+
+.foot{margin-top:14px;border-top:6px solid var(--ink);padding-top:12px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
+.foot .c{font-size:22px;font-weight:900;line-height:1.35}
+.foot .src{font-family:var(--mono);font-size:12px;color:var(--muted);text-align:right;line-height:1.55}
+</style></head><body><div class="card">
+<div class="top"><span>@LEOZHANGAI · AGENT 观察</span><span class="tag">AAIF · 10.22</span></div>
+<div class="kicker">AGENT SKILLS HANDOFF · 格式中立之后</div>
+<h1>Skill 该<br/><em>中立托管</em></h1>
+<div class="sub">Anthropic 把 Agent Skills 捐给 AAIF（MCP 同基金会）。竞争从「谁家格式」转向「谁家 skill 真能验、敢不敢装」。</div>
+
+<div class="handoff">
+  <div class="box">
+    <div class="lab">FROM</div>
+    <div class="ttl">Anthropic</div>
+    <div class="txt">名字 · logo · GitHub org · agentskills.io</div>
+  </div>
+  <div class="arrow">→</div>
+  <div class="box aaif">
+    <div class="lab">TO · AAIF</div>
+    <div class="ttl">中立基金会</div>
+    <div class="txt">Linux Foundation 旗下；不入会也能用/贡献</div>
+  </div>
+</div>
+
+<div class="metrics">
+  <div class="m"><div class="n">70+</div><div class="l">平台已接入<br/>ChatGPT / Cursor…</div></div>
+  <div class="m"><div class="n">1M</div><div class="l">skill 已发布<br/>社区规格文件夹</div></div>
+  <div class="m"><div class="n">280M</div><div class="l">次安装<br/>跨开发者环境</div></div>
+  <div class="m"><div class="n">4</div><div class="l">同日新项目<br/>含 Responses/Env…</div></div>
+</div>
+
+<div class="band">Skill 不是提示词收藏夹，是可移植的程序性知识。<small>版本化 · 提案流程 · 安全指引——不落地就只是换了托管方</small></div>
+
+<div class="todo">
+  <h3>本周 5 件事</h3>
+  <ol>
+    <li>盘点：哪些 skill 只绑一家产品</li>
+    <li>新 skill 默认按 agentskills.io 规格写</li>
+    <li>装前审文件/工具权限，别只看风险分</li>
+    <li>关键 skill 加最小验收对照</li>
+    <li>把踩坑写进 AAIF 提案，别私下打补丁</li>
+  </ol>
+</div>
+
+<div class="foot">
+  <div class="c">格式一中立，护城河就回到内容：<br/>你的流程、你的验收、你敢不敢让别人复用。</div>
+  <div class="src">anthropic.com/news<br/>aaif / linux foundation<br/>@ClaudeDevs</div>
+</div>
+</div></body></html>

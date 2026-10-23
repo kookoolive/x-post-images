@@ -56,3 +56,4 @@
 - 2026-10-22 12:00 | Agent profile (Walmart Agent Profiles/Gateway) | 骨架：冰薄荷封面大标题+四级权限阶梯(Identity/Limit/Approve/Revoke，限额与撤销珊瑚芯片)+Amazon堵门vs Walmart通行证双条+钴蓝判断带(珊瑚投影)+编号五件事+粗线通栏结论 | 背景冰薄荷 #e8f5f2（细点阵），强调钴蓝 #1d4ed8，点缀暖珊瑚 #f97316，墨字 #111827，卡面白瓷 #fbfdfe
 - 2026-10-22 22:00 | Refusal bypass (Straiker CARLIY0S) | 骨架：THREAT INTEL 顶栏+洋红块大标题+攻击队组织架构图(指挥官→三子Agent→仲裁，拒绝回退/赃库旁注虚线框)+六格黑底赃库数字条+三招绕过卡(洋红顶边)+钢蓝判断带(洋红投影)+本周5事+粗线通栏结论 | 背景橄榄卡其 #e7e3cf（细网格），墨黑 #141414，警示洋红 #c2185b，钢蓝 #2b4c7e，卡面 #fbfaf3
 - 2026-10-22 | AI早报视频 motion-body | 配色:ocean 深海蓝+杏黄 | 骨架:night 夜间频道 | 转场:bar-push 斜条推屏 | #0b2545 + #ffc857 + #ff6b6b + 卡 #f4f1ea | 10-22 正式片：Leo 20句@1.4，总≈132.7s；x-post-images/2026-10-22/ai-daily.mp4
+- 2026-10-23 12:00 | Skills to AAIF | 骨架：移交双栏(Anthropic→AAIF)+四大数字黑格+深紫判断带(琥珀投影)+编号五件事+粗线通栏结论 | 背景雾灰紫 #ebe7f2（细斜线），强调深葡萄 #5b21b6，点缀琥珀 #f59e0b，墨字 #1c1917，卡面近白 #faf8ff
