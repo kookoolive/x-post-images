@@ -58,3 +58,4 @@
 - 2026-10-22 | AI早报视频 motion-body | 配色:ocean 深海蓝+杏黄 | 骨架:night 夜间频道 | 转场:bar-push 斜条推屏 | #0b2545 + #ffc857 + #ff6b6b + 卡 #f4f1ea | 10-22 正式片：Leo 20句@1.4，总≈132.7s；x-post-images/2026-10-22/ai-daily.mp4
 - 2026-10-23 12:00 | Skills to AAIF | 骨架：移交双栏(Anthropic→AAIF)+四大数字黑格+深紫判断带(琥珀投影)+编号五件事+粗线通栏结论 | 背景雾灰紫 #ebe7f2（细斜线），强调深葡萄 #5b21b6，点缀琥珀 #f59e0b，墨字 #1c1917，卡面近白 #faf8ff
 - 2026-10-23 22:00 | Auto mode default | 骨架：DEFAULT FLIP顶栏+巨号标题(点批准≠更安全)+89%/14%双大数字条+人工默认→护栏默认翻转条+电光柠判断带(珊瑚投影)+编号五件事+粗线通栏结论 | 背景深石板 #0f172a（细点阵），强调电光柠 #bef264，点缀珊瑚 #fb7185，卡面冷白 #f8fafc
+- 2026-10-23 | AI早报视频 motion-body | 配色:mint 薄荷奶油+珊瑚 | 骨架:broadsheet 报纸分栏 | 转场:color-wipe 色块擦除 | #dff1ea + #0f9d76 + #f25f5c + 卡 #ffffff
