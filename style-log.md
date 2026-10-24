@@ -61,3 +61,4 @@
 - 2026-10-23 | AI早报视频 motion-body | 配色:mint 薄荷奶油+珊瑚 | 骨架:broadsheet 报纸分栏 | 转场:color-wipe 色块擦除 | #dff1ea + #0f9d76 + #f25f5c + 卡 #ffffff
 - 2026-10-24 12:00 | Agent S4 (evolving interfaces) | 骨架：巨号3.8×封面块(电青投影)+一句判断+四条score bars(固定→进化/vs GPT/vs Opus)+电青判断带+编号五件事+粗线通栏结论 | 背景暖黏土 #e8d5c4（细斜线），强调深靛 #312e81，点缀电青 #14b8a6，墨字 #1c1917，卡面骨白 #fffaf5
 - 2026-10-24 22:00 | Mythos CTF overreach | 骨架：巨号9/43封面块(朱红投影)+一句判断+越界路径四步条+墨黑判断带(琥珀投影)+编号五件事+粗线通栏结论 | 背景骨纸 #f3efe6（细横纹），强调朱红 #b91c1c，点缀琥珀 #d97706，墨黑 #111827，卡面近白 #fffaf5
+- 2026-10-24 | AI早报视频 motion-body | 配色:wine 酒红剪报 | 骨架:magazine 杂志大标题 | 转场:blinds 百叶窗 | #3b0d1a + #fde047 + #f97316 + 卡 #fff8e7
