@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>先改接口，再换模型</title>
+<style>
+:root{
+  --bg:#e8d5c4; --card:#fffaf5; --ink:#1c1917; --muted:#57534e;
+  --indigo:#312e81; --teal:#14b8a6; --line:#d6c3b0; --soft:#c7d2fe;
+  --sans:"Noto Sans CJK SC","Noto Sans SC","Source Han Sans SC",sans-serif;
+  --mono:"DejaVu Sans Mono","Noto Sans Mono CJK SC",monospace;
+  --num:"DejaVu Sans Condensed","Noto Sans CJK SC",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:1080px;height:1440px;overflow:hidden;background:var(--bg)}
+.card{
+  width:1080px;height:1440px;padding:32px 36px 24px;
+  font-family:var(--sans);color:var(--ink);
+  display:flex;flex-direction:column;
+  background:
+    repeating-linear-gradient(-18deg, transparent, transparent 11px, rgba(49,46,129,.05) 11px, rgba(49,46,129,.05) 12px),
+    linear-gradient(180deg, #f3e6d8 0%, var(--bg) 48%, #dcc4ae 100%);
+}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:15px;font-weight:900;letter-spacing:.16em;color:var(--muted)}
+.top .tag{background:var(--indigo);color:#fff;padding:7px 14px;letter-spacing:.12em;font-size:14px}
+.hero{margin-top:14px;display:grid;grid-template-columns:280px 1fr;gap:18px;align-items:center}
+.giant{
+  background:var(--indigo);color:#fff;height:210px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  box-shadow:10px 10px 0 var(--teal);
+}
+.giant .x{font-family:var(--num);font-size:92px;font-weight:900;letter-spacing:-.04em;line-height:1}
+.giant .lab{margin-top:4px;font-size:16px;font-weight:800;letter-spacing:.14em;color:var(--soft)}
+.hero-txt h1{margin:0;font-size:52px;line-height:1.08;font-weight:900;letter-spacing:-.02em}
+.hero-txt h1 em{font-style:normal;color:var(--indigo);border-bottom:7px solid var(--teal);padding-bottom:2px}
+.hero-txt .one{margin-top:12px;font-size:22px;line-height:1.4;font-weight:800;color:var(--muted)}
+.hero-txt .meta{margin-top:10px;font-family:var(--mono);font-size:13px;font-weight:700;color:var(--indigo);letter-spacing:.04em}
+
+.bars{margin-top:18px;background:var(--card);border:3px solid var(--ink);padding:16px 18px 14px}
+.bars h3{margin:0 0 10px;font-size:15px;font-weight:900;letter-spacing:.16em;color:var(--indigo)}
+.row{display:grid;grid-template-columns:168px 1fr 72px;gap:12px;align-items:center;margin-bottom:10px}
+.row:last-child{margin-bottom:0}
+.row .name{font-size:16px;font-weight:800;line-height:1.25}
+.row .name small{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-top:2px}
+.track{height:22px;background:#efe6dc;border:2px solid var(--ink);position:relative;overflow:hidden}
+.fill{height:100%;background:var(--indigo)}
+.fill.teal{background:var(--teal)}
+.fill.muted{background:#a8a29e}
+.pct{font-family:var(--num);font-size:22px;font-weight:900;text-align:right}
+
+.band{margin-top:14px;background:var(--teal);color:#042f2e;padding:14px 20px;font-size:23px;font-weight:900;line-height:1.35;box-shadow:8px 8px 0 var(--indigo)}
+.band small{display:block;margin-top:5px;font-size:15px;font-weight:700;color:#0f766e}
+
+.todo{margin-top:14px;background:var(--card);border:3px solid var(--ink);padding:14px 18px 12px;flex:1}
+.todo h3{margin:0 0 6px;font-size:15px;font-weight:900;letter-spacing:.16em;color:var(--indigo)}
+.todo ol{margin:0;padding-left:28px;font-size:17px;font-weight:700;line-height:1.48;color:var(--ink)}
+.todo li::marker{font-family:var(--num);font-weight:900;color:var(--teal)}
+
+.foot{margin-top:12px;border-top:6px solid var(--ink);padding-top:10px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
+.foot .c{font-size:21px;font-weight:900;line-height:1.32}
+.foot .src{font-family:var(--mono);font-size:12px;color:var(--muted);text-align:right;line-height:1.5}
+</style></head><body><div class="card">
+<div class="top"><span>@LEOZHANGAI · AGENT 观察</span><span class="tag">SIMULAR · 10.20</span></div>
+
+<div class="hero">
+  <div class="giant"><div class="x">3.8×</div><div class="lab">固定工具 → 进化接口</div></div>
+  <div class="hero-txt">
+    <h1>先改<em>接口</em>，<br/>再换模型</h1>
+    <div class="one">开源 Qwen3.8-27B + 进化 shadow interfaces，打过 GPT-5.5 / Opus 4.8。</div>
+    <div class="meta">Agent S4 · OSWorld V2 · 108 tasks · strict binary</div>
+  </div>
+</div>
+
+<div class="bars">
+  <h3>OSWORLD V2 · BINARY SUCCESS</h3>
+  <div class="row">
+    <div class="name">Qwen3.8-27B<small>固定工具</small></div>
+    <div class="track"><div class="fill muted" style="width:26%"></div></div>
+    <div class="pct">5.56%</div>
+  </div>
+  <div class="row">
+    <div class="name">同模型 + 进化接口<small>权重不动</small></div>
+    <div class="track"><div class="fill teal" style="width:100%"></div></div>
+    <div class="pct">21.3%</div>
+  </div>
+  <div class="row">
+    <div class="name">GPT-5.5<small>闭源 · 固定接口</small></div>
+    <div class="track"><div class="fill" style="width:61%"></div></div>
+    <div class="pct">13.0%</div>
+  </div>
+  <div class="row">
+    <div class="name">Claude Opus 4.8<small>闭源 · 固定接口</small></div>
+    <div class="track"><div class="fill" style="width:97%"></div></div>
+    <div class="pct">20.6%</div>
+  </div>
+</div>
+
+<div class="band">瓶颈常在交互面，不在参数量。<small>单元格点一遍 vs 一行代码 · ≈$1.10/task vs 前沿 ~$25–72（进化成本常未计入）</small></div>
+
+<div class="todo">
+  <h3>本周 5 件事</h3>
+  <ol>
+    <li>盘点 Agent 工具层：哪些还在「人手点一遍」的形状</li>
+    <li>给高频桌面任务写可编程接口，别只堆 GUI 点击</li>
+    <li>同一模型固定工具 vs 可改接口，跑最小对照验收</li>
+    <li>进化/合成任务要留验证集，防过拟合训练集</li>
+    <li>算成本时把进化算力单列，别只比推理单价</li>
+  </ol>
+</div>
+
+<div class="foot">
+  <div class="c">别再等下一颗更大的模型；<br/>先修 harness / 交互面。</div>
+  <div class="src">simular.ai / agent-s4<br/>arxiv 2610.28601<br/>github: simular-ai/Agent-S</div>
+</div>
+</div></body></html>
