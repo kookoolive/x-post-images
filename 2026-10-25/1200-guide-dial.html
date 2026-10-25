@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>松紧是按任务配的</title>
+<style>
+:root{
+  --bg:#dcecf5; --card:#ffffff; --ink:#14213d; --muted:#4b5a73;
+  --red:#e4572e; --navy:#14213d; --sky:#9cc9e3; --line:#b9d4e4;
+  --sans:"Noto Sans CJK SC","Noto Sans SC","Source Han Sans SC",sans-serif;
+  --mono:"DejaVu Sans Mono","Noto Sans Mono CJK SC",monospace;
+  --num:"DejaVu Sans Condensed","Noto Sans CJK SC",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:1080px;height:1440px;overflow:hidden;background:var(--bg)}
+.card{width:1080px;height:1440px;padding:34px 38px 26px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+  background:
+   linear-gradient(rgba(20,33,61,.06) 1px,transparent 1px) 0 0/28px 28px,
+   linear-gradient(90deg,rgba(20,33,61,.06) 1px,transparent 1px) 0 0/28px 28px,
+   linear-gradient(180deg,#e8f3f9 0%,var(--bg) 55%,#cfe3ef 100%);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:15px;font-weight:900;letter-spacing:.16em;color:var(--muted)}
+.top .tag{background:var(--red);color:#fff;padding:7px 14px;letter-spacing:.12em;font-size:14px}
+h1{margin:18px 0 0;font-size:66px;line-height:1.06;font-weight:900;letter-spacing:-.02em}
+h1 em{font-style:normal;color:var(--red)}
+.one{margin-top:12px;font-size:23px;line-height:1.4;font-weight:800;color:var(--muted)}
+.quote{margin-top:16px;background:var(--navy);color:#fff;padding:14px 20px;font-size:19px;font-weight:700;line-height:1.45;border-left:10px solid var(--red)}
+.quote small{display:block;margin-top:6px;font-family:var(--mono);font-size:13px;color:var(--sky);letter-spacing:.04em}
+.dial{margin-top:18px;background:var(--card);border:3px solid var(--ink);padding:16px 20px 14px}
+.dial h3,.pair h3,.matrix h3,.todo h3{margin:0 0 10px;font-size:15px;font-weight:900;letter-spacing:.16em;color:var(--red)}
+.scale{position:relative;height:34px;border:3px solid var(--ink);background:linear-gradient(90deg,#fde2d9 0%,#fff 30%,#fff 70%,#fde2d9 100%)}
+.scale .zone{position:absolute;left:30%;width:40%;top:0;bottom:0;background:repeating-linear-gradient(45deg,#9cc9e3,#9cc9e3 8px,#c8e1f0 8px,#c8e1f0 16px)}
+.scale .zone span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;letter-spacing:.1em}
+.ends{display:flex;justify-content:space-between;margin-top:8px;font-size:17px;font-weight:900}
+.ends small{display:block;font-size:13px;font-weight:700;color:var(--muted)}
+.ends .r{text-align:right}
+.pair{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pair > div{background:var(--card);border:3px solid var(--ink);padding:14px 16px}
+.pair ul{margin:0;padding-left:20px;font-size:17px;font-weight:700;line-height:1.5}
+.pair .b{box-shadow:7px 7px 0 var(--red)}
+.matrix{margin-top:14px;background:var(--card);border:3px solid var(--ink);padding:14px 18px}
+.mr{display:grid;grid-template-columns:230px 1fr 110px;gap:12px;align-items:center;padding:8px 0;border-top:2px dashed var(--line);font-size:17px;font-weight:700}
+.mr:first-of-type{border-top:none}
+.mr b{font-size:18px}
+.chip{justify-self:end;font-weight:900;font-size:16px;padding:5px 12px;border:2px solid var(--ink)}
+.chip.loose{background:#c8e1f0}.chip.tight{background:var(--red);color:#fff}.chip.feed{background:#fff3c4}
+.band{margin-top:14px;background:var(--red);color:#fff;padding:14px 20px;font-size:24px;font-weight:900;line-height:1.35;box-shadow:8px 8px 0 var(--navy)}
+.todo{margin-top:14px;background:var(--card);border:3px solid var(--ink);padding:14px 18px 10px;flex:1}
+.todo ol{margin:0;padding-left:30px;font-size:22px;font-weight:700;line-height:1.75}
+.todo li::marker{font-family:var(--num);font-weight:900;color:var(--red)}
+.foot{margin-top:12px;border-top:6px solid var(--ink);padding-top:10px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
+.foot .c{font-size:26px;font-weight:900}
+.foot .src{font-family:var(--mono);font-size:12px;color:var(--muted);text-align:right;line-height:1.5}
+</style></head><body><div class="card">
+<div class="top"><span>@LEOZHANGAI · AGENT 观察</span><span class="tag">#0 SKILL · 10.25</span></div>
+<h1>管 AI，难的不是提示词，<br/>是<em>拿捏松紧</em></h1>
+<div class="one">多数人不是一直管太多或太少，而是把松紧放错了地方。</div>
+<div class="quote">“有时你管太多——它比你懂；有时你管太少——它会跑偏、缺上下文。管好这股力量，是我招人看的第 0 号能力。”<small>— Guillermo Rauch（Vercel CEO）· X · 2026-10-24 · 10 万+ 浏览 / 400+ 收藏</small></div>
+<div class="dial"><h3>GUIDANCE DIAL</h3>
+  <div class="scale"><div class="zone"><span>按任务配</span></div></div>
+  <div class="ends"><div>管太多<small>它的好方案被按回你的老写法</small></div><div class="r">管太少<small>跑偏、带偏见、漏上下文</small></div></div>
+</div>
+<div class="pair">
+  <div><h3>该松却抓死</h3><ul><li>规定函数名、逐行改风格</li><li>把方案按回熟悉的老套路</li><li>每一步都要你点确认</li></ul></div>
+  <div class="b"><h3>该紧却撒手</h3><ul><li>没写验收标准就开跑</li><li>权限没限、上下文没给</li><li>跑完不看 diff 直接合</li></ul></div>
+</div>
+<div class="matrix"><h3>按任务配松紧</h3>
+  <div class="mr"><b>能自动验证</b><span>测试 / 类型 / lint 能判对错</span><span class="chip loose">放手</span></div>
+  <div class="mr"><b>不可逆</b><span>删数据、动钱、对外发消息</span><span class="chip tight">先问</span></div>
+  <div class="mr"><b>缺上下文</b><span>业务约定、历史坑、口头规矩</span><span class="chip feed">先喂料</span></div>
+</div>
+<div class="band">下一阶段拉开差距的，不是谁写得快，是谁知道哪一步该松、哪一步该紧。</div>
+<div class="todo"><h3>本周 5 件事</h3><ol>
+<li>复盘最近 3 次「AI 跑偏」：是管多了，还是给少了</li>
+<li>每个任务先写验收标准，再开跑</li>
+<li>不可逆动作单独设审批，别混进自动流</li>
+<li>业务约定写进 AGENTS.md / 规则文件，别每次口述</li>
+<li>测试能兜住的部分，停止逐行指挥</li></ol></div>
+<div class="foot"><div class="c">松紧配对了，AI 才是杠杆。</div><div class="src">src: x.com/rauchg/status/2114085432749347086<br/>@leozhangai</div></div>
+</div></body></html>
