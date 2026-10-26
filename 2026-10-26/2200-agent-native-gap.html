@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>差的是起点</title>
+<style>
+:root{
+  --bg:#12141a; --card:#f8fafc; --ink:#0f172a; --muted:#94a3b8;
+  --amber:#f59e0b; --cyan:#22d3ee; --line:#334155;
+  --sans:"Noto Sans CJK SC","Noto Sans SC","Source Han Sans SC",sans-serif;
+  --mono:"DejaVu Sans Mono","Noto Sans Mono CJK SC",monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:48px 52px 36px;font-family:var(--sans);color:#e2e8f0;display:flex;flex-direction:column;
+  background:
+   radial-gradient(ellipse at 85% 8%,rgba(245,158,11,.18) 0%,transparent 42%),
+   repeating-linear-gradient(0deg,rgba(34,211,238,.04) 0 1px,transparent 1px 28px),
+   repeating-linear-gradient(90deg,rgba(148,163,184,.05) 0 1px,transparent 1px 28px),
+   linear-gradient(165deg,#0c0e14 0%,var(--bg) 45%,#1a1f2b 100%);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:20px;font-weight:900;letter-spacing:.16em;color:var(--muted)}
+.top .tag{background:var(--amber);color:#111;padding:10px 18px;letter-spacing:.12em;font-size:18px;font-weight:900}
+h1{margin:20px 0 0;font-size:78px;line-height:1.08;font-weight:900;letter-spacing:-.03em;color:#f8fafc}
+h1 em{font-style:normal;color:var(--amber)}
+.one{margin-top:14px;font-size:28px;line-height:1.4;font-weight:700;color:var(--muted)}
+.hero{margin-top:26px;display:grid;grid-template-columns:320px 1fr;gap:22px;align-items:stretch}
+.big{background:var(--amber);color:#111;border:4px solid #fbbf24;box-shadow:12px 12px 0 rgba(34,211,238,.55);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;padding:28px 16px}
+.big .n{font-size:120px;font-weight:900;letter-spacing:-.06em;line-height:1}
+.big .s{margin-top:8px;font-size:22px;font-weight:900;letter-spacing:.14em}
+.quote{background:rgba(248,250,252,.06);border:4px solid var(--line);border-left:12px solid var(--cyan);padding:28px 30px;
+  display:flex;flex-direction:column;justify-content:center}
+.quote p{margin:0;font-size:30px;font-weight:800;line-height:1.45;color:#f1f5f9}
+.quote small{display:block;margin-top:16px;font-family:var(--mono);font-size:18px;font-weight:700;color:var(--muted);letter-spacing:.04em}
+.pair{margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.pair > div{background:var(--card);color:var(--ink);border:4px solid #e2e8f0;padding:22px 24px;min-height:280px}
+.pair h3{margin:0 0 14px;font-size:20px;font-weight:900;letter-spacing:.14em}
+.pair .old{box-shadow:10px 10px 0 #64748b}
+.pair .old h3{color:#64748b}
+.pair .new{box-shadow:10px 10px 0 var(--amber)}
+.pair .new h3{color:#b45309}
+.pair ul{margin:0;padding-left:28px;font-size:24px;font-weight:700;line-height:1.55}
+.judge{margin-top:22px;background:var(--cyan);color:#083344;padding:20px 28px;display:flex;align-items:center;gap:22px;
+  border:4px solid #67e8f9;box-shadow:10px 10px 0 rgba(245,158,11,.45)}
+.judge .lab{font-size:18px;font-weight:900;letter-spacing:.16em;white-space:nowrap;background:#083344;color:var(--cyan);padding:10px 14px}
+.judge .txt{font-size:28px;font-weight:900;line-height:1.35}
+.todo{margin-top:22px;background:var(--card);color:var(--ink);border:4px solid #e2e8f0;padding:20px 24px;flex:1;box-shadow:10px 10px 0 rgba(34,211,238,.35)}
+.todo h3{margin:0 0 12px;font-size:20px;font-weight:900;letter-spacing:.14em;color:#b45309}
+.todo ol{margin:0;padding-left:34px;font-size:24px;font-weight:700;line-height:1.55}
+.foot{margin-top:20px;border-top:6px solid var(--amber);padding-top:16px;display:flex;justify-content:space-between;align-items:center}
+.foot .concl{font-size:30px;font-weight:900;letter-spacing:.02em;color:#f8fafc}
+.foot .concl span{color:var(--amber)}
+.foot .brand{font-family:var(--mono);font-size:20px;font-weight:800;color:var(--muted)}
+</style></head><body>
+<div class="card">
+  <div class="top"><span>AI / AGENT · 2026-10-26</span><span class="tag">ORDER OF MAGNITUDE</span></div>
+  <h1>差的是<em>起点</em>，<br>不是人才</h1>
+  <p class="one">Josh Elman：手写三年的团队，忽然感到比 Agent 原生创业公司慢了一个数量级。</p>
+
+  <div class="hero">
+    <div class="big"><div class="n">10×</div><div class="s">感觉断层</div></div>
+    <div class="quote">
+      <p>「I have never seen such an order of magnitude difference.」</p>
+      <small>SOURCE · @joshelman · 2026-10-25 · 26万+ 曝光</small>
+    </div>
+  </div>
+
+  <div class="pair">
+    <div class="old">
+      <h3>2023 · 手写起点</h3>
+      <ul>
+        <li>基座扎实，坑自己踩过</li>
+        <li>迭代按人周排</li>
+        <li>人审每一行是默认</li>
+        <li>需求先开会再动手</li>
+      </ul>
+    </div>
+    <div class="new">
+      <h3>2026 · AGENT 起点</h3>
+      <ul>
+        <li>周末就能出一版</li>
+        <li>提案→改→测→合一回路</li>
+        <li>人守门禁与产品判断</li>
+        <li>缺的是用户常识</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="judge">
+    <div class="lab">判断</div>
+    <div class="txt">重建工作流，别急着重写仓库。付费路径里的用户知识，换 harness 也带不走。</div>
+  </div>
+
+  <div class="todo">
+    <h3>本周 5 件事</h3>
+    <ol>
+      <li>列人周阻塞清单，先交三步给 Agent 提案</li>
+      <li>建 10 条 golden eval，别只听模型嘴炮</li>
+      <li>能自动的 review 先自动，人只审高风险</li>
+      <li>别为追速度推倒核心付费路径</li>
+      <li>每周对比交付节奏，不是对比 star 数</li>
+    </ol>
+  </div>
+
+  <div class="foot">
+    <div class="concl">慢不是原罪。<span>死守 2023 协作方式</span>，才是。</div>
+    <div class="brand">@leozhangai</div>
+  </div>
+</div>
+</body></html>
