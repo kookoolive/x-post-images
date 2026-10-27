@@ -1,0 +1,27 @@
+以前 Downloads 里最该小心的是 .exe。
+现在多了一个：AGENTS.md。
+---
+Forever Security 在客户真机拦下一台 coding agent：它正要装恶意 npm 包 function-color。
+
+指令不是用户打的，是网页塞进 ~/Downloads 的「工程规范」AGENTS.md。
+---
+他们复现：Codex 从 Downloads 启动，超 90% 会照做；Claude Code 变体还能被诱导泄漏 OAuth token。
+
+不是模型太听话，是默认信任边界坏了。
+---
+很多 agent 会把工作区里的 AGENTS.md / skills 当合法指令源。
+
+Downloads 本就是浏览器可写目录——agent 开在那儿，等于把「网页能写的文件」升级成执行权。
+---
+同一周 SkillSpector 还在热榜：3.1 万技能里 26.1% 有洞、5.2% 像恶意。
+
+技能、规范、MCP，早就不是提示词，是依赖。
+---
+本周 5 件事：
+1. 禁止在 Downloads 启动 coding agent
+2. 新 skill / AGENTS.md 先当依赖审
+3. 能静态扫就扫，再决定装不装
+4. 全局 MCP/npm 安装需人确认
+5. 出事留路径、规范文件、装过的包
+---
+Markdown 不会咬人。你把它放进信任根里，它才会。

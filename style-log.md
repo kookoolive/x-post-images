@@ -69,3 +69,4 @@
 - 2026-10-26 22:00 | Agent-native gap (Josh Elman 10×) | 骨架：巨号10×封面块+原话引用卡+2023手写vs2026 Agent双栏+电青判断带+编号五件事+通栏结论 | 背景深炭 #12141a（细网格+琥珀光晕），强调琥珀 #f59e0b，点缀电青 #22d3ee，卡面近白 #f8fafc
 - 2026-10-26 | AI早报视频 motion-body | 配色:graphite 石墨+荧光绿 | 骨架:night 夜间频道 | 转场:bar-push 斜条推屏 | #1c1d21 + #c6ff3d + #a78bfa + 卡 #f2f0eb
 - 2026-10-27 12:00 | Agent as code (Cursor Agent SDK) | 骨架：双栏对照(vibe提示词删除线 vs folder-as-agent树)+EVAL三断言条(calledTool/reply shape/CI replay)+编号五件事+通栏结论 | 背景橄榄灰绿 #e4e8dc（细网格），强调钴蓝 #1e40af，点缀番茄 #ea580c，卡面骨白 #fafaf7
+- 2026-10-27 22:00 | Downloads AGENTS.md trap | 骨架：威胁通报顶栏+大标题(Markdown=.exe)+90%巨号+incident条+危险/安全双栏+编号五件事+通栏结论 | 背景深墨蓝 #0b1220（细点阵+琥珀/红光晕），强调信号琥珀 #fbbf24，警示红 #ef4444，卡面冷白 #f8fafc

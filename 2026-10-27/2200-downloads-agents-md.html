@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>Markdown 成了新的 .exe</title>
+<style>
+:root{
+  --bg:#0b1220; --card:#f8fafc; --ink:#0f172a; --muted:#94a3b8;
+  --amber:#fbbf24; --red:#ef4444; --line:#1e293b;
+  --sans:"Noto Sans CJK SC","Noto Sans SC","Source Han Sans SC",sans-serif;
+  --mono:"DejaVu Sans Mono","Noto Sans Mono CJK SC",monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:44px 52px 34px;font-family:var(--sans);color:#e2e8f0;display:flex;flex-direction:column;
+  background:
+   radial-gradient(circle at 12% 8%,rgba(251,191,36,.12),transparent 42%),
+   radial-gradient(circle at 88% 18%,rgba(239,68,68,.10),transparent 38%),
+   repeating-linear-gradient(0deg,rgba(148,163,184,.06) 0 1px,transparent 1px 16px),
+   repeating-linear-gradient(90deg,rgba(148,163,184,.06) 0 1px,transparent 1px 16px),
+   linear-gradient(180deg,#0f172a 0%,var(--bg) 55%,#070b14 100%);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:20px;font-weight:900;letter-spacing:.16em;color:var(--muted)}
+.top .tag{background:var(--red);color:#fff;padding:10px 18px;letter-spacing:.14em;font-size:18px;box-shadow:6px 6px 0 rgba(251,191,36,.85)}
+h1{margin:20px 0 0;font-size:78px;line-height:1.05;font-weight:900;letter-spacing:-.03em;color:#fff}
+h1 em{font-style:normal;color:var(--amber)}
+.one{margin-top:14px;font-size:28px;line-height:1.4;font-weight:800;color:var(--muted);max-width:1300px}
+.metrics{margin-top:26px;display:grid;grid-template-columns:340px 1fr;gap:22px}
+.big{background:var(--card);color:var(--ink);border:4px solid #fff;box-shadow:12px 12px 0 var(--red);padding:28px 30px;display:flex;flex-direction:column;justify-content:center}
+.big .n{font-size:120px;line-height:0.9;font-weight:900;color:var(--red);letter-spacing:-.04em}
+.big .l{margin-top:14px;font-size:24px;font-weight:900;line-height:1.35}
+.big .s{margin-top:8px;font-size:20px;font-weight:700;color:#64748b}
+.incident{background:#111827;border:3px solid var(--amber);padding:26px 28px}
+.incident h3{margin:0 0 12px;font-size:18px;font-weight:900;letter-spacing:.16em;color:var(--amber)}
+.incident ul{margin:0;padding-left:28px;font-size:24px;font-weight:700;line-height:1.55;color:#e2e8f0}
+.incident code{font-family:var(--mono);color:var(--amber);font-size:22px}
+.pair{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.pair > div{padding:22px 24px;min-height:280px;border:4px solid #fff}
+.pair .bad{background:#1a0a0c;box-shadow:10px 10px 0 var(--red)}
+.pair .good{background:var(--card);color:var(--ink);box-shadow:10px 10px 0 var(--amber)}
+.pair h3{margin:0 0 14px;font-size:20px;font-weight:900;letter-spacing:.12em}
+.pair .bad h3{color:var(--red)}
+.pair .good h3{color:#b45309}
+.pair ul{margin:0;padding-left:28px;font-size:24px;font-weight:700;line-height:1.55}
+.strike{text-decoration:line-through;text-decoration-thickness:3px;opacity:.55}
+.todo{margin-top:22px;background:var(--card);color:var(--ink);border:4px solid #fff;padding:20px 24px;flex:1;box-shadow:8px 8px 0 rgba(251,191,36,.55)}
+.todo h3{margin:0 0 12px;font-size:20px;font-weight:900;letter-spacing:.14em;color:#b45309}
+.todo ol{margin:0;padding-left:34px;font-size:24px;font-weight:700;line-height:1.55}
+.foot{margin-top:18px;border-top:6px solid var(--amber);padding-top:16px;display:flex;justify-content:space-between;align-items:center}
+.foot .concl{font-size:30px;font-weight:900;letter-spacing:.02em;max-width:1120px;color:#fff}
+.foot .concl span{color:var(--amber)}
+.foot .brand{font-family:var(--mono);font-size:20px;font-weight:800;color:var(--muted)}
+</style></head><body>
+<div class="card">
+  <div class="top"><span>AI / AGENT · 2026-10-27</span><span class="tag">THREAT · DOWNLOADS</span></div>
+  <h1>Markdown 成了<br>新的 <em>.exe</em></h1>
+  <p class="one">Downloads 里的 AGENTS.md = 网页写得到的执行权。Agent 开在那儿，等于把信任根交给浏览器。</p>
+
+  <div class="metrics">
+    <div class="big">
+      <div class="n">90%</div>
+      <div class="l">Codex 从 Downloads 启动<br>会照做恶意规范</div>
+      <div class="s">Forever Security 复现</div>
+    </div>
+    <div class="incident">
+      <h3>INCIDENT · FUNCTION-COLOR</h3>
+      <ul>
+        <li>客户真机：agent 正要装恶意 npm <code>function-color</code></li>
+        <li>指令来自 <code>~/Downloads/AGENTS.md</code>（网页静默写入）</li>
+        <li>伪装成「工程规范」→ 改全局配置 / 装包</li>
+        <li>同周 SkillSpector：3.1 万技能 · 26.1% 有洞 · 5.2% 像恶意</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pair">
+    <div class="bad">
+      <h3>危险启动 · 默认坏掉</h3>
+      <ul>
+        <li class="strike">在 ~/Downloads 开 Codex / Claude</li>
+        <li class="strike">闭眼 <code>npx skills add</code></li>
+        <li class="strike">让 agent 静默改全局 MCP</li>
+        <li>工作区文件 = 合法指令源</li>
+        <li>浏览器可写目录 = 攻击面</li>
+      </ul>
+    </div>
+    <div class="good">
+      <h3>安全启动 · 先收信任根</h3>
+      <ul>
+        <li>只在干净项目目录启动 agent</li>
+        <li>AGENTS.md / skill 当依赖审</li>
+        <li>静态扫一遍再装（SkillSpector）</li>
+        <li>装包 / 改配置必须人确认</li>
+        <li>出事留：路径 · 规范文件 · 包名</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="todo">
+    <h3>本周 5 件事</h3>
+    <ol>
+      <li>禁止在 Downloads（及浏览器可写目录）启动 coding agent</li>
+      <li>新 skill / AGENTS.md：先看它要写哪些文件、调哪些工具</li>
+      <li>能静态扫就扫；再决定装不装</li>
+      <li>全局 MCP / npm 安装改成需人确认</li>
+      <li>复盘模板加上：工作区路径、读到的规范、装过的包</li>
+    </ol>
+  </div>
+
+  <div class="foot">
+    <div class="concl">Markdown 不会咬人。<span>你把它放进信任根里，它才会。</span></div>
+    <div class="brand">@leozhangai</div>
+  </div>
+</div>
+</body></html>
