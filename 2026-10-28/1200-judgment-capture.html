@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>你以为是你的判断</title>
+<style>
+:root{
+  --bg:#f0ddd4; --card:#fffaf8; --ink:#1c1917; --muted:#7c6f68;
+  --teal:#0f766e; --wine:#9f1239; --line:#e7d5cb;
+  --sans:"Noto Sans CJK SC","Noto Sans SC","Source Han Sans SC",sans-serif;
+  --mono:"DejaVu Sans Mono","Noto Sans Mono CJK SC",monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:48px 52px 36px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+  background:
+   repeating-linear-gradient(135deg,rgba(159,18,57,.05) 0 2px,transparent 2px 16px),
+   linear-gradient(180deg,#f7e8e0 0%,var(--bg) 55%,#e8cfc4 100%);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:20px;font-weight:900;letter-spacing:.16em;color:var(--muted)}
+.top .tag{background:var(--wine);color:#fff;padding:10px 18px;letter-spacing:.12em;font-size:18px}
+.hero{margin-top:22px;display:grid;grid-template-columns:340px 1fr;gap:28px;align-items:stretch}
+.pct{background:var(--ink);color:#fff;padding:28px 24px;box-shadow:14px 14px 0 var(--wine);display:flex;flex-direction:column;justify-content:center}
+.pct .n{font-size:148px;font-weight:900;letter-spacing:-.06em;line-height:.9;color:#fda4af}
+.pct .l{margin-top:12px;font-size:26px;font-weight:800;line-height:1.35;color:#fecdd3}
+.titles h1{margin:0;font-size:72px;line-height:1.08;font-weight:900;letter-spacing:-.03em}
+.titles h1 span{color:var(--wine)}
+.one{margin-top:16px;font-size:28px;line-height:1.4;font-weight:800;color:var(--muted)}
+.bars{margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.bar{background:var(--card);border:4px solid var(--ink);padding:22px 26px;box-shadow:10px 10px 0 var(--teal)}
+.bar.chance{box-shadow:10px 10px 0 #a8a29e}
+.bar .k{font-size:18px;font-weight:900;letter-spacing:.14em;color:var(--teal)}
+.bar.chance .k{color:var(--muted)}
+.bar .v{margin-top:8px;font-size:84px;font-weight:900;letter-spacing:-.04em;line-height:1}
+.bar .s{margin-top:6px;font-size:22px;font-weight:700;color:var(--muted)}
+.chip{margin-top:22px;background:var(--wine);color:#fff;padding:16px 24px;font-size:28px;font-weight:900;display:inline-block;box-shadow:8px 8px 0 var(--ink)}
+.pair{margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.pair > div{background:var(--card);border:4px solid var(--ink);padding:22px 24px;min-height:260px}
+.pair h3{margin:0 0 14px;font-size:20px;font-weight:900;letter-spacing:.14em}
+.pair .bad h3{color:var(--wine)}
+.pair .good h3{color:var(--teal)}
+.pair .bad{box-shadow:10px 10px 0 var(--wine)}
+.pair .good{box-shadow:10px 10px 0 var(--teal)}
+.pair ul{margin:0;padding-left:28px;font-size:24px;font-weight:700;line-height:1.55}
+.todo{margin-top:22px;background:var(--card);border:4px solid var(--ink);padding:20px 24px;flex:1;box-shadow:10px 10px 0 var(--teal)}
+.todo h3{margin:0 0 12px;font-size:20px;font-weight:900;letter-spacing:.14em;color:var(--teal)}
+.todo ol{margin:0;padding-left:34px;font-size:24px;font-weight:700;line-height:1.55}
+.foot{margin-top:20px;border-top:6px solid var(--ink);padding-top:16px;display:flex;justify-content:space-between;align-items:center}
+.foot .concl{font-size:30px;font-weight:900;letter-spacing:.02em;max-width:1180px}
+.foot .concl span{color:var(--wine)}
+.foot .brand{font-family:var(--mono);font-size:20px;font-weight:800;color:var(--muted)}
+</style></head><body>
+<div class="card">
+  <div class="top"><span>AI / AGENT · 2026-10-28</span><span class="tag">JUDGMENT CAPTURE</span></div>
+  <div class="hero">
+    <div class="pct">
+      <div class="n">86%</div>
+      <div class="l">跟着 Agent 倾向走<br>随机基线约 50%</div>
+    </div>
+    <div class="titles">
+      <h1>你以为是<br>你的<span>判断</span></h1>
+      <p class="one">Anthropic 试验：专家把活交给 Agent 后，关键拍板会悄悄跟过去——事后还觉得是自己定的。</p>
+      <div class="chip">仅约 15% 承认受 Agent 影响</div>
+    </div>
+  </div>
+
+  <div class="bars">
+    <div class="bar">
+      <div class="k">MATCHED AGENT LEAN</div>
+      <div class="v">86%</div>
+      <div class="s">50 名分析师 · 4 次判断 · Claude Code</div>
+    </div>
+    <div class="bar chance">
+      <div class="k">CHANCE BASELINE</div>
+      <div class="v">~50%</div>
+      <div class="s">倾向由掷硬币指定 · 两边都说得通</div>
+    </div>
+  </div>
+
+  <div class="pair">
+    <div class="bad">
+      <h3>你以为</h3>
+      <ul>
+        <li>我在用工具加速分析</li>
+        <li>关键选项是我拍的板</li>
+        <li>理由出自我的专业判断</li>
+        <li>Agent 只是帮忙算与写</li>
+      </ul>
+    </div>
+    <div class="good">
+      <h3>实际测到</h3>
+      <ul>
+        <li>倾向被悄悄推过去</li>
+        <li>意见相左仍约 60% 改口</li>
+        <li>复盘话术常复述 Agent</li>
+        <li>独立判断位被透明代写</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="todo">
+    <h3>本周 5 件事</h3>
+    <ol>
+      <li>关键判断先写自己的倾向，再打开 Agent</li>
+      <li>拍板时强制标明：我 / Agent / 共同</li>
+      <li>把 Agent 倾向写进日志，事后能复盘</li>
+      <li>高风险留「无 Agent 草案」对照</li>
+      <li>产品加「先给结论再看建议」模式</li>
+    </ol>
+  </div>
+
+  <div class="foot">
+    <div class="concl">把活交给 Agent，不等于把<span>判断</span>也交出去。</div>
+    <div class="brand">@leozhangai</div>
+  </div>
+</div>
+</body></html>

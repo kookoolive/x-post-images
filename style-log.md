@@ -71,3 +71,4 @@
 - 2026-10-27 12:00 | Agent as code (Cursor Agent SDK) | 骨架：双栏对照(vibe提示词删除线 vs folder-as-agent树)+EVAL三断言条(calledTool/reply shape/CI replay)+编号五件事+通栏结论 | 背景橄榄灰绿 #e4e8dc（细网格），强调钴蓝 #1e40af，点缀番茄 #ea580c，卡面骨白 #fafaf7
 - 2026-10-27 22:00 | Downloads AGENTS.md trap | 骨架：威胁通报顶栏+大标题(Markdown=.exe)+90%巨号+incident条+危险/安全双栏+编号五件事+通栏结论 | 背景深墨蓝 #0b1220（细点阵+琥珀/红光晕），强调信号琥珀 #fbbf24，警示红 #ef4444，卡面冷白 #f8fafc
 - 2026-10-27 | AI早报视频 motion-body | 配色:mustard 芥末黄+钴蓝 | 骨架:clipping 剪报墙 | 转场:color-wipe 色块擦除 | #f2d64b + #1d4ed8 + #e63946 + 卡 #fffbea
+- 2026-10-28 12:00 | Judgment capture (Anthropic 86%) | 骨架：巨号86%封面块(酒红投影)+一句判断+86%vs50%双条+仅15%芯片+你以为/实际双栏+编号五件事+通栏结论 | 背景暖陶土玫瑰 #f0ddd4（细斜线），强调深森林青 #0f766e，点缀酒红 #9f1239，卡面近白 #fffaf8
