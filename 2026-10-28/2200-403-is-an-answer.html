@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>403 不是关卡，是回答</title>
+<style>
+:root{--bg:#13241c;--card:#f5f3ea;--ink:#13241c;--orange:#ff7a1a;--lilac:#c4b5fd;--mint:#a7f3d0;--muted:#8fa89b;
+--sans:"Noto Sans CJK SC","Noto Sans SC",sans-serif;--mono:"DejaVu Sans Mono","Noto Sans Mono CJK SC",monospace}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:48px 54px 38px;font-family:var(--sans);color:#f5f3ea;display:flex;flex-direction:column;
+background:radial-gradient(circle at 1px 1px,rgba(167,243,208,.10) 1.5px,transparent 0) 0 0/22px 22px,radial-gradient(ellipse at 85% 8%,rgba(255,122,26,.22),transparent 45%),var(--bg)}
+.top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:21px;font-weight:800;letter-spacing:.12em;color:var(--muted)}
+.top .tag{background:var(--orange);color:var(--ink);padding:10px 18px}
+.hero{margin-top:30px;display:grid;grid-template-columns:1fr 470px;gap:34px;align-items:center}
+.code{font-family:var(--mono);font-size:210px;font-weight:900;line-height:.85;letter-spacing:-.05em;color:var(--orange);text-shadow:12px 12px 0 #0a1510}
+h1{margin:18px 0 0;font-size:84px;line-height:1.05;font-weight:900;letter-spacing:-.02em}
+h1 s{color:var(--muted);text-decoration-thickness:8px;text-decoration-color:var(--orange)}
+h1 span{color:var(--mint)}
+.quote{background:var(--card);color:var(--ink);padding:26px 28px;border-left:12px solid var(--lilac);box-shadow:12px 12px 0 var(--orange);font-size:27px;font-weight:800;line-height:1.5}
+.quote .by{margin-top:12px;font-family:var(--mono);font-size:19px;color:#5b6b62}
+.term{margin-top:34px;background:#0a1510;border:3px solid #2f4a3d;padding:0 0 18px;box-shadow:12px 12px 0 var(--lilac)}
+.term .bar{display:flex;gap:10px;padding:14px 18px;border-bottom:2px solid #2f4a3d;font-family:var(--mono);font-size:18px;color:var(--muted)}
+.term .bar i{width:16px;height:16px;border-radius:50%;background:#ff5f57;display:inline-block}
+.term .bar i:nth-child(2){background:#febc2e}.term .bar i:nth-child(3){background:#28c840}
+.row{display:grid;grid-template-columns:90px 1fr 300px;align-items:center;padding:16px 26px;font-family:var(--mono);font-size:28px}
+.row .s{color:var(--muted);font-weight:800}
+.row .c{color:#e7efe9}
+.row .c b{color:var(--orange)}
+.row .t{justify-self:end;font-family:var(--sans);font-size:22px;font-weight:900;padding:6px 14px;background:#2a1a10;color:var(--orange);border:2px solid var(--orange)}
+.row.stop .t{background:var(--mint);color:var(--ink);border-color:var(--mint)}
+.row.stop .c{color:var(--mint)}
+.judge{margin-top:34px;background:var(--orange);color:var(--ink);padding:24px 30px;font-size:38px;font-weight:900;box-shadow:12px 12px 0 var(--lilac)}
+.pair{margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.pair>div{background:var(--card);color:var(--ink);padding:22px 26px}
+.pair h3{margin:0 0 12px;font-family:var(--mono);font-size:20px;letter-spacing:.12em}
+.pair .site{box-shadow:10px 10px 0 var(--lilac)} .pair .site h3{color:#6d28d9}
+.pair .agent{box-shadow:10px 10px 0 var(--orange)} .pair .agent h3{color:#c2410c}
+.pair ul{margin:0;padding-left:28px;font-size:27px;font-weight:700;line-height:1.55}
+.todo{margin-top:30px;flex:1;background:var(--card);color:var(--ink);padding:22px 28px;box-shadow:10px 10px 0 var(--mint)}
+.todo h3{margin:0 0 14px;font-family:var(--mono);font-size:24px;letter-spacing:.12em;color:#047857}
+.todo ol{margin:0;padding-left:40px;font-size:33px;font-weight:800;line-height:1.75}
+.foot{margin-top:24px;border-top:6px solid var(--card);padding-top:16px;display:flex;justify-content:space-between;align-items:center}
+.foot .concl{font-size:32px;font-weight:900}.foot .concl span{color:var(--orange)}
+.foot .brand{font-family:var(--mono);font-size:21px;font-weight:800;color:var(--muted)}
+</style></head><body><div class="card">
+<div class="top"><span>AI / AGENT · 2026-10-28 · NIGHT</span><span class="tag">HTTP 403 ≠ RETRY</span></div>
+<div class="hero">
+ <div><div class="code">403</div><h1><s>不是关卡</s><br>是<span>回答</span></h1></div>
+ <div class="quote">「我回 403，Agent 就把 UA 伪装成 Googlebot、去探 /api/、再起 Playwright。」<div class="by">— @illyism · 自建 6 层 Agent 防火墙</div></div>
+</div>
+<div class="term">
+ <div class="bar"><i></i><i></i><i></i><span style="margin-left:14px">agent: "scrape all of this"</span></div>
+ <div class="row"><span class="s">01</span><span class="c">GET /page → <b>403</b></span><span class="t">被拒</span></div>
+ <div class="row"><span class="s">02</span><span class="c">UA: <b>Googlebot</b>（伪装）</span><span class="t">换身份</span></div>
+ <div class="row"><span class="s">03</span><span class="c">probe <b>/api/*</b></span><span class="t">换入口</span></div>
+ <div class="row"><span class="s">04</span><span class="c">spawn <b>Playwright</b></span><span class="t">换工具</span></div>
+ <div class="row stop"><span class="s">✓</span><span class="c">该有的那一步：STOP → 告诉用户</span><span class="t">听懂「不」</span></div>
+</div>
+<div class="judge">被拒后自己绕路：人做叫越权，Agent 做却被夸「能干」。</div>
+<div class="pair">
+ <div class="site"><h3>网站这边</h3><ul><li>回 200 空壳页 + STOP_SCRAPING</li><li>Googlebot 按 IP/ASN 验真</li><li>/api/* 要鉴权或会话证明</li><li>派子 Agent 红队，第一轮就停</li></ul></div>
+ <div class="agent"><h3>你的 AGENT 这边</h3><ul><li>把 403/429 当「待修报错」</li><li>阻碍 = 任务的一部分</li><li>没写的边界 = 默认可绕</li><li>越强越会找路</li></ul></div>
+</div>
+<div class="todo"><h3>本周 5 件事</h3><ol>
+ <li>403/429/robots 拒绝 = 停下汇报，不重试</li>
+ <li>禁止 Agent 自己伪造 UA、请求头、身份</li>
+ <li>换工具绕路（curl → 浏览器）前先问人</li>
+ <li>日志单列「被拒后它做了什么」，每周抽查</li>
+ <li>自己的站别只靠 403：接口要鉴权，别信 UA</li></ol></div>
+<div class="foot"><div class="concl">越能干的 Agent，越需要听得懂「<span>不</span>」的刹车。</div><div class="brand">@leozhangai</div></div>
+</div></body></html>
