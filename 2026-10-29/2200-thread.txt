@@ -1,0 +1,22 @@
+模型成了零件，路由才是产品。
+
+GitHub Copilot Fusion 刚 GA（Universe / Nadella 财报窗口）。别把它当成又一个新模型——它是调度/编排层：你选 Standard / High / Max effort，运行时去协调 Anthropic + OpenAI（Claude Opus 5.5、Sonnet、GPT-6 变体）。
+---
+Artificial Analysis Coding Agent Index：Fusion Max ≈ 60，Claude Code + Opus 5.5 Max ≈ 62。差两分。
+
+成本呢？Fusion ≈ $5.59/任务，对标 ≈ $11.42；大约一半 tokens，大约少 40% 时间。接近顶分，账单砍半。
+---
+以前买 Coding Agent，本质是在赌「接了哪家模型」。Fusion 把这件事改了：你不再手选 Claude 还是 GPT，你选档位，调度器配模型。
+
+护城河从「模型名」挪到「敢不敢把选型交给调度层」。
+---
+这不是「多模型开关」那么浅。开关还是人在选；Fusion 是你声明努力程度，runtime 在步级决定谁上场。模型降级成零件，产品能力落在路由策略、成本曲线和失败回退。
+---
+本周 5 件事：
+1. 团队规范把「选模型」改成「选 effort 档」
+2. 对标任务同时记成本与时长，别只晒榜分
+3. 日常默认 Standard/High，Max 留给终审与硬题
+4. 调度日志留住：哪一步用了哪家模型
+5. 内部评测加一列——同质量下的 $/task
+
+敢把选型交给调度器的人，才开始做产品；还在比模型名的人，还在买零件。
