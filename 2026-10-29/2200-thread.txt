@@ -18,5 +18,5 @@ Artificial Analysis Coding Agent Index：Fusion Max ≈ 60，Claude Code + Opus 
 3. 日常默认 Standard/High，Max 留给终审与硬题
 4. 调度日志留住：哪一步用了哪家模型
 5. 内部评测加一列——同质量下的 $/task
-
+---
 敢把选型交给调度器的人，才开始做产品；还在比模型名的人，还在买零件。
