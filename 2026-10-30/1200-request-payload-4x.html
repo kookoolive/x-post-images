@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>不是上下文，是管道 · 4×</title>
+<style>
+:root{
+  --bg:#16181d; --card:#f4f4f0; --ink:#16181d; --muted:#8a8e97;
+  --lime:#c8f542; --coral:#fb7185; --bone:#f4f4f0; --ink2:#e8e9ed;
+  --sans:"Noto Sans CJK SC","Noto Sans SC","Source Han Sans SC",sans-serif;
+  --mono:"DejaVu Sans Mono","Noto Sans Mono CJK SC",monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:44px 50px 34px;font-family:var(--sans);color:var(--ink2);display:flex;flex-direction:column;
+  background:
+    repeating-linear-gradient(-45deg,transparent,transparent 11px,rgba(200,245,66,.045) 11px,rgba(200,245,66,.045) 12px),
+    radial-gradient(ellipse at 88% 6%,rgba(251,113,133,.18),transparent 42%),
+    linear-gradient(180deg,#1c1f26 0%,var(--bg) 55%,#0f1115 100%);}
+.top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:20px;font-weight:800;letter-spacing:.14em;color:var(--muted)}
+.top .tag{background:var(--lime);color:var(--ink);padding:10px 18px;letter-spacing:.1em}
+.hero{margin-top:22px;display:grid;grid-template-columns:320px 1fr;gap:28px;align-items:stretch}
+.big{background:#0f1115;color:var(--lime);padding:28px 22px;box-shadow:14px 14px 0 var(--coral);display:flex;flex-direction:column;justify-content:center;border:3px solid var(--lime)}
+.big .n{font-size:168px;font-weight:900;letter-spacing:-.06em;line-height:.82}
+.big .l{margin-top:12px;font-size:28px;font-weight:800;line-height:1.3;color:var(--ink2)}
+.titles h1{margin:0;font-size:68px;line-height:1.08;font-weight:900;letter-spacing:-.02em;color:#fff}
+.titles h1 s{color:var(--muted);text-decoration-thickness:8px;text-decoration-color:var(--coral)}
+.titles h1 span{color:var(--lime)}
+.one{margin-top:16px;font-size:28px;line-height:1.4;font-weight:800;color:var(--muted)}
+.chip{margin-top:18px;background:var(--coral);color:#fff;padding:14px 20px;font-size:26px;font-weight:900;display:inline-block;box-shadow:8px 8px 0 var(--lime)}
+.meters{margin-top:26px;background:#0f1115;border:3px solid #2a2e38;padding:22px 26px;box-shadow:10px 10px 0 var(--lime)}
+.meters h3{margin:0 0 16px;font-family:var(--mono);font-size:18px;letter-spacing:.14em;color:var(--lime)}
+.meter{display:grid;grid-template-columns:110px 1fr 100px;align-items:center;gap:16px;margin-bottom:16px}
+.meter:last-child{margin-bottom:0}
+.meter .lab{font-family:var(--mono);font-size:24px;font-weight:900;color:var(--muted)}
+.meter .bar{height:36px;background:#2a2e38;position:relative;overflow:hidden}
+.meter .bar .fill{height:100%;background:var(--coral);width:25%}
+.meter .bar .fill.new{background:var(--lime);width:100%}
+.meter .val{font-family:var(--mono);font-size:28px;font-weight:900;text-align:right}
+.meter .val.old{color:var(--coral)}
+.meter .val.new{color:var(--lime)}
+.pair{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.pair>div{background:var(--card);color:var(--ink);padding:22px 24px}
+.pair h3{margin:0 0 12px;font-family:var(--mono);font-size:20px;letter-spacing:.12em}
+.pair .direct{box-shadow:10px 10px 0 var(--lime)} .pair .direct h3{color:#65a30d}
+.pair .cloud{box-shadow:10px 10px 0 var(--coral)} .pair .cloud h3{color:#e11d48}
+.pair ul{margin:0;padding-left:28px;font-size:26px;font-weight:700;line-height:1.55}
+.pair .badge{display:inline-block;margin-top:12px;font-family:var(--mono);font-size:22px;font-weight:900;padding:8px 14px}
+.pair .direct .badge{background:var(--lime);color:var(--ink)}
+.pair .cloud .badge{background:var(--coral);color:#fff}
+.todo{margin-top:20px;background:var(--card);color:var(--ink);padding:18px 22px;flex:1;box-shadow:10px 10px 0 var(--lime)}
+.todo h3{margin:0 0 10px;font-family:var(--mono);font-size:20px;letter-spacing:.12em;color:#65a30d}
+.todo ol{margin:0;padding-left:34px;font-size:24px;font-weight:800;line-height:1.55}
+.foot{margin-top:16px;border-top:5px solid var(--lime);padding-top:14px;display:flex;justify-content:space-between;align-items:center}
+.foot .concl{font-size:28px;font-weight:900;max-width:1180px;color:#fff}
+.foot .concl span{color:var(--lime)}
+.foot .brand{font-family:var(--mono);font-size:18px;font-weight:800;color:var(--muted)}
+</style></head><body>
+<div class="card">
+  <div class="top"><span>AI / AGENT · 2026-10-30</span><span class="tag">REQUEST PAYLOAD · 4×</span></div>
+  <div class="hero">
+    <div class="big">
+      <div class="n">4×</div>
+      <div class="l">请求体上限<br>32 → 128 MB</div>
+    </div>
+    <div class="titles">
+      <h1><s>不是上下文</s><br>是<span>管道</span></h1>
+      <p class="one">很多人以为卡的是 context。其实先撞墙的是请求体积——截图 / PDF / computer-use 先顶满 32MB。</p>
+      <div class="chip">Messages + Token Counting · 直连 API</div>
+    </div>
+  </div>
+
+  <div class="meters">
+    <h3>PAYLOAD CEILING</h3>
+    <div class="meter"><span class="lab">BEFORE</span><div class="bar"><div class="fill"></div></div><span class="val old">32MB</span></div>
+    <div class="meter"><span class="lab">NOW</span><div class="bar"><div class="fill new"></div></div><span class="val new">128MB</span></div>
+  </div>
+
+  <div class="pair">
+    <div class="direct">
+      <h3>直连 ANTHROPIC API</h3>
+      <ul>
+        <li>Messages + Token Counting</li>
+        <li>单次请求约 4 倍空间</li>
+        <li>多图单图上限 → 3000px</li>
+      </ul>
+      <span class="badge">128 MB</span>
+    </div>
+    <div class="cloud">
+      <h3>云平台 / BEDROCK</h3>
+      <ul>
+        <li>市场接口仍未同步</li>
+        <li>天花板约 20–32MB</li>
+        <li>别混用「已扩容」假设</li>
+      </ul>
+      <span class="badge">仍 20–32 MB</span>
+    </div>
+  </div>
+
+  <div class="todo"><h3>本周 5 件事</h3><ol>
+    <li>computer-use / 多图会话改走 Anthropic 直连，别默认 Bedrock</li>
+    <li>大 PDF 去掉无用 chunker，先测单次 128MB</li>
+    <li>请求字节数与 token 分开记——payload 满 ≠ 窗口满</li>
+    <li>多图 prompt 上 3000px 前先压分辨率策略</li>
+    <li>文档写明：云市场仍是 20–32MB，别混用假设</li>
+  </ol></div>
+
+  <div class="foot">
+    <div class="concl">窗口是脑子的容量；请求体积是干活的<span>水管</span>。这次加粗的是水管。</div>
+    <div class="brand">@leozhangai · TellerAI</div>
+  </div>
+</div>
+</body></html>

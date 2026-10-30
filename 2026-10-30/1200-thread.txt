@@ -1,0 +1,19 @@
+很多人以为卡的是 context。其实先撞墙的是请求体积。
+
+Claude 窗口还空着一大截，截图、PDF、computer-use 轨迹却先把 32MB 请求顶满——这不是「模型记不住」，是管道太细。
+---
+Anthropic（@ClaudeDevs）：Messages + Token Counting 单次请求上限 32MB → 128MB，约 4 倍。作用域是第一方 API；Bedrock / 云市场仍约 20–32MB。多图场景单图上限 2000 → 3000px，前提仍是直连。
+---
+别读成「上下文又变大了」。context window 管 token，request payload 管这次 HTTP 体能多大。图像、附件、工具轨迹先占字节，不是对话轮数。Agent 越重视觉、越长会话，越先撞体积墙。
+---
+值钱的信号：干活的管道加粗了。computer-use、长 PDF、二十多张图——以前拆包、砍分辨率、外置 chunker；现在先测 128MB 能不能整段吃下。云市场上跑的，别默认自己已经拿到这 4 倍。
+---
+本周 5 件事：
+1. computer-use / 多图会话改走 Anthropic 直连 API，别默认 Bedrock
+2. 大 PDF 去掉无用 chunker，先测单次 128MB
+3. 请求字节数与 token 分开记——payload 满 ≠ 窗口满
+---
+4. 多图 prompt 上 3000px 前先压分辨率策略
+5. 文档写明：云市场仍是 20–32MB，别混用假设
+
+窗口是脑子的容量；请求体积是干活的水管。这次加粗的是水管。

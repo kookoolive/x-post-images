@@ -77,3 +77,4 @@
 - 2026-10-29 12:00 | Exploit chain CVD (Anthropic 5 chains) | 骨架：巨号5链封面块+一句判断+Chrome四步链条+五平台杀伤格+CVD琥珀判断带+编号五件事+通栏结论 | 背景冷蓝图纸 #0b1c2d（细网格），强调电青 #22d3ee，点缀琥珀 #fbbf24，卡面冷白 #f0f7fb
 - 2026-10-29 22:00 | Copilot Fusion router | 骨架：双栏成本对照(封面大标题+一句判断+60 vs 62双大数字+$5.59 vs $11.42成本条+路由芯片Standard/High/Max+编号五件事+通栏结论) | 背景暖奶油粉 #f4e8e0（细斜线），强调深靛紫 #4c1d95，点缀翠绿 #059669/焦橙 #ea580c，卡面 #fffaf7
 - 2026-10-30 | AI早报视频 motion-body | 配色:blush 雾粉+墨蓝 | 骨架:broadsheet 报纸分栏 | 转场:paper-flip 纸片翻页 | #f6e3e1 + #1e3a8a + #e11d48 + 卡 #fffaf9
+- 2026-10-30 12:00 | Request payload 4× (Claude API 32→128MB) | 骨架：巨号4×封面+删除线「不是上下文」/「是管道」+32→128双条+直连vs云平台双栏+编号五件事+通栏结论 | 背景深炭 slate #16181d（细斜线），强调电光柠 #c8f542，点缀珊瑚 #fb7185，卡面骨白 #f4f4f0
