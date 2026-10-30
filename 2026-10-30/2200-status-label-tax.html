@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>状态标签税 · 16.4%</title>
+<style>
+:root{
+  --bg:#f3efe6; --card:#fffaf5; --ink:#1c1917; --muted:#78716c;
+  --teal:#0f766e; --coral:#e11d48; --deep:#134e4a; --line:#e7e0d4;
+  --sans:"Noto Sans CJK SC","Noto Sans SC","Source Han Sans SC",sans-serif;
+  --mono:"DejaVu Sans Mono","Noto Sans Mono CJK SC",monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:42px 48px 32px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+  background:
+    repeating-linear-gradient(0deg,transparent,transparent 17px,rgba(15,118,110,.035) 17px,rgba(15,118,110,.035) 18px),
+    radial-gradient(ellipse at 92% 4%,rgba(225,29,72,.10),transparent 38%),
+    radial-gradient(ellipse at 6% 8%,rgba(15,118,110,.10),transparent 40%),
+    linear-gradient(180deg,#faf6ee 0%,var(--bg) 55%,#ebe4d6 100%);}
+.top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:20px;font-weight:800;letter-spacing:.14em;color:var(--muted)}
+.top .tag{background:var(--teal);color:#fff;padding:10px 18px;letter-spacing:.1em}
+.hero{margin-top:20px;display:grid;grid-template-columns:340px 1fr;gap:26px;align-items:stretch}
+.big{background:var(--deep);color:#fff;padding:26px 22px;box-shadow:14px 14px 0 var(--coral);display:flex;flex-direction:column;justify-content:center;border:3px solid var(--ink)}
+.big .n{font-size:128px;font-weight:900;letter-spacing:-.06em;line-height:.82;color:#5eead4}
+.big .l{margin-top:14px;font-size:26px;font-weight:800;line-height:1.3;color:#ccfbf1}
+.titles h1{margin:0;font-size:64px;line-height:1.08;font-weight:900;letter-spacing:-.02em}
+.titles h1 s{color:var(--muted);text-decoration-thickness:8px;text-decoration-color:var(--coral)}
+.titles h1 span{color:var(--teal)}
+.one{margin-top:14px;font-size:27px;line-height:1.4;font-weight:800;color:var(--muted)}
+.one em{font-style:normal;color:var(--coral);font-weight:900}
+.chip{margin-top:16px;background:var(--coral);color:#fff;padding:12px 18px;font-size:24px;font-weight:900;display:inline-block;box-shadow:8px 8px 0 var(--teal)}
+
+.bars{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.barcard{background:var(--card);border:3px solid var(--ink);padding:20px 24px;min-height:200px;display:flex;flex-direction:column;justify-content:space-between}
+.barcard.tax{box-shadow:10px 10px 0 var(--coral)}
+.barcard.talk{box-shadow:10px 10px 0 var(--teal)}
+.barcard .lab{font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.12em;color:var(--muted)}
+.barcard .num{margin-top:4px;font-size:92px;font-weight:900;letter-spacing:-.05em;line-height:.9}
+.barcard.tax .num{color:var(--coral)}
+.barcard.talk .num{color:var(--teal)}
+.barcard .sub{margin-top:6px;font-size:24px;font-weight:800;line-height:1.3}
+.barcard .meter{margin-top:12px;height:16px;background:#e7e0d4;overflow:hidden}
+.barcard .meter > i{display:block;height:100%}
+.barcard.tax .meter > i{width:100%;background:var(--coral)}
+.barcard.talk .meter > i{width:96%;background:var(--teal)}
+
+.poll{margin-top:18px;background:var(--ink);color:#fffaf5;padding:18px 24px;box-shadow:10px 10px 0 var(--coral);font-size:28px;font-weight:900;line-height:1.35}
+.poll span{color:#5eead4}
+
+.judge{margin-top:16px;background:var(--teal);color:#fff;padding:16px 22px;font-size:28px;font-weight:900;box-shadow:10px 10px 0 var(--coral)}
+
+.todo{margin-top:16px;background:var(--card);border:3px solid var(--ink);padding:16px 22px;flex:1;box-shadow:10px 10px 0 var(--deep)}
+.todo h3{margin:0 0 8px;font-family:var(--mono);font-size:20px;letter-spacing:.12em;color:var(--teal)}
+.todo ol{margin:0;padding-left:34px;font-size:23px;font-weight:800;line-height:1.48;columns:2;column-gap:28px}
+.todo li{break-inside:avoid;margin-bottom:4px}
+
+.foot{margin-top:14px;border-top:5px solid var(--teal);padding-top:12px;display:flex;justify-content:space-between;align-items:center}
+.foot .concl{font-size:26px;font-weight:900;max-width:1180px}
+.foot .concl span{color:var(--coral)}
+.foot .brand{font-family:var(--mono);font-size:18px;font-weight:800;color:var(--muted)}
+</style></head><body>
+<div class="card">
+  <div class="top"><span>AI / AGENT · 2026-10-30</span><span class="tag">STATUS LABEL TAX</span></div>
+  <div class="hero">
+    <div class="big">
+      <div class="n">16.4%</div>
+      <div class="l">一周账单里<br>花在「状态标签」</div>
+    </div>
+    <div class="titles">
+      <h1><s>不是在说「忙」</s><br>是在买<span>忙的样子</span></h1>
+      <p class="one">Claude Code 约每 30 秒把后台 Agent 整段 transcript 再喂回去，只为写 3–5 个字的状态标签。<em>看不见的轮询，才是真成本。</em></p>
+      <div class="chip">5 字输出 · 整段 transcript 输入</div>
+    </div>
+  </div>
+
+  <div class="bars">
+    <div class="barcard tax">
+      <div>
+        <div class="lab">STATUS LABELS</div>
+        <div class="num">16.4%</div>
+      </div>
+      <div>
+        <div class="sub">一周计量 · 标签轮询</div>
+        <div class="meter"><i></i></div>
+      </div>
+    </div>
+    <div class="barcard talk">
+      <div>
+        <div class="lab">CONVERSATION</div>
+        <div class="num">15.7%</div>
+      </div>
+      <div>
+        <div class="sub">真正对话占比</div>
+        <div class="meter"><i></i></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="poll">这些调用<em style="font-style:normal;color:#fda4af"> 不进 session log</em>——只有 telemetry 导出才抓得到。<span>按 source 计量，别按 session。</span></div>
+
+  <div class="judge">官方均值约 2% 也能同时成立：成本随「并行 Agent × 上下文」放大。</div>
+
+  <div class="todo">
+    <h3>本周 5 件事</h3>
+    <ol>
+      <li>账单按 source 拆：status poll / chat / tool</li>
+      <li>砍或降频后台 status 刷新</li>
+      <li>telemetry 与 session log 对齐对账</li>
+      <li>并行 Agent 数 × 上下文设硬上限</li>
+      <li>默认关掉无用 busy 标签轮询</li>
+    </ol>
+  </div>
+
+  <div class="foot">
+    <div class="concl">Agent 不是在告诉你它在忙——<span>是在用账单买忙的样子。</span></div>
+    <div class="brand">@leozhangai</div>
+  </div>
+</div>
+</body></html>
