@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>Extra High 税 · HIGH</title>
+<style>
+:root{
+  --bg:#1a0f1c; --card:#f7f5ef; --ink:#1c1917; --muted:#78716c;
+  --lime:#d4f542; --magenta:#e11d48; --deep:#2a1530; --line:#e7e0d4;
+  --sans:"Noto Sans CJK SC","Noto Sans SC","Source Han Sans SC",sans-serif;
+  --mono:"DejaVu Sans Mono","Noto Sans Mono CJK SC",monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:42px 48px 32px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+  background:
+    radial-gradient(ellipse at 88% 6%,rgba(212,245,66,.18),transparent 36%),
+    radial-gradient(ellipse at 8% 10%,rgba(225,29,72,.16),transparent 38%),
+    repeating-linear-gradient(0deg,transparent,transparent 19px,rgba(212,245,66,.04) 19px,rgba(212,245,66,.04) 20px),
+    linear-gradient(180deg,#221428 0%,var(--bg) 55%,#120a14 100%);}
+.top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:20px;font-weight:800;letter-spacing:.14em;color:#a8a29e}
+.top .tag{background:var(--lime);color:#111;padding:10px 18px;letter-spacing:.1em}
+.hero{margin-top:20px;display:grid;grid-template-columns:360px 1fr;gap:26px;align-items:stretch}
+.big{background:var(--deep);color:#fff;padding:28px 22px;box-shadow:14px 14px 0 var(--lime);display:flex;flex-direction:column;justify-content:center;border:3px solid var(--lime)}
+.big .n{font-size:118px;font-weight:900;letter-spacing:-.04em;line-height:.82;color:var(--lime)}
+.big .l{margin-top:16px;font-size:26px;font-weight:800;line-height:1.3;color:#f5f5f4}
+.titles{background:var(--card);border:3px solid var(--lime);padding:22px 26px;box-shadow:12px 12px 0 var(--magenta)}
+.titles h1{margin:0;font-size:58px;line-height:1.1;font-weight:900;letter-spacing:-.02em}
+.titles h1 s{color:var(--muted);text-decoration-thickness:8px;text-decoration-color:var(--magenta)}
+.titles h1 span{color:#4d7c0f}
+.one{margin-top:14px;font-size:26px;line-height:1.4;font-weight:800;color:var(--muted)}
+.one em{font-style:normal;color:var(--magenta);font-weight:900}
+.chip{margin-top:14px;background:var(--magenta);color:#fff;padding:12px 18px;font-size:24px;font-weight:900;display:inline-block;box-shadow:8px 8px 0 var(--lime)}
+
+.bars{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.barcard{background:var(--card);border:3px solid var(--ink);padding:20px 24px;min-height:190px;display:flex;flex-direction:column;justify-content:space-between}
+.barcard.cost{box-shadow:10px 10px 0 var(--magenta)}
+.barcard.ok{box-shadow:10px 10px 0 var(--lime)}
+.barcard .lab{font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.12em;color:var(--muted)}
+.barcard .num{margin-top:4px;font-size:84px;font-weight:900;letter-spacing:-.05em;line-height:.9}
+.barcard.cost .num{color:var(--magenta)}
+.barcard.ok .num{color:#4d7c0f}
+.barcard .sub{margin-top:6px;font-size:23px;font-weight:800;line-height:1.3}
+
+.tiers{margin-top:18px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.tier{background:var(--card);border:3px solid var(--ink);padding:16px 18px}
+.tier .k{font-family:var(--mono);font-size:16px;font-weight:900;letter-spacing:.1em;color:var(--muted)}
+.tier .v{margin-top:6px;font-size:28px;font-weight:900}
+.tier.hi{box-shadow:8px 8px 0 var(--lime);border-color:#4d7c0f}
+.tier.hi .v{color:#4d7c0f}
+.tier.xh{opacity:.85}
+.tier.xh .v{color:var(--magenta);text-decoration:line-through;text-decoration-thickness:4px}
+
+.judge{margin-top:16px;background:var(--lime);color:#111;padding:16px 22px;font-size:28px;font-weight:900;box-shadow:10px 10px 0 var(--magenta)}
+
+.todo{margin-top:16px;background:var(--card);border:3px solid var(--ink);padding:16px 22px;flex:1;box-shadow:10px 10px 0 var(--deep)}
+.todo h3{margin:0 0 8px;font-family:var(--mono);font-size:20px;letter-spacing:.12em;color:#4d7c0f}
+.todo ol{margin:0;padding-left:34px;font-size:23px;font-weight:800;line-height:1.48;columns:2;column-gap:28px}
+.todo li{break-inside:avoid;margin-bottom:4px}
+
+.foot{margin-top:14px;border-top:5px solid var(--lime);padding-top:12px;display:flex;justify-content:space-between;align-items:center;color:var(--card)}
+.foot .concl{font-size:26px;font-weight:900;max-width:1180px;color:#f5f5f4}
+.foot .concl span{color:var(--lime)}
+.foot .brand{font-family:var(--mono);font-size:18px;font-weight:800;color:#a8a29e}
+</style></head><body>
+<div class="card">
+  <div class="top"><span>AI / AGENT · 2026-10-31</span><span class="tag">EXTRA HIGH TAX</span></div>
+  <div class="hero">
+    <div class="big">
+      <div class="n">HIGH</div>
+      <div class="l">日常改代码<br>几乎总更好</div>
+    </div>
+    <div class="titles">
+      <h1><s>Extra High</s><br>日常默认 <span>High</span></h1>
+      <p class="one">Theo：从 Extra High 切到 High，「几乎所有时候更好」。<em>推理档不是智商旋钮。</em></p>
+      <div class="chip">官方默认 medium · xhigh 留给长任务</div>
+    </div>
+  </div>
+
+  <div class="bars">
+    <div class="barcard cost">
+      <div>
+        <div class="lab">MAX EFFORT 成本</div>
+        <div class="num">~10×</div>
+      </div>
+      <div class="sub">同模型 · 低→最大 effort<br>约 $0.98 → $10 / 题</div>
+    </div>
+    <div class="barcard ok">
+      <div>
+        <div class="lab">日常编码</div>
+        <div class="num">HIGH</div>
+      </div>
+      <div class="sub">少发明问题<br>少顺手大重构</div>
+    </div>
+  </div>
+
+  <div class="tiers">
+    <div class="tier"><div class="k">短改 / 小 diff</div><div class="v">Medium</div></div>
+    <div class="tier hi"><div class="k">日常编码默认</div><div class="v">High ✓</div></div>
+    <div class="tier xh"><div class="k">半小时+ 长推演</div><div class="v">Extra High</div></div>
+  </div>
+
+  <div class="judge">默认挂满不是买保险——是在烧五小时额度给过度思考。</div>
+
+  <div class="todo">
+    <h3>本周 5 件事</h3>
+    <ol>
+      <li>日常改代码默认 High / Medium</li>
+      <li>任务清单写明用哪档</li>
+      <li>账单按 reasoning effort 拆</li>
+      <li>Extra High 只留给长推演</li>
+      <li>模型爱「发明问题」→ 先降档</li>
+    </ol>
+  </div>
+
+  <div class="foot">
+    <div class="concl">更强的不是更高的旋钮——<span>是你会不会拧。</span></div>
+    <div class="brand">@leozhangai</div>
+  </div>
+</div>
+</body></html>
