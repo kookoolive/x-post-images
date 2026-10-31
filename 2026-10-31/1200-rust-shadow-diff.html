@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>不是会 Rust · 是能验 · 40–50%</title>
+<style>
+:root{
+  --bg:#e4ebf2; --card:#f8fafc; --ink:#1e1b4b; --muted:#64748b;
+  --indigo:#312e81; --amber:#f59e0b; --coral:#f43f5e; --line:#cbd5e1;
+  --ink2:#0f172a; --soft:#eef2ff;
+  --sans:"Noto Sans CJK SC","Noto Sans SC","Source Han Sans SC",sans-serif;
+  --mono:"DejaVu Sans Mono","Noto Sans Mono CJK SC",monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:42px 48px 30px;font-family:var(--sans);color:var(--ink2);display:flex;flex-direction:column;
+  background:
+    repeating-linear-gradient(0deg,transparent,transparent 19px,rgba(49,46,129,.045) 19px,rgba(49,46,129,.045) 20px),
+    repeating-linear-gradient(90deg,transparent,transparent 19px,rgba(49,46,129,.035) 19px,rgba(49,46,129,.035) 20px),
+    radial-gradient(ellipse at 92% 4%,rgba(245,158,11,.14),transparent 38%),
+    radial-gradient(ellipse at 6% 8%,rgba(49,46,129,.10),transparent 42%),
+    linear-gradient(180deg,#edf2f7 0%,var(--bg) 55%,#d8e2ec 100%);}
+.top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:20px;font-weight:800;letter-spacing:.14em;color:var(--muted)}
+.top .tag{background:var(--indigo);color:#fff;padding:10px 18px;letter-spacing:.1em}
+.hero{margin-top:18px;display:grid;grid-template-columns:340px 1fr;gap:24px;align-items:stretch}
+.big{background:var(--indigo);color:#fff;padding:24px 20px;box-shadow:14px 14px 0 var(--amber);display:flex;flex-direction:column;justify-content:center;border:3px solid var(--ink2)}
+.big .n{font-size:92px;font-weight:900;letter-spacing:-.05em;line-height:.86;color:var(--amber)}
+.big .l{margin-top:12px;font-size:26px;font-weight:800;line-height:1.3;color:#e0e7ff}
+.titles h1{margin:0;font-size:60px;line-height:1.08;font-weight:900;letter-spacing:-.02em}
+.titles h1 s{color:var(--muted);text-decoration-thickness:8px;text-decoration-color:var(--coral)}
+.titles h1 span{color:var(--indigo)}
+.one{margin-top:12px;font-size:26px;line-height:1.38;font-weight:800;color:var(--muted)}
+.one em{font-style:normal;color:var(--coral);font-weight:900}
+.chip{margin-top:14px;background:var(--amber);color:var(--ink2);padding:12px 18px;font-size:24px;font-weight:900;display:inline-block;box-shadow:8px 8px 0 var(--indigo)}
+
+.bars{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.barcard{background:var(--card);border:3px solid var(--ink2);padding:18px 22px;min-height:168px;display:flex;flex-direction:column;justify-content:space-between}
+.barcard.cpu{box-shadow:10px 10px 0 var(--indigo)}
+.barcard.ttft{box-shadow:10px 10px 0 var(--amber)}
+.barcard .lab{font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.12em;color:var(--muted)}
+.barcard .num{margin-top:2px;font-size:78px;font-weight:900;letter-spacing:-.05em;line-height:.9}
+.barcard.cpu .num{color:var(--indigo)}
+.barcard.ttft .num{color:#b45309}
+.barcard .sub{margin-top:4px;font-size:22px;font-weight:800;line-height:1.3}
+.barcard .meter{margin-top:10px;height:14px;background:var(--line);overflow:hidden}
+.barcard .meter > i{display:block;height:100%}
+.barcard.cpu .meter > i{width:55%;background:var(--indigo)}
+.barcard.ttft .meter > i{width:20%;background:var(--amber)}
+
+.pair{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pair>div{background:var(--card);color:var(--ink2);padding:18px 20px;border:3px solid var(--ink2)}
+.pair h3{margin:0 0 10px;font-family:var(--mono);font-size:18px;letter-spacing:.12em}
+.pair .human{box-shadow:10px 10px 0 var(--indigo)} .pair .human h3{color:var(--indigo)}
+.pair .claude{box-shadow:10px 10px 0 var(--amber)} .pair .claude h3{color:#b45309}
+.pair ul{margin:0;padding-left:26px;font-size:24px;font-weight:700;line-height:1.45}
+.pair .badge{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:20px;font-weight:900;padding:7px 12px}
+.pair .human .badge{background:var(--indigo);color:#fff}
+.pair .claude .badge{background:var(--amber);color:var(--ink2)}
+
+.steps{margin-top:16px;background:var(--indigo);color:#fff;padding:16px 20px;box-shadow:10px 10px 0 var(--amber)}
+.steps h3{margin:0 0 12px;font-family:var(--mono);font-size:18px;letter-spacing:.12em;color:var(--amber)}
+.steps .row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.steps .s{background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.25);padding:12px 10px;text-align:center}
+.steps .s .n{font-family:var(--mono);font-size:22px;font-weight:900;color:var(--amber)}
+.steps .s .t{margin-top:4px;font-size:22px;font-weight:800;line-height:1.25}
+
+.todo{margin-top:14px;background:var(--card);border:3px solid var(--ink2);padding:14px 20px;flex:1;box-shadow:10px 10px 0 var(--indigo)}
+.todo h3{margin:0 0 6px;font-family:var(--mono);font-size:18px;letter-spacing:.12em;color:var(--indigo)}
+.todo ol{margin:0;padding-left:32px;font-size:22px;font-weight:800;line-height:1.42;columns:2;column-gap:24px}
+.todo li{break-inside:avoid;margin-bottom:2px}
+
+.foot{margin-top:12px;border-top:5px solid var(--indigo);padding-top:10px;display:flex;justify-content:space-between;align-items:center}
+.foot .concl{font-size:25px;font-weight:900;max-width:1180px}
+.foot .concl span{color:var(--coral)}
+.foot .brand{font-family:var(--mono);font-size:18px;font-weight:800;color:var(--muted)}
+</style></head><body>
+<div class="card">
+  <div class="top"><span>AI / AGENT · 2026-10-31</span><span class="tag">RUST · SHADOW DIFF</span></div>
+  <div class="hero">
+    <div class="big">
+      <div class="n">40–50%</div>
+      <div class="l">CPU 下降<br>Messages API · Rust</div>
+    </div>
+    <div class="titles">
+      <h1><s>不是会 Rust</s><br>是<span>能验</span></h1>
+      <p class="one">Anthropic 用 Claude 把 Messages API 从 Python 迁到 Rust。团队起步时<em>零 Rust 工程师</em>——值钱的不是会写，是影子流量对拍能验收。</p>
+      <div class="chip">人定架构 / 验收 · Claude 写大部分代码</div>
+    </div>
+  </div>
+
+  <div class="bars">
+    <div class="barcard cpu">
+      <div>
+        <div class="lab">CPU COST</div>
+        <div class="num">−40–50%</div>
+      </div>
+      <div>
+        <div class="sub">全量切后 · 平台工程实测</div>
+        <div class="meter"><i></i></div>
+      </div>
+    </div>
+    <div class="barcard ttft">
+      <div>
+        <div class="lab">TTFT</div>
+        <div class="num">−10–20%</div>
+      </div>
+      <div>
+        <div class="sub">首 token 延迟下降</div>
+        <div class="meter"><i></i></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pair">
+    <div class="human">
+      <h3>人定 · 架构 / 验收</h3>
+      <ul>
+        <li>边界、接口、失败语义</li>
+        <li>影子流量 diff 标准</li>
+        <li>何时全量切的闸门</li>
+      </ul>
+      <span class="badge">OWNERSHIP</span>
+    </div>
+    <div class="claude">
+      <h3>CLAUDE · 写大部分代码</h3>
+      <ul>
+        <li>零 Rust 工程师起步</li>
+        <li>按架构落地实现</li>
+        <li>人只盯行为对不对</li>
+      </ul>
+      <span class="badge">GENERATION</span>
+    </div>
+  </div>
+
+  <div class="steps">
+    <h3>影子流量四步 · 让大重写可交付</h3>
+    <div class="row">
+      <div class="s"><div class="n">01</div><div class="t">新旧并行<br>影子流量</div></div>
+      <div class="s"><div class="n">02</div><div class="t">行为 diff<br>逐响对拍</div></div>
+      <div class="s"><div class="n">03</div><div class="t">差异收敛<br>到可接受</div></div>
+      <div class="s"><div class="n">04</div><div class="t">闸门打开<br>全量切换</div></div>
+    </div>
+  </div>
+
+  <div class="todo">
+    <h3>本周 5 件事</h3>
+    <ol>
+      <li>大重写先写行为 diff harness，再动手迁</li>
+      <li>影子流量覆盖关键路径，别只跑单测</li>
+      <li>人只定架构与验收闸门，别亲自填每一行</li>
+      <li>把「可对拍」写进 definition of done</li>
+      <li>没有 shadow diff 就别启动 big rewrite</li>
+    </ol>
+  </div>
+
+  <div class="foot">
+    <div class="concl">没有行为 diff harness，<span>「never do the big rewrite」仍然成立。</span></div>
+    <div class="brand">@leozhangai</div>
+  </div>
+</div>
+</body></html>

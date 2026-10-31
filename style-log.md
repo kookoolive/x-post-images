@@ -80,3 +80,4 @@
 - 2026-10-30 12:00 | Request payload 4× (Claude API 32→128MB) | 骨架：巨号4×封面+删除线「不是上下文」/「是管道」+32→128双条+直连vs云平台双栏+编号五件事+通栏结论 | 背景深炭 slate #16181d（细斜线），强调电光柠 #c8f542，点缀珊瑚 #fb7185，卡面骨白 #f4f4f0
 - 2026-10-30 22:00 | Status label tax (Claude Code busy poll) | 骨架：巨号16.4%封面块+删除线「不是在说忙」/「是在买忙的样子」+16.4%vs15.7%双条+不进session log黑条+青绿判断带+编号五件事+通栏结论 | 背景暖骨纸 #f3efe6（细横纹），强调深青绿 #0f766e，点缀珊瑚 #e11d48，卡面 #fffaf5，墨字 #1c1917
 - 2026-10-31 | AI早报视频 motion-body | 配色:wine 酒红剪报 | 骨架:board 便签板 | 转场:bar-push 斜条推屏 | #3b0d1a + #fde047 + #f97316 + 卡 #fff8e7
+2026-10-31 12:00 | Rust shadow diff (Messages API Python→Rust) | 骨架：巨号40–50%封面块+删除线「不是会 Rust」/「是能验」+CPU/TTFT双条+人定架构vs Claude写码双栏+影子流量四步条+编号五件事+通栏结论 | 背景冷雾蓝灰纸底 #e4ebf2（细网格），强调深靛 #312e81，点缀琥珀 #f59e0b / 警示珊瑚 #f43f5e，卡面近白 #f8fafc
