@@ -86,3 +86,4 @@
 - 2026-11-01 12:00 | AX not pixels (agent-desktop) | 骨架：巨号273封面块+删除线「猜像素」/「读控件树」+273vs3811双条+无障碍债=Agent债警示条+番茄判断带+编号五件事+通栏结论 | 背景暖杏陶 #f5e6d8（细斜线），强调墨靛 #1e3a8a，点缀番茄红 #e11d48，卡面 #fffaf5，墨字 #1c1917
 
 - 2026-11-01 22:00 | One pool tax (ChatGPT+Codex) | 骨架：巨号 ONE 封面块+删除线「两本账」/「一本账」+Chat↔Codex 合并双条+Instant 除外芯片+琥珀判断带+编号五件事+通栏结论 | 背景深松绿 #0a1f1c（细点阵+琥珀/青光晕），强调琥珀 #f59e0b，点缀电光青 #22d3ee，卡面骨白 #f5f3ea，墨字 #1c1917
+- 2026-11-02 | AI早报视频 motion-body | 配色:graphite 石墨+荧光绿 | 骨架:magazine 杂志大标题 | 转场:blinds 百叶窗 | #1c1d21 + #c6ff3d + #a78bfa + 卡 #f2f0eb
