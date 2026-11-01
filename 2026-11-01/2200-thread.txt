@@ -1,0 +1,17 @@
+1/6
+Chat 和 Codex 终于并成一本账——不是福利，是计量单位换了。
+
+2/6
+OpenAI：12 月起 Plus/Pro/Business 的 ChatGPT 与 Codex 共用一个用量池，按 token 计；高级模型、更难任务烧更快。Instant 闲聊不进表。
+
+3/6
+以前很多人把 Chat 当规划本、Codex 当施工队。两本账合并后，下午 Web 推演、晚上 Codex 落地，配额可能已经空了。分开限额的套利路径没了。
+
+4/6
+别把 Instant 当逃生口——它不进池，也扛不住长推演和多文件 Agent。硬任务仍吃同一口井。Grok+Cursor 周配额合并，方向一样。
+
+5/6
+本周 5 事：① 盘 Chat vs Codex 占比 ② 规划压 Instant/轻模型 ③ 账单拆 Chat/Codex token ④ 双开评估二账号或换家 ⑤ 流水线写死哪步烧哪档
+
+6/6
+并账不是涨价公告，是逼你承认：聊天也是算力。

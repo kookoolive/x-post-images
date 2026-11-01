@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>不是两本账 · 是一本账 · ONE</title>
+<style>
+:root{
+  --bg:#0a1f1c; --card:#f5f3ea; --ink:#1c1917; --muted:#94a3b8;
+  --amber:#f59e0b; --cyan:#22d3ee; --soft:#134e4a; --line:#115e59;
+  --sans:"Noto Sans CJK SC","Noto Sans SC","Source Han Sans SC",sans-serif;
+  --mono:"DejaVu Sans Mono","Noto Sans Mono CJK SC",monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:42px 48px 30px;font-family:var(--sans);color:#e2e8f0;display:flex;flex-direction:column;
+  background:
+    radial-gradient(circle,rgba(245,158,11,.07) 1px,transparent 1px),
+    radial-gradient(ellipse at 92% 6%,rgba(245,158,11,.18),transparent 38%),
+    radial-gradient(ellipse at 8% 10%,rgba(34,211,238,.14),transparent 42%),
+    linear-gradient(180deg,#0d2924 0%,var(--bg) 55%,#061512 100%);
+  background-size:18px 18px,auto,auto,auto;}
+.top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:20px;font-weight:800;letter-spacing:.14em;color:var(--muted)}
+.top .tag{background:var(--amber);color:#111;padding:10px 18px;letter-spacing:.1em}
+.hero{margin-top:18px;display:grid;grid-template-columns:340px 1fr;gap:24px;align-items:stretch}
+.big{background:var(--amber);color:#111;padding:24px 20px;box-shadow:14px 14px 0 var(--cyan);display:flex;flex-direction:column;justify-content:center;border:3px solid #111}
+.big .n{font-size:96px;font-weight:900;letter-spacing:-.04em;line-height:.86;color:#111}
+.big .l{margin-top:12px;font-size:26px;font-weight:800;line-height:1.3;color:#422006}
+.titles{background:var(--card);border:3px solid #111;padding:22px 26px;box-shadow:12px 12px 0 var(--amber);color:var(--ink)}
+.titles h1{margin:0;font-size:56px;line-height:1.1;font-weight:900;letter-spacing:-.02em}
+.titles h1 s{color:#78716c;text-decoration-thickness:8px;text-decoration-color:#e11d48}
+.titles h1 span{color:#0f766e}
+.one{margin-top:12px;font-size:26px;line-height:1.38;font-weight:800;color:#57534e}
+.one em{font-style:normal;color:#b45309;font-weight:900}
+.chip{margin-top:12px;background:#0f766e;color:#fff;padding:12px 18px;font-size:23px;font-weight:900;display:inline-block;box-shadow:8px 8px 0 var(--amber)}
+
+.bars{margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:18px;position:relative}
+.bars:after{content:"→ 合并";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--amber);color:#111;font-weight:900;font-size:22px;padding:10px 16px;border:3px solid #111;z-index:2;box-shadow:6px 6px 0 var(--cyan);white-space:nowrap}
+.barcard{background:var(--card);border:3px solid #111;padding:20px 24px;min-height:180px;display:flex;flex-direction:column;justify-content:space-between;color:var(--ink)}
+.barcard.chat{box-shadow:10px 10px 0 var(--cyan)}
+.barcard.codex{box-shadow:10px 10px 0 var(--amber)}
+.barcard .lab{font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.12em;color:#78716c}
+.barcard .num{margin-top:4px;font-size:56px;font-weight:900;letter-spacing:-.04em;line-height:.95}
+.barcard.chat .num{color:#0e7490}
+.barcard.codex .num{color:#b45309}
+.barcard .sub{margin-top:6px;font-size:23px;font-weight:800;line-height:1.3}
+
+.warn{margin-top:16px;background:#111;color:#fff;padding:16px 22px;font-size:26px;font-weight:900;display:grid;grid-template-columns:1.2fr 1fr;gap:18px;border:3px solid var(--cyan)}
+.warn .k{font-family:var(--mono);font-size:16px;letter-spacing:.12em;color:var(--cyan);margin-bottom:6px}
+.warn .v{font-size:24px;line-height:1.35}
+.warn .v em{font-style:normal;color:var(--amber)}
+
+.judge{margin-top:16px;background:var(--amber);color:#111;padding:16px 22px;font-size:28px;font-weight:900;box-shadow:10px 10px 0 var(--cyan);border:3px solid #111}
+
+.todo{margin-top:16px;background:var(--card);border:3px solid #111;padding:16px 22px;flex:1;box-shadow:10px 10px 0 #0f766e;color:var(--ink)}
+.todo h3{margin:0 0 8px;font-family:var(--mono);font-size:20px;letter-spacing:.12em;color:#0f766e}
+.todo ol{margin:0;padding-left:34px;font-size:23px;font-weight:800;line-height:1.48;columns:2;column-gap:28px}
+.todo li{break-inside:avoid;margin-bottom:4px}
+
+.foot{margin-top:14px;border-top:5px solid var(--amber);padding-top:12px;display:flex;justify-content:space-between;align-items:center}
+.foot .concl{font-size:26px;font-weight:900;max-width:1180px;color:#e2e8f0}
+.foot .concl span{color:var(--amber)}
+.foot .brand{font-family:var(--mono);font-size:18px;font-weight:800;color:var(--muted)}
+</style></head><body>
+<div class="card">
+  <div class="top"><span>AI / AGENT · 2026-11-01</span><span class="tag">ONE POOL TAX</span></div>
+  <div class="hero">
+    <div class="big">
+      <div class="n">ONE</div>
+      <div class="l">12 月起<br>Chat + Codex 共用池</div>
+    </div>
+    <div class="titles">
+      <h1><s>两本账</s><br>并成 <span>一本账</span></h1>
+      <p class="one">Plus / Pro / Business：ChatGPT 与 Codex 共用按 token 计量的用量池。<em>分开限额的套利路径没了。</em></p>
+      <div class="chip">Instant 闲聊不进表 · 硬任务仍吃同一口井</div>
+    </div>
+  </div>
+
+  <div class="bars">
+    <div class="barcard chat">
+      <div>
+        <div class="lab">CHAT · 规划本</div>
+        <div class="num">推演</div>
+      </div>
+      <div class="sub">以前单独限额<br>下午想清楚</div>
+    </div>
+    <div class="barcard codex">
+      <div>
+        <div class="lab">CODEX · 施工队</div>
+        <div class="num">落地</div>
+      </div>
+      <div class="sub">以前单独限额<br>晚上放心烧</div>
+    </div>
+  </div>
+
+  <div class="warn">
+    <div><div class="k">计量规则</div><div class="v">按 token 计 · 高级模型 / 难任务烧更快<br><em>官方：「多数人不会更常撞墙」——给轻用户听的</em></div></div>
+    <div><div class="k">对照</div><div class="v">X 侧 Grok + Cursor<br>已并成周配额</div></div>
+  </div>
+
+  <div class="judge">并账不是涨价公告——是逼你承认：聊天也是算力。</div>
+
+  <div class="todo">
+    <h3>本周 5 件事</h3>
+    <ol>
+      <li>盘 Chat 规划 vs Codex 施工占比</li>
+      <li>规划压 Instant / 轻模型</li>
+      <li>账单拆 Chat token vs Codex token</li>
+      <li>双开评估二账号或换家</li>
+      <li>流水线写死哪步烧哪档</li>
+    </ol>
+  </div>
+
+  <div class="foot">
+    <div class="concl">对话和干活，不再分两套水电——<span>一本账才是真相。</span></div>
+    <div class="brand">@leozhangai</div>
+  </div>
+</div>
+</body></html>
