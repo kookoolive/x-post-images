@@ -1,0 +1,17 @@
+1/6
+Computer-use 卡住的，多半不是模型不会看图——是你在逼它猜像素。
+
+2/6
+Vercel Labs 开源 agent-desktop：任意 Coding Agent 整机 computer-use。不靠截图点按钮，读 OS accessibility tree（和读屏同一张控件地图），对稳定 ref 发动作。macOS/Win/Linux，Apache-2.0，Rust。
+
+3/6
+数字直白：窥一眼 UI，截图约 3811 token，AX 快照约 273。密 UI 自评少烧 78%–96%；也有任务从约 4 万降到约 2 千的自报。猜像素在付税，读控件树便宜一个数量级。
+
+4/6
+没有 accessibility tree 的应用，对 Agent 等于隐形——无障碍债=Agent 债。快照里还有登录态/聊天/密钥。能点≠该点；能读≠该进公开日志。
+
+5/6
+本周 5 事：① desktop 优先 AX，像素兜底 ② 核心 App 补 a11y 标签 ③ 快照脱敏再进日志 ④ Agent 隔离环境跑 ⑤ 账单拆截图 token vs AX token
+
+6/6
+Computer-use 的下一站不是更大的眼睛，是更干净的控件树。

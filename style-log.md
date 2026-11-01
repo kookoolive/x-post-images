@@ -83,3 +83,4 @@
 2026-10-31 12:00 | Rust shadow diff (Messages API Python→Rust) | 骨架：巨号40–50%封面块+删除线「不是会 Rust」/「是能验」+CPU/TTFT双条+人定架构vs Claude写码双栏+影子流量四步条+编号五件事+通栏结论 | 背景冷雾蓝灰纸底 #e4ebf2（细网格），强调深靛 #312e81，点缀琥珀 #f59e0b / 警示珊瑚 #f43f5e，卡面近白 #f8fafc
 - 2026-10-31 22:00 | Extra High tax (Opus High dial) | 骨架：巨号 HIGH 封面块+删除线 Extra High/日常默认 High+成本约10×双条+任务配档三档条+电光柠判断带+编号五件事+通栏结论 | 背景深梅墨 #1a0f1c（细点阵+柠/品红光晕），强调电光柠 #d4f542，点缀品红 #e11d48，卡面骨白 #f7f5ef
 - 2026-11-01 | AI早报视频 motion-body | 配色:mint 薄荷奶油+珊瑚 | 骨架:night 夜间频道 | 转场:color-wipe 色块擦除 | #dff1ea + #0f9d76 + #f25f5c + 卡 #ffffff
+- 2026-11-01 12:00 | AX not pixels (agent-desktop) | 骨架：巨号273封面块+删除线「猜像素」/「读控件树」+273vs3811双条+无障碍债=Agent债警示条+番茄判断带+编号五件事+通栏结论 | 背景暖杏陶 #f5e6d8（细斜线），强调墨靛 #1e3a8a，点缀番茄红 #e11d48，卡面 #fffaf5，墨字 #1c1917

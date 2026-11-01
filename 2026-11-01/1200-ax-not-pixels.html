@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>不是猜像素 · 是读控件树 · 273</title>
+<style>
+:root{
+  --bg:#f5e6d8; --card:#fffaf5; --ink:#1c1917; --muted:#78716c;
+  --navy:#1e3a8a; --tomato:#e11d48; --soft:#fde8d8; --line:#e7d5c4;
+  --sans:"Noto Sans CJK SC","Noto Sans SC","Source Han Sans SC",sans-serif;
+  --mono:"DejaVu Sans Mono","Noto Sans Mono CJK SC",monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:42px 48px 30px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+  background:
+    repeating-linear-gradient(135deg,transparent,transparent 18px,rgba(30,58,138,.04) 18px,rgba(30,58,138,.04) 19px),
+    radial-gradient(ellipse at 90% 4%,rgba(225,29,72,.10),transparent 36%),
+    radial-gradient(ellipse at 6% 8%,rgba(30,58,138,.10),transparent 40%),
+    linear-gradient(180deg,#f8eee4 0%,var(--bg) 55%,#ead5c2 100%);}
+.top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:20px;font-weight:800;letter-spacing:.14em;color:var(--muted)}
+.top .tag{background:var(--navy);color:#fff;padding:10px 18px;letter-spacing:.1em}
+.hero{margin-top:18px;display:grid;grid-template-columns:340px 1fr;gap:24px;align-items:stretch}
+.big{background:var(--navy);color:#fff;padding:24px 20px;box-shadow:14px 14px 0 var(--tomato);display:flex;flex-direction:column;justify-content:center;border:3px solid var(--ink)}
+.big .n{font-size:110px;font-weight:900;letter-spacing:-.05em;line-height:.86;color:#fde68a}
+.big .l{margin-top:12px;font-size:26px;font-weight:800;line-height:1.3;color:#dbeafe}
+.titles{background:var(--card);border:3px solid var(--ink);padding:22px 26px;box-shadow:12px 12px 0 var(--navy)}
+.titles h1{margin:0;font-size:56px;line-height:1.1;font-weight:900;letter-spacing:-.02em}
+.titles h1 s{color:var(--muted);text-decoration-thickness:8px;text-decoration-color:var(--tomato)}
+.titles h1 span{color:var(--navy)}
+.one{margin-top:12px;font-size:26px;line-height:1.38;font-weight:800;color:var(--muted)}
+.one em{font-style:normal;color:var(--tomato);font-weight:900}
+.chip{margin-top:12px;background:var(--tomato);color:#fff;padding:12px 18px;font-size:23px;font-weight:900;display:inline-block;box-shadow:8px 8px 0 var(--navy)}
+
+.bars{margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.barcard{background:var(--card);border:3px solid var(--ink);padding:20px 24px;min-height:180px;display:flex;flex-direction:column;justify-content:space-between}
+.barcard.ax{box-shadow:10px 10px 0 var(--navy)}
+.barcard.pix{box-shadow:10px 10px 0 var(--tomato)}
+.barcard .lab{font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.12em;color:var(--muted)}
+.barcard .num{margin-top:4px;font-size:84px;font-weight:900;letter-spacing:-.05em;line-height:.9}
+.barcard.ax .num{color:var(--navy)}
+.barcard.pix .num{color:var(--tomato)}
+.barcard .sub{margin-top:6px;font-size:23px;font-weight:800;line-height:1.3}
+
+.warn{margin-top:16px;background:var(--ink);color:#fff;padding:16px 22px;font-size:26px;font-weight:900;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.warn .k{font-family:var(--mono);font-size:16px;letter-spacing:.12em;color:#fde68a;margin-bottom:6px}
+.warn .v{font-size:24px;line-height:1.35}
+
+.judge{margin-top:16px;background:var(--tomato);color:#fff;padding:16px 22px;font-size:28px;font-weight:900;box-shadow:10px 10px 0 var(--navy)}
+
+.todo{margin-top:16px;background:var(--card);border:3px solid var(--ink);padding:16px 22px;flex:1;box-shadow:10px 10px 0 #9a3412}
+.todo h3{margin:0 0 8px;font-family:var(--mono);font-size:20px;letter-spacing:.12em;color:var(--navy)}
+.todo ol{margin:0;padding-left:34px;font-size:23px;font-weight:800;line-height:1.48;columns:2;column-gap:28px}
+.todo li{break-inside:avoid;margin-bottom:4px}
+
+.foot{margin-top:14px;border-top:5px solid var(--navy);padding-top:12px;display:flex;justify-content:space-between;align-items:center}
+.foot .concl{font-size:26px;font-weight:900;max-width:1180px;color:var(--ink)}
+.foot .concl span{color:var(--navy)}
+.foot .brand{font-family:var(--mono);font-size:18px;font-weight:800;color:var(--muted)}
+</style></head><body>
+<div class="card">
+  <div class="top"><span>AI / AGENT · 2026-11-01</span><span class="tag">AX NOT PIXELS</span></div>
+  <div class="hero">
+    <div class="big">
+      <div class="n">273</div>
+      <div class="l">token / 窥一眼<br>控件树路径</div>
+    </div>
+    <div class="titles">
+      <h1><s>猜像素</s><br>读 <span>控件树</span></h1>
+      <p class="one">Vercel Labs agent-desktop：不靠截图点按钮，读 OS accessibility tree。<em>Computer-use 卡在接口，不卡在眼睛。</em></p>
+      <div class="chip">任意 Coding Agent · macOS / Win / Linux</div>
+    </div>
+  </div>
+
+  <div class="bars">
+    <div class="barcard ax">
+      <div>
+        <div class="lab">AX 快照</div>
+        <div class="num">273</div>
+      </div>
+      <div class="sub">稳定 ref 动作<br>密 UI 少烧 78–96%</div>
+    </div>
+    <div class="barcard pix">
+      <div>
+        <div class="lab">截图路径</div>
+        <div class="num">3811</div>
+      </div>
+      <div class="sub">同一次窥屏<br>在付「猜」的税</div>
+    </div>
+  </div>
+
+  <div class="warn">
+    <div><div class="k">无障碍债</div><div class="v">没有 a11y tree 的 App<br>= 对 Agent 隐形</div></div>
+    <div><div class="k">快照风险</div><div class="v">登录态 / 聊天 / 密钥<br>都能被读进上下文</div></div>
+  </div>
+
+  <div class="judge">桌面 API 正在从「看图说话」变成「调用控件」——还在堆视觉模型点坐标的人，账单和失败率会一起涨。</div>
+
+  <div class="todo">
+    <h3>本周 5 件事</h3>
+    <ol>
+      <li>desktop 优先 AX，像素只兜底</li>
+      <li>核心 App 补 a11y 标签</li>
+      <li>快照脱敏后再进日志</li>
+      <li>Agent 跑隔离环境 / 专用账户</li>
+      <li>账单拆截图 token vs AX token</li>
+    </ol>
+  </div>
+
+  <div class="foot">
+    <div class="concl">下一站不是更大的眼睛——<span>是更干净的控件树。</span></div>
+    <div class="brand">@leozhangai</div>
+  </div>
+</div>
+</body></html>
