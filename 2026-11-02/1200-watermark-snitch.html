@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>NOV3 · 不是作者署名 · 是用过痕迹</title>
+<style>
+:root{
+  --bg:#dce4ea; --card:#f8fafc; --ink:#0f172a; --muted:#64748b;
+  --wine:#9f1239; --cyan:#0891b2; --soft:#e8eef3; --line:#cbd5e1;
+  --sans:"Noto Sans CJK SC","Noto Sans SC","Source Han Sans SC",sans-serif;
+  --mono:"Noto Sans Mono CJK SC","DejaVu Sans Mono",monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:40px 46px 28px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+  background:
+    radial-gradient(circle,rgba(15,23,42,.055) 1.2px,transparent 1.3px) 0 0/18px 18px,
+    radial-gradient(ellipse at 92% 3%,rgba(159,18,57,.10),transparent 34%),
+    radial-gradient(ellipse at 5% 6%,rgba(8,145,178,.12),transparent 38%),
+    linear-gradient(180deg,#e8eef3 0%,var(--bg) 50%,#cfd9e2 100%);}
+.top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:20px;font-weight:800;letter-spacing:.14em;color:var(--muted)}
+.top .tag{background:var(--wine);color:#fff;padding:10px 18px;letter-spacing:.1em}
+.hero{margin-top:16px;display:grid;grid-template-columns:360px 1fr;gap:22px;align-items:stretch}
+.stamp{background:var(--wine);color:#fff;padding:22px 18px;box-shadow:14px 14px 0 var(--cyan);display:flex;flex-direction:column;justify-content:center;align-items:center;border:3px solid var(--ink);position:relative}
+.stamp .n{font-size:118px;font-weight:900;letter-spacing:-.04em;line-height:.82;color:#fecdd3}
+.stamp .l{margin-top:14px;font-size:24px;font-weight:800;line-height:1.3;text-align:center;color:#ffe4e6;letter-spacing:.06em}
+.stamp .ring{position:absolute;inset:14px;border:3px dashed rgba(255,255,255,.35);pointer-events:none}
+.titles{background:var(--card);border:3px solid var(--ink);padding:22px 26px;box-shadow:12px 12px 0 var(--wine)}
+.titles h1{margin:0;font-size:54px;line-height:1.12;font-weight:900;letter-spacing:-.02em}
+.titles h1 s{color:var(--muted);text-decoration-thickness:8px;text-decoration-color:var(--wine)}
+.titles h1 span{color:var(--wine)}
+.one{margin-top:12px;font-size:25px;line-height:1.38;font-weight:800;color:var(--muted)}
+.one em{font-style:normal;color:var(--wine);font-weight:900}
+.chip{margin-top:12px;background:var(--cyan);color:#fff;padding:11px 16px;font-size:22px;font-weight:900;display:inline-block;box-shadow:8px 8px 0 var(--wine)}
+
+.models{margin-top:18px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.m{background:var(--card);border:3px solid var(--ink);padding:16px 14px;text-align:center;box-shadow:8px 8px 0 var(--cyan)}
+.m .lab{font-family:var(--mono);font-size:15px;font-weight:900;letter-spacing:.1em;color:var(--muted)}
+.m .name{margin-top:6px;font-size:28px;font-weight:900;line-height:1.15;color:var(--ink)}
+.m .sub{margin-top:6px;font-size:18px;font-weight:800;color:var(--wine)}
+
+.asym{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.acol{background:var(--card);border:3px solid var(--ink);padding:18px 22px;min-height:168px}
+.acol.blind{box-shadow:10px 10px 0 var(--muted)}
+.acol.see{box-shadow:10px 10px 0 var(--wine)}
+.acol .k{font-family:var(--mono);font-size:16px;font-weight:900;letter-spacing:.12em;color:var(--muted);margin-bottom:8px}
+.acol .v{font-size:28px;font-weight:900;line-height:1.3}
+.acol.see .v{color:var(--wine)}
+.acol .d{margin-top:8px;font-size:22px;font-weight:800;line-height:1.35;color:var(--muted)}
+
+.judge{margin-top:16px;background:var(--wine);color:#fff;padding:16px 22px;font-size:27px;font-weight:900;box-shadow:10px 10px 0 var(--cyan);line-height:1.35}
+
+.todo{margin-top:16px;background:var(--card);border:3px solid var(--ink);padding:16px 22px;flex:1;box-shadow:10px 10px 0 #155e75}
+.todo h3{margin:0 0 8px;font-family:var(--mono);font-size:20px;letter-spacing:.12em;color:var(--wine)}
+.todo ol{margin:0;padding-left:34px;font-size:23px;font-weight:800;line-height:1.48;columns:2;column-gap:28px}
+.todo li{break-inside:avoid;margin-bottom:4px}
+
+.foot{margin-top:14px;border-top:5px solid var(--wine);padding-top:12px;display:flex;justify-content:space-between;align-items:center}
+.foot .concl{font-size:26px;font-weight:900;max-width:1180px;color:var(--ink)}
+.foot .concl span{color:var(--wine)}
+.foot .brand{font-family:var(--mono);font-size:18px;font-weight:800;color:var(--muted)}
+</style></head><body>
+<div class="card">
+  <div class="top"><span>AI / AGENT · 2026-11-02</span><span class="tag">WATERMARK SNITCH</span></div>
+  <div class="hero">
+    <div class="stamp">
+      <div class="ring"></div>
+      <div class="n">NOV3</div>
+      <div class="l">隐形水印扩容日<br>EU AI Act 合规</div>
+    </div>
+    <div class="titles">
+      <h1><s>作者署名</s><br>用过 <span>痕迹</span></h1>
+      <p class="one">Claude 文字水印扩到更多老模型。不加字符，只改词选择的统计图案。<em>你看不见、查不了——对方能查。</em></p>
+      <div class="chip">不认人 / 不认组织 / 不认对话 · 只认「Claude 帮忙」</div>
+    </div>
+  </div>
+
+  <div class="models">
+    <div class="m"><div class="lab">EXPAND</div><div class="name">Mythos 5</div><div class="sub">同款水印</div></div>
+    <div class="m"><div class="lab">EXPAND</div><div class="name">Opus 4.7</div><div class="sub">同款水印</div></div>
+    <div class="m"><div class="lab">EXPAND</div><div class="name">Opus 4.6</div><div class="sub">同款水印</div></div>
+    <div class="m"><div class="lab">EXPAND</div><div class="name">Sonnet 4.6</div><div class="sub">同款水印</div></div>
+  </div>
+
+  <div class="asym">
+    <div class="acol blind">
+      <div class="k">你看不见</div>
+      <div class="v">普通付费用户<br>查不了 · 关不掉</div>
+      <div class="d">复制粘贴 / 轻度改写仍在</div>
+    </div>
+    <div class="acol see">
+      <div class="k">他们能查</div>
+      <div class="v">监管 · 记者<br>少数企业</div>
+      <div class="d">Opus4.6/Sonnet4.6 改 sampling 可绕过（报道）</div>
+    </div>
+  </div>
+
+  <div class="judge">改 sampling 就能绕过的合规，是表演，不是可验证标记。交付物默认当草稿——改成自己的话再交。</div>
+
+  <div class="todo">
+    <h3>本周 5 件事</h3>
+    <ol>
+      <li>对外终稿默认重写一遍</li>
+      <li>法务确认：水印≠身份追踪</li>
+      <li>别把改 temperature 当正经方案</li>
+      <li>写清哪些场合必须人改</li>
+      <li>盯 Nov 3 后老模型行为变化</li>
+    </ol>
+  </div>
+
+  <div class="foot">
+    <div class="concl">水印解决「谁帮写过」——<span>署名还是人的事。</span></div>
+    <div class="brand">@leozhangai</div>
+  </div>
+</div>
+</body></html>

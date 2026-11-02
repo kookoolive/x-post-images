@@ -87,3 +87,4 @@
 
 - 2026-11-01 22:00 | One pool tax (ChatGPT+Codex) | 骨架：巨号 ONE 封面块+删除线「两本账」/「一本账」+Chat↔Codex 合并双条+Instant 除外芯片+琥珀判断带+编号五件事+通栏结论 | 背景深松绿 #0a1f1c（细点阵+琥珀/青光晕），强调琥珀 #f59e0b，点缀电光青 #22d3ee，卡面骨白 #f5f3ea，墨字 #1c1917
 - 2026-11-02 | AI早报视频 motion-body | 配色:graphite 石墨+荧光绿 | 骨架:magazine 杂志大标题 | 转场:blinds 百叶窗 | #1c1d21 + #c6ff3d + #a78bfa + 卡 #f2f0eb
+- 2026-11-02 12:00 | Watermark snitch (Claude Nov3) | 骨架：巨号NOV3印章+删除线作者署名/用过痕迹+四模型条+看不见vs能查双栏+酒红判断带+五件事+通栏结论 | 背景冷瓷青灰 #dce4ea，强调酒红 #9f1239，点缀电青 #0891b2，卡面 #f8fafc
