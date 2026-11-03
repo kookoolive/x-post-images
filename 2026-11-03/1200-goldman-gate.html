@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>分级放权 · Goldman 收回 Claude Code</title>
+<style>
+:root{
+  --bg:#f2f2ef; --card:#ffffff; --ink:#0a0a0a; --muted:#6b6b66;
+  --orange:#ff4d1c; --blue:#2540ff; --soft:#c9c9c2;
+  --sans:"Noto Sans CJK SC","Noto Sans SC","Source Han Sans SC",sans-serif;
+  --mono:"DejaVu Sans Mono","Noto Sans Mono CJK SC",monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:40px 48px 28px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+  background:
+    radial-gradient(circle,rgba(10,10,10,.09) 1.5px,transparent 1.6px),
+    linear-gradient(180deg,#f7f7f4 0%,var(--bg) 55%,#e9e9e4 100%);
+  background-size:26px 26px,auto;}
+.top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:20px;font-weight:800;letter-spacing:.14em;color:var(--muted)}
+.top .tag{background:var(--orange);color:#fff;padding:10px 18px;letter-spacing:.08em}
+.hero{margin-top:18px;display:grid;grid-template-columns:380px 1fr;gap:22px;align-items:stretch}
+.big{background:var(--ink);color:#fff;padding:26px 22px;box-shadow:14px 14px 0 var(--blue);display:flex;flex-direction:column;justify-content:center}
+.big .n{font-size:104px;font-weight:900;letter-spacing:-.05em;line-height:.85;color:#fff}
+.big .n small{font-size:44px;letter-spacing:0}
+.big .l{margin-top:14px;font-size:26px;font-weight:800;line-height:1.3;color:#ffb199}
+.titles{background:var(--card);border:3px solid var(--ink);padding:22px 26px;box-shadow:12px 12px 0 var(--orange)}
+.titles h1{margin:0;font-size:56px;line-height:1.12;font-weight:900;letter-spacing:-.02em}
+.titles h1 s{color:#a3a39c;text-decoration-thickness:8px;text-decoration-color:var(--orange)}
+.titles h1 span{color:var(--blue)}
+.one{margin-top:14px;font-size:26px;line-height:1.4;font-weight:800;color:#44443f}
+.one em{font-style:normal;color:var(--orange);font-weight:900}
+.chip{margin-top:14px;background:var(--blue);color:#fff;padding:12px 18px;font-size:22px;font-weight:900;display:inline-block;box-shadow:8px 8px 0 var(--ink)}
+.ladder{margin-top:22px;display:flex;flex-direction:column;gap:14px}
+.rung{display:grid;grid-template-columns:150px 1fr 330px;align-items:stretch;border:3px solid var(--ink);background:var(--card)}
+.rung .lv{background:var(--ink);color:#fff;font-family:var(--mono);font-weight:900;font-size:22px;letter-spacing:.08em;display:flex;align-items:center;justify-content:center;text-align:center;padding:10px}
+.rung .what{padding:16px 20px;font-size:28px;font-weight:900;line-height:1.25}
+.rung .what small{display:block;margin-top:6px;font-size:20px;font-weight:700;color:var(--muted)}
+.rung .who{padding:16px 18px;font-size:26px;font-weight:900;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.25}
+.r1 .who{background:#d9f2e1;color:#0a6b2c}
+.r2 .who{background:#ffd8cc;color:#b3260a}
+.r3 .who{background:#dfe4ff;color:#1a2fc0}
+.r1{box-shadow:8px 8px 0 #0a6b2c}
+.r2{box-shadow:8px 8px 0 var(--orange)}
+.r3{box-shadow:8px 8px 0 var(--blue)}
+.time{margin-top:22px;background:var(--ink);color:#fff;padding:16px 22px;display:grid;grid-template-columns:1fr 60px 1fr 60px 1fr;align-items:center;box-shadow:10px 10px 0 var(--orange);font-size:23px;font-weight:800;line-height:1.3}
+.time .m{font-family:var(--mono);color:#ffb199;font-size:20px;font-weight:900;letter-spacing:.1em;display:block;margin-bottom:4px}
+.time .ar{font-size:36px;color:var(--orange);text-align:center;font-weight:900}
+.judge{margin-top:22px;background:var(--orange);color:#fff;padding:18px 24px;border:3px solid var(--ink);font-size:29px;font-weight:900;line-height:1.35;box-shadow:10px 10px 0 var(--blue)}
+.five{margin-top:26px;flex:1;display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;gap:18px}
+.five .item{background:var(--card);border:3px solid var(--ink);padding:18px 22px;font-size:32px;font-weight:900;line-height:1.35;display:flex;gap:16px;align-items:center;box-shadow:8px 8px 0 var(--ink)}
+.five .n{background:var(--blue);color:#fff;min-width:52px;height:52px;font-size:26px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:900;font-size:18px}
+.five .item:nth-child(5){grid-column:1/-1}
+.foot{margin-top:16px;background:var(--ink);color:#fff;padding:18px 24px;font-size:29px;font-weight:900;line-height:1.35;border-top:6px solid var(--orange)}
+.foot em{font-style:normal;color:#ffb199}
+.src{margin-top:8px;font-family:var(--mono);font-size:16px;color:var(--muted);font-weight:700;letter-spacing:.05em}
+</style></head><body>
+<div class="card">
+  <div class="top"><div>@LEOZHANGAI · 2026.11.03 · 12:00</div><div class="tag">GOLDMAN · OCT GUIDANCE</div></div>
+  <div class="hero">
+    <div class="big"><div class="n">4.7<small>万人</small></div><div class="l">全行约这么多人<br>多数不是工程师</div></div>
+    <div class="titles">
+      <h1><s>禁用 AI</s><br><span>分级放权</span></h1>
+      <div class="one">收回的不是聊天，是<em>「写代码并让它跑起来」</em><br>Bloomberg 报道 · 10 月内部指引更新</div>
+      <div class="chip">Claude Code / Copilot → 仅工程师 + strats</div>
+    </div>
+  </div>
+  <div class="ladder">
+    <div class="rung r1"><div class="lv">TIER 1<br>聊</div><div class="what">问答、总结、查资料<small>自家 GS AI Assistant 仍广泛开放</small></div><div class="who">全员可用</div></div>
+    <div class="rung r2"><div class="lv">TIER 2<br>写</div><div class="what">写代码、跑起来<small>Claude Code、GitHub Copilot</small></div><div class="who">工程师 + strats</div></div>
+    <div class="rung r3"><div class="lv">TIER 3<br>上线</div><div class="what">碰客户 / 交易数据<small>我的判断：该有的门槛，不是报道原话</small></div><div class="who">评审 · owner · 回滚</div></div>
+  </div>
+  <div class="time">
+    <div><span class="m">7 月</span>CIO 夸交易员 vibe coding 出原型</div>
+    <div class="ar">→</div>
+    <div><span class="m">期间</span>有人拿它跟踪客户交易</div>
+    <div class="ar">→</div>
+    <div><span class="m">10 月</span>权限收回，只留工程岗</div>
+  </div>
+  <div class="judge">原型碰到客户数据，就不再是原型。高盛收权限，是为了上线有人负责，不是嫌模型不会写。</div>
+  <div class="five">
+    <div class="item"><div class="n">1</div><div>给 AI 工具分档：聊天、写码、上线，权限别绑一起</div></div>
+    <div class="item"><div class="n">2</div><div>业务自建脚本也要有 owner：谁维护、谁背锅</div></div>
+    <div class="item"><div class="n">3</div><div>碰客户 / 交易数据的代码，一律走评审和回滚</div></div>
+    <div class="item"><div class="n">4</div><div>别靠「一刀切禁用」，会逼人用个人账号偷跑</div></div>
+    <div class="item"><div class="n">5</div><div>原型阶段允许放开，上线前补一道人工门禁</div></div>
+  </div>
+  <div class="foot">聊天可以人人有，<em>执行要分级</em>。vibe coding 的账，最后总要有人认。</div>
+  <div class="src">SOURCE · BLOOMBERG VIA X REPORTS 2026-11-02 · @LEOZHANGAI</div>
+</div>
+</body></html>
