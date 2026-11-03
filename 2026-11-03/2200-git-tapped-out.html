@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>Git 被写爆了 · Scion / Pando</title>
+<style>
+:root{--bg:#d9dee3;--card:#ffffff;--ink:#0a0a0a;--muted:#5b6670;--yel:#facc15;--blue:#2563eb;--red:#e11d48;
+--sans:"Noto Sans CJK SC","Noto Sans SC","Source Han Sans SC",sans-serif;--mono:"DejaVu Sans Mono","Noto Sans Mono CJK SC",monospace;}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:40px 48px 28px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+ background:
+  repeating-linear-gradient(135deg,rgba(10,10,10,.035) 0 2px,transparent 2px 22px),
+  radial-gradient(ellipse at 90% 6%,rgba(250,204,21,.28),transparent 42%),
+  linear-gradient(180deg,#e2e6ea 0%,var(--bg) 55%,#cdd3d9 100%);}
+.top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:20px;font-weight:800;letter-spacing:.14em;color:var(--muted)}
+.top .tag{background:var(--ink);color:var(--yel);padding:10px 18px;letter-spacing:.1em}
+.hero{margin-top:18px;display:grid;grid-template-columns:620px 1fr;gap:22px;align-items:stretch}
+.big{background:var(--yel);padding:24px 24px;border:4px solid #0a0a0a;box-shadow:14px 14px 0 var(--blue);display:flex;flex-direction:column;justify-content:center}
+.big .a{font-family:var(--mono);font-size:26px;font-weight:900;color:#3f3f46}
+.big .n{font-size:84px;font-weight:900;letter-spacing:-.05em;line-height:.9}
+.big .n small{font-size:40px;letter-spacing:0;margin:0 6px}
+.big .l{margin-top:14px;font-size:30px;font-weight:800;line-height:1.3}
+.titles{background:var(--card);border:4px solid #0a0a0a;padding:22px 26px;box-shadow:12px 12px 0 var(--ink)}
+.titles h1{margin:0;font-size:60px;line-height:1.12;font-weight:900;letter-spacing:-.02em}
+.titles h1 s{color:#9ca3af;text-decoration-thickness:9px;text-decoration-color:var(--red)}
+.titles h1 span{color:var(--blue)}
+.one{margin-top:16px;font-size:31px;line-height:1.4;font-weight:800;color:#3f3f46}
+.one em{font-style:normal;color:var(--red);font-weight:900}
+.chip{margin-top:16px;background:var(--red);color:#fff;padding:14px 20px;font-size:28px;font-weight:900;display:inline-block;box-shadow:8px 8px 0 var(--ink)}
+.pipe{margin-top:22px;display:grid;grid-template-columns:1fr 40px 1fr 40px 1fr 40px 1fr;align-items:stretch;gap:0}
+.pipe .st{background:var(--card);border:3px solid #0a0a0a;padding:22px 12px;font-size:30px;font-weight:900;text-align:center;line-height:1.3}
+.pipe .st small{display:block;font-family:var(--mono);font-size:15px;color:var(--muted);letter-spacing:.08em;margin-bottom:4px}
+.pipe .ar{display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:900}
+.pipe .st.hot{background:var(--red);color:#fff;box-shadow:8px 8px 0 var(--ink)}
+.pipe .st.hot small{color:#fecdd3}
+.routes{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.route{background:var(--card);border:4px solid #0a0a0a;padding:20px 22px;display:flex;flex-direction:column}
+.route.a{box-shadow:10px 10px 0 var(--blue)}
+.route.b{box-shadow:10px 10px 0 var(--yel)}
+.route .lab{font-family:var(--mono);font-size:20px;font-weight:900;letter-spacing:.1em;color:var(--muted)}
+.route h3{margin:8px 0 12px;font-size:50px;font-weight:900;line-height:1.15}
+.route.a h3 span{color:var(--blue)}
+.route.b h3 span{color:#a16207}
+.route .row{border-top:2px dashed #b7bec6;padding-top:14px;margin-top:14px;font-size:29px;font-weight:800;line-height:1.35}
+.route .row b{font-size:36px}
+.black{margin-top:24px;background:#0a0a0a;color:#fff;padding:22px 24px;font-size:31px;font-weight:900;display:flex;justify-content:space-between;align-items:center;box-shadow:10px 10px 0 var(--yel)}
+.black span{color:var(--yel);font-family:var(--mono);font-size:26px}
+.judge{margin-top:20px;background:var(--blue);color:#fff;padding:24px 28px;border:4px solid #0a0a0a;font-size:34px;font-weight:900;line-height:1.35;box-shadow:10px 10px 0 var(--ink)}
+.five{margin-top:20px;flex:1;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.five .item{background:var(--card);border:3px solid #0a0a0a;padding:16px 18px;font-size:30px;font-weight:800;line-height:1.35;display:flex;gap:14px;align-items:center}
+.five .n{background:var(--ink);color:var(--yel);min-width:50px;height:50px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:900;font-size:24px}
+.five .item:nth-child(5){grid-column:1/-1}
+.foot{margin-top:16px;background:#0a0a0a;color:#fff;padding:22px 26px;font-size:36px;font-weight:900;line-height:1.35;border-top:7px solid var(--yel)}
+.foot em{font-style:normal;color:var(--yel)}
+.src{margin-top:8px;font-family:var(--mono);font-size:15px;color:var(--muted);letter-spacing:.04em}
+</style></head><body>
+<div class="card">
+  <div class="top"><div>@LEOZHANGAI · 2026.11.03 · 22:00</div><div class="tag">SCION × PANDO</div></div>
+  <div class="hero">
+    <div class="big"><div class="a">ANTHROPIC 每日合入</div><div class="n">2,500<small>→</small>30,000+</div><div class="l">5 月 → 9 月，四个月 12 倍<br>Git 先撑不住了</div></div>
+    <div class="titles">
+      <h1><s>写得太快</s><br><span>合不进去</span></h1>
+      <div class="one">Agent 把<em>写代码</em>变便宜了<br>排队的地方换成了<em>合代码</em></div>
+      <div class="chip">两家实验室，两条路</div>
+    </div>
+  </div>
+  <div class="pipe">
+    <div class="st"><small>STEP 1</small>Agent 写</div><div class="ar">→</div>
+    <div class="st"><small>STEP 2</small>CI 拉取</div><div class="ar">→</div>
+    <div class="st hot"><small>BOTTLENECK</small>合入 / 推送</div><div class="ar">→</div>
+    <div class="st"><small>STEP 4</small>人审 / 上线</div>
+  </div>
+  <div class="routes">
+    <div class="route a"><div class="lab">ANTHROPIC · SCION</div><h3><span>换底座</span><br>搬出 Git</h3>
+      <div class="row">7 人 · 5 个月 · monorepo 迁走</div>
+      <div class="row">CI 每天约 <b>2,500 万</b>次拉取</div>
+      <div class="row">官方说：<b>多数仓库 Git 仍够用</b></div></div>
+    <div class="route b"><div class="lab">OPENAI · PANDO</div><h3><span>留 Git</span><br>只换服务端</h3>
+      <div class="row">客户端/命令不变 · 10 周上线</div>
+      <div class="row">push 中位延迟降近 <b>80%</b></div>
+      <div class="row">每天近 <b>1 PB</b> · 主干合入 +1,378%</div></div>
+  </div>
+  <div class="black"><div>Pando 目前不开源 · Scion 也没对外</div><span>先量自己的队列</span></div>
+  <div class="judge">我的判断：多数团队不需要自造 Scion。该做的是在 Agent 上量之前，先量清楚自己的合并队列、CI 拉取和评审吞吐。</div>
+  <div class="five">
+    <div class="item"><div class="n">1</div><div>量三个数：每天合入数、CI 拉取次数、平均排队时间</div></div>
+    <div class="item"><div class="n">2</div><div>给每个 Agent 设并发 PR 上限，别让 50 个抢一条分支</div></div>
+    <div class="item"><div class="n">3</div><div>CI 用浅克隆 / 缓存 / 按需拉文件，别次次全量</div></div>
+    <div class="item"><div class="n">4</div><div>评审吞吐也是容量：合得快不等于有人看</div></div>
+    <div class="item"><div class="n">5</div><div>先优化服务端和流程，再谈换版本控制</div></div>
+  </div>
+  <div class="foot">写代码变便宜了。<em>合代码、验代码</em>才是新的排队窗口。</div>
+  <div class="src">来源：Anthropic / OpenAI 公开工程博文及 X 上转述（2026-10-31 ~ 11-03）；第 1–5 条与判断为我的建议</div>
+</div>
+</body></html>
