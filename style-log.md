@@ -94,3 +94,4 @@
 - 2026-11-03 12:00 | Goldman gate (Claude Code/Copilot 限工程师) | 骨架：4.7万人黑块(蓝投影)+删除线「禁用 AI」/「分级放权」+三档权限阶梯(聊/写/上线，绿/橙/蓝)+7月→10月时间条+橙判断带+编号五件事+通栏结论 | 背景极浅暖灰 #f2f2ef（细点阵），墨黑 #0a0a0a，荧光橙红 #ff4d1c，钴蓝 #2540ff，卡面白 #ffffff
 
 - 2026-11-03 22:00 | Git tapped out (Anthropic Scion × OpenAI Pando) | 骨架：巨号2,500→30,000+黄块(蓝投影)+删除线写得太快/合不进去+四步管道图(合入/推送高亮)+Scion vs Pando双栏+黑条+蓝判断带+编号五件事+黑底通栏结论 | 背景水泥灰蓝 #d9dee3（细斜线+黄光晕），工业黄 #facc15，钴蓝 #2563eb，朱红 #e11d48，墨黑 #0a0a0a，卡面白 #ffffff
+- 2026-11-04 | AI早报视频 motion-body | 配色:ocean 深海蓝+杏黄 | 骨架:clipping 剪报墙 | 转场:bar-push 斜条推屏 | #0b2545 + #ffc857 + #ff6b6b + 卡 #f4f1ea
