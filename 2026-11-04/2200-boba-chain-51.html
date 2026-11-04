@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>连环 51% · BOBA-Bench</title>
+<style>
+:root{
+  --bg:#0f172a; --card:#f0f9ff; --ink:#0f172a; --muted:#94a3b8;
+  --cyan:#22d3ee; --coral:#fb7185; --soft:#334155; --cream:#e2e8f0;
+  --sans:"Noto Sans CJK SC","Noto Sans SC","Source Han Sans SC",sans-serif;
+  --mono:"DejaVu Sans Mono","Noto Sans Mono CJK SC",monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:40px 48px 28px;font-family:var(--sans);color:var(--cream);display:flex;flex-direction:column;
+  background:
+    repeating-linear-gradient(0deg,rgba(34,211,238,.04) 0 1px,transparent 1px 22px),
+    repeating-linear-gradient(90deg,rgba(34,211,238,.04) 0 1px,transparent 1px 22px),
+    radial-gradient(ellipse at 85% 8%,rgba(251,113,133,.18),transparent 42%),
+    linear-gradient(180deg,#132033 0%,var(--bg) 55%,#0b1220 100%);}
+.top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:20px;font-weight:800;letter-spacing:.14em;color:var(--muted)}
+.top .tag{background:var(--coral);color:#0f172a;padding:10px 18px;letter-spacing:.08em}
+.hero{margin-top:18px;display:grid;grid-template-columns:400px 1fr;gap:22px;align-items:stretch}
+.big{background:var(--coral);color:#0f172a;padding:28px 24px;box-shadow:14px 14px 0 var(--cyan);display:flex;flex-direction:column;justify-content:center}
+.big .n{font-size:120px;font-weight:900;letter-spacing:-.06em;line-height:.85}
+.big .n small{font-size:48px;letter-spacing:0}
+.big .l{margin-top:16px;font-size:26px;font-weight:800;line-height:1.3;color:#7f1d1d}
+.titles{background:var(--card);border:3px solid var(--cyan);padding:22px 26px;box-shadow:12px 12px 0 var(--coral);color:var(--ink)}
+.titles h1{margin:0;font-size:52px;line-height:1.12;font-weight:900;letter-spacing:-.02em}
+.titles h1 s{color:#94a3b8;text-decoration-thickness:8px;text-decoration-color:var(--coral)}
+.titles h1 span{color:#0e7490}
+.one{margin-top:14px;font-size:26px;line-height:1.4;font-weight:800;color:#334155}
+.one em{font-style:normal;color:#be123c;font-weight:900}
+.chip{margin-top:14px;background:var(--ink);color:#fff;padding:12px 18px;font-size:22px;font-weight:900;display:inline-block;box-shadow:8px 8px 0 var(--cyan)}
+.bars{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.bar{background:var(--card);border:3px solid #1e293b;padding:18px 22px;color:var(--ink);box-shadow:8px 8px 0 #1e293b}
+.bar.hi{border-color:var(--cyan);box-shadow:8px 8px 0 var(--cyan)}
+.bar.lo{border-color:var(--coral);box-shadow:8px 8px 0 var(--coral)}
+.bar .k{font-family:var(--mono);font-size:18px;font-weight:800;letter-spacing:.1em;color:#64748b}
+.bar .v{margin-top:8px;font-size:56px;font-weight:900;letter-spacing:-.04em;line-height:1}
+.bar .s{margin-top:8px;font-size:22px;font-weight:700;color:#475569}
+.steps{margin-top:20px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.step{background:#1e293b;border:2px solid #334155;padding:16px 18px}
+.step .n{font-family:var(--mono);font-size:18px;font-weight:900;color:var(--cyan)}
+.step .t{margin-top:8px;font-size:24px;font-weight:800;line-height:1.35;color:var(--cream)}
+.metrics{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.m{background:var(--card);border:3px solid var(--ink);padding:16px 20px;color:var(--ink)}
+.m .k{font-family:var(--mono);font-size:16px;font-weight:800;letter-spacing:.08em;color:#64748b}
+.m .v{margin-top:6px;font-size:40px;font-weight:900}
+.m .s{margin-top:4px;font-size:20px;font-weight:700;color:#475569}
+.judge{margin-top:18px;background:var(--cyan);color:#0f172a;padding:18px 22px;font-size:28px;font-weight:900;line-height:1.35;box-shadow:10px 10px 0 var(--coral)}
+.five{margin-top:18px;background:var(--card);border:3px solid var(--ink);padding:18px 22px;color:var(--ink);flex:1}
+.five .h{font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.12em;color:#0e7490;margin-bottom:10px}
+.five ol{margin:0;padding-left:28px;font-size:22px;font-weight:700;line-height:1.55}
+.five li{margin-bottom:4px}
+.foot{margin-top:16px;background:#020617;border:3px solid var(--cyan);padding:16px 20px;font-size:26px;font-weight:900;line-height:1.35;color:var(--cream)}
+.note{margin-top:10px;font-family:var(--mono);font-size:16px;color:var(--muted);letter-spacing:.04em}
+</style></head><body><div class="card">
+  <div class="top"><span>BOBA-BENCH · AMAZON · 2026-11-01</span><span class="tag">22:00 日更</span></div>
+  <div class="hero">
+    <div class="big"><div class="n">51<small>%</small></div><div class="l">20 步连环<br/>链完成率均值</div></div>
+    <div class="titles">
+      <h1><s>单项 95%</s><br/><span>连环 51%</span></h1>
+      <div class="one">自测一过就喊 <em>done</em>，下一题踩在坏底座上。</div>
+      <div class="chip">10 agents · 280 链 · 140 项目</div>
+    </div>
+  </div>
+  <div class="bars">
+    <div class="bar hi"><div class="k">ONE REQUEST</div><div class="v" style="color:#0e7490">95%</div><div class="s">单项请求完成率</div></div>
+    <div class="bar lo"><div class="k">20-STEP CHAIN</div><div class="v" style="color:#be123c">51%</div><div class="s">连环请求完成率 · 最好约 66.7%</div></div>
+  </div>
+  <div class="steps">
+    <div class="step"><div class="n">01</div><div class="t">自测通过 → 报完成</div></div>
+    <div class="step"><div class="n">02</div><div class="t">漏检错误进下一题</div></div>
+    <div class="step"><div class="n">03</div><div class="t">后续失败率约翻倍</div></div>
+  </div>
+  <div class="metrics">
+    <div class="m"><div class="k">SELF-REVIEW</div><div class="v">53%</div><div class="s">自审对不对 ≈ 抛硬币</div></div>
+    <div class="m"><div class="k">+ EXTERNAL 「不对」</div><div class="v">51→59%</div><div class="s">一轮外部纠错后链完成率</div></div>
+  </div>
+  <div class="judge">判断：能走多远，取决于够不够到的检查器，不取决于敢不敢喊 done。</div>
+  <div class="five">
+    <div class="h">本周 5 件事 · 我的建议</div>
+    <ol>
+      <li>别只拿单请求评测当产品指标，至少跑 10–20 步连环</li>
+      <li>自测通过 ≠ 完成；接上外部验收信号再允许下一题</li>
+      <li>漏检错误要进回归，别指望 agent 自己翻出来</li>
+      <li>自审准确率先量一下，别默认「再让它 review 一遍」</li>
+      <li>长流程预算里留一轮外部纠错，比再加模型档位更划算</li>
+    </ol>
+  </div>
+  <div class="foot">Coding agent 的可靠性上限 = 它能触达的验证，不是它口头的 done。</div>
+  <div class="note">SOURCE arXiv:2611.02207 · amazon-agi/BOBA-bench · judgment &amp; 5 items = Leo</div>
+</div></body></html>
