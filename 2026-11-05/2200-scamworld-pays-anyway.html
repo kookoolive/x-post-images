@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>ScamWorld</title>
+<style>
+:root{
+  --bg:#e4572e; --ink:#0f1b3d; --card:#fff4e0; --teal:#0f9e8e; --red:#b91c1c; --muted:#5a4a3a; --soft:#f1d9b8;
+  --sans:"Noto Sans CJK SC","Noto Sans SC","Source Han Sans SC",sans-serif;
+  --mono:"DejaVu Sans Mono","Noto Sans Mono CJK SC",monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:38px 46px 28px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+  background:repeating-linear-gradient(90deg,rgba(15,27,61,.07) 0 3px,transparent 3px 30px),var(--bg);}
+.top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:19px;font-weight:800;letter-spacing:.1em;color:#2a0d05}
+.top .tag{background:var(--ink);color:var(--card);padding:10px 18px}
+h1{margin:14px 0 0;font-size:74px;line-height:1.15;white-space:nowrap;font-weight:900;letter-spacing:-.03em;color:var(--ink)}
+h1 em{font-style:normal;background:var(--ink);color:var(--card);padding:0 14px}
+.sub{margin-top:8px;font-size:22px;line-height:1.4;font-weight:800;color:#2a0d05}
+
+.hero{margin-top:14px;display:grid;grid-template-columns:1fr 90px 1fr;align-items:stretch;gap:0}
+.hero .p{background:var(--card);border:4px solid var(--ink);padding:14px 22px 14px;box-shadow:10px 10px 0 var(--ink)}
+.hero .p .lab{font-family:var(--mono);font-size:19px;font-weight:900;letter-spacing:.08em;color:var(--muted)}
+.hero .p .num{font-family:var(--mono);font-size:92px;line-height:1;font-weight:900;letter-spacing:-.05em;margin-top:0}
+.hero .p .cap{font-size:25px;font-weight:800;line-height:1.3;margin-top:2px}
+.hero .a .num{color:var(--teal)}
+.hero .b .num{color:var(--red)}
+.hero .neq{display:flex;align-items:center;justify-content:center;font-size:84px;font-weight:900;color:var(--ink)}
+
+.rowA{margin-top:16px;display:grid;grid-template-columns:1.05fr 1fr;gap:22px}
+.box{background:var(--card);border:4px solid var(--ink);padding:14px 22px 16px}
+.box .hd{font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.1em;color:var(--muted);margin-bottom:8px}
+.cols{display:flex;align-items:flex-end;justify-content:space-between;height:170px;border-bottom:4px solid var(--ink);padding:0 4px}
+.col{width:22%;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center}
+.col b{font-family:var(--mono);font-size:34px;font-weight:900;line-height:1;margin-bottom:6px}
+.col i{display:block;width:100%;background:var(--red)}
+.col.lo i{background:var(--teal)}
+.names{display:flex;justify-content:space-between;padding:6px 4px 0}
+.names span{width:22%;text-align:center;font-size:20px;font-weight:900;line-height:1.15}
+.names small{display:block;font-family:var(--mono);font-size:15px;color:var(--muted);font-weight:800;margin-top:2px}
+.pay .big{display:flex;align-items:baseline;gap:14px;border-bottom:3px dashed var(--ink);padding:6px 0 8px}
+.pay .big b{font-family:var(--mono);font-size:70px;font-weight:900;letter-spacing:-.05em;line-height:1}
+.pay .big span{font-size:27px;font-weight:900;line-height:1.2}
+.pay .big.r b{color:var(--red)}
+.pay .big.g b{color:var(--teal)}
+.pay .small{margin-top:8px;font-size:23px;font-weight:800;line-height:1.35}
+.pay .small b{background:var(--ink);color:var(--card);padding:0 8px;font-family:var(--mono)}
+
+.rowB{margin-top:16px;background:var(--card);border:4px solid var(--ink);padding:14px 22px 14px;box-shadow:10px 10px 0 var(--teal)}
+.rowB .hd{display:flex;justify-content:space-between;font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.1em;color:var(--muted)}
+.dots{margin-top:8px;display:grid;grid-template-columns:repeat(41,1fr);gap:3px}
+.dots s{display:block;height:15px;background:#e3cba7;border-radius:3px}
+.dots s.k{background:var(--red)}
+.rowB .legend{margin-top:10px;display:flex;gap:26px;align-items:center;font-size:25px;font-weight:900;line-height:1.25}
+.rowB .legend span{display:flex;gap:10px;align-items:center}
+.rowB .legend u{display:inline-block;width:24px;height:24px;background:var(--red);border-radius:3px}
+.rowB .legend u.g{background:#e3cba7}
+.rowB .legend em{font-style:normal;font-family:var(--mono);font-size:34px}
+.rowB .note{margin-top:8px;font-size:23px;font-weight:800;line-height:1.35;border-top:3px dashed var(--ink);padding-top:8px}
+
+.rowC{margin-top:16px;display:grid;grid-template-columns:1.1fr 1fr;gap:22px}
+.warn{background:var(--ink);color:var(--card);padding:14px 22px;border:4px solid var(--ink)}
+.warn .hd{font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.1em;color:#f4b69f;margin-bottom:6px}
+.warn .q{font-size:25px;font-weight:800;line-height:1.35}
+.warn .q b{color:#ffd9a0}
+.warn .res{margin-top:8px;display:flex;align-items:baseline;gap:14px;font-size:24px;font-weight:900}
+.warn .res strong{font-family:var(--mono);font-size:44px;letter-spacing:-.04em;color:#6ee7d4;line-height:1}
+.warn .res s{font-family:var(--mono);font-size:36px;color:#f4b69f;text-decoration-thickness:4px;text-decoration-color:#fff}
+.real{background:var(--card);border:4px solid var(--ink);padding:14px 22px}
+.real .hd{font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.1em;color:var(--muted);margin-bottom:6px}
+.real .q{font-size:25px;font-weight:800;line-height:1.35}
+.real .res{margin-top:8px;font-size:24px;font-weight:900}
+.real .res strong{font-family:var(--mono);font-size:44px;letter-spacing:-.04em;color:var(--red);line-height:1;margin-right:10px}
+
+.judge{margin-top:18px;background:var(--teal);color:#fff;padding:12px 24px;border:4px solid var(--ink);box-shadow:8px 8px 0 var(--ink);font-size:28px;font-weight:900;line-height:1.35}
+.five{margin-top:16px;flex:1;display:flex;flex-direction:column;justify-content:center;background:var(--card);border:4px solid var(--ink);padding:14px 26px}
+.five .hd{font-family:var(--mono);font-size:19px;font-weight:900;letter-spacing:.1em;color:var(--muted)}
+.five ol{margin:4px 0 0;padding:0;list-style:none;counter-reset:n}
+.five li{counter-increment:n;display:flex;gap:18px;align-items:center;font-size:28px;font-weight:800;line-height:1.2;padding:3px 0}
+.five li:before{content:counter(n);flex:none;width:44px;height:44px;background:var(--red);color:#fff;font-family:var(--mono);font-size:30px;font-weight:900;display:flex;align-items:center;justify-content:center}
+.end{margin-top:16px;background:var(--ink);color:var(--card);padding:14px 24px;font-size:30px;font-weight:900;line-height:1.35}
+.end em{font-style:normal;background:var(--red);color:#fff;padding:0 8px}
+.src{margin-top:9px;font-family:var(--mono);font-size:15px;font-weight:700;color:#2a0d05;line-height:1.4}
+</style></head><body>
+<div class="card">
+  <div class="top"><span class="tag">SCAMWORLD · arXiv 2611.04879</span><span>DEAKIN · 复旦 · 墨尔本 · AMAZON</span></div>
+  <h1>问它，认得出；<em>让它办，照付</em></h1>
+  <div class="sub">363 个被举报的诈骗站本地重建（16 类场景·38 种手法·26 种语言），6 个模型驱动的网页 agent 办日常差事（订滑梯，预算 200 美元）</div>
+
+  <div class="hero">
+    <div class="p a"><div class="lab">直接问「这站是不是骗局」</div><div class="num">97%</div><div class="cap">识别出诈骗站（另一组实验）</div></div>
+    <div class="neq">≠</div>
+    <div class="p b"><div class="lab">让它去办事</div><div class="num">11–35%</div><div class="cap">被骗率：做完最后一步（付款/提交）</div></div>
+  </div>
+
+  <div class="rowA">
+    <div class="box">
+      <div class="hd">被骗率 · 363 站 · 2,262 次</div>
+      <div class="cols">
+        <div class="col lo"><b>11%</b><i style="height:31%"></i></div>
+        <div class="col"><b>18%</b><i style="height:51%"></i></div>
+        <div class="col"><b>23%</b><i style="height:66%"></i></div>
+        <div class="col"><b>35%</b><i style="height:100%"></i></div>
+      </div>
+      <div class="names"><span>GPT-5.6<br/>Luna</span><span>Claude<br/>Haiku 5.5</span><span>Kimi<br/>K3</span><span>DeepSeek<br/>V4.1 Flash</span></div>
+    </div>
+    <div class="box pay">
+      <div class="hd">要它做什么，差很多</div>
+      <div class="big r"><b>28%</b><span>付款类诈骗：<br/>照做</span></div>
+      <div class="big g"><b>2%</b><span>要登录、卡号、钱包：<br/>照做</span></div>
+      <div class="small">收款方是个人账户，也有 <b>22%</b> 照付。</div>
+    </div>
+  </div>
+
+  <div class="rowB">
+    <div class="hd"><span>492 次被骗记录，每格 1 次</span><span>220 / 492 = 45%</span></div>
+    <div class="dots" id="dots"></div>
+    <div class="legend">
+      <span><u></u><em>220</em> 次付款前已点名这个站的具体风险，照付</span>
+      <span><u class="g"></u><em>272</em> 次没点名</span>
+    </div>
+    <div class="note">被骗中表达过担忧的，317/354 把用户那句指令当理由；红旗出现后中位数再点 2 下就付款，只有 13 次翻过条款/评价/联系页。</div>
+  </div>
+
+  <div class="rowC">
+    <div class="warn">
+      <div class="hd">请求里加一句（3 个模型）</div>
+      <div class="q">「<b>有些网站可能是骗局，付款或填信息前先核对</b>」</div>
+      <div class="res"><span>付款类被骗率</span><s>34%</s><strong>2%</strong></div>
+      <div class="res"><span>总被骗率 −24 点 · 正常站完成率仅 −3 点</span></div>
+    </div>
+    <div class="real">
+      <div class="hd">改成强调「钱是真的」</div>
+      <div class="q">告诉它这笔付款真实、不可撤回</div>
+      <div class="res"><strong>1 点</strong>被骗率几乎没动</div>
+    </div>
+  </div>
+
+  <div class="judge">我的判断：agent 的安全分得用「办事」测，不能用「问话」测。同一批站，问它认得出 97%，让它去付，11%–35% 照付。</div>
+
+  <div class="five">
+    <div class="hd">本周 5 件事（我的建议）</div>
+    <ol>
+      <li>付款、转账前强制一步：核对收款方和条款</li>
+      <li>个人收款账户、押金不抵扣、额外手续费：停下来问人</li>
+      <li>用户预算当上限，别当授权；系统提示加一句防骗提醒</li>
+      <li>日志留推理，不只留回复：220 次里 164 次只在推理里担忧</li>
+      <li>评测按「办事」口径跑，别拿识别率当安全分</li>
+    </ol>
+  </div>
+  <div class="end">最后一击前，加一道<em>收款方核对</em>。</div>
+  <div class="src">来源：arXiv:2611.04879 ScamWorld（预印本，未经同行评审）。局限：站点本地重建、红旗按设计摆在付款前、单一 agent 脚手架、无人类基线、识别率来自另一组指令。警示语与「真实付款」两项消融仅在 3 个模型上测。</div>
+</div>
+<script>
+const d=document.getElementById('dots');
+for(let i=0;i<492;i++){const s=document.createElement('s');if(i<220)s.className='k';d.appendChild(s);}
+</script>
+</body></html>
