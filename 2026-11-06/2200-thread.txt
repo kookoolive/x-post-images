@@ -1,0 +1,17 @@
+Claude Code 把登录邮箱写进了 User-Agent。
+
+GitHub issue anthropics/claude-code#107757：联网搜网时，OAuth 邮箱出现在 UA / curl 联系字段，第三方站点直接收到。有人随后一天几十封诈骗信。工单仍 open，报告环境写 2.1.318；HN 一度冲到头条（报 660+ 分）。
+
+机制不是「故意加功能」。Anthropic 工程师说：邮箱本是为了减少 @author 标签幻觉，注入模型上下文；Wikipedia 等站要求脚本客户端自报联系邮箱，模型就把上下文里的地址塞进请求头。提示词写了「别发第三方」，还是从 harness 漏出去。
+
+修复：2.1.317 起默认插件 cc-plugin-privacy，按字面模式拦含邮箱的 UA/curl。但有人在 2.1.318 的 /plugins 看不到它；有人实测 echo 'User-Agent: <邮箱>' 照样没被拒；写脚本再跑也能绕。官方说下周把邮箱从上下文拿掉——在那之前，插件只是创可贴。
+
+我的判断：PII 一旦进 Agent 上下文，再配上写文件 / 出网工具，已经等于出站。别指望模型「听话」；隐私该是 harness 不变量，不是可选插件。
+
+本周 5 件事（我的建议）：① 升到 ≥2.1.317，/plugins 核隐私插件仍开着 ② 弹出「要不要把邮箱发出去」一律否，必要时自加 PreToolUse 钩 ③ 扫近期会话 / 抓包，看 UA 有没有自己的地址 ④ 敏感账号用隔离邮箱登录 coding agent ⑤ 上下文去邮箱落地前，当出站面仍开放处理。
+
+来源：https://github.com/anthropics/claude-code/issues/107757
+https://x.com/AzrianoY1/status/2118512435686760715
+https://x.com/sweetduck2020/status/2118555175833244112
+https://x.com/jwangkun/status/2118561873419448723
+https://x.com/Younik4we/status/2118672849195978791
