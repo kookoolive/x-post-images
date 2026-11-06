@@ -1,0 +1,17 @@
+1/6
+Agent computer-use 演示，经常死在「等你手机点一下」：App Store 登录、短信验证码、iMessage、TikTok / Uber 这类必须走真 Apple 生态的步骤。模拟器和云 VM 过不了这关。Glasshand 把机房里的实体 iPhone 和 Mac 租给 Agent：看屏幕、点按、打字。
+
+2/6
+产品是 Trevor Keith（@tsrkeith）团队做的，背后是 Solid 那拨人，融了大约 600 万美元。当前手机档是 iPhone SE 第三代，不是模拟器。Claude Code、Codex、Cursor 或任意 Agent，用 API 或一句提示词就能租到独占设备。
+
+3/6
+公开报道里的价大约是：iPhone 每月 60 美元，Mac 每月 90 美元，只付设备；Claude / Codex 账号自己带。能跑的链路包括 App Store / iOS 构建测试、TikTok、Instagram、Uber、iMessage，以及 eSIM 自带号码发短信——验证码不必再递到人手里。
+
+4/6
+租期内设备独占，可以自己设 PIN 和磁盘密码。租期结束：擦除 + 出厂重置，含 Secure Enclave 相关痕迹和 eSIM，再单独验证后才交给下一位用户。信任点不在宣传片，在这套交接 SOP 能不能被第三方核验。
+
+5/6
+本周 5 件事（我的建议）：① 列出你工作流里必须真机 / 真号 / App Store 的步骤 ② 试租一台 SE 3，跑通一条 OTP → 登录闭环 ③ 书面问清擦除 SOP：Enclave、eSIM、PIN 怎么验 ④ 账单拆两列：模型 token vs 设备月租 ⑤ Mac 档留给 iOS 构建，日常冒烟先用手机档
+
+6/6
+我的判断：设备身份、蜂窝、App Store 入口，是一层可以单独计费的能力，不该和模型账单混在一起。Glasshand 押的就是这一层。来源：Product Hunt 等对 Glasshand 的覆盖（约 2026-11-05）https://x.com/ProductHunt/status/2118474799123194285
