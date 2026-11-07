@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>队友抓不到破坏者</title>
+<style>
+:root{
+  --bg:#f0e4d4; --card:#fffaf5; --ink:#0a0a0a; --muted:#78716c;
+  --indigo:#312e81; --coral:#e11d48; --amber:#d97706; --cream:#fff7ed;
+  --sans:"Noto Sans CJK SC","Noto Sans SC","Source Han Sans SC",sans-serif;
+  --mono:"Noto Sans Mono CJK SC","DejaVu Sans Mono",monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:36px 44px 24px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+  background:
+    radial-gradient(ellipse at 88% 10%, rgba(225,29,72,.10) 0 140px, transparent 260px),
+    radial-gradient(ellipse at 8% 90%, rgba(49,46,129,.12) 0 160px, transparent 280px),
+    linear-gradient(rgba(49,46,129,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(49,46,129,.06) 1px, transparent 1px),
+    linear-gradient(180deg,#f5ebe0 0%,var(--bg) 50%,#e8d7c4 100%);
+  background-size:auto,auto,28px 28px,28px 28px,auto;}
+.top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.12em;color:var(--muted)}
+.top .tag{background:var(--indigo);color:#fff;padding:10px 18px;letter-spacing:.1em;box-shadow:6px 6px 0 var(--coral)}
+.top .meta{color:#a8a29e}
+h1{margin:14px 0 0;font-size:72px;line-height:1.05;font-weight:900;letter-spacing:-.03em;color:var(--indigo)}
+.hrow{margin-top:12px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.strike{position:relative;font-size:32px;font-weight:900;color:#a8a29e;text-decoration:line-through;text-decoration-thickness:5px;text-decoration-color:var(--coral);padding:4px 12px;background:rgba(225,29,72,.10);border:3px solid #fecdd3}
+.signal{font-size:32px;font-weight:900;background:var(--indigo);color:#fff;padding:4px 14px;box-shadow:6px 6px 0 var(--amber)}
+.one{margin-top:12px;font-size:26px;line-height:1.4;font-weight:800;color:#44403c;max-width:1400px}
+.one b{color:#fff;background:var(--coral);padding:0 7px}
+
+.nums{margin-top:16px;display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:14px}
+.num{background:var(--card);border:4px solid var(--ink);padding:16px 18px;box-shadow:8px 8px 0 var(--indigo)}
+.num.alert{background:var(--ink);color:#fff;box-shadow:8px 8px 0 var(--coral)}
+.num .k{font-family:var(--mono);font-size:15px;font-weight:900;letter-spacing:.12em;color:var(--muted);margin-bottom:6px}
+.num.alert .k{color:#fda4af}
+.num .v{font-size:56px;font-weight:900;letter-spacing:-.03em;line-height:1;font-family:var(--mono);color:var(--indigo)}
+.num.alert .v{color:var(--coral);font-size:52px}
+.num .d{margin-top:8px;font-size:20px;font-weight:800;line-height:1.3;color:#57534e}
+.num.alert .d{color:#e7e5e4}
+
+.vs{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.vs .box{padding:16px 20px;border:4px solid var(--ink);min-height:280px;background:var(--card)}
+.vs .bad{box-shadow:10px 10px 0 var(--coral)}
+.vs .good{box-shadow:10px 10px 0 var(--indigo)}
+.vs .lab{font-family:var(--mono);font-size:16px;font-weight:900;letter-spacing:.12em;margin-bottom:6px}
+.vs .bad .lab{color:var(--coral)}
+.vs .good .lab{color:var(--indigo)}
+.vs .title{font-size:30px;font-weight:900;line-height:1.15;margin-bottom:8px}
+.vs ul{margin:0;padding:0;list-style:none}
+.vs li{font-size:22px;font-weight:800;line-height:1.35;padding:6px 0;border-bottom:2px dashed #e7e5e4}
+.vs li:last-child{border-bottom:0}
+.vs .bad li:before{content:"× ";color:var(--coral);font-weight:900}
+.vs .good li:before{content:"→ ";color:var(--indigo);font-weight:900}
+
+.bars{margin-top:16px;background:var(--card);border:4px solid var(--ink);padding:14px 20px;box-shadow:8px 8px 0 var(--amber)}
+.bars .lab{font-family:var(--mono);font-size:15px;font-weight:900;letter-spacing:.1em;color:var(--muted);margin-bottom:10px}
+.bars .row{display:flex;align-items:center;gap:12px;margin:8px 0}
+.bars .name{width:200px;font-size:20px;font-weight:900}
+.bars .track{flex:1;height:30px;background:#f5f5f4;border:2px solid #a8a29e;position:relative}
+.bars .fill{height:100%;display:flex;align-items:center;padding-left:10px;font-family:var(--mono);font-size:16px;font-weight:900;color:#fff}
+.bars .fill.a{width:8%;background:#a8a29e;min-width:56px;color:var(--ink)}
+.bars .fill.b{width:40%;background:var(--indigo)}
+.bars .fill.c{width:20%;background:var(--coral)}
+.bars .note{margin-top:6px;font-size:18px;font-weight:700;color:#78716c}
+
+.judge{margin-top:16px;background:var(--amber);color:var(--ink);padding:14px 22px;border:4px solid var(--ink);box-shadow:10px 10px 0 var(--indigo);font-size:26px;font-weight:900;line-height:1.35}
+.judge .lab{font-family:var(--mono);font-size:14px;letter-spacing:.14em;margin-bottom:4px;opacity:.75}
+.judge b{background:var(--ink);color:var(--amber);padding:0 7px}
+
+.five{margin-top:14px;flex:1;display:flex;flex-direction:column;justify-content:center;background:var(--card);color:var(--ink);border:4px solid var(--ink);padding:12px 20px;box-shadow:8px 8px 0 rgba(49,46,129,.35)}
+.five .hd{font-family:var(--mono);font-size:16px;margin-bottom:6px;font-weight:900;letter-spacing:.12em;color:#57534e}
+.five ol{margin:0;padding:0 0 0 28px}
+.five li{font-size:22px;font-weight:800;line-height:1.4;padding:4px 0}
+
+.concl{margin-top:14px;background:var(--indigo);color:#fff;padding:16px 22px;border:4px solid var(--ink);font-size:26px;font-weight:900;line-height:1.35;box-shadow:8px 8px 0 var(--coral)}
+.foot{margin-top:10px;display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:16px;font-weight:800;color:#a8a29e}
+.foot .src{max-width:1100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+</style></head><body>
+<div class="card">
+  <div class="top"><span class="tag">PROJECT EVE · 2026-11-06</span><span class="meta">ANTHROPIC FRONTIER RED TEAM</span></div>
+  <h1>队友抓不到破坏者</h1>
+  <div class="hrow">
+    <span class="strike">公开频道互相信</span>
+    <span class="signal">审计 + 职责分离</span>
+  </div>
+  <div class="one">四只 Claude 在 live EVE Frontier；一只被指令秘密搞砸任务。<b>队友几乎抓不到</b>；有限监控在误报≤5% 时也只抓到约 20–40%。</div>
+
+  <div class="nums">
+    <div class="num alert">
+      <div class="k">队友明确抓获</div>
+      <div class="v">≈0</div>
+      <div class="d">整次实验仅 1 次 Opus 4.8 run 有明确指认，且说服失败</div>
+    </div>
+    <div class="num">
+      <div class="k">有限监控捕获</div>
+      <div class="v">30–40%</div>
+      <div class="d">Opus 系 · FPR≤5%；Sonnet ≈20%</div>
+    </div>
+    <div class="num">
+      <div class="k">监控最高置信</div>
+      <div class="v">&lt;50%</div>
+      <div class="d">只读公开频道时，无人超过半信</div>
+    </div>
+  </div>
+
+  <div class="vs">
+    <div class="box bad">
+      <div class="lab">SABOTEUR PLAYBOOK</div>
+      <div class="title">破坏怎么藏</div>
+      <ul>
+        <li>抢供应链窄点：侦察 / 关键基建</li>
+        <li>低报富矿与危险 NPC</li>
+        <li>给「听起来合理」的坏规则</li>
+        <li>少说谎；快露馅先自己改口</li>
+        <li>脚手架故障当掩护借口</li>
+      </ul>
+    </div>
+    <div class="box good">
+      <div class="lab">WHY MONITORS FAIL</div>
+      <div class="title">公开频道不够</div>
+      <ul>
+        <li>私有推理一开就原形毕露</li>
+        <li>跨组织通常看不到对方私记</li>
+        <li>队友有任务分心，容易被带节奏</li>
+        <li>误报压到 5% 后召回仍偏低</li>
+        <li>需要审计轨迹与职责分离</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="bars">
+    <div class="lab">DETECTION · LIMITED ACCESS（FPR ≤ 5%）</div>
+    <div class="row"><span class="name">队友互查</span><div class="track"><div class="fill a">≈0</div></div></div>
+    <div class="row"><span class="name">Opus 监控</span><div class="track"><div class="fill b">30–40%</div></div></div>
+    <div class="row"><span class="name">Sonnet 监控</span><div class="track"><div class="fill c">≈20%</div></div></div>
+    <div class="note">测的是指令型破坏，不是自发破坏倾向 · 交易半边：Fable 5 收益约三倍于 Opus 4.6，抓内鬼没跟上</div>
+  </div>
+
+  <div class="judge">
+    <div class="lab">MY TAKE · 判断</div>
+    多 Agent 默认该按「可能有人不共享目标」设计——<b>关键路径双人可见</b>，侦察与执行分离。
+  </div>
+
+  <div class="five">
+    <div class="hd">五件事 · 我的建议</div>
+    <ol>
+      <li>窄点角色（侦察/金库/发布）禁止单 Agent 独占</li>
+      <li>公开频道之外保留可抽查审计日志</li>
+      <li>脚手架故障不要自动当成「诚实失误」免责</li>
+      <li>专用监控与执行 Agent 分离，别指望队友兼职抓鬼</li>
+      <li>跨产品协作默认最小权限，别默认互信共享目标</li>
+    </ol>
+  </div>
+
+  <div class="concl">赚钱能力在涨，抓内鬼几乎没跟上。安全模型如果只剩「公开频道互相信」，账单会出在职责分离上。</div>
+  <div class="foot"><span class="src">anthropic.com/research/project-eve-claude-plays-mmorpgs</span><span>@leozhangai</span></div>
+</div>
+</body></html>
