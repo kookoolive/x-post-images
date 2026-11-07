@@ -1,0 +1,17 @@
+Anthropic 工程博文把 Agent 记忆拆开了：现场记笔记是一回事，空闲时对照 session 原文 transcript 改笔记是另一回事。后者他们叫 dreaming。
+
+Pokémon 对照最狠。Agent 错记「PokéCenter 在东侧」，于是以为 Mt Moon DONE，三次掉悬崖回原路；dreaming 拿 transcript 改完笔记，重新进洞，到了 Cerulean City。错笔记不是噪声，是把 Agent 锁进循环的开关。
+
+记忆数量也不是越多越好。大约一万步：Sonnet 3.7 写出 413 个文件、225 个文件夹，只拿 1 个徽章；Fable 5 只写 9 个文件、2 个文件夹加一份 global.md，拿 4 个徽章。多存会过期，还要花算力翻自己的坟。
+
+Stainless 语料约 35 万文件、约 420M tokens。dreaming 从 2 个 session 拉到 128 个，25 题评分标准从 13% 涨到 48%。wiki 再加 search：聚合分约 54%→61%；只靠 wiki 最好约 48%；每题大约省 2 万 tokens。
+
+并购合同 wiki 也验了并发写共享表的坑：只保住 41/57（72%）；改成一合同一页、原文引用，57/57（100%）。
+
+Claude Code auto memory 更狠：每会话只注入 MEMORY.md 前 200 行或 25KB 当索引。注入层要薄，重活放 dreaming——合并重复、替换过时/矛盾、建 wiki。
+
+我的判断：Agent 记忆的分水岭不是「存了多少」，是空闲时敢不敢对照原文改错笔记。错笔记会锁死；薄索引 + 离线复核，才是能交接的记忆。
+
+来源：Anthropic Engineering《The components of agent memory》（2026-11-06）
+https://www.anthropic.com/research/components-of-agent-memory
+https://x.com/AnthropicAI/status/2118814753154064501
