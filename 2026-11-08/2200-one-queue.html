@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>工作入口收成一条队列</title>
+<style>
+:root{
+  --bg:#dce8f0; --card:#f8fafc; --ink:#0b1220; --muted:#5a6573;
+  --orange:#ea580c; --blue:#1d4ed8; --orange-soft:#fff4ed; --blue-soft:#e8eeff;
+  --sans:"Noto Sans CJK SC","Noto Sans SC","Source Han Sans SC",sans-serif;
+  --mono:"Noto Sans Mono CJK SC","DejaVu Sans Mono",monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:34px 44px 22px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+  background:
+    radial-gradient(ellipse at 88% 0%, rgba(234,88,12,.20) 0 170px, transparent 340px),
+    radial-gradient(ellipse at 8% 96%, rgba(29,78,216,.14) 0 150px, transparent 320px),
+    repeating-linear-gradient(180deg, rgba(11,18,32,.045) 0 1px, transparent 1px 20px),
+    linear-gradient(180deg,#e8f1f6 0%,var(--bg) 48%,#d2e0ea 100%);}
+.top,.head,.org,.mid,.chip,.judge,.concl,.foot{flex-shrink:0}
+.top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.12em;color:var(--muted)}
+.top .tag{background:var(--orange);color:#fff;padding:10px 18px;box-shadow:6px 6px 0 var(--ink)}
+.head{display:grid;grid-template-columns:1fr 300px;gap:22px;margin-top:16px;align-items:start}
+h1{margin:0;font-size:78px;line-height:1.04;font-weight:900;letter-spacing:-.03em}
+h1 em{font-style:normal;color:var(--orange)}
+.hrow{margin-top:14px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.strike{font-size:30px;font-weight:900;color:#94a3b8;text-decoration:line-through;text-decoration-thickness:5px;text-decoration-color:var(--orange);padding:4px 12px;background:rgba(234,88,12,.08);border:3px solid #fdba74}
+.signal{font-size:30px;font-weight:900;background:var(--blue);color:#fff;padding:4px 14px;box-shadow:6px 6px 0 var(--orange)}
+.one{margin-top:14px;font-size:28px;line-height:1.4;font-weight:800;color:#334155}
+.one b{background:#fed7aa;padding:0 6px;color:var(--ink)}
+
+.aside{background:var(--card);border:4px solid var(--ink);padding:14px 16px 16px;box-shadow:8px 8px 0 var(--orange);text-align:center}
+.aside .lab{margin-bottom:8px}
+.stack{position:relative;height:118px;margin:0 auto;width:210px}
+.stack i{position:absolute;left:0;right:0;height:52px;border:3px solid #64748b;background:#e2e8f0;border-radius:2px}
+.stack i:nth-child(1){top:0;left:18px;right:-6px;transform:rotate(3deg)}
+.stack i:nth-child(2){top:22px;left:6px;right:6px;transform:rotate(-2deg)}
+.stack i:nth-child(3){top:46px;left:0;right:12px;background:#f1f5f9;border-color:#64748b}
+.stack span{position:absolute;left:8px;right:20px;top:58px;font-size:20px;font-weight:900;color:#64748b;text-decoration:line-through;text-decoration-thickness:3px;text-decoration-color:var(--orange)}
+.aside .to{font-size:22px;font-weight:900;color:var(--blue);margin:6px 0 4px}
+.onebar{background:var(--blue);color:#fff;padding:10px 8px;font-size:24px;font-weight:900;box-shadow:5px 5px 0 var(--ink)}
+
+.org{margin-top:14px;background:var(--card);border:4px solid var(--ink);padding:12px 18px 14px;box-shadow:8px 8px 0 var(--blue)}
+.lab{font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.12em;color:var(--muted);margin-bottom:10px}
+.cos{background:var(--ink);color:#fff;padding:10px 28px;width:560px;margin:0 auto;text-align:center;border:3px solid var(--ink);box-shadow:8px 0 0 var(--orange)}
+.cos .t{font-size:30px;font-weight:900;letter-spacing:.04em}
+.cos .d{font-size:20px;font-weight:700;color:#fdba74;margin-top:2px}
+.conn{position:relative;height:28px;width:100%}
+.conn .down{position:absolute;left:50%;top:0;width:4px;height:14px;background:var(--ink);margin-left:-2px}
+.conn .bar{position:absolute;top:14px;left:16.7%;right:16.7%;height:4px;background:var(--ink)}
+.leads{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;width:100%}
+.lead{border:3px solid var(--ink);background:var(--blue-soft);padding:10px 12px;text-align:center;position:relative}
+.lead:before{content:"";position:absolute;top:-14px;left:50%;width:4px;height:14px;background:var(--ink);margin-left:-2px}
+.lead .t{font-size:30px;font-weight:900}
+.lead .d{font-size:20px;font-weight:800;color:var(--blue);margin-top:2px}
+.subcap{margin-top:12px;font-size:22px;font-weight:800;color:#334155;text-align:center}
+.subs{margin-top:10px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;width:100%}
+.sub{background:var(--orange);color:#fff;border:3px solid var(--ink);padding:12px 8px;text-align:center;font-size:30px;font-weight:900;box-shadow:5px 5px 0 var(--ink)}
+
+.mid{margin-top:14px;display:grid;grid-template-columns:1.28fr 1fr;gap:16px}
+.queue{background:var(--card);border:4px solid var(--ink);padding:14px 18px 16px;box-shadow:8px 8px 0 var(--orange);display:flex;flex-direction:column;justify-content:space-between;height:100%}
+.qmain{border:3px solid var(--ink);border-left:10px solid var(--blue);background:#fff;padding:16px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.qmain .k{font-size:30px;font-weight:900}
+.pills{display:flex;gap:10px;flex-shrink:0}
+.pills span{background:var(--blue-soft);color:var(--blue);border:2px solid var(--blue);padding:6px 14px;font-size:24px;font-weight:900}
+.qrow{border:3px solid var(--ink);border-left:10px solid var(--orange);background:var(--orange-soft);padding:16px 16px;display:flex;justify-content:space-between;align-items:center}
+.qrow .k{font-size:28px;font-weight:900}
+.qrow .v{font-size:24px;font-weight:800;color:#9a3412}
+.note{font-size:24px;font-weight:800;color:#334155;padding:4px 2px}
+
+.brain{background:var(--ink);color:#fff;border:4px solid var(--ink);padding:16px 18px;box-shadow:8px 8px 0 var(--orange);display:flex;flex-direction:column;justify-content:space-between}
+.brain .lab{color:#fdba74}
+.brain .bt{font-size:38px;font-weight:900;line-height:1.15;margin:4px 0 10px}
+.steps{display:flex;flex-direction:column;gap:8px}
+.step{background:#1e293b;border:2px solid #334155;padding:8px 12px;font-size:24px;font-weight:800;display:flex;align-items:center;gap:10px}
+.step i{font-style:normal;font-family:var(--mono);font-size:16px;font-weight:900;color:#fdba74;min-width:28px}
+.goal{margin-top:10px;background:var(--orange);color:#fff;padding:10px 12px;font-size:28px;font-weight:900;text-align:center;box-shadow:5px 5px 0 var(--blue)}
+
+.chip{margin-top:14px;display:flex;align-items:stretch;border:4px solid var(--ink);box-shadow:6px 6px 0 var(--blue)}
+.chip .a{background:var(--blue);color:#fff;padding:12px 22px;font-size:28px;font-weight:900;flex:1}
+.chip .b{background:#fff;color:var(--ink);padding:12px 22px;font-size:28px;font-weight:900;flex:1.1}
+
+.judge{margin-top:14px;background:var(--orange);color:#fff;padding:14px 22px;border:4px solid var(--ink);font-size:29px;font-weight:900;line-height:1.38;box-shadow:8px 8px 0 var(--blue)}
+.judge .lab{color:#ffedd5;margin-bottom:4px}
+.judge b{background:#fff;color:var(--orange);padding:0 6px}
+
+.five{margin-top:14px;flex:1 0 auto;display:flex;flex-direction:column;justify-content:center;background:var(--card);border:4px solid var(--ink);padding:10px 22px 12px;min-height:0}
+.five ol{margin:0;padding:0 0 0 46px}
+.five li{font-size:30px;font-weight:800;line-height:1.38;padding:5px 0}
+.five li::marker{font-weight:900;color:var(--orange)}
+
+.concl{margin-top:14px;background:var(--ink);color:#fff;padding:14px 22px;border:4px solid var(--ink);font-size:29px;font-weight:900;line-height:1.38;box-shadow:8px 8px 0 var(--orange)}
+.foot{margin-top:12px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:16px;font-weight:800;color:#64748b}
+</style></head><body>
+<div class="card">
+  <div class="top"><span class="tag">BRIAN ARMSTRONG · AGENT ORG</span><span class="meta">COINBASE CEO · 2026-11-07</span></div>
+  <div class="head">
+    <div>
+      <h1>工作入口<br/>收成一条<em>队列</em></h1>
+      <div class="hrow"><span class="strike">几十个聊天窗口</span><span class="signal">一条优先队列</span></div>
+      <div class="one">每个关注面常驻一个 lead，上面再放 <b>chief of staff</b> 统管。要拍板或审的东西，全部进入同一个优先队列。</div>
+    </div>
+    <div class="aside">
+      <div class="lab">ENTRY</div>
+      <div class="stack"><i></i><i></i><i></i><span>几十个聊天窗口</span></div>
+      <div class="to">↓</div>
+      <div class="onebar">一条优先队列</div>
+    </div>
+  </div>
+
+  <div class="org">
+    <div class="lab">AGENT ORG · 编制</div>
+    <div class="cos"><div class="t">CHIEF OF STAFF</div><div class="d">统管各 lead</div></div>
+    <div class="conn"><div class="down"></div><div class="bar"></div></div>
+    <div class="leads">
+      <div class="lead"><div class="t">LEAD</div><div class="d">每个关注面常驻</div></div>
+      <div class="lead"><div class="t">LEAD</div><div class="d">每个关注面常驻</div></div>
+      <div class="lead"><div class="t">LEAD</div><div class="d">每个关注面常驻</div></div>
+    </div>
+    <div class="subcap">每个 lead 自己带一组 sub-agent</div>
+    <div class="subs">
+      <div class="sub">写码</div>
+      <div class="sub">测试</div>
+      <div class="sub">催审</div>
+      <div class="sub">对接</div>
+    </div>
+  </div>
+
+  <div class="mid">
+    <div class="queue">
+      <div class="lab">ONE QUEUE · 本地小网页</div>
+      <div class="qmain">
+        <div class="k">每条产品评审</div>
+        <div class="pills"><span>截图</span><span>演示视频</span></div>
+      </div>
+      <div class="qrow"><span class="k">按批清空</span><span class="v">语音 / 快捷键</span></div>
+      <div class="note">lead 还会带回他没想到的点子。</div>
+    </div>
+    <div class="brain">
+      <div>
+        <div class="lab">BRIAN BRAIN</div>
+        <div class="bt">偏好蒸馏</div>
+        <div class="steps">
+          <div class="step"><i>01</i>系统在学他的偏好</div>
+          <div class="step"><i>02</i>判断蒸馏进共享 brain</div>
+          <div class="step"><i>03</i>推荐和初稿先变好</div>
+        </div>
+      </div>
+      <div class="goal">目标 = 更少纠正</div>
+    </div>
+  </div>
+
+  <div class="chip"><div class="a">人工评审和安全检查仍在</div><div class="b">去掉的是事务，不是判断</div></div>
+
+  <div class="judge">
+    <div class="lab">MY TAKE · 我的判断</div>
+    多开几个 Agent 本身改不了工作流。改的是入口：<b>截图、演示视频、优先顺序都进同一条队列</b>。<span style="white-space:nowrap">没有这份队列</span>，编制再整齐也只是几十个聊天窗口。
+  </div>
+
+  <div class="five">
+    <div class="lab">五件事 · 我的建议</div>
+    <ol>
+      <li>待审只进同一个优先队列，别散在几十个对话里</li>
+      <li>产品评审不带截图和演示视频，就不进队</li>
+      <li>纠正过的偏好写进共享 brain，别只留在某次会话</li>
+      <li>人工评审和安全检查不因 Agent 加速而跳过</li>
+      <li>先定谁是 lead、谁是 CoS、谁只能写代码，再加编制</li>
+    </ol>
+  </div>
+
+  <div class="concl">编制好做，入口不收成一条带证据的队列，多 Agent 只是更多聊天窗口。</div>
+  <div class="foot"><span>x.com/brian_armstrong/status/2119112609223827547</span><span>2026-11-08</span></div>
+</div>
+</body></html>
