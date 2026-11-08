@@ -1,0 +1,22 @@
+OpenAI 把电话外呼开给了所有组织：GPT-Live 通过 SIP 中继直接拨号，走 Live API 的 POST /v1/live/sessions，transport.type 填 sip。
+
+以前语音 Agent 多半坐着等来电，这回它先拨出去。
+---
+每次请求要带：被叫号码（E.164，不收 SIP URI）、运营商 sips: 端点（默认 5061）、Digest 账号密码、主叫号码。
+
+信令必须 TLS，媒体必须 SDES-SRTP，本地主机名和私网 IP 直接拒。返回 200 只代表会话初始化好了，对方接没接另说。
+---
+通话进度走 sideband WebSocket：ringing、answered、failed 三个事件。
+
+坑在这里：sideband 只回放前 3 秒的事件，建完会话不立刻连，就会漏掉进度。振铃上限 3 分钟，接通上限 2 小时，请求里都改不了。
+---
+通话中能发按键音、REFER 转人工、hangup。
+
+文档反复叮嘱一件事：每个副作用只指定一个 handler。重复的 webhook、多个连接看到同一事件，都可能让工具执行两次，外呼场景里就是同一个人被打两遍。
+---
+我的判断：来电是别人找上门，外呼是 Agent 去打扰人，副作用落在对方手机上。
+
+接入门槛就一条中继加一个请求，谁能被拨、几点能拨、失败拨几次、开场是否说明是 AI 代拨，这些只能在自己后端写死。
+---
+来源：OpenAI 开发者文档《Telephony and SIP》，Outbound SIP calling 一节
+https://developers.openai.com/api/docs/guides/voice-sip

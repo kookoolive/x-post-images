@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>Agent 开始主动拨号</title>
+<style>
+:root{
+  --bg:#ece8f4; --card:#ffffff; --ink:#111827; --muted:#6b7280;
+  --red:#dc2626; --teal:#0f766e; --sun:#fbbf24;
+  --sans:"Noto Sans CJK SC","Noto Sans SC","Source Han Sans SC",sans-serif;
+  --mono:"Noto Sans Mono CJK SC","DejaVu Sans Mono",monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:38px 46px 26px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+  background:
+    radial-gradient(ellipse at 92% 6%, rgba(220,38,38,.12) 0 150px, transparent 280px),
+    radial-gradient(ellipse at 6% 94%, rgba(15,118,110,.12) 0 160px, transparent 300px),
+    repeating-linear-gradient(90deg, rgba(17,24,39,.05) 0 1px, transparent 1px 24px),
+    linear-gradient(180deg,#f3f0f9 0%,var(--bg) 55%,#e2dcef 100%);}
+.top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.12em;color:var(--muted)}
+.top .tag{background:var(--red);color:#fff;padding:10px 18px;box-shadow:6px 6px 0 var(--ink)}
+.head{display:grid;grid-template-columns:1fr 330px;gap:26px;margin-top:18px;align-items:start}
+h1{margin:0;font-size:84px;line-height:1.04;font-weight:900;letter-spacing:-.03em}
+h1 em{font-style:normal;color:var(--red)}
+.hrow{margin-top:16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.strike{font-size:32px;font-weight:900;color:#9ca3af;text-decoration:line-through;text-decoration-thickness:5px;text-decoration-color:var(--red);padding:4px 12px;background:rgba(220,38,38,.08);border:3px solid #fecaca}
+.signal{font-size:32px;font-weight:900;background:var(--teal);color:#fff;padding:4px 14px;box-shadow:6px 6px 0 var(--sun)}
+.one{margin-top:16px;font-size:30px;line-height:1.42;font-weight:800;color:#374151}
+.one b{background:var(--sun);padding:0 6px;color:var(--ink)}
+.pad{background:var(--ink);padding:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;box-shadow:10px 10px 0 var(--red)}
+.pad span{background:#1f2937;color:#f9fafb;font-family:var(--mono);font-size:34px;font-weight:900;text-align:center;padding:12px 0;border:2px solid #374151}
+.pad span.hot{background:var(--red);border-color:var(--red)}
+.pad .cap{grid-column:1/4;color:#fbbf24;font-family:var(--mono);font-size:15px;font-weight:900;letter-spacing:.1em;text-align:center}
+
+.flow{margin-top:24px;background:var(--card);border:4px solid var(--ink);padding:16px 18px;box-shadow:8px 8px 0 var(--teal)}
+.lab{font-family:var(--mono);font-size:19px;font-weight:900;letter-spacing:.12em;color:var(--muted);margin-bottom:10px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.st{border:3px solid var(--ink);padding:12px 12px;position:relative;background:#f9fafb}
+.st .n{font-family:var(--mono);font-size:15px;font-weight:900;color:var(--red)}
+.st .t{font-size:34px;font-weight:900;margin-top:2px}
+.st .d{font-size:22px;font-weight:700;color:#4b5563;line-height:1.35;margin-top:4px;font-family:var(--sans)}
+.st code{font-family:var(--mono);font-size:16px;background:#e5e7eb;padding:0 4px}
+.st.hl{background:var(--ink);color:#fff}.st.hl .d{color:#d1d5db}.st.hl code{background:#374151;color:#fde68a}
+
+.grid2{margin-top:22px;display:grid;grid-template-columns:1.25fr 1fr;gap:18px}
+.tbl{background:var(--card);border:4px solid var(--ink);padding:14px 18px}
+.tbl .row{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:2px dashed #d1d5db;font-size:26px;font-weight:800}
+.tbl .row:last-child{border:none}
+.tbl .row span:last-child{font-family:var(--mono);font-size:18px;color:var(--teal);text-align:right}
+.nums{display:grid;grid-template-rows:repeat(3,1fr);gap:12px}
+.num{background:var(--card);border:4px solid var(--ink);padding:10px 16px;display:flex;align-items:center;gap:16px;box-shadow:6px 6px 0 var(--sun)}
+.num .v{font-family:var(--mono);font-size:50px;font-weight:900;color:var(--red);min-width:150px}
+.num .d{font-size:24px;font-weight:800;line-height:1.3;color:#374151}
+.num.dk{background:var(--ink)}.num.dk .v{color:var(--sun)}.num.dk .d{color:#e5e7eb}
+
+.judge{margin-top:22px;background:var(--teal);color:#fff;padding:18px 24px;border:4px solid var(--ink);font-size:32px;font-weight:900;line-height:1.4;box-shadow:8px 8px 0 var(--red)}
+.judge .lab{color:#99f6e4;margin-bottom:4px}
+.judge b{background:#fff;color:var(--teal);padding:0 6px}
+.five{margin-top:20px;flex:1;display:flex;flex-direction:column;justify-content:center;background:var(--card);border:4px solid var(--ink);padding:12px 22px}
+.five ol{margin:0;padding:0 0 0 30px}
+.five li{font-size:33px;font-weight:800;line-height:1.42;padding:4px 0}
+.concl{margin-top:18px;background:var(--ink);color:#fff;padding:18px 24px;border:4px solid var(--ink);font-size:31px;font-weight:900;line-height:1.38;box-shadow:8px 8px 0 var(--sun)}
+.foot{margin-top:12px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:16px;font-weight:800;color:#9ca3af}
+</style></head><body>
+<div class="card">
+  <div class="top"><span class="tag">GPT-LIVE · OUTBOUND SIP</span><span class="meta">OPENAI DEVELOPERS DOCS</span></div>
+  <div class="head">
+    <div>
+      <h1>语音 Agent<br/>开始<em>主动拨号</em></h1>
+      <div class="hrow"><span class="strike">只等来电</span><span class="signal">自己打出去</span></div>
+      <div class="one">一条 SIP 中继 + 一个 <b>POST /v1/live/sessions</b>，所有组织都能让 GPT-Live 拨出电话。门槛很低，拦在外面的规则得自己补。</div>
+    </div>
+    <div class="pad"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>*</span><span>0</span><span class="hot">#</span><div class="cap">DTMF · REFER · HANGUP</div></div>
+  </div>
+
+  <div class="flow">
+    <div class="lab">OUTBOUND CALL · 四步</div>
+    <div class="steps">
+      <div class="st hl"><div class="n">01</div><div class="t">建会话</div><div class="d"><code>transport.type: sip</code><br/>200 只代表初始化，不代表接通</div></div>
+      <div class="st"><div class="n">02</div><div class="t">振铃</div><div class="d"><code>transport.ringing</code><br/>振铃最长 3 分钟</div></div>
+      <div class="st"><div class="n">03</div><div class="t">接通</div><div class="d"><code>transport.answered</code><br/>失败看 <code>transport.failed</code></div></div>
+      <div class="st"><div class="n">04</div><div class="t">转人工/挂断</div><div class="d"><code>/refer</code> · <code>/hangup</code><br/>接通最长 2 小时</div></div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="tbl">
+      <div class="lab">每次请求要带</div>
+      <div class="row"><span>被叫号码</span><span>E.164，不收 SIP URI</span></div>
+      <div class="row"><span>运营商端点</span><span>sips: 默认 5061</span></div>
+      <div class="row"><span>中继鉴权</span><span>SIP Digest 账号密码</span></div>
+      <div class="row"><span>主叫号码</span><span>caller_number</span></div>
+      <div class="row"><span>媒体加密</span><span>TLS 信令 + SDES-SRTP</span></div>
+      <div class="row"><span>拒绝</span><span>本地主机名 / 私网 IP</span></div>
+    </div>
+    <div class="nums">
+      <div class="num"><div class="v">3s</div><div class="d">sideband 只回放前 3 秒事件，晚连就漏掉通话进度</div></div>
+      <div class="num"><div class="v">3min</div><div class="d">振铃上限，请求里改不了</div></div>
+      <div class="num dk"><div class="v">2h</div><div class="d">接通后单通上限，同样不可配</div></div>
+    </div>
+  </div>
+
+  <div class="judge">
+    <div class="lab">MY TAKE · 判断</div>
+    来电是别人找上门，外呼是 Agent 去打扰人。<b>副作用落在对方手机上</b>，谁能被拨、几点能拨、拨几次，得在你自己的后端定死。
+  </div>
+
+  <div class="five">
+    <div class="lab">五件事 · 我的建议</div>
+    <ol>
+      <li>被叫号码走白名单或明确同意记录，别让模型自己挑号</li>
+      <li>按对方时区设拨打时段，失败重拨设上限</li>
+      <li>一个副作用只认一个 handler，重复 webhook 别让工具执行两次</li>
+      <li>sideband 建完会话立刻连，按 event_id 去重</li>
+      <li>开场先说明是 AI 代拨，留按键或 REFER 转真人的出口</li>
+    </ol>
+  </div>
+
+  <div class="concl">接电话的 Agent 拼的是听懂，打电话的 Agent 拼的是克制。拨号这一步太容易了，克制只能靠后端写死。</div>
+  <div class="foot"><span>developers.openai.com/api/docs/guides/voice-sip</span><span>@leozhangai</span></div>
+</div>
+</body></html>
