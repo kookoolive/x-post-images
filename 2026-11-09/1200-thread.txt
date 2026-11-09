@@ -1,0 +1,22 @@
+1/6
+点 Claude Code 的 Yes, and don't ask again，整条已批准的 shell 命令会原样写进项目里的 .claude/settings.local.json，当成永久放行规则。密码、token、SSH 登录如果写在命令里，就以明文躺进仓库。Apiiro 用 Opus 5.5 和 Fable 5.1 都复现了。
+---
+2/6
+公开扫描找到 104,185 份这个文件，散落在 103,617 个仓库里；其中 1,122 份（约 1.1%）至少含 1 个密钥，合计 1,379 个不重复密钥。拆开看：379 个数据库密码、43 个 SSH 登录、42 个 GitHub / GitLab / npm token、23 个 AWS 密钥；超过三分之一能直接连上数据库。
+---
+3/6
+把提交历史、共享的 settings.json、agent 聊天记录算进去，是 1,994 个仓库里的 2,539 个密钥。另有 734 个密钥藏在 509 个仓库已删除的旧版本里；74 个仓库的 211 个 fork 还带着副本。扫到的含密钥文件，一半在默认分支上已经待了至少 217 天。
+---
+4/6
+Claude Code 第一次写这个文件时，只把它加进用户的全局 git excludes，从不写进项目的 .gitignore。保护跟着这台电脑走，不跟着仓库走；已经被跟踪的文件继续被跟踪。能追溯的 1,105 个仓库里，539 个有一条 Claude 共同署名的提交动过这个文件。对照 16 款编程 Agent 的文档，确认默认把完整已批准命令写进项目文件的，只有 Claude Code。
+---
+5/6
+扫描器也漏得多。1,122 份含密钥文件里，gitleaks 扫到 564，TruffleHog 扫到 643，两家都没抓住 215 份，多半是嵌在命令里的密码。2025 年 8 月 11 日就有人报了这个 bug，2026 年 1 月 3 日被机器人以 not planned 关掉，相关报告也被同一只机器人关掉。
+---
+6/6
+我的判断：这不是误提交一次 .env，是点一次省事，把密钥写进了默认工作流。
+
+先轮换密钥，再清理仓库。git rm --cached 加上项目级 .gitignore；命令里用环境变量，别写字面量；批准规则写成 Bash(npm run:*) 这种模式，别批准带密钥的整条命令。把 .claude/ 当成 .env 对待。
+来源：The Hacker News（2026-11-07）；Apiiro 研究
+https://thehackernews.com/2026/11/claude-codes-dont-ask-again-file.html
+https://apiiro.com/blog/coding-agents-leaking-secrets-github-dont-ask-again
