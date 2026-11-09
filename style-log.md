@@ -132,3 +132,4 @@
 - 2026-11-09 22:00 | evolver-gene-reuse (Evolver Gene reuse, arXiv 2611.07595)
   | 骨架：巨号标题「探索不该用一次就扔」+删除线「改模型」/信号电青「沉淀 Gene」+大数格 83.13→87.50 / −24.24% token / 265对仍 −17.57% + 案例芯片 + 机制三步条 + Claude Code +2.50pp vs Codex +6.25pp 双栏 + 电青判断带 + 编号五件事 + 墨底通栏结论
   | 背景深墨青 #0b1c24（细点阵+电青/珊瑚光晕），强调电光青 #22d3ee，点缀警示珊瑚 #fb7185 / 琥珀 #fbbf24，卡面冷白 #f0f9ff，墨字 #0f172a
+- 2026-11-10 | AI早报视频 motion-body | 配色:ocean 深海蓝+杏黄 | 骨架:clipping 剪报墙 | 转场:blinds 百叶窗 | #0b2545 + #ffc857 + #ff6b6b + 卡 #f4f1ea
