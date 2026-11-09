@@ -128,3 +128,7 @@
 - 2026-11-09 12:00 | dont-ask-again-secrets (Claude Code Don't Ask Again → settings.local.json 密钥泄露)
   | 骨架：威胁通报顶栏+巨号标题「别再点 Don't Ask Again」+删除线「点一次省事」/信号琥珀「整条命令进仓库」+大数格 104185/1122/1379 + 机制四步链路 + 全局 excludes vs 项目 gitignore 双栏 + 琥珀判断带 + 编号五件事 + 墨底通栏结论
   | 背景暖骨纸 #efe6d4（细横纹+琥珀/朱红光晕），强调信号琥珀 #e8a317，警示朱红 #c41e3a，墨黑 #111110，卡面 #fffaf3
+
+- 2026-11-09 22:00 | evolver-gene-reuse (Evolver Gene reuse, arXiv 2611.07595)
+  | 骨架：巨号标题「探索不该用一次就扔」+删除线「改模型」/信号电青「沉淀 Gene」+大数格 83.13→87.50 / −24.24% token / 265对仍 −17.57% + 案例芯片 + 机制三步条 + Claude Code +2.50pp vs Codex +6.25pp 双栏 + 电青判断带 + 编号五件事 + 墨底通栏结论
+  | 背景深墨青 #0b1c24（细点阵+电青/珊瑚光晕），强调电光青 #22d3ee，点缀警示珊瑚 #fb7185 / 琥珀 #fbbf24，卡面冷白 #f0f9ff，墨字 #0f172a

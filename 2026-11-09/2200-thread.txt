@@ -1,0 +1,34 @@
+1/7
+Agent 跑完一次任务，探索轨迹往往跟着会话一起扔掉。下一题还得重新摸环境、工具和失败路径。
+
+Evolver 把这些轨迹沉淀成可复用的 Gene，不改 foundation model 的参数，经 hooks 或 MCP 注进现有 harness。
+---
+2/7
+他们在 Claude Code 和 Codex 上跑了 320 对诊断执行。论文写明这不是全量随机样本。
+
+总成功率从 83.13% 升到 87.50%，加了 4.38 个百分点。记录的任务执行 token 从 1,641.1K 降到 1,243.3K，少了 24.24%。
+---
+3/7
+拆开看：Claude Code 从 85.00% 到 87.50%，加 2.50 个百分点；Codex 从 81.25% 到 87.50%，加 6.25 个百分点。两边都做成的 265 对，token 仍然少了 17.57%。
+
+基准是 Terminal-Bench 2.1、SWE-bench Multilingual、SWE-rebench 和 GAIA，两套 harness 各配两种模型。
+---
+4/7
+Gene 不是又一段提示词。它是结构化的策略资产：步骤、适用条件、匹配信号，再通过 Capsule 挂上具体执行案例。
+
+这些资产经 hooks 或 MCP 注入现有 harness，不改模型权重。他们还记了一种 AntiGene，专门写下一次不该再走的路。
+---
+5/7
+两个做成了、但少走很多探索的案例：
+
+Terminal 数据集计 token，Claude Code 配 GPT，token 少 86.5%，模型调用从 112 次降到 17 次。RxJava 修并发空指针，Codex 配 DeepSeek，token 少 58.2%，调用从 86 次降到 52 次。
+---
+6/7
+我的判断：Agent 的护城河越来越在可复用的程序经验层，不只在换模型。探索过的步骤如果不能被下一轮检索到，每次都在付同一笔学费。
+
+该沉淀的是带适用条件的策略，不是又一份聊天记录。换模型解决不了「上次怎么做成的」消失这件事。
+---
+7/7
+来源：Haoyang Zhang 等，Infinite Evolution Lab / EvoMap（2026-11-05）；arXiv 2611.07595
+https://arxiv.org/abs/2611.07595
+https://github.com/EvoMap/evolver
