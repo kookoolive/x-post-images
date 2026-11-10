@@ -1,0 +1,34 @@
+1/7
+Agent 一天里大量消耗，发生在那些反复出现的短步骤：调工具、做路由、拆出的编码子任务、从长文档里抽信息。
+
+Meta 发布了迄今最小的型号 Muse Ember，定位就是这些高频步骤，不是再做一个日常默认的旗舰。
+---
+2/7
+Artificial Analysis 的 Intelligence Index 上，Ember 的 max 档得分 36，跟 Claude Haiku 5.5 的 max 档相同。单任务成本 Ember 约 $0.14，Haiku 约 $0.41，接近三倍。
+
+未四舍五入的分数是 35.8 对 36.2。xhigh 档 Ember 得 34，成本约 $0.12。
+---
+3/7
+价目表其实一样：每百万 token 输入 $0.10、输出 $0.50，跟 Haiku 5.5、GPT-6 Luna 相同。
+
+AA 写明，便宜出在两处。缓存输入低 60%，而这是他们 agent 评测里的大头；Ember 的输出 token 大约只有 Haiku 的三分之一。超过 20 万 token 的长提示，标价会涨到输入 $0.30、输出 $1.50。
+---
+4/7
+拆开看，强的是完整工作流。AutomationBench 严格 pass@1，Ember 37.8%，Luna 20.2%，Haiku 13.9%。AA 按目标给分的口径是 68.1%，和 Muse Wonder 持平。
+
+在自己的 Muse Code 里，Coding Agent Index 是 46，高过 Haiku 在 Claude Code 的 37，也高过 Luna 在 Codex 的 31。
+---
+5/7
+弱项也清楚。FrontierCode 2.0 按能否合并打分，Ember 27.2%，落后 Haiku 的 34.9%。知识题准确率 21.1%，主要因拒答了 64%；幻觉率 17.4%，大约是 Haiku 的一半。
+
+Terminal-Bench 4.0 有两套口径：AA 指数里 40.9% 对 Haiku 32.8%；Meta 按各家最佳 harness 计，Haiku 是 39.2%。
+---
+6/7
+我的判断：便宜旗舰这故事并不准确。它适合放到子 Agent 和高频步骤上，难问题仍该交给更贵的型号。Meta 自己也这么配对：Wonder 做计划，Ember 扛量。
+
+先看你的任务是不是反复出现的短步骤，再看账单是不是被输出长度和缓存价挡住。标价相同，不代表跑起来一样贵。
+---
+7/7
+来源：Meta Superintelligence Labs（2026-11-09）；Artificial Analysis 同日评测
+https://research.meta.ai/blog/muse-ember
+https://artificialanalysis.ai/articles/meta-s-muse-ember-is-the-cheapest-model-scoring-36-on-the-intelligence-index

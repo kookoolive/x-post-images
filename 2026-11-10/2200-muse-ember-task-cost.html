@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>任务成本不是标价</title>
+<style>
+:root{
+  --bg:#ead7c8; --card:#fff8f1; --ink:#1c1917; --muted:#8a6f5e;
+  --indigo:#1e3a8a; --terra:#c2410c; --sand:#f4e6d8;
+  --sans:"Noto Sans CJK SC","Noto Sans SC","Source Han Sans SC",sans-serif;
+  --mono:"Noto Sans Mono CJK SC","DejaVu Sans Mono",monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:36px 46px 22px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+  background:
+    radial-gradient(ellipse at 8% 4%, rgba(194,65,12,.18) 0 150px, transparent 280px),
+    radial-gradient(ellipse at 96% 8%, rgba(30,58,138,.16) 0 160px, transparent 300px),
+    radial-gradient(ellipse at 80% 98%, rgba(194,65,12,.10) 0 140px, transparent 260px),
+    repeating-linear-gradient(90deg, rgba(28,25,23,.045) 0 2px, transparent 2px 28px),
+    linear-gradient(180deg,#f3e4d6 0%,var(--bg) 42%,#e0c8b4 100%);}
+.top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.12em;color:var(--muted)}
+.top .tag{background:var(--terra);color:#fff8f1;padding:10px 18px;box-shadow:6px 6px 0 var(--indigo)}
+.top .meta{color:#7a5c4a}
+h1{margin:16px 0 0;font-size:76px;line-height:1.04;font-weight:900;letter-spacing:-.03em;color:var(--ink)}
+h1 em{font-style:normal;color:var(--terra)}
+.hrow{margin-top:14px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.strike{font-size:32px;font-weight:900;color:#8a6f5e;text-decoration:line-through;text-decoration-thickness:5px;text-decoration-color:var(--terra);padding:4px 12px;background:rgba(194,65,12,.10);border:3px solid #c4a894}
+.signal{font-size:32px;font-weight:900;background:var(--indigo);color:#fff8f1;padding:4px 14px;box-shadow:6px 6px 0 var(--terra)}
+.one{margin-top:14px;font-size:27px;line-height:1.42;font-weight:800;color:#3f2e24}
+.one b{background:var(--indigo);padding:0 6px;color:#fff8f1}
+
+.nums{margin-top:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.num{background:var(--card);border:4px solid #e8d5c4;padding:14px 18px;box-shadow:8px 8px 0 var(--indigo);color:var(--ink)}
+.num.hot{background:var(--ink);border-color:var(--terra);box-shadow:8px 8px 0 var(--terra)}
+.num .v{font-family:var(--mono);font-size:52px;font-weight:900;letter-spacing:-.04em;line-height:1;color:var(--indigo)}
+.num .v small{font-size:26px;letter-spacing:-.02em;color:#7c6a5c;font-weight:900;margin-right:4px}
+.num.hot .v{color:#fdba74}
+.num .k{margin-top:8px;font-size:26px;font-weight:900}
+.num.hot .k{color:#fff8f1}
+.num .d{margin-top:4px;font-size:20px;font-weight:700;color:#57534e}
+.num.hot .d{color:#d6d3d1}
+
+.break{margin-top:14px;background:var(--card);border:4px solid #e8d5c4;padding:12px 18px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;color:var(--ink)}
+.break .lab{font-family:var(--mono);font-size:16px;font-weight:900;letter-spacing:.12em;color:#7c6a5c;margin-right:6px}
+.chip{font-family:var(--mono);font-size:20px;font-weight:900;padding:6px 12px;border:3px solid var(--ink);background:var(--sand)}
+.chip.r{background:var(--terra);color:#fff;border-color:var(--ink)}
+.chip.a{background:var(--indigo);color:#fff8f1;border-color:var(--ink)}
+
+.flow{margin-top:16px;background:var(--card);border:4px solid #e8d5c4;padding:14px 18px;box-shadow:8px 8px 0 var(--terra);color:var(--ink)}
+.lab{font-family:var(--mono);font-size:17px;font-weight:900;letter-spacing:.12em;color:#7c6a5c;margin-bottom:10px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.st{border:3px solid var(--ink);padding:12px 14px;background:var(--sand)}
+.st .n{font-family:var(--mono);font-size:15px;font-weight:900;color:var(--terra)}
+.st .t{font-size:28px;font-weight:900;margin-top:2px;line-height:1.2}
+.st .d{font-size:20px;font-weight:700;color:#44403c;line-height:1.35;margin-top:4px}
+.st.hl{background:var(--ink);color:#fff8f1}
+.st.hl .d{color:#d6d3d1}
+.st.hl .n{color:#fdba74}
+
+.grid2{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.col{background:var(--card);border:4px solid #e8d5c4;padding:14px 18px;color:var(--ink)}
+.col.cc{box-shadow:8px 8px 0 var(--indigo)}
+.col.cx{background:var(--ink);color:#f5efe8;box-shadow:8px 8px 0 var(--terra);border-color:var(--terra)}
+.col h3{margin:0 0 6px;font-family:var(--mono);font-size:16px;font-weight:900;letter-spacing:.1em;color:var(--indigo)}
+.col.cx h3{color:#fdba74}
+.col .big{font-family:var(--mono);font-size:34px;font-weight:900;letter-spacing:-.03em;line-height:1.15;margin:4px 0 8px}
+.col.cx .big{color:#fdba74}
+.col ul{margin:0;padding:0;list-style:none}
+.col li{font-size:23px;font-weight:800;line-height:1.4;padding:5px 0;border-bottom:2px dashed #e4d2c2}
+.col.cx li{border-bottom-color:rgba(255,255,255,.12)}
+.col li:last-child{border-bottom:0}
+
+.judge{margin-top:16px;background:var(--indigo);color:#fff8f1;padding:16px 22px;border:4px solid #e8d5c4;font-size:29px;font-weight:900;line-height:1.38;box-shadow:8px 8px 0 var(--terra)}
+.judge .lab{color:#fdba74;margin-bottom:4px}
+.judge b{background:#fdba74;color:var(--ink);padding:0 6px}
+
+.five{margin-top:14px;flex:1;display:flex;flex-direction:column;background:var(--card);border:4px solid #e8d5c4;padding:14px 22px 10px;color:var(--ink)}
+.five .lab{color:#7c6a5c;margin-bottom:4px}
+.five ol{margin:0;padding:0 0 0 36px;flex:1;display:flex;flex-direction:column;justify-content:space-evenly}
+.five li{font-size:28px;font-weight:800;line-height:1.4;padding:3px 0}
+
+.concl{margin-top:14px;background:var(--ink);color:#fff8f1;padding:16px 22px;border:4px solid var(--terra);font-size:28px;font-weight:900;line-height:1.38;box-shadow:8px 8px 0 var(--indigo)}
+.foot{margin-top:12px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:15px;font-weight:800;color:#7a5c4a}
+</style></head><body>
+<div class="card">
+  <div class="top"><span class="tag">MODEL · TASK COST</span><span class="meta">META MUSE EMBER · AA 2026-11-09</span></div>
+  <h1>任务成本<em>不是标价</em></h1>
+  <div class="hrow"><span class="strike">标价更便宜</span><span class="signal">缓存低、输出更短</span></div>
+  <div class="one">Muse Ember 专为 Agent 反复出现的短步骤：工具调用、路由、编码子任务、长文档抽取。Intelligence Index 与 Haiku 5.5 同为 <b>36</b>，单任务成本约 <b>三分之一</b>。</div>
+
+  <div class="nums">
+    <div class="num"><div class="v">36</div><div class="k">Intelligence Index</div><div class="d">max 档，与 Haiku 5.5 相同 · 未四舍五入 35.8 / 36.2</div></div>
+    <div class="num hot"><div class="v">$0.14</div><div class="k">对 $0.41</div><div class="d">单任务成本 · Haiku max 约 3 倍</div></div>
+    <div class="num"><div class="v">−60%</div><div class="k">缓存输入价</div><div class="d">输出约只有 Haiku 的 1/3</div></div>
+  </div>
+
+  <div class="break">
+    <span class="lab">标价</span>
+    <span class="chip">输入/输出 $0.10 / $0.50 · 与 Haiku、Luna 相同</span>
+    <span class="chip r">提示 &gt;200K → $0.30 / $1.50</span>
+    <span class="chip a">xhigh 34 分 · $0.12</span>
+  </div>
+
+  <div class="flow">
+    <div class="lab">MECHANISM · 账单从哪降下来</div>
+    <div class="steps">
+      <div class="st"><div class="n">01</div><div class="t">标价相同</div><div class="d">每百万输入 $0.10、输出 $0.50，并没有更低的价目表</div></div>
+      <div class="st hl"><div class="n">02</div><div class="t">缓存 + 更短输出</div><div class="d">缓存输入低 60%，是 AA agent 评测里的成本大头</div></div>
+      <div class="st"><div class="n">03</div><div class="t">任务成本约 1/3</div><div class="d">跑起来的账单，不由每百万标价单独决定</div></div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="col cc">
+      <h3>强项 · 工作流 / 自家 harness</h3>
+      <div class="big">37.8% · 46</div>
+      <ul>
+        <li>AutomationBench 严格 pass@1：Ember 37.8 · Luna 20.2 · Haiku 13.9</li>
+        <li>AA 按目标给分 68.1%，与 Wonder 持平</li>
+        <li>Muse Code 上 Coding Agent Index 46，高于 Claude Code 里 Haiku 的 37、Codex 里 Luna 的 31</li>
+      </ul>
+    </div>
+    <div class="col cx">
+      <h3>弱项 · 可合并 / 知识</h3>
+      <div class="big">27.2% · 21.1%</div>
+      <ul>
+        <li>FrontierCode 2.0 落后 Haiku 34.9%</li>
+        <li>知识题准确率 21.1%，因拒答 64%</li>
+        <li>幻觉率 17.4%，约是 Haiku 的一半</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="judge">
+    <div class="lab">MY TAKE · 判断</div>
+    这不是便宜旗舰。它适合放在<b>子 Agent 和高频步骤</b>上，难问题仍该交给更贵的型号。Meta 自己也这么配对：Wonder 做计划，Ember 扛量。
+  </div>
+
+  <div class="five">
+    <div class="lab">五件事 · 我的建议</div>
+    <ol>
+      <li>子 Agent、路由、抽取、短修复，先拿 Ember 对成本</li>
+      <li>难问题和要合并的工程改动，别默认用它顶上</li>
+      <li>对账看任务成本和输出长度，不只看每百万标价</li>
+      <li>提示超过 20 万 token，按 $0.30 / $1.50 重算</li>
+      <li>知识问答准确率低、拒答多，检索和工具要自己补</li>
+    </ol>
+  </div>
+
+  <div class="concl">标价相同，不代表跑起来一样贵。先看任务是不是反复出现的短步骤，再看账单是不是被输出长度和缓存价挡住。</div>
+  <div class="foot"><span>research.meta.ai/blog/muse-ember · Artificial Analysis 2026-11-09</span><span>@leozhangai</span></div>
+</div>
+</body></html>
