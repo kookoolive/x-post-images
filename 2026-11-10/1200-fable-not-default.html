@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>别把 Fable 设成默认档</title>
+<style>
+:root{
+  --bg:#d7dde4; --card:#f7f8fa; --ink:#111827; --muted:#64748b;
+  --lime:#d4f542; --blue:#2563eb; --line:#0a0a0a;
+  --sans:"Noto Sans CJK SC","Noto Sans SC","Source Han Sans SC",sans-serif;
+  --mono:"Noto Sans Mono CJK SC","DejaVu Sans Mono",monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:36px 46px 20px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+  background:
+    radial-gradient(ellipse at 8% 4%, rgba(212,245,66,.38) 0 180px, transparent 320px),
+    radial-gradient(ellipse at 96% 8%, rgba(37,99,235,.16) 0 160px, transparent 300px),
+    repeating-linear-gradient(135deg, rgba(10,10,10,.035) 0 2px, transparent 2px 16px),
+    linear-gradient(180deg,#e4e9ef 0%,var(--bg) 48%,# recede);}
+.card{background:
+    radial-gradient(ellipse at 8% 4%, rgba(212,245,66,.38) 0 180px, transparent 320px),
+    radial-gradient(ellipse at 96% 8%, rgba(37,99,235,.16) 0 160px, transparent 300px),
+    repeating-linear-gradient(135deg, rgba(10,10,10,.035) 0 2px, transparent 2px 16px),
+    linear-gradient(180deg,#e4e9ef 0%,#d7dde4 48%,#cfd6de 100%);}
+.top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.12em;color:var(--muted)}
+.top .tag{background:var(--line);color:var(--lime);padding:10px 18px;box-shadow:6px 6px 0 var(--blue)}
+.top .meta{color:#475569;font-size:17px;letter-spacing:.08em}
+h1{margin:16px 0 0;font-size:76px;line-height:1.04;font-weight:900;letter-spacing:-.03em;color:var(--line)}
+h1 em{font-style:normal;background:var(--lime);padding:0 10px 4px;box-shadow:6px 6px 0 var(--blue)}
+.hrow{margin-top:16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.strike{font-size:32px;font-weight:900;color:#64748b;text-decoration:line-through;text-decoration-thickness:5px;text-decoration-color:#2563eb;padding:4px 12px;background:rgba(37,99,235,.10);border:3px solid var(--line)}
+.signal{font-size:32px;font-weight:900;background:var(--lime);color:var(--line);padding:4px 14px;box-shadow:6px 6px 0 var(--blue)}
+.one{margin-top:14px;font-size:26px;line-height:1.42;font-weight:800;color:#1f2937}
+.one b{background:var(--lime);padding:0 6px;color:var(--line)}
+
+.nums{margin-top:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.num{background:var(--card);border:4px solid var(--line);padding:14px 18px;box-shadow:8px 8px 0 var(--blue);color:var(--ink)}
+.num.hot{background:var(--line);border-color:var(--line);box-shadow:8px 8px 0 var(--lime)}
+.num .v{font-family:var(--mono);font-size:48px;font-weight:900;letter-spacing:-.04em;line-height:1;color:var(--blue)}
+.num .v small{font-size:24px;letter-spacing:-.02em;color:#64748b;font-weight:900;margin-right:2px}
+.num.hot .v{color:var(--lime)}
+.num .k{margin-top:8px;font-size:26px;font-weight:900}
+.num.hot .k{color:#fff}
+.num .d{margin-top:4px;font-size:20px;font-weight:700;color:#475569}
+.num.hot .d{color:#cbd5e1}
+
+.flow{margin-top:16px;background:var(--card);border:4px solid var(--line);padding:14px 18px;box-shadow:8px 8px 0 var(--lime);color:var(--ink)}
+.lab{font-family:var(--mono);font-size:17px;font-weight:900;letter-spacing:.12em;color:#64748b;margin-bottom:10px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.st{border:3px solid var(--line);padding:12px 14px;background:#eef1f4}
+.st .n{font-family:var(--mono);font-size:15px;font-weight:900;color:var(--blue)}
+.st .t{font-size:28px;font-weight:900;margin-top:2px;line-height:1.2}
+.st .d{font-size:20px;font-weight:700;color:#334155;line-height:1.35;margin-top:4px}
+.st.hl{background:var(--line);color:#fff}
+.st.hl .d{color:#cbd5e1}
+.st.hl .n{color:var(--lime)}
+
+.grid2{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.col{background:var(--card);border:4px solid var(--line);padding:14px 18px;color:var(--ink)}
+.col.cc{box-shadow:8px 8px 0 var(--blue)}
+.col.cx{background:var(--line);color:#e2e8f0;box-shadow:8px 8px 0 var(--lime);border-color:var(--line)}
+.col h3{margin:0 0 6px;font-family:var(--mono);font-size:16px;font-weight:900;letter-spacing:.1em;color:var(--blue)}
+.col.cx h3{color:var(--lime)}
+.col .big{font-family:var(--mono);font-size:32px;font-weight:900;letter-spacing:-.03em;line-height:1.2;margin:4px 0 8px}
+.col.cx .big{color:#fff}
+.col ul{margin:0;padding:0;list-style:none}
+.col li{font-size:23px;font-weight:800;line-height:1.4;padding:5px 0;border-bottom:2px dashed #d1d5db}
+.col.cx li{border-bottom-color:rgba(255,255,255,.12)}
+.col li:last-child{border-bottom:0}
+
+.judge{margin-top:16px;background:var(--lime);color:var(--line);padding:16px 22px;border:4px solid var(--line);font-size:28px;font-weight:900;line-height:1.38;box-shadow:8px 8px 0 var(--blue)}
+.judge .lab{color:#3f4a16;margin-bottom:4px}
+.judge b{background:var(--line);color:var(--lime);padding:0 6px}
+
+.five{margin-top:14px;flex:1;display:flex;flex-direction:column;background:var(--card);border:4px solid var(--line);padding:16px 22px 18px;color:var(--ink)}
+.five .lab{color:#64748b;margin-bottom:4px}
+.five ol{margin:0;padding:0 0 0 36px;flex:1;display:flex;flex-direction:column;justify-content:space-around}
+.five li{font-size:28px;font-weight:800;line-height:1.4;padding:4px 0}
+
+.concl{margin-top:14px;background:var(--line);color:#fff;padding:16px 22px;border:4px solid var(--lime);font-size:27px;font-weight:900;line-height:1.38;box-shadow:8px 8px 0 var(--blue)}
+.foot{margin-top:12px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:15px;font-weight:800;color:#64748b}
+</style></head><body>
+<div class="card">
+  <div class="top"><span class="tag">MODEL LAUNCH · SWITCH, DON'T DEFAULT</span><span class="meta">ANTHROPIC · 2026-11-09</span></div>
+  <h1>别把 Fable <em>设成默认档</em></h1>
+  <div class="hrow"><span class="strike">换旗舰当日常</span><span class="signal">按任务换档</span></div>
+  <div class="one">官方把 <b>Opus 5.5</b> 写成 daily driver：多数编码和知识工作先用它，难题再上切 Fable / Mythos。Fable 最多占每周额度的 <b>50%</b>。</div>
+
+  <div class="nums">
+    <div class="num"><div class="v">1000</div><div class="k">agent · 约 30 小时</div><div class="d">把费马证明翻成 Lean，可逐条检查</div></div>
+    <div class="num hot"><div class="v">26%</div><div class="k">Opus 5.5 同设置</div><div class="d">18 小时 26%，再跑到 30 小时几乎不再推进</div></div>
+    <div class="num"><div class="v">$8 / $40</div><div class="k">每百万 token</div><div class="d">自 $10 / $50 下调；最多约快 30%</div></div>
+  </div>
+
+  <div class="flow">
+    <div class="lab">MECHANISM · 形式化，不是「证出了定理」</div>
+    <div class="steps">
+      <div class="st"><div class="n">01</div><div class="t">极简提示起步</div><div class="d">只用中间定理清单计进度，不用数学参考文献</div></div>
+      <div class="st hl"><div class="n">02</div><div class="t">1000 agent 协调</div><div class="d">自己建协作方式；action token 约为此前 1/3</div></div>
+      <div class="st"><div class="n">03</div><div class="t">Lean 可检查</div><div class="d">证明短约 7 倍；计算机能逐条核对</div></div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="col cc">
+      <h3>FABLE = MYTHOS</h3>
+      <div class="big">同一底层模型</div>
+      <ul>
+        <li>差别在护栏和准入，不是两颗脑子</li>
+        <li>Fable：更强网络/生物护栏，付费计划可用</li>
+        <li>Mythos：生命科学或网络安全核查后申请</li>
+      </ul>
+    </div>
+    <div class="col cx">
+      <h3>OFFICIAL DEFAULT</h3>
+      <div class="big">日常先用 Opus 5.5</div>
+      <ul>
+        <li>难题上切 Fable，简单活下切 Sonnet / Haiku</li>
+        <li>High 档 45.3% ≈ Opus 最高 45.5%，单任务成本约一半</li>
+        <li>硬件三台设备由 Diode 制造，人还在测试环里</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="judge">
+    <div class="lab">我的建议 · 判断</div>
+    日常默认仍是 Opus 5.5。<b>Fable 留给真正开放的难题</b>，并且最多只占每周额度一半。
+  </div>
+
+  <div class="five">
+    <div class="lab">我的建议 · 五件事</div>
+    <ol>
+      <li>日常先用 Opus 5.5，开放式难题再切 Fable</li>
+      <li>订阅里 Fable 最多占每周额度 50%，别当全天候默认</li>
+      <li>看 Lean 能否逐条检查，比看演示视频更硬</li>
+      <li>硬件案例里，Diode 在制造，人还在测试和组装环里</li>
+      <li>Mythos 不是第二颗更聪明的模型，是同一模型放开双用途护栏后的准入版</li>
+    </ol>
+  </div>
+
+  <div class="concl">换旗舰解决不了选档的问题。按任务换档，把贵的算力用在要验收的那一段。</div>
+  <div class="foot"><span>ANTHROPIC.COM/CLAUDE-FABLE-AND-MYTHOS-5-2</span><span>@leozhangai</span></div>
+</div>
+</body></html>
