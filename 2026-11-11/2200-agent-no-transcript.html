@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>你的 agent，你看不到它的聊天记录</title>
+<style>
+:root{--bg:#0f2a22;--card:#f6f1e7;--ink:#14201b;--muted:#9fb8ad;--apr:#f4a259;--mint:#7ee0b8;--rose:#f26d6d;--deep:#173a2f;
+--sans:"Noto Sans CJK SC","Noto Sans SC",sans-serif;--mono:"Noto Sans Mono CJK SC","DejaVu Sans Mono",monospace;}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:46px 54px 30px;font-family:var(--sans);color:#f3efe6;display:flex;flex-direction:column;
+background:radial-gradient(circle at 88% 8%,rgba(244,162,89,.22) 0 120px,transparent 340px),radial-gradient(circle at 8% 90%,rgba(126,224,184,.14) 0 140px,transparent 360px),
+repeating-linear-gradient(135deg,rgba(255,255,255,.025) 0 2px,transparent 2px 26px),var(--bg)}
+.tag{display:flex;gap:14px;align-items:center;font-family:var(--mono);font-size:20px;font-weight:900;letter-spacing:.16em;color:var(--mint)}
+.tag span{border:2px solid var(--mint);padding:6px 14px;border-radius:40px}
+.tag .a{color:var(--bg);background:var(--apr);border-color:var(--apr)}
+h1{margin:26px 0 0;font-size:90px;line-height:1.08;font-weight:900;letter-spacing:-.03em}
+h1 em{font-style:normal;color:var(--apr)}
+.hrow{margin-top:22px;display:flex;gap:18px;align-items:center}
+.strike{font-size:32px;font-weight:900;color:#7d968b;text-decoration:line-through;text-decoration-thickness:5px;text-decoration-color:var(--rose)}
+.arrow{font-size:34px;font-weight:900;color:var(--muted)}
+.signal{font-size:32px;font-weight:900;background:var(--mint);color:var(--bg);padding:6px 16px;border-radius:10px}
+.one{margin-top:22px;font-size:28px;line-height:1.5;font-weight:700;color:#d9e6df}
+.one b{color:var(--apr)}
+.lab{font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.16em;color:var(--muted);margin-bottom:12px}
+.flow{margin-top:30px}
+.steps{display:grid;grid-template-columns:1fr 50px 1fr 50px 1fr 50px 1fr;align-items:stretch}
+.st{background:var(--deep);border:3px solid #2f5a4b;border-radius:18px;padding:16px 16px}
+.st .n{font-family:var(--mono);font-size:22px;font-weight:900;color:var(--apr)}
+.st .x{margin-top:6px;font-size:24px;font-weight:800;line-height:1.38}
+.st.hot{background:var(--apr);border-color:var(--apr);color:var(--bg)}
+.st.hot .n{color:var(--bg)}
+.ar{display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:900;color:var(--mint)}
+.nums{margin-top:28px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
+.num{border-top:6px solid var(--mint);padding-top:12px}
+.num .v{font-family:var(--mono);font-size:64px;font-weight:900;letter-spacing:-.03em;line-height:1;color:#fff}
+.num .v small{font-size:28px}
+.num .k{margin-top:8px;font-size:24px;font-weight:800;color:#d9e6df;line-height:1.35}
+.num.r{border-top-color:var(--rose)}
+.num.r .v{color:var(--rose)}
+.grid2{margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:20px;overflow:hidden}
+.col{padding:18px 24px}
+.col.see{background:var(--card);color:var(--ink)}
+.col.no{background:#2a1d1d;color:#f6dada}
+.col h3{margin:0 0 8px;font-family:var(--mono);font-size:19px;letter-spacing:.14em;color:#1f6b52}
+.col.no h3{color:var(--rose)}
+.col ul{margin:0;padding:0;list-style:none}
+.col li{font-size:26px;font-weight:800;line-height:1.42;padding:8px 0 8px 36px;position:relative;border-bottom:2px dotted #cfc6b3}
+.col.no li{border-bottom-color:rgba(255,255,255,.12)}
+.col li:last-child{border-bottom:0}
+.col.see li:before{content:"✓";position:absolute;left:0;color:#1f6b52;font-weight:900}
+.col.no li:before{content:"✕";position:absolute;left:0;color:var(--rose);font-weight:900}
+.judge{margin-top:28px;border-left:12px solid var(--apr);background:rgba(244,162,89,.12);padding:16px 24px;font-size:31px;font-weight:900;line-height:1.45}
+.judge .lab{color:var(--apr);margin-bottom:6px}
+.four{margin-top:24px;flex:1;display:flex;flex-direction:column;background:var(--card);color:var(--ink);border-radius:20px;padding:18px 26px 12px}
+.four .lab{color:#1f6b52}
+.four ol{margin:0;padding:0 0 0 40px;flex:1;display:flex;flex-direction:column;justify-content:space-evenly}
+.four li{font-size:31px;font-weight:800;line-height:1.4}
+.concl{margin-top:22px;font-size:32px;font-weight:900;line-height:1.4;text-align:center;color:#fff}
+.concl b{color:var(--mint)}
+.src{margin-top:8px;text-align:center;font-family:var(--mono);font-size:16px;color:var(--muted)}
+</style></head><body><div class="card">
+<div class="tag"><span class="a">BUSINESSES IN CHATGPT · BETA</span><span>OPENAI · 2026-11-10</span></div>
+<h1>agent 是你写的，<br/><em>聊天记录你看不到</em></h1>
+<div class="hrow"><span class="strike">上线后看记录再调</span><span class="arrow">→</span><span class="signal">上线前把题考完</span></div>
+<div class="one">商家在 Business Hub 认领主页、挂带价格和库存的商品源；美国电商和在线服务商家还能搭 <b>Business Agent</b>，在 ChatGPT 里单独跟用户聊。</div>
+<div class="flow"><div class="lab">用户路径</div><div class="steps">
+<div class="st"><div class="n">01</div><div class="x">ChatGPT 回答里出现你的商家</div></div><div class="ar">→</div>
+<div class="st"><div class="n">02</div><div class="x">点开商家主页</div></div><div class="ar">→</div>
+<div class="st hot"><div class="n">03</div><div class="x">另开对话，跟你的 agent 聊，明确标注</div></div><div class="ar">→</div>
+<div class="st"><div class="n">04</div><div class="x">广告也可以直接落到这个 agent</div></div>
+</div></div>
+<div class="nums">
+<div class="num"><div class="v">12<small> 亿</small></div><div class="k">ChatGPT 每周用户</div></div>
+<div class="num"><div class="v">2<small> 类</small></div><div class="k">Agent 先开给美国电商、在线服务</div></div>
+<div class="num r"><div class="v">0<small> 条</small></div><div class="k">商家能拿到的对话原文</div></div>
+</div>
+<div class="grid2">
+<div class="col see"><h3>商家看得到</h3><ul><li>被提及次数</li><li>网站点击</li><li>discovery topics：引用你网站的对话大致在聊什么</li></ul></div>
+<div class="col no"><h3>商家看不到</h3><ul><li>用户跟 ChatGPT 的对话</li><li>用户跟你家 agent 的聊天</li><li>量不够时，连聚合数都没有</li></ul></div>
+</div>
+<div class="judge"><div class="lab">我的看法</div>托管在别人平台里的 agent，拿不到逐条 transcript，质量只能在上线前定。商品源就是它的事实来源。</div>
+<div class="four"><div class="lab">我的建议 · 开 Business Agent 前做四件事</div><ol>
+<li>商品源当代码管：版本化，价格库存改动留记录</li>
+<li>自己写一组对比题、边界题，逐条看它怎么答</li>
+<li>拿 discovery topics 当清单，补官网缺的内容</li>
+<li>投广告前，先确认它会说「这个不适合你」</li></ol></div>
+<div class="concl">以前回放聊天记录来修 bot，这里只剩<b>上线前的那套测试题</b>。</div>
+<div class="src">来源：openai.com/index/introducing-businesses-chatgpt（2026-11-10）</div>
+</div></body></html>
