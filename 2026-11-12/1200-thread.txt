@@ -1,0 +1,25 @@
+1/7
+United 昨天把 AI agent 写进了运输条款的禁止项：用 AI agent 订票、改签、处理机票，或者买任何服务和商品，都不行，经旅行社、比价平台转一手也算。agent 还能把 United 的航班和票价列给你看，最后付款那一下得你自己点。
+---
+2/7
+几条容易漏看的细节。用户在旁边看着、点了同意，也不豁免。United 保留取消这类订单的权利，11 月 11 日之前 agent 订的票不追溯。旅行社想用自家 AI 工具，得先拿到 United 许可。给残障用户用的辅助技术不受影响。United 还说，后台分得清一张票是人订的、旅行社订的还是自动助手订的。
+---
+3/7
+官方列的理由有三条。隐私：agent 手里攥着里程账户和确认号。误购：没经你同意就订了、改了、花了里程。监管：值机时要人亲自确认行李里没有爆炸物这类违禁品，agent 自动值机就把这一步跳过了。CEO Scott Kirby 在芝加哥说得更直白：说实话，我不想再多出一个中间商。
+---
+4/7
+同一天 a16z 发了《Welcome to the B2A Economy》，论点是商家得开始抢 agent 的生意。文里引的数：Shopify Q1 来自 AI 的流量同比涨 8 倍，AI 搜索带来的订单涨了近 13 倍；Human Security 看到 8 到 10 月 agent 浏览器流量涨了 8 倍。
+---
+5/7
+我的看法：agent 能不能替人下单，看对面商家签不签字，跟模型能力关系不大。United 没去加验证码，改的是合同。技术上它未必认得出每一单，可认出来的那单能直接作废，风险全落在用户头上。最先给 agent 关门的，会是自己握着渠道、最怕被夹一层的行业，航空、银行都在这个名单上。
+---
+6/7
+我的建议（做消费级 agent 的）：
+1. 付款、值机、改签这类撤不回的步骤，默认停下交还给人
+2. 接入前先读目标站点的条款，有官方授权集成就别模拟点击
+3. 订单留来源记录：谁、在哪一步、经哪个渠道下的单
+4. 用户这边：确认号和里程账号别交给没被授权的 agent
+---
+7/7
+来源：United《Unauthorized third-party AI agents or assistants》帮助页；WSJ 独家（2026-11-11）；a16z《Welcome to the B2A Economy》
+https://www.united.com/en/us/fly/help-center/digital-trust-center/artificial-intelligence/third-party-ai-agents.html

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>agent 能查票，不能买票</title>
+<style>
+:root{--bg:#15171a;--y:#ffd400;--red:#ff5a4e;--grn:#3ecf8e;--card:#f4f1e8;--ink:#111214;--muted:#8a8f98;--row:#1f2226;
+--sans:"Noto Sans CJK SC","Noto Sans SC",sans-serif;--mono:"Noto Sans Mono CJK SC","DejaVu Sans Mono",monospace;}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:44px 56px 36px;font-family:var(--sans);color:#f2f2f0;display:flex;flex-direction:column;
+background:radial-gradient(circle at 92% 6%,rgba(255,212,0,.16) 0 110px,transparent 360px),radial-gradient(circle at 4% 96%,rgba(255,90,78,.12) 0 120px,transparent 380px),
+repeating-linear-gradient(0deg,rgba(255,255,255,.03) 0 1px,transparent 1px 22px),var(--bg)}
+.top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:22px;font-weight:900;letter-spacing:.18em}
+.top .l{background:var(--y);color:var(--ink);padding:8px 18px}
+.top .r{color:var(--y)}
+h1{margin:30px 0 0;font-size:96px;line-height:1.06;font-weight:900;letter-spacing:-.03em}
+h1 em{font-style:normal;color:var(--y)}
+.hrow{margin-top:24px;display:flex;gap:18px;align-items:center}
+.strike{font-size:34px;font-weight:900;color:#7b8089;text-decoration:line-through;text-decoration-thickness:5px;text-decoration-color:var(--red)}
+.arrow{font-size:34px;font-weight:900;color:var(--muted)}
+.signal{font-size:34px;font-weight:900;background:var(--y);color:var(--ink);padding:6px 16px}
+.one{margin-top:22px;font-size:28px;line-height:1.5;font-weight:700;color:#d8dadd}
+.one b{color:var(--y)}
+.board{margin-top:36px;border:4px solid #2c3036;background:#0d0e10;padding:18px 22px}
+.bh{display:grid;grid-template-columns:120px 1fr 260px;font-family:var(--mono);font-size:19px;font-weight:900;letter-spacing:.16em;color:var(--muted);padding:0 6px 10px;border-bottom:2px solid #2c3036}
+.br{display:grid;grid-template-columns:120px 1fr 260px;align-items:center;padding:16px 6px;border-bottom:1px dashed #2c3036}
+.br:last-child{border-bottom:none}
+.br .c{font-family:var(--mono);font-size:26px;font-weight:900;color:var(--y)}
+.br .a{font-size:32px;font-weight:800}
+.br .s{font-family:var(--mono);font-size:26px;font-weight:900;text-align:center;padding:6px 0}
+.ok{color:var(--ink);background:var(--grn)}
+.no{color:#fff;background:var(--red)}
+.nums{margin-top:28px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+.num{border-left:8px solid var(--y);padding:6px 0 6px 18px}
+.num .v{font-family:var(--mono);font-size:66px;font-weight:900;letter-spacing:-.03em;line-height:1}
+.num .k{margin-top:10px;font-size:23px;font-weight:700;color:#cfd2d6;line-height:1.4}
+.num.r{border-left-color:var(--red)}
+.num.r .v{color:var(--red)}
+.pass{margin-top:30px;display:grid;grid-template-columns:1fr 330px;background:var(--card);color:var(--ink);border-radius:22px;overflow:hidden}
+.pass .m{padding:26px 30px}
+.pass .lab{font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.16em;color:#6b6f76}
+.pass .t{margin-top:8px;font-size:32px;font-weight:900;line-height:1.42}
+.pass .t b{background:var(--y);padding:0 6px}
+.pass .stub{border-left:4px dashed #b9b4a6;padding:26px 24px;background:#ebe6d7}
+.stub .q{font-size:24px;font-weight:800;line-height:1.5}
+.stub .who{margin-top:12px;font-family:var(--mono);font-size:18px;font-weight:900;color:#6b6f76;letter-spacing:.1em}
+.adv{margin-top:40px}
+.adv .lab{font-family:var(--mono);font-size:19px;font-weight:900;letter-spacing:.16em;color:var(--y);margin-bottom:10px}
+.adv ol{margin:0;padding:0;list-style:none;counter-reset:n;display:grid;grid-template-columns:1fr 1fr;gap:22px 30px}
+.adv li{counter-increment:n;font-size:30px;font-weight:700;line-height:1.42;display:flex;gap:14px;color:#e6e7e9}
+.adv li::before{content:counter(n);flex:0 0 42px;height:42px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:900;font-size:24px;background:var(--y);color:var(--ink)}
+.end{margin-top:auto;padding-top:22px;border-top:3px solid var(--y);display:flex;justify-content:space-between;align-items:flex-end}
+.end .t{font-size:40px;font-weight:900}
+.end .t em{font-style:normal;color:var(--y)}
+.end .s{font-family:var(--mono);font-size:17px;color:var(--muted);text-align:right;line-height:1.5}
+</style></head><body><div class="card">
+<div class="top"><span class="l">UNITED · 条款更新 · 2026-11-11</span><span class="r">AGENT ⇢ GATE CLOSED</span></div>
+<h1>agent 能帮你查票，<br/><em>不能帮你买票</em></h1>
+<div class="hrow"><span class="strike">AI 替你订好</span><span class="arrow">→</span><span class="signal">付款那一下你自己点</span></div>
+<div class="one">United 把 AI agent 写进运输条款的禁止项：订票、改签、处理机票、买任何服务都不行；<b>经旅行社转一手也算，用户点了同意也不豁免</b>。</div>
+<div class="board">
+  <div class="bh"><span>CODE</span><span>agent 想做的事</span><span>STATUS</span></div>
+  <div class="br"><span class="c">S01</span><span class="a">查航班、列出票价</span><span class="s ok">OPEN</span></div>
+  <div class="br"><span class="c">B02</span><span class="a">下单付款</span><span class="s no">CLOSED</span></div>
+  <div class="br"><span class="c">M03</span><span class="a">改签、处理已有机票</span><span class="s no">CLOSED</span></div>
+  <div class="br"><span class="c">P04</span><span class="a">用里程、买升舱和附加服务</span><span class="s no">CLOSED</span></div>
+  <div class="br"><span class="c">C05</span><span class="a">自动值机（行李违禁品要人亲自确认）</span><span class="s no">CLOSED</span></div>
+  <div class="br"><span class="c">T06</span><span class="a">旅行社用自家 AI 工具</span><span class="s" style="color:var(--ink);background:var(--y)">须先获许可</span></div>
+</div>
+<div class="nums">
+  <div class="num"><div class="v">8×</div><div class="k">Shopify Q1 来自 AI 的流量同比（a16z 同日引用）</div></div>
+  <div class="num"><div class="v">~13×</div><div class="k">AI 搜索带来的 Shopify 订单同比</div></div>
+  <div class="num r"><div class="v">11.11</div><div class="k">之前 agent 订的票不追溯；之后的 United 可取消</div></div>
+</div>
+<div class="pass">
+  <div class="m"><div class="lab">MY TAKE · 判断</div>
+  <div class="t">agent 能不能替人下单，<b>看对面商家签不签字</b>，跟模型能力关系不大。United 没去加验证码，它改的是合同：认不出每一单，可认出来的那单能直接作废。</div></div>
+  <div class="stub"><div class="q">“说实话，我不想再多出一个中间商。”</div><div class="who">— SCOTT KIRBY · UNITED CEO</div></div>
+</div>
+<div class="adv"><div class="lab">我的建议 · 做消费级 agent 的</div>
+<ol>
+<li>付款、值机、改签这类撤不回的步骤，默认停下交还给人</li>
+<li>接入前先读目标站点条款，有官方授权集成就别模拟点击</li>
+<li>订单留来源记录：谁、在哪一步、经哪个渠道下的单</li>
+<li>用户这边：确认号和里程账号别交给没被授权的 agent</li>
+</ol></div>
+<div class="end"><div class="t">agent 能走多远，<em>看对面开不开门</em></div>
+<div class="s">来源：United Digital Trust Center 帮助页<br/>WSJ（2026-11-11）· a16z《Welcome to the B2A Economy》</div></div>
+</div></body></html>
