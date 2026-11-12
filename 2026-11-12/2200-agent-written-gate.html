@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>代码全是 agent 写的，合进去靠闸</title>
+<style>
+:root{--bg:#efe6d6;--ink:#141820;--indigo:#1e3a5f;--rust:#e24a16;--card:#fffaf4;--muted:#6b6458;--line:#d4cbb8;
+--sans:"Noto Sans CJK SC","Noto Sans SC",sans-serif;--mono:"Noto Sans Mono CJK SC","DejaVu Sans Mono",monospace;}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:40px 56px 32px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+background:
+  radial-gradient(circle at 94% 4%,rgba(226,74,22,.14) 0 130px,transparent 380px),
+  radial-gradient(circle at 6% 96%,rgba(30,58,95,.10) 0 140px,transparent 400px),
+  repeating-linear-gradient(135deg,rgba(30,58,95,.045) 0 1px,transparent 1px 18px),
+  var(--bg)}
+.top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:22px;font-weight:900;letter-spacing:.16em}
+.top .l{background:var(--indigo);color:#f7f3ea;padding:8px 18px}
+.top .r{color:var(--rust)}
+h1{margin:24px 0 0;font-size:90px;line-height:1.06;font-weight:900;letter-spacing:-.03em}
+h1 em{font-style:normal;color:var(--rust)}
+.hrow{margin-top:22px;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.strike{font-size:34px;font-weight:900;color:#8a8376;text-decoration:line-through;text-decoration-thickness:5px;text-decoration-color:var(--rust)}
+.arrow{font-size:34px;font-weight:900;color:var(--muted)}
+.signal{font-size:34px;font-weight:900;background:var(--indigo);color:#f7f3ea;padding:6px 16px}
+.one{margin-top:20px;font-size:28px;line-height:1.5;font-weight:700;color:#2a2e36}
+.one b{color:var(--rust)}
+.teams{margin-top:26px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.team{background:var(--card);border:3px solid var(--indigo);padding:26px 24px 24px;min-height:248px}
+.team .n{font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.16em;color:var(--rust)}
+.team .t{margin-top:8px;font-size:34px;font-weight:900;line-height:1.2}
+.team .d{margin-top:10px;font-size:24px;font-weight:700;line-height:1.4;color:#3a3f48}
+.nums{margin-top:22px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
+.num{background:var(--indigo);color:#f7f3ea;padding:26px 22px 24px;min-height:230px}
+.num .v{font-family:var(--mono);font-size:68px;font-weight:900;letter-spacing:-.03em;line-height:1}
+.num .k{margin-top:10px;font-size:23px;font-weight:700;line-height:1.4;color:#d7deea}
+.num.r{background:var(--rust)}
+.num.r .k{color:#ffe8df}
+
+.chips{margin-top:20px;display:flex;flex-wrap:wrap;gap:12px}
+.chip{font-family:var(--mono);font-size:22px;font-weight:800;letter-spacing:.02em;background:var(--card);border:2px solid var(--indigo);color:var(--indigo);padding:10px 16px}
+.warn{margin-top:22px;border-left:12px solid var(--rust);background:#fff3ea;padding:22px 26px}
+.warn .lab{font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.16em;color:var(--rust)}
+.warn .t{margin-top:8px;font-size:32px;font-weight:900;line-height:1.42}
+.take{margin-top:18px;background:var(--card);border:3px solid var(--line);padding:22px 26px}
+.take .lab{font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.16em;color:var(--indigo)}
+.take .t{margin-top:8px;font-size:32px;font-weight:900;line-height:1.42}
+.take b{background:#ffe1d4;padding:0 6px}
+.adv{margin-top:22px}
+.adv .lab{font-family:var(--mono);font-size:19px;font-weight:900;letter-spacing:.16em;color:var(--indigo);margin-bottom:12px}
+.adv ol{margin:0;padding:0;list-style:none;counter-reset:n;display:grid;grid-template-columns:1fr 1fr;gap:18px 28px}
+.adv li{counter-increment:n;font-size:30px;font-weight:700;line-height:1.4;display:flex;gap:14px}
+.adv li::before{content:counter(n);flex:0 0 42px;height:42px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:900;font-size:24px;background:var(--rust);color:#fff}
+.end{margin-top:auto;padding:28px 56px 36px;background:var(--indigo);color:#f7f3ea;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-left:-56px;margin-right:-56px;margin-bottom:-32px;}
+.end .t{font-size:40px;font-weight:900;line-height:1.3;color:#f7f3ea}
+.end .t em{font-style:normal;color:#ffb199}
+.end .s{font-family:var(--mono);font-size:17px;color:#c9d3e0;text-align:right;line-height:1.5;flex:0 0 420px}
+</style></head><body><div class="card">
+<div class="top"><span class="l">AWS EMULATOR · GA · 2026-11-11</span><span class="r">AGENT-WRITTEN · MERGE GATE</span></div>
+<h1>代码全是 agent 写的，<br/><em>合进去靠闸</em></h1>
+<div class="hrow"><span class="strike">人审过每一行</span><span class="arrow">→</span><span class="signal">过不了闸就进不了主干</span></div>
+<div class="one">AWS 首席工程师 Matthew Goldberg 写：模拟器全部由自主运行的 agent 写成，<b>「我们团队一行代码都没写，也没审过」</b>。</div>
+<div class="teams">
+  <div class="team"><div class="n">TEAM 01</div><div class="t">写对照测试</div><div class="d">按公开 API Model 写真实场景，先在真 AWS 上跑通</div></div>
+  <div class="team"><div class="n">TEAM 02</div><div class="t">找分叉提单</div><div class="d">回放测试，找出模拟器和云上不一致的地方</div></div>
+  <div class="team"><div class="n">TEAM 03</div><div class="t">修，并过闸</div><div class="d">一次一个单；编译、规范、安全、保真回归都过才合入</div></div>
+</div>
+<div class="nums">
+  <div class="num"><div class="v">438</div><div class="k">起步时空服务器能接住的 AWS API Model 数</div></div>
+  <div class="num r"><div class="v">0 行</div><div class="k">团队自己写过、审过的代码（官方原话）</div></div>
+  <div class="num"><div class="v">数千</div><div class="k">每天数百 agent 并行修复量（官方）</div></div>
+</div>
+<div class="chips">
+  <span class="chip">127.0.0.1:9297</span>
+  <span class="chip">密钥 ID 以 EMULATOR 开头</span>
+  <span class="chip">未实现返回 HTTP 501</span>
+  <span class="chip">无跨账号 / 跨区域</span>
+  <span class="chip">CC0 开源</span>
+  <span class="chip">things-that-do-not-work 公开账本</span>
+</div>
+<div class="warn">
+  <div class="lab">OFFICIAL CAUTION · 官方警示</div>
+  <div class="t">不要用模拟器测应用是否安全。它不会按真 AWS 的方式评估 IAM 和基于资源的策略，云上会拒绝的请求，这里可能放行。</div>
+</div>
+<div class="take">
+  <div class="lab">MY TAKE · 判断</div>
+  <div class="t">敢上线，是因为对照物在真 AWS 上，合入闸对回归和安全复查<b>不留例外</b>。本地适合把「能不能调通」收短，权限和配额还得回真环境验。</div>
+</div>
+<div class="adv"><div class="lab">我的建议</div>
+<ol>
+<li>agent 测 AWS 调用先走本地模拟器，测试环境不要放真云凭证</li>
+<li>先看该服务的保真分数和 things-that-do-not-work，501 不是通过</li>
+<li>权限、IAM 和限流必须在真 AWS 上验，模拟器放行不算数</li>
+<li>让 agent 写实现，先准备能对照真实系统的测试，合入必须过闸</li>
+</ol></div>
+<div class="end"><div class="t">对照物在真云上，<em>闸不对人留例外</em></div>
+<div class="s">来源：AWS News Blog（2026-11-11）<br/>Matthew Goldberg / aboutamazon<br/>github.com/aws/aws-emulator</div></div>
+</div></body></html>
