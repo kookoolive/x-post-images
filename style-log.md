@@ -161,3 +161,7 @@
   | 背景暖砂岩 #efe6d6（细斜线+锈橙/靛蓝光晕），强调深靛蓝 #1e3a5f，点缀锈橙 #e24a16，卡面 #fffaf4，墨字 #141820
 
 - 2026-11-13 | AI早报视频 motion-body | 配色:mint 薄荷奶油+珊瑚 | 骨架:broadsheet 报纸分栏 | 转场:color-wipe 色块擦除 | #dff1ea + #0f9d76 + #f25f5c + 卡 #ffffff
+
+- 2026-11-13 22:00 | selfhost-orchestration (Anthropic self-hosted Claude Managed Agents：自托管的是编排，模型请求还是要出门)
+  | 骨架：霜纸封面+巨号标题+删除线「模型搬进机房」/深青「编排、凭据、会话留下」+留在你这边/还是要出门双栏+三件你要跑（服务器/Postgres/workers）+芯片（8400/明文HTTP/Helm/不迁移/无webhook/无定时部署）+紫左边条官方范围+判断卡+编号四件事+深青底通栏结论
+  | 背景霜纸蓝灰 #e4eef2（细横线+紫/青光晕），强调深青 #0f4c4c，点缀电紫 #6d28d9，卡面 #f7fbfc，墨字 #122028

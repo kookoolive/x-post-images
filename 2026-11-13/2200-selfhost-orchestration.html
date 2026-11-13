@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>自托管的是编排，模型请求还是要出门</title>
+<style>
+:root{--bg:#e4eef2;--ink:#122028;--teal:#0f4c4c;--violet:#6d28d9;--card:#f7fbfc;--muted:#5a6a72;--line:#c5d4db;
+--sans:"Noto Sans CJK SC","Noto Sans SC",sans-serif;--mono:"Noto Sans Mono CJK SC","DejaVu Sans Mono",monospace;}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:40px 56px 32px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+background:
+  radial-gradient(circle at 92% 6%,rgba(109,40,217,.14) 0 130px,transparent 380px),
+  radial-gradient(circle at 8% 96%,rgba(15,76,76,.12) 0 150px,transparent 420px),
+  repeating-linear-gradient(0deg,rgba(15,76,76,.04) 0 1px,transparent 1px 22px),
+  var(--bg)}
+.top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:22px;font-weight:900;letter-spacing:.16em}
+.top .l{background:var(--teal);color:#f3faf9;padding:8px 18px}
+.top .r{color:var(--violet)}
+h1{margin:22px 0 0;font-size:82px;line-height:1.08;font-weight:900;letter-spacing:-.03em}
+h1 em{font-style:normal;color:var(--violet)}
+.hrow{margin-top:20px;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.strike{font-size:32px;font-weight:900;color:#7a878c;text-decoration:line-through;text-decoration-thickness:5px;text-decoration-color:var(--violet)}
+.arrow{font-size:32px;font-weight:900;color:var(--muted)}
+.signal{font-size:32px;font-weight:900;background:var(--teal);color:#f3faf9;padding:6px 16px}
+.one{margin-top:18px;font-size:28px;line-height:1.5;font-weight:700;color:#243038}
+.one b{color:var(--violet)}
+.split{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.col{background:var(--card);border:3px solid var(--teal);padding:22px 24px 20px;min-height:340px}
+.col.out{border-color:var(--violet)}
+.col .lab{font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.14em}
+.col.out .lab{color:var(--violet)}
+.col .lab{color:var(--teal)}
+.col .t{margin-top:6px;font-size:36px;font-weight:900;line-height:1.2}
+.col ul{margin:14px 0 0;padding:0;list-style:none}
+.col li{font-size:26px;font-weight:700;line-height:1.45;padding:6px 0 6px 0;border-top:1px solid var(--line)}
+.col li:first-of-type{border-top:0}
+.col li b{font-weight:900}
+ .teams{margin-top:24px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.team{background:var(--teal);color:#f3faf9;padding:22px 22px 20px;min-height:188px}
+.team .n{font-family:var(--mono);font-size:17px;font-weight:900;letter-spacing:.16em;color:#9ed7d2}
+.team .t{margin-top:8px;font-size:32px;font-weight:900;line-height:1.2}
+.team .d{margin-top:8px;font-size:23px;font-weight:700;line-height:1.35;color:#d5ecea}
+ .chips{margin-top:22px;display:flex;flex-wrap:wrap;gap:12px}
+.chip{font-family:var(--mono);font-size:21px;font-weight:800;letter-spacing:.02em;background:var(--card);border:2px solid var(--teal);color:var(--teal);padding:9px 15px}
+ .warn{margin-top:22px;border-left:12px solid var(--violet);background:#f3eaff;padding:20px 24px}
+.warn .lab{font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.16em;color:var(--violet)}
+.warn .t{margin-top:8px;font-size:30px;font-weight:900;line-height:1.42}
+ .take{margin-top:20px;background:var(--card);border:3px solid var(--line);padding:20px 24px}
+.take .lab{font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.16em;color:var(--teal)}
+.take .t{margin-top:8px;font-size:30px;font-weight:900;line-height:1.42}
+.take b{background:#efe4ff;padding:0 6px}
+ .adv{margin-top:24px}
+.adv .lab{font-family:var(--mono);font-size:19px;font-weight:900;letter-spacing:.16em;color:var(--teal);margin-bottom:12px}
+.adv ol{margin:0;padding:0;list-style:none;counter-reset:n;display:grid;grid-template-columns:1fr 1fr;gap:22px 28px}
+.adv li{counter-increment:n;font-size:28px;font-weight:700;line-height:1.4;display:flex;gap:14px}
+.adv li::before{content:counter(n);flex:0 0 40px;height:40px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:900;font-size:22px;background:var(--violet);color:#fff}
+.end{margin-top:auto;padding:36px 56px 42px;background:var(--teal);color:#f3faf9;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-left:-56px;margin-right:-56px;margin-bottom:-32px;}
+.end .t{font-size:38px;font-weight:900;line-height:1.3}
+.end .t em{font-style:normal;color:#d7b8ff}
+.end .s{font-family:var(--mono);font-size:16px;color:#b7d8d5;text-align:right;line-height:1.5;flex:0 0 430px}
+</style></head><body><div class="card">
+<div class="top"><span class="l">SELF-HOSTED CMA · 私有测试 · 2026-11-12</span><span class="r">编排留下 · 模型出门</span></div>
+<h1>自托管的是编排，<br/><em>模型请求还是要出门</em></h1>
+<div class="hrow"><span class="strike">模型搬进机房</span><span class="arrow">→</span><span class="signal">编排、凭据、会话留下</span></div>
+<div class="one">Anthropic 把 self-hosted Claude Managed Agents 开了私有测试。开发接口跟托管版同一套，<b>申请走 Anthropic 客户团队</b>，个人订阅申请不了。</div>
+<div class="split">
+  <div class="col">
+    <div class="lab">INSIDE · 留在你这边</div>
+    <div class="t">编排和记录不出门</div>
+    <ul>
+      <li>harness（编排层）和沙箱</li>
+      <li>凭据，可放进你的密钥管理</li>
+      <li>会话历史，存在你的 PostgreSQL</li>
+      <li>每步工具调用经 OpenTelemetry 导出</li>
+    </ul>
+  </div>
+  <div class="col out">
+    <div class="lab">OUTSIDE · 还是要出门</div>
+    <div class="t">模型本身在网络外</div>
+    <ul>
+      <li>出口可选 Anthropic、Bedrock、Google Agent Platform、Foundry，或自建网关</li>
+      <li>提示词出去，补全回来</li>
+      <li>有零数据保留协议的，按 Messages API 同一口径算</li>
+    </ul>
+  </div>
+</div>
+<div class="teams">
+  <div class="team"><div class="n">YOU RUN 01</div><div class="t">Managed Agents 服务器</div><div class="d">控制面，跑 agent 循环，对外提供同一套 API</div></div>
+  <div class="team"><div class="n">YOU RUN 02</div><div class="t">PostgreSQL</div><div class="d">存 agent、会话和完整会话历史</div></div>
+  <div class="team"><div class="n">YOU RUN 03</div><div class="t">Sandbox workers</div><div class="d">在沙箱容器里执行 shell 和文件工具</div></div>
+</div>
+<div class="chips">
+  <span class="chip">127.0.0.1:8400</span>
+  <span class="chip">开发栈明文 HTTP</span>
+  <span class="chip">生产用两套 Helm</span>
+  <span class="chip">不迁移托管数据</span>
+  <span class="chip">无 webhook</span>
+  <span class="chip">无定时部署</span>
+</div>
+<div class="warn">
+  <div class="lab">OFFICIAL SCOPE · 官方范围</div>
+  <div class="t">沙箱外的代理把密钥贴上去，官方写明范围是 MCP 和「支持的 API 调用」。agent 还会碰到的其他服务，上线前得自己核一遍。</div>
+</div>
+<div class="take">
+  <div class="lab">TAKE · 判断</div>
+  <div class="t">这是把编排收回来，<b>不是把模型搬进机房</b>。会话记录和凭据落在你的边界里，这层值得自己跑；出口和允许名单没写严，照样会漏。</div>
+</div>
+<div class="adv">
+  <div class="lab">我的建议</div>
+  <ol>
+    <li>先分清要托管的是编排还是模型，别把「自托管」理解成模型不出门</li>
+    <li>上线前核对接入口径，以及密钥代理覆盖不到的调用</li>
+    <li>给每个环境写死允许访问的主机，修构建就只放开 git 和包仓库</li>
+    <li>没有 webhook，就自己准备调度和一直轮询的 worker；会话记录接到现有监控里</li>
+  </ol>
+</div>
+<div class="end">
+  <div class="t">会话记录可以留下，<em>模型请求还是要出门</em></div>
+  <div class="s">来源：Anthropic 官方文章<br/>+ 平台文档 Quickstart / Differences<br/>2026-11-12 私有测试</div>
+</div>
+</div></body></html>

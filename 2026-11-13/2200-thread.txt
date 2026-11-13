@@ -1,0 +1,27 @@
+1/7
+Anthropic 昨天把 self-hosted Claude Managed Agents 开了私有测试：agent 的编排层、沙箱、凭据和会话历史，可以跑在你自己的云或机房里。开发接口跟托管版同一套。申请入口是 Anthropic 客户团队，个人订阅申请不了。
+---
+2/7
+你这边要自己跑三样东西：Managed Agents 服务器、存会话历史的 PostgreSQL，以及执行 shell 和文件工具的 worker。模型请求走你指定的出口：Anthropic、Amazon Bedrock、Google 的 Agent Platform、Microsoft Foundry，或者你自己的网关。模型本身还在你的网络外面，提示词出去，补全回来。有零数据保留协议的，这次出门按 Messages API 同一套口径算。
+---
+3/7
+安全设计拆成四条。脑子和手分开：harness 调模型，沙箱跑代码，会话日志和保险库密钥留在沙箱外面，沙箱只在工具调用时才启动。凭据也不进沙箱，MCP 和官方支持的 API 调用由沙箱外的代理把密钥贴上去；自托管可以把密钥放进你自己的密钥管理。环境还能锁到允许的主机名单，修构建的 agent 也许只准访问 git 和包仓库。每一步工具调用和返回都会留下记录，经 OpenTelemetry 导出。
+---
+4/7
+文档把和托管版的差别写得很清楚。没有定时部署，也没有 webhook，靠 webhook 拉起的 worker 在这边不会启动，得自己用 cron 开会话、让 worker 一直轮询。托管服务上的 agent、技能、保险库凭据、记忆库和会话历史都不会迁过来，要在新服务器上重建。开发用 Docker Compose，默认只在 127.0.0.1:8400 提供明文 HTTP，生产环境官方建议用附带的两套 Helm chart。
+---
+5/7
+我的看法：这是把编排收回来，不是把模型搬进机房。会话记录、凭据和代码执行落在你的边界里，这层值得自己跑。但提示词还是要出门，出口选错、允许名单没写严、密钥代理覆盖不到的调用，照样会漏。官方写明，沙箱外代理贴密钥的范围是 MCP 和「支持的 API 调用」，agent 还会碰到的其他服务，上线前得自己核一遍。
+---
+6/7
+我的建议：
+1. 先分清要托管的是编排还是模型，别把「自托管」理解成模型不出门
+2. 上线前核对接入口径，以及密钥代理覆盖不到的调用
+3. 给每个环境写死允许访问的主机，修构建就只放开 git 和包仓库
+4. 没有 webhook，就自己准备调度和一直轮询的 worker；会话记录接到现有监控里
+---
+7/7
+来源：Anthropic《Operate Claude Managed Agents inside your security perimeter》；平台文档 Quickstart、Differences from the hosted service
+https://claude.com/resources/articles/self-hosted-claude-managed-agents
+https://platform.claude.com/docs/en/managed-agents/self-hosted/quickstart
+https://platform.claude.com/docs/en/managed-agents/self-hosted/differences
