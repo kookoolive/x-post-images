@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>该闭嘴时，模型只对了六成</title>
+<style>
+:root{--bg:#efe4c4;--ink:#14151c;--blue:#1d4ed8;--red:#c81e1e;--card:#fffaf1;--muted:#5c5648;--line:#d9cba8;
+--sans:"Noto Sans CJK SC","Noto Sans SC",sans-serif;--mono:"Noto Sans Mono CJK SC","DejaVu Sans Mono",monospace;}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:36px 52px 28px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+background:
+  radial-gradient(circle at 90% 8%,rgba(29,78,216,.16) 0 140px,transparent 400px),
+  radial-gradient(circle at 8% 94%,rgba(200,30,30,.12) 0 150px,transparent 420px),
+  radial-gradient(circle at 50% 40%,rgba(255,255,255,.28) 0 280px,transparent 620px),
+  repeating-radial-gradient(circle at 0 0,rgba(20,21,28,.05) 0 1px,transparent 1px 18px),
+  var(--bg)}
+.top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:22px;font-weight:900;letter-spacing:.14em}
+.top .l{background:var(--blue);color:#f4f7ff;padding:8px 18px}
+.top .r{color:var(--red)}
+h1{margin:18px 0 0;font-size:78px;line-height:1.08;font-weight:900;letter-spacing:-.03em}
+h1 em{font-style:normal;color:var(--blue)}
+.hrow{margin-top:16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.strike{font-size:30px;font-weight:900;color:#7a7264;text-decoration:line-through;text-decoration-thickness:5px;text-decoration-color:var(--red)}
+.arrow{font-size:30px;font-weight:900;color:var(--muted)}
+.signal{font-size:30px;font-weight:900;background:var(--blue);color:#f4f7ff;padding:6px 16px}
+.one{margin-top:14px;font-size:26px;line-height:1.45;font-weight:700;color:#2a2c34}
+.one b{color:var(--blue)}
+.stats{margin-top:18px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.stat{background:var(--ink);color:#fffaf1;padding:18px 20px 16px}
+.stat .n{font-family:var(--mono);font-size:16px;font-weight:900;letter-spacing:.16em;color:#c9c3b2}
+.stat .v{margin-top:4px;font-size:54px;font-weight:900;letter-spacing:-.03em;line-height:1}
+.stat .d{margin-top:6px;font-size:22px;font-weight:700;color:#efe6d0}
+.stat.mid{background:var(--red)}
+.stat.mid .n{color:#f3c7c7}
+.ranks{margin-top:16px;display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:14px}
+.rk{background:var(--card);border:3px solid var(--ink);padding:16px 18px 14px}
+.rk .lab{font-family:var(--mono);font-size:16px;font-weight:900;letter-spacing:.14em;color:var(--muted)}
+.rk .t{margin-top:4px;font-size:30px;font-weight:900;line-height:1.2}
+.rk .s{margin-top:2px;font-size:40px;font-weight:900;color:var(--blue);letter-spacing:-.03em}
+.price{margin-top:16px;display:grid;grid-template-columns:1.2fr 1fr;gap:14px}
+.box{background:var(--card);border:3px solid var(--blue);padding:16px 20px 14px}
+.box .lab{font-family:var(--mono);font-size:16px;font-weight:900;letter-spacing:.14em;color:var(--blue)}
+.box .t{margin-top:6px;font-size:28px;font-weight:800;line-height:1.4}
+.box .t b{font-weight:900;color:var(--red)}
+.split{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.col{background:var(--card);border:3px solid var(--ink);padding:16px 20px 14px}
+.col.bad{border-color:var(--red)}
+.col .lab{font-family:var(--mono);font-size:16px;font-weight:900;letter-spacing:.12em}
+.col.bad .lab{color:var(--red)}
+.col .t{margin-top:4px;font-size:30px;font-weight:900;line-height:1.25}
+.col p{margin:8px 0 0;font-size:24px;font-weight:700;line-height:1.4}
+.take{margin-top:16px;background:var(--blue);color:#f4f7ff;padding:18px 22px 16px;border-left:10px solid #0b2a8a}
+.take .lab{font-family:var(--mono);font-size:16px;font-weight:900;letter-spacing:.16em;color:#bfcfff}
+.take .t{margin-top:6px;font-size:28px;font-weight:800;line-height:1.4}
+.take b{font-weight:900;color:#fff}
+.adv{margin-top:16px;background:var(--card);border:3px solid var(--ink);padding:16px 22px 16px;flex:1;display:flex;flex-direction:column}
+.adv .lab{font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.12em}
+.adv ol{margin:8px 0 0;padding:0 0 0 36px}
+.adv li{font-size:26px;font-weight:700;line-height:1.5;padding:7px 0}
+.adv .note{margin-top:auto;font-size:22px;font-weight:700;color:var(--muted);border-top:2px solid var(--line);padding-top:12px}
+.end{margin-top:14px;background:var(--ink);color:#fffaf1;padding:16px 22px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.end .t{font-size:30px;font-weight:900;line-height:1.3}
+.end em{font-style:normal;color:#f5d36a}
+.end .s{font-family:var(--mono);font-size:18px;font-weight:700;line-height:1.4;color:#c9c3b2;text-align:right;white-space:nowrap}
+</style></head>
+<body>
+<div class="card">
+  <div class="top"><div class="l">DEEPNOTE · AGENT INITIATIVE</div><div class="r">2026-11-13 · 12 MODELS</div></div>
+  <h1>该闭嘴时，<em>模型只对了六成</em></h1>
+  <div class="hrow">
+    <span class="strike">会回就算会干活</span>
+    <span class="arrow">→</span>
+    <span class="signal">先判断该不该开口</span>
+  </div>
+  <div class="one">12 个模型 × 50 个职场情境，同一套工具和 <b>180 秒</b>预算，放进虚构公司 PageMantle 的 Slack。这期比的是模型，不是编排。</div>
+  <div class="stats">
+    <div class="stat"><div class="n">HELP NEEDED</div><div class="v">9/10</div><div class="d">该帮忙时会开口</div></div>
+    <div class="stat mid"><div class="n">SHOULD BE SILENT</div><div class="v">6/10</div><div class="d">该闭嘴时才对了六成</div></div>
+    <div class="stat"><div class="n">FALSE ALARM COST</div><div class="v">1.8×</div><div class="d">乱开口的花费和时间</div></div>
+  </div>
+  <div class="ranks">
+    <div class="rk"><div class="lab">01 · 总分</div><div class="t">GPT-6 Astra</div><div class="s">8.97</div></div>
+    <div class="rk"><div class="lab">02</div><div class="t">GPT-6.1 Sol</div><div class="s">8.65</div></div>
+    <div class="rk"><div class="lab">03</div><div class="t">Fable 5.2</div><div class="s">8.17</div></div>
+  </div>
+  <div class="price">
+    <div class="box">
+      <div class="lab">PRICE · 价差不是分差</div>
+      <div class="t">Luna 每题 <b>$0.007</b>，Fable 5.1 每题 <b>$3.02</b>，约 <b>430 倍</b>，分差只有 1.1 分。最贵的三名排在第 3 到第 5。</div>
+    </div>
+    <div class="box">
+      <div class="lab">MONTH · 约 2500 条线程</div>
+      <div class="t">Sol <b>$281</b><br/>Astra <b>$1,732</b><br/>Fable 5.2 <b>$4,684</b></div>
+    </div>
+  </div>
+  <div class="split">
+    <div class="col bad">
+      <div class="lab">FAIL · 查到超时</div>
+      <div class="t">调用最多的反而垫底</div>
+      <p>Argon 平均 35 次调用、5.60 分；Grok 36 次、4.51 分。协助题大约一半没发出，分别拿到 17 个和 20 个零分。</p>
+    </div>
+    <div class="col bad">
+      <div class="lab">FAIL · 不该说还说</div>
+      <div class="t">写对了，事却已了结</div>
+      <p>Luna、DeepSeek V4.1 Flash、Mistral Large 4 在 10 道静默题里有 6 道仍发了消息。最好的模型也只对了 8/10。</p>
+    </div>
+  </div>
+  <div class="take">
+    <div class="lab">TAKE · 判断</div>
+    <div class="t">常驻工位频道的 agent，不能只看会不会查、会不会写。<b>不该开口时开口，既吵又贵，质量检查还拦不住。</b>分析类是 12 个模型里 8 个的弱项；核对声明普遍更好。</div>
+  </div>
+  <div class="adv">
+    <div class="lab">我的建议</div>
+    <ol>
+      <li>把「这件事是不是已经有人处理了」写成明确步骤，误报警单独记账</li>
+      <li>按任务类型分路由，别把旗舰当默认档；数字核对、可能已了结的事项再升级</li>
+      <li>给调查设预算和截止点，时限到了必须发消息或选择沉默</li>
+      <li>用自己的任务配比复测：这期比的是模型不是编排，换工具策略分数会变</li>
+    </ol>
+    <div class="note">局限：50 题面板 · 固定快照、对方不回话 · 只通过 Slack 回复 · 全部跑 high 档</div>
+  </div>
+  <div class="end">
+    <div class="t">误发的消息往往写得对，<em>质量检查拦不住</em></div>
+    <div class="s">来源：Deepnote Research<br/>Agent Initiative Benchmark<br/>2026-11-13 · 开源数据与代码</div>
+  </div>
+</div>
+</body></html>
