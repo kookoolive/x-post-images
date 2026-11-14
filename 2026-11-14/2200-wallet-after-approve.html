@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>刷脸批的是这一笔，续费它不管</title>
+<style>
+:root{--bg:#241430;--ink:#1a1220;--pink:#ff4f9a;--cyan:#38bdf8;--card:#fbf8f2;--muted:#6b5f72;--soft:#d9cfe0;
+--sans:"Noto Sans CJK SC","Noto Sans SC",sans-serif;--mono:"Noto Sans Mono CJK SC","DejaVu Sans Mono",monospace;}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:38px 54px 30px;font-family:var(--sans);color:#f7f1fa;display:flex;flex-direction:column;
+background:
+ radial-gradient(circle at 88% 6%,rgba(255,79,154,.30) 0 120px,transparent 430px),
+ radial-gradient(circle at 6% 92%,rgba(56,189,248,.22) 0 140px,transparent 440px),
+ linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px) 0 0/40px 40px,
+ linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px) 0 0/40px 40px,
+ var(--bg)}
+.top{display:flex;gap:12px;align-items:center;font-family:var(--mono);font-size:21px;font-weight:900;letter-spacing:.12em}
+.chip{border:2px solid var(--pink);color:var(--pink);padding:6px 16px;border-radius:999px}
+.chip.c{border-color:var(--cyan);color:var(--cyan)}
+.top .r{margin-left:auto;color:var(--soft)}
+h1{margin:22px 0 0;font-size:84px;line-height:1.06;font-weight:900;letter-spacing:-.03em}
+h1 em{font-style:normal;color:var(--pink)}
+.hrow{margin-top:18px;display:flex;gap:16px;align-items:center}
+.strike{font-size:30px;font-weight:900;color:#a898b0;text-decoration:line-through;text-decoration-thickness:5px;text-decoration-color:var(--pink)}
+.arrow{font-size:30px;font-weight:900;color:var(--soft)}
+.signal{font-size:30px;font-weight:900;background:var(--cyan);color:#071a26;padding:6px 16px;border-radius:8px}
+.one{margin-top:14px;font-size:26px;line-height:1.45;font-weight:700;color:#e6dcec}
+.one b{color:var(--cyan)}
+.flow{margin-top:20px;display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.step{position:relative;background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.18);padding:14px 18px 12px;margin-right:22px;border-radius:14px}
+.step:after{content:"→";position:absolute;right:-24px;top:34%;font-size:26px;font-weight:900;color:var(--pink)}
+.step:last-child{margin-right:0}.step:last-child:after{content:""}
+.step .n{font-family:var(--mono);font-size:16px;font-weight:900;letter-spacing:.14em;color:var(--pink)}
+.step .t{margin-top:4px;font-size:27px;font-weight:900}
+.step .d{margin-top:2px;font-size:20px;font-weight:700;color:#cfc4d6;line-height:1.35}
+.mid{margin-top:20px;display:grid;grid-template-columns:1fr 1.15fr;gap:18px}
+.receipt{background:var(--card);color:var(--ink);padding:20px 24px 18px;position:relative;
+ -webkit-mask:radial-gradient(circle at 12px 100%,transparent 11px,#000 12px) 0 0/24px 100% repeat-x;}
+.receipt .lab{font-family:var(--mono);font-size:17px;font-weight:900;letter-spacing:.14em;color:var(--muted)}
+.receipt .row{display:flex;justify-content:space-between;font-size:26px;font-weight:800;padding:7px 0;border-bottom:2px dashed #d8cdd9}
+.receipt .row span:last-child{font-family:var(--mono);font-size:20px;color:var(--muted)}
+.receipt .row.hot{color:#c4136a}
+.receipt .row.hot span:last-child{color:#c4136a}
+.receipt .tok{margin-top:12px;font-size:21px;font-weight:700;line-height:1.45;color:#3a2f40}
+.receipt .tok b{color:#c4136a}
+.quotes{display:flex;flex-direction:column;gap:14px}
+.q{background:rgba(255,79,154,.12);border-left:10px solid var(--pink);padding:16px 20px;border-radius:0 12px 12px 0}
+.q .lab{font-family:var(--mono);font-size:16px;font-weight:900;letter-spacing:.14em;color:var(--pink)}
+.q .en{margin-top:4px;font-family:var(--mono);font-size:19px;font-weight:700;color:#cfc4d6;line-height:1.4}
+.q .t{margin-top:6px;font-size:27px;font-weight:900;line-height:1.35}
+.scope{background:rgba(56,189,248,.10);border:2px solid var(--cyan);padding:14px 20px;border-radius:12px;font-size:22px;font-weight:700;line-height:1.45;color:#e2f4fd}
+.scope b{color:var(--cyan)}
+.who{margin-top:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.w{background:var(--card);color:var(--ink);padding:14px 18px;border-radius:12px;border-top:8px solid var(--cyan)}
+.w.p{border-top-color:var(--pink)}
+.w .k{font-family:var(--mono);font-size:16px;font-weight:900;letter-spacing:.14em;color:var(--muted)}
+.w .t{margin-top:2px;font-size:30px;font-weight:900}
+.w .d{margin-top:2px;font-size:21px;font-weight:700;line-height:1.4;color:#3a2f40}
+.merch{margin-top:16px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.merch .lab{font-family:var(--mono);font-size:17px;font-weight:900;letter-spacing:.14em;color:var(--cyan);margin-right:4px}
+.merch span.m{font-size:21px;font-weight:800;border:2px solid rgba(255,255,255,.28);padding:5px 14px;border-radius:999px;color:#efe7f4}
+.take{margin-top:18px;background:var(--pink);color:#fff;padding:18px 24px 16px;border-radius:14px}
+.take .lab{font-family:var(--mono);font-size:16px;font-weight:900;letter-spacing:.16em;color:#ffe0ee}
+.take .t{margin-top:6px;font-size:28px;font-weight:800;line-height:1.42}
+.adv{margin-top:18px;background:var(--card);color:var(--ink);padding:18px 24px;border-radius:14px;flex:1;display:flex;flex-direction:column}
+.adv .lab{font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.12em;color:#c4136a}
+.adv ol{margin:8px 0 0;padding:0 0 0 36px}
+.adv li{font-size:26px;font-weight:700;line-height:1.48;padding:6px 0}
+.end{margin-top:16px;border-top:3px solid var(--cyan);padding-top:14px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.end .t{font-size:32px;font-weight:900;line-height:1.3}
+.end em{font-style:normal;color:var(--cyan)}
+.end .s{font-family:var(--mono);font-size:17px;font-weight:700;line-height:1.45;color:#bfb2c8;text-align:right;white-space:nowrap}
+</style></head>
+<body><div class="card">
+ <div class="top"><span class="chip">OPENAI · CHATGPT WALLET</span><span class="chip c">AMEX · MASTERCARD · VISA</span><span class="r">2026-11-13 · US PRO</span></div>
+ <h1>刷脸批的是这一笔，<br/><em>续费它不管</em></h1>
+ <div class="hrow"><span class="strike">每笔刷脸就万事大吉</span><span class="arrow">→</span><span class="signal">批完之后还有三件事</span></div>
+ <div class="one">dot（OpenAI 的常驻 agent）替你结账，商家和 agent 都拿不到真卡号。先给美国 <b>18 岁以上 Pro 用户</b>、合格的美国发行信用卡，逐步推送。</div>
+ <div class="flow">
+  <div class="step"><div class="n">01</div><div class="t">卡加一次</div><div class="d">安全表单里填，不进聊天</div></div>
+  <div class="step"><div class="n">02</div><div class="t">看确认页</div><div class="d">商家、商品、总额、卡、条款</div></div>
+  <div class="step"><div class="n">03</div><div class="t">刷脸批准</div><div class="d">Face ID / 指纹，每笔一次</div></div>
+  <div class="step"><div class="n">04</div><div class="t">token 结账</div><div class="d">卡组织发替身卡号</div></div>
+ </div>
+ <div class="mid">
+  <div class="receipt">
+   <div class="lab">确认页上要看的</div>
+   <div class="row"><span>商家</span><span>MERCHANT</span></div>
+   <div class="row"><span>商品</span><span>ITEMS</span></div>
+   <div class="row"><span>总额</span><span>TOTAL</span></div>
+   <div class="row"><span>选的哪张卡</span><span>CARD</span></div>
+   <div class="row"><span>运费</span><span>SHIPPING</span></div>
+   <div class="row hot"><span>循环扣款条款</span><span>RECURRING</span></div>
+   <div class="tok">批准后发的 token 带<b>卡号、安全码、有效期</b>，结账时填的号和你实体卡上的不一样。</div>
+  </div>
+  <div class="quotes">
+   <div class="q"><div class="lab">帮助页 · 第一句</div><div class="en">“Ready to check out” … does not confirm that the merchant has placed your order.</div><div class="t">批完了 ≠ 下单了。结果不明先找商家确认，别急着再买一次。</div></div>
+   <div class="q"><div class="lab">帮助页 · 第二句</div><div class="en">the merchant may store the payment credential and charge it again</div><div class="t">同意循环付费，商家可以存下凭据按条款再扣；删卡也取消不了已有订单。</div></div>
+   <div class="scope">范围比发布帖窄：只在 <b>dot 对话</b>里能用，Chat、Work、独立 Codex 线程都没有。不收借记卡，上线时不收虚拟卡；Chase 须主卡人。</div>
+  </div>
+ </div>
+ <div class="who">
+  <div class="w"><div class="k">订单 · 退货 · 退款</div><div class="t">找商家</div><div class="d">按商家自己的政策处理</div></div>
+  <div class="w"><div class="k">拒付 · 不认识的扣款</div><div class="t">找发卡行</div><div class="d">积分和合格争议保护照旧</div></div>
+  <div class="w p"><div class="k">跟你批的不一样</div><div class="t">找 OpenAI</div><div class="d">Wallet 报错、账号被盗</div></div>
+ </div>
+ <div class="merch"><span class="lab">商家那头</span><span class="m">Web Bot Auth 签名请求</span><span class="m">风控别误拒</span><span class="m">Forter · Riskified · Sardine · Signifyd</span><span class="m">Adyen · Checkout.com · Stripe</span><span class="m">产品 feed</span><span class="m">plugin / WebMCP</span></div>
+ <div class="take"><div class="lab">TAKE · 判断</div><div class="t">每笔刷脸解决了两件事：agent 摸不到卡号，每一笔都有授权记录。批完之后的事它不管：订单成没成、订阅后面扣几次、出了问题找谁。OpenAI 说以后要按额度、品类、时间段预批准，这张确认页只会越来越少出现。</div></div>
+ <div class="adv"><div class="lab">我的建议</div><ol>
+  <li>确认页把循环扣款条款放在总额旁边，不要折叠</li>
+  <li>agent 重试结账前先查订单状态，按订单号去重</li>
+  <li>每次授权存下商家、金额和条款原文，对账时对得上</li>
+  <li>做商家的，先查防火墙和风控会不会把签过名的 agent 请求拒掉</li>
+ </ol></div>
+ <div class="end"><div class="t"><em>Ready to check out</em> 只说明你批完了</div><div class="s">来源：OpenAI《Introducing ChatGPT Wallet》<br/>Help Center · Making purchases with ChatGPT Wallet<br/>2026-11-13</div></div>
+</div></body></html>

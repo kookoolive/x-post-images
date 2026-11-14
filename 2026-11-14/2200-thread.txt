@@ -1,0 +1,28 @@
+1/7
+OpenAI 昨天上线 ChatGPT Wallet，和 Amex、Mastercard、Visa 一起做：你的 dot（OpenAI 的常驻 agent）可以替你结账，全程拿不到你的真实卡号。先给美国 18 岁以上的 Pro 用户，逐步推送。
+---
+2/7
+一笔怎么走：卡只加一次。每次结账前，你看商家、商品、总额、选的哪张卡，还有运费和循环扣款条款，点 Approve，再过一次 Face ID 或指纹。批准之后，卡组织发一个支付 token，带替身卡号、安全码和有效期，商家和 agent 都看不到真卡。
+---
+3/7
+帮助页写的范围比发布帖窄：只在跟 dot 的对话里能用，普通 Chat、Work、独立的 Codex 线程都没有。卡只收美国发行的 Amex、Chase、Mastercard、Visa 信用卡，借记卡不行，上线时也不收虚拟卡；Chase 必须是主卡人。
+---
+4/7
+帮助页里有两句值得抄下来。一句是 Ready to check out 只说明你批完了，不代表商家已经下单，结果不明先去找商家确认，别急着再买一次。另一句是你同意了循环或连续付费，商家可以存下这张凭据按条款再扣，要停得找商家；把卡从 Wallet 删掉，也取消不了已有订单。
+---
+5/7
+商家那头要动的不少。CDN 和防火墙要认 Web Bot Auth 签名请求，别把 ChatGPT 的 agent 当爬虫挡掉；风控可能把正常的 agent 订单判成可疑，OpenAI 拉了 Forter、Riskified、Sardine、Signifyd，以及 Adyen、Checkout.com、Stripe 一起调。另外可以挂产品 feed、做 plugin，或者加 WebMCP 工具。
+---
+6/7
+我的看法：每笔刷脸解决了两件事，agent 摸不到卡号，每一笔都有授权记录。批完之后的事它不管：订单到底成没成，订阅后面扣几次，出了问题找谁。订单退款找商家，拒付和不认识的扣款找发卡行，跟你批的不一样才找 OpenAI。OpenAI 还说以后要让人按额度、品类、时间段预批准，到那时这张确认页只会越来越少出现。
+---
+7/7
+我的建议：
+1. 确认页把循环扣款条款放在总额旁边，不要折叠
+2. agent 重试结账前先查订单状态，按订单号去重
+3. 每次授权存下商家、金额和条款原文，对账时对得上
+4. 做商家的，先查防火墙和风控会不会把签过名的 agent 请求拒掉
+
+来源：OpenAI《Introducing ChatGPT Wallet》与帮助中心（2026-11-13）
+https://openai.com/index/introducing-chatgpt-wallet/
+https://help.openai.com/en/articles/20001654-making-purchases-with-chatgpt-wallet
