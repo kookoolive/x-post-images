@@ -1,0 +1,79 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"/><title>攻击 agent 不带模型</title><style>
+:root{--bg:#e9e6f2;--navy:#14213d;--green:#16a34a;--lime:#22c55e;--card:#fbfaff;--ink:#11152a;--muted:#5d6280;
+--sans:"Noto Sans CJK SC","Noto Sans SC",sans-serif;--mono:"Noto Sans Mono CJK SC","DejaVu Sans Mono",monospace;}
+*{box-sizing:border-box}html,body{margin:0;width:1500px;height:2000px;overflow:hidden}
+.card{zoom:1.15;width:1304px;height:1739px;padding:34px 46px 30px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+background:radial-gradient(circle at 92% 4%,rgba(34,197,94,.22) 0 110px,transparent 420px),radial-gradient(circle at 4% 96%,rgba(20,33,61,.18) 0 140px,transparent 460px),
+repeating-linear-gradient(0deg,rgba(20,33,61,.05) 0 1px,transparent 1px 34px),var(--bg)}
+.doc{display:flex;align-items:stretch;border:3px solid var(--navy);font-family:var(--mono);font-weight:900;font-size:20px;letter-spacing:.1em}
+.doc div{padding:10px 18px;border-right:3px solid var(--navy)}.doc div:last-child{border-right:0;margin-left:auto}
+.doc .tlp{background:var(--navy);color:#fff}.doc .g{color:var(--green)}
+h1{margin:26px 0 0;font-size:90px;line-height:1.05;font-weight:900;letter-spacing:-.03em;color:var(--navy)}
+h1 em{font-style:normal;background:linear-gradient(transparent 62%,rgba(34,197,94,.45) 62%,rgba(34,197,94,.45) 88%,transparent 88%)}
+.hrow{margin-top:40px;display:flex;gap:16px;align-items:center}
+.strike{font-size:31px;font-weight:900;color:#8a8ea6;text-decoration:line-through;text-decoration-thickness:5px;text-decoration-color:#e11d48}
+.arrow{font-size:30px;font-weight:900}.signal{font-size:31px;font-weight:900;background:var(--navy);color:#bbf7d0;padding:6px 18px;border-radius:6px}
+.nums{margin-top:26px;display:grid;grid-template-columns:repeat(4,1fr);border-top:6px solid var(--navy);border-bottom:2px solid var(--navy)}
+.n{padding:14px 18px 12px;border-right:2px dashed rgba(20,33,61,.35)}.n:last-child{border-right:0}
+.n .v{font-family:var(--mono);font-size:58px;font-weight:900;color:var(--navy);letter-spacing:-.03em}.n .v small{font-size:28px}
+.n .d{font-size:21px;font-weight:700;color:var(--muted);line-height:1.35}
+.arch{margin-top:24px;background:var(--navy);color:#e8ecff;border-radius:16px;padding:22px 26px}
+.arch .lab{font-family:var(--mono);font-size:17px;font-weight:900;letter-spacing:.16em;color:var(--lime)}
+.flow{margin-top:14px;display:grid;grid-template-columns:1.1fr .2fr 1.4fr .2fr 1.3fr;align-items:center}
+.box{border:2px solid rgba(187,247,208,.55);border-radius:12px;padding:12px 16px;font-size:23px;font-weight:800;line-height:1.35}
+.box b{display:block;font-family:var(--mono);font-size:25px;color:#fff}.box span{color:#b7bfdc;font-size:20px;font-weight:700}
+.ar{text-align:center;font-size:34px;font-weight:900;color:var(--lime)}
+.keys{margin-top:16px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.keys .k{font-family:var(--mono);font-size:20px;font-weight:900;padding:5px 14px;border-radius:999px;background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.25)}
+.keys .k.x{text-decoration:line-through;color:#fda4af;border-color:#fda4af}
+.keys .t{font-size:21px;font-weight:700;color:#cbd2ee;margin-left:6px}
+.two{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.panel{background:var(--card);border-radius:14px;padding:18px 22px;border-left:10px solid var(--navy)}
+.panel.g{border-left-color:var(--green)}
+.panel .lab{font-family:var(--mono);font-size:17px;font-weight:900;letter-spacing:.14em;color:var(--muted)}
+.chips{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+.chips span{font-size:21px;font-weight:800;padding:5px 12px;border-radius:8px;background:#eef0f8}
+.panel p{margin:8px 0 0;font-size:22px;font-weight:700;line-height:1.5}.panel code{font-family:var(--mono);font-size:19px;background:#e7f9ee;color:#14532d;padding:2px 8px;border-radius:6px}
+.take{margin-top:22px;background:var(--green);color:#fff;border-radius:14px;padding:18px 26px;font-size:29px;font-weight:900;line-height:1.42}
+.take small{display:block;font-family:var(--mono);font-size:16px;letter-spacing:.16em;opacity:.85}
+.todo{margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:12px 18px}
+.todo .h{grid-column:1/-1;font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.16em;color:var(--navy)}
+.it{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:2px solid rgba(20,33,61,.18);border-radius:12px;padding:14px 18px}
+.it i{font-style:normal;font-family:var(--mono);font-size:30px;font-weight:900;color:var(--green);line-height:1}
+.it div{font-size:23px;font-weight:800;line-height:1.4}
+.end{margin-top:auto;background:var(--navy);color:#fff;padding:20px 26px;border-radius:12px;display:flex;justify-content:space-between;align-items:center}
+.end b{font-size:32px;font-weight:900}.end b em{font-style:normal;color:var(--lime)}.end span{font-family:var(--mono);font-size:17px;color:#aab3d6;text-align:right;line-height:1.5}
+</style></head><body><div class="card">
+<div class="doc"><div class="tlp">TLP:CLEAR</div><div>FBI FLASH-20261113-001</div><div class="g">ARTEX · 自主渗透框架</div><div>2026-11-13</div></div>
+<h1>攻击用的 agent 不带模型，<br/><em>封一个 key，就换下一家</em></h1>
+<div class="hrow"><span class="strike">指望模型商拒答</span><span class="arrow">→</span><span class="signal">先收暴露面，盯出站和速率</span></div>
+<div class="nums">
+<div class="n"><div class="v">&lt;3<small>小时</small></div><div class="d">部分入侵从锁定目标到拿到高权限</div></div>
+<div class="n"><div class="v">~6.7<small>万人</small></div><div class="d">韩国金融机构个人信息被拖走</div></div>
+<div class="n"><div class="v">2250+</div><div class="d">ConnectWise 云备份波及的下游租户</div></div>
+<div class="n"><div class="v">1600+</div><div class="d">11 月初公网暴露的 ARTEX 控制台</div></div>
+</div>
+<div class="arch"><div class="lab">它的结构 · 跟你在做的 agent 几乎一样（据 Datadog 拆解）</div>
+<div class="flow">
+<div class="box"><b>planner</b><span>一句话目标拆成「意图」</span></div><div class="ar">→</div>
+<div class="box"><b>worker × 3</b><span>默认三个并行，命令拦截：放行 / 拒绝 / 问人</span></div><div class="ar">→</div>
+<div class="box"><b>黑板图</b><span>任务、事实、发现；allow/deny + 超时收尾</span></div>
+</div>
+<div class="keys"><span class="k x">provider A · key 被封</span><span class="ar" style="font-size:26px">→</span><span class="k">provider B</span><span class="k">provider C</span><span class="t">接 Claude / GPT / DeepSeek / GLM / Grok / Kimi；攻击者实例里 DeepSeek Flash 最多</span></div>
+</div>
+<div class="two">
+<div class="panel"><div class="lab">它专挑没人盯的地方</div><div class="chips"><span>合作方/供应商门户</span><span>移动后端</span><span>员工应用</span><span>老服务</span><span>第三方集成</span><span>前端包里的管理员密码</span><span>不鉴权 Web API</span><span>SSRF</span><span>IDOR</span><span>SQL 注入</span></div></div>
+<div class="panel g"><div class="lab">留下的痕迹（FBI / Wiz / Datadog）</div>
+<p>爆破前先请求不存在的路径 <code>/zzz-nonexistent-xyz123</code></p>
+<p>出站调用 <code>api.anthropic.com</code> <code>api.deepseek.com</code> <code>open.bigmodel.cn</code> <code>api.x.ai</code>（需结合其他异常排查）</p>
+<p>短时爆发、成批递增的失败尝试</p></div>
+</div>
+<div class="take"><small>我的看法</small>key 能换，模型也能换。挡住它要靠露在外面的面更少、接口有限速。出站调模型能当告警的前提，是你先说得清哪些机器本来就该调。</div>
+<div class="todo"><div class="h">我的建议 · 四件事</div>
+<div class="it"><i>1</i><div>列清单：哪些服务、哪些机器该调模型 API，单子外的出站按告警处理</div></div>
+<div class="it"><i>2</i><div>管理口、Kudu/SCM、备份平台只走内网或专线</div></div>
+<div class="it"><i>3</i><div>门户按会话限速，连续翻号、单次读太多记录就报警</div></div>
+<div class="it"><i>4</i><div>仓库、CI、镜像、前端包持续扫密钥，露了就轮换</div></div>
+</div>
+<div class="end"><b>开源仓库 10/8 已下架，<em>fork 和 PRO 版还在传</em></b><span>来源：FBI FLASH-20261113-001<br/>Datadog Security Labs 2026-11-09</span></div>
+</div></body></html>

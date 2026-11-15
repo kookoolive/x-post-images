@@ -1,0 +1,29 @@
+1/8
+FBI 11 月 13 日发了一份 FLASH，点名开源攻击框架 ARTEX：至少从 8 月起被多路人马拿来真打，金融、政府、能源、医疗、制造都在名单里。有的入侵从锁定目标到拿到高权限不到三小时。韩国金融机构约 6.7 万人的信息被拖走，ConnectWise 云备份一条线波及 2250 多个下游租户。
+---
+2/8
+它自己不带模型。操作者填上 Claude、GPT、DeepSeek、GLM、Grok、Kimi 的 key 就能跑。FBI 说攻击者实例里用得最多的是 DeepSeek Flash 系列：便宜，包装成渗透测试时几乎看不到护栏。Datadog 拆了控制台：一家把 key 封了，它就切到下一家接着打。
+---
+3/8
+架构跟大家正在做的 agent 几乎一样：planner 给 worker 派意图，默认三个并行；任务、事实、发现都记在一张黑板图上；每个任务带 allow/deny 约束和超时收尾；命令拦截规则可以放行、拒绝或转给人判断。连问旁支问题的 /btw 都有。
+---
+4/8
+它最爱挑没人盯的边缘系统：合作方和供应商门户、移动后端、员工应用、老服务、第三方集成。FBI 列的入口有 SPA 前端包里硬编码的管理员密码、不鉴权的 Web API、SSRF、IDOR、SQL 注入。全是老毛病，只是被机器按分钟串成一条链。
+---
+5/8
+开源仓库 10 月 8 日就下架了，拦不住：fork、镜像、本地化版本和收费的 ARTEX PRO 都还在传。11 月初研究者在公网数到 1600 多个 ARTEX 控制台。Wiz 和 Datadog 都记下一个习惯：每轮爆破前，先请求一个不存在的路径，比如 /zzz-nonexistent-xyz123，摸清 404 长什么样。
+---
+6/8
+我的看法：指望模型商拒答挡不住它，key 能换，模型也能换。它靠的是露在外面的面和不限速的接口。FBI 把出站调用 api.anthropic.com、api.deepseek.com、open.bigmodel.cn、api.x.ai 也列进了排查指标。这条要管用，前提是你先说得清哪些机器本来就该调模型。
+---
+7/8
+我的建议：
+1. 列清单：哪些服务、哪些机器该调模型 API，单子外的出站调用按告警处理
+2. 管理口、Kudu/SCM、备份平台只走内网或专线
+3. 门户按会话限速，连续翻号、单次读太多记录就报警
+4. 仓库、CI、镜像、前端包持续扫密钥，露了就轮换
+---
+8/8
+来源：FBI FLASH-20261113-001（2026-11-13）；Datadog Security Labs（2026-11-09）
+https://www.ic3.gov/CSA/2026/261113.pdf
+https://securitylabs.datadoghq.com/articles/artex-agentic-attacks-aws-environments/
