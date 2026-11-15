@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/><title>审的是整段脚本</title>
+<style>
+:root{--bg:#efe4cc;--ink:#161410;--orange:#e2410a;--teal:#0f5f5b;--card:#fffaf2;--muted:#6a5e4e;--soft:#c4b49a;
+--sans:"Noto Sans CJK SC","Noto Sans SC",sans-serif;--mono:"Noto Sans Mono CJK SC","DejaVu Sans Mono",monospace;}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:36px 50px 28px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+background:
+ radial-gradient(circle at 90% 4%,rgba(226,65,10,.20) 0 120px,transparent 430px),
+ radial-gradient(circle at 5% 94%,rgba(15,95,91,.16) 0 140px,transparent 460px),
+repeating-linear-gradient(135deg,rgba(22,20,16,.045) 0 2px,transparent 2px 18px),
+ var(--bg)}
+.top{display:flex;gap:10px;align-items:center;font-family:var(--mono);font-size:20px;font-weight:900;letter-spacing:.08em;flex-wrap:wrap}
+.chip{border:2px solid var(--ink);padding:5px 14px;border-radius:999px;background:var(--card)}
+.chip.o{border-color:var(--orange);color:var(--orange);background:#fff3eb}
+.chip.t{border-color:var(--teal);color:var(--teal)}
+.top .r{margin-left:auto;color:var(--muted);letter-spacing:.04em}
+h1{margin:22px 0 0;font-size:86px;line-height:1.05;font-weight:900;letter-spacing:-.03em}
+h1 em{font-style:normal;color:var(--orange);background:linear-gradient(transparent 64%,rgba(226,65,10,.22) 64%,rgba(226,65,10,.22) 90%,transparent 90%)}
+.hrow{margin-top:18px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.strike{font-size:29px;font-weight:900;color:#8a7d6c;text-decoration:line-through;text-decoration-thickness:5px;text-decoration-color:var(--orange)}
+.arrow{font-size:30px;font-weight:900;color:var(--ink)}
+.signal{font-size:29px;font-weight:900;background:var(--ink);color:#ffe7d4;padding:6px 16px;border-radius:8px}
+.flow{margin-top:22px;display:grid;grid-template-columns:1fr 28px 1fr 28px 1fr;align-items:stretch}
+.step{background:var(--card);border:2px solid rgba(22,20,16,.16);border-radius:14px;padding:14px 18px}
+.step .n{font-family:var(--mono);font-size:16px;font-weight:900;letter-spacing:.14em;color:var(--orange)}
+.step .t{margin-top:4px;font-size:28px;font-weight:900;line-height:1.25}
+.step .d{margin-top:2px;font-size:20px;font-weight:700;color:var(--muted);line-height:1.35}
+.ar{display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;color:var(--orange)}
+.nums{margin-top:20px;display:grid;grid-template-columns:repeat(4,1fr);border-top:6px solid var(--ink);border-bottom:2px solid var(--ink);background:rgba(255,250,242,.65)}
+.n{padding:12px 16px 12px;border-right:2px dashed rgba(22,20,16,.28)}.n:last-child{border-right:0}
+.n .v{font-family:var(--mono);font-size:36px;font-weight:900;letter-spacing:-.03em;line-height:1.15}
+.n .v small{font-size:22px}
+.n.alert .v{color:var(--orange)}
+.n .d{margin-top:4px;font-size:20px;font-weight:700;color:var(--muted);line-height:1.35}
+.two{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.panel{background:var(--card);border-radius:14px;padding:16px 20px;border-left:10px solid var(--teal)}
+.panel.x{border-left-color:var(--orange)}
+.panel .lab{font-family:var(--mono);font-size:16px;font-weight:900;letter-spacing:.14em;color:var(--muted)}
+.chips{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+.chips span{font-size:20px;font-weight:800;padding:5px 11px;border-radius:8px;background:#f3ece0}
+.panel.x .chips span{background:#fde8e0}
+.call{margin-top:16px;background:var(--card);border:3px solid var(--orange);border-radius:14px;padding:14px 22px;display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center}
+.call .big{font-family:var(--mono);font-size:64px;font-weight:900;color:var(--orange);line-height:1;letter-spacing:-.04em}
+.call .big small{display:block;font-size:18px;letter-spacing:.08em;color:var(--ink);margin-top:4px}
+.call p{margin:0;font-size:24px;font-weight:800;line-height:1.45}
+.call p b{color:var(--orange)}
+.take{margin-top:16px;background:var(--teal);color:#fff;border-radius:14px;padding:16px 24px;font-size:28px;font-weight:900;line-height:1.42}
+.take small{display:block;font-family:var(--mono);font-size:15px;letter-spacing:.16em;opacity:.85;margin-bottom:4px}
+.todo{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:10px 16px}
+.todo .h{grid-column:1/-1;font-family:var(--mono);font-size:17px;font-weight:900;letter-spacing:.16em;color:var(--ink)}
+.it{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:2px solid rgba(22,20,16,.16);border-radius:12px;padding:12px 16px}
+.it i{font-style:normal;font-family:var(--mono);font-size:28px;font-weight:900;color:var(--orange);line-height:1}
+.it div{font-size:22px;font-weight:800;line-height:1.35}
+.end{margin-top:auto;background:var(--ink);color:#fff;padding:18px 24px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.end b{font-size:30px;font-weight:900;line-height:1.3}.end b em{font-style:normal;color:#ffb089}
+.end span{font-family:var(--mono);font-size:16px;color:#cbbba8;text-align:right;line-height:1.5}
+</style></head>
+<body><div class="card">
+  <div class="top">
+    <span class="chip o">实验功能 · 默认关</span>
+    <span class="chip">Claude Code v2.1.323</span>
+    <span class="chip t">CLAUDE_CODE_EXPERIMENTAL_CODE_MODE=1</span>
+    <span class="r">2026-11-12 发行</span>
+  </div>
+  <h1>审的是整段脚本，<br/><em>不是每一次调用</em></h1>
+  <div class="hrow">
+    <span class="strike">分类器会审每一次工具调用</span>
+    <span class="arrow">→</span>
+    <span class="signal">auto 模式只审整段代码</span>
+  </div>
+  <div class="flow">
+    <div class="step"><div class="n">01</div><div class="t">写一段 JavaScript</div><div class="d">会话里先看到工具结果，代码要按 Ctrl+O 才展开</div></div>
+    <div class="ar">→</div>
+    <div class="step"><div class="n">02</div><div class="t">多次调用在代码里跑</div><div class="d">可并行，也可拿上一步结果接下一步</div></div>
+    <div class="ar">→</div>
+    <div class="step"><div class="n">03</div><div class="t">只返回需要的结果</div><div class="d">deny、ask、PreToolUse 对代码里每一次调用仍生效</div></div>
+  </div>
+  <div class="nums">
+    <div class="n"><div class="v">仅本机<small>终端</small></div><div class="d">不是 -p、SDK、VS Code、桌面端或云会话</div></div>
+    <div class="n"><div class="v">10<small> 分钟</small></div><div class="d">前台到点就停，权限提示耗时也计入</div></div>
+    <div class="n"><div class="v">2<small> 小时</small></div><div class="d">后台最长；须从 auto 或 bypassPermissions 开会话</div></div>
+    <div class="n alert"><div class="v">37%</div><div class="d">网上在传，并非这篇文档的测试</div></div>
+  </div>
+  <div class="two">
+    <div class="panel">
+      <div class="lab">能开的条件</div>
+      <div class="chips">
+        <span>原生安装</span><span>交互式 claude</span><span>订阅或 Console</span>
+        <span>Opus / Sonnet / Haiku 5.5</span><span>Fable 5.2</span>
+        <span>用户级 settings.json</span>
+      </div>
+    </div>
+    <div class="panel x">
+      <div class="lab">这些地方开不了</div>
+      <div class="chips">
+        <span>网关 / Bedrock / Foundry</span><span>AWS Claude Platform</span>
+        <span>Google Agent Platform</span><span>HIPAA / 零数据保留</span>
+        <span>API key helper</span><span>agent teams</span>
+        <span>OpenTelemetry / DISABLE_TELEMETRY</span>
+      </div>
+    </div>
+  </div>
+  <div class="call">
+    <div class="big">37%<small>不是这次的数</small></div>
+    <p>出自 Anthropic 2025-11-24「Introducing advanced tool use」里的 <b>Programmatic Tool Calling</b> 测试：平均用量 <b>43,588 → 27,297</b>。Code Mode 官方文档没有给节省数字。相似的思路，不是同一场测试。</p>
+  </div>
+  <div class="take"><small>我的看法</small>这是换调用方式，不是一张通用省额度的证明。运行时才算出来的路径，分类器看不见，真要拦的操作还是得写进规则或钩子。</div>
+  <div class="todo">
+    <div class="h">我的建议 · 四件事</div>
+    <div class="it"><i>1</i><div>本机终端确认 ≥ 2.1.323，再用环境变量试一次，看顶部是否出现 Code Mode (experimental) is on</div></div>
+    <div class="it"><i>2</i><div>真要拦的路径和命令，写死 deny 规则或钩子，别指望 auto 模式把后算出来的路径审掉</div></div>
+    <div class="it"><i>3</i><div>需要 -p、SDK、VS Code 或云端会话的工作流先别改，这条能力现在覆盖不到</div></div>
+    <div class="it"><i>4</i><div>组织若不打算用，托管设置写成 0；项目级设置本来开不了它</div></div>
+  </div>
+  <div class="end">
+    <b>会话用它开过，恢复时也必须带着开关，<em>否则会拒绝继续</em></b>
+    <span>来源：Claude Code 文档 Code Mode<br/>发行说明 v2.1.323 · 2026-11-12<br/>Anthropic advanced tool use · 2025-11-24</span>
+  </div>
+</div></body></html>

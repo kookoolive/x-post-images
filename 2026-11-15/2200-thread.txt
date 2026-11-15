@@ -1,0 +1,33 @@
+1/9
+Claude Code 从 v2.1.323（11 月 12 日）起多了实验功能 Code Mode，默认关。以前每调一次 Bash、Read、Edit，都要先读结果再决定下一步。开了之后，它先写一段 JavaScript，把多次调用写进同一段代码，在你这轮会话里执行。
+---
+2/9
+一段代码里可以并行跑命令，也可以拿上一步的结果接下一步，最后只把 Claude 需要看的部分返回去。会话里你看到的还是编辑 diff 这类工具结果，代码本身要按 Ctrl+O 才能展开。官方建议用在：跨很多文件的重复改动、先过滤再读的搜索、互不依赖、可以同时跑的命令。
+---
+3/9
+能开的地方比看上去窄。只有本机终端里的交互式 claude 会话，而且必须是原生安装。claude -p、Agent SDK、VS Code 面板、桌面应用、云端会话都不行。账号得是 Claude 订阅或 Console；走网关、Bedrock、AWS 上的 Claude Platform、Google Cloud Agent Platform、Microsoft Foundry 也开不了。
+---
+4/9
+组织若开了 HIPAA 或零数据保留，同样不行。模型只覆盖 Opus 5.5、Sonnet 5.5、Haiku 5.5、Fable 5.2。API key helper、agent teams、OpenTelemetry 导出、DISABLE_TELEMETRY 开着，也启动不了。环境变量写在用户级 ~/.claude/settings.json 才生效，仓库里的项目设置会被忽略。
+---
+5/9
+权限要看清楚。代码里每一次工具调用，仍要过 deny、ask 规则和 PreToolUse 钩子。但 auto 模式的分类器审的是整段代码，不是每一次调用，也看不见运行时才算出来的路径。真要拦的操作还是得靠规则或钩子。想审脚本本身，给 REPL 写 PreToolUse，从 tool_input.code 读那段 JavaScript。
+---
+6/9
+前台跑的代码，连你在权限提示上花的时间算进去，十分钟到点就停。要放到后台，得从 auto 或 bypassPermissions 模式开，最长两小时。用 Code Mode 开过的会话，恢复时也必须带着这个开关，否则会拒绝继续。组织可以把托管设置写成 0，整家公司都开不了。
+---
+7/9
+网上在传「能省 37% token」。这个数字出自 Anthropic 2025 年 11 月 24 日那篇 Programmatic Tool Calling 文章，测的是 API 里用代码在沙箱里调工具，平均用量从 43,588 降到 27,297。Code Mode 的官方文档没有给节省数字。相似的思路，不是同一场测试。
+---
+8/9
+我的建议：
+1. 本机终端确认 ≥ 2.1.323，再用环境变量试一次，看顶部是否出现 Code Mode (experimental) is on
+2. 真要拦的路径和命令写死规则或钩子，别指望 auto 模式审掉后算出来的路径
+3. 需要 -p、SDK、VS Code 或云端会话的工作流，先别改
+4. 组织若不打算用，托管设置里把该变量写成 0
+---
+9/9
+来源：Claude Code 文档 Code Mode（2026-11-15 查阅）；GitHub 发行说明 v2.1.323（2026-11-12）；Anthropic「Introducing advanced tool use」（2025-11-24）
+https://code.claude.com/docs/en/code-mode
+https://github.com/anthropics/claude-code/releases/tag/v2.1.323
+https://www.anthropic.com/research/advanced-tool-use
