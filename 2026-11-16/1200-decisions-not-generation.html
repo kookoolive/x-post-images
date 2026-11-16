@@ -1,0 +1,88 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"/><title>判断别再让模型写出来</title><style>
+:root{--bg:#15231e;--teal:#5eead4;--amber:#f59e0b;--card:#f3f7f4;--ink:#0f1a16;--muted:#4b5d57;
+--warn:#fde68a;--sans:"Noto Sans CJK SC","Noto Sans SC",sans-serif;--mono:"Noto Sans Mono CJK SC","DejaVu Sans Mono",monospace;}
+*{box-sizing:border-box}html,body{margin:0;width:1500px;height:2000px;overflow:hidden}
+.card{zoom:1.15;width:1304px;height:1739px;padding:32px 44px 28px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+background:radial-gradient(circle at 94% 6%,rgba(94,234,212,.22) 0 120px,transparent 430px),radial-gradient(circle at 6% 96%,rgba(245,158,11,.16) 0 140px,transparent 460px),
+repeating-radial-gradient(circle at 0 0,rgba(243,247,244,.05) 0 1px,transparent 1px 22px),var(--bg)}
+.top{display:flex;gap:10px;align-items:center}
+.cap{font-family:var(--mono);font-size:16px;font-weight:900;letter-spacing:.12em;padding:7px 14px;border-radius:999px;border:2px solid rgba(94,234,212,.55);color:var(--teal)}
+.cap.w{border-color:rgba(245,158,11,.7);color:#fde68a}
+.cap.dim{border-color:rgba(243,247,244,.28);color:#c5d4ce}
+h1{margin:22px 0 0;font-size:86px;line-height:1.06;font-weight:900;letter-spacing:-.03em;color:#f3f7f4}
+h1 em{font-style:normal;color:var(--teal)}
+.hrow{margin-top:22px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.strike{font-size:28px;font-weight:900;color:#8aa399;text-decoration:line-through;text-decoration-thickness:4px;text-decoration-color:#fb7185}
+.arrow{font-size:28px;font-weight:900;color:#c5d4ce}
+.signal{font-size:28px;font-weight:900;background:var(--teal);color:#042f2e;padding:6px 16px;border-radius:6px}
+.nums{margin-top:22px;display:grid;grid-template-columns:repeat(4,1fr);background:var(--card);border-radius:16px;overflow:hidden;border:3px solid #0b1814}
+.n{padding:14px 16px 12px;border-right:2px dashed rgba(15,26,22,.2)}.n:last-child{border-right:0}
+.n .v{font-family:var(--mono);font-size:42px;font-weight:900;color:var(--ink);letter-spacing:-.04em;line-height:1.1}
+.n .d{margin-top:6px;font-size:20px;font-weight:700;color:var(--muted);line-height:1.35}
+.types{margin-top:18px;display:grid;grid-template-columns:1.05fr 1.15fr 1.2fr;gap:12px}
+.ty{background:var(--card);border-radius:14px;padding:16px 18px 14px;border-top:8px solid var(--teal)}
+.ty.mid{border-top-color:#0f766e}.ty.last{border-top-color:var(--amber)}
+.ty .lab{font-family:var(--mono);font-size:16px;font-weight:900;letter-spacing:.14em;color:#0f766e}
+.ty b{display:block;margin-top:4px;font-size:28px;font-weight:900;line-height:1.2}
+.ty p{margin:6px 0 0;font-size:20px;font-weight:700;color:var(--muted);line-height:1.4}
+.warn{margin-top:16px;background:var(--warn);color:#1c1503;border-radius:12px;padding:14px 18px;font-size:22px;font-weight:800;line-height:1.45;border-left:10px solid var(--amber)}
+.warn small{display:block;font-family:var(--mono);font-size:15px;letter-spacing:.14em;color:#7c4a03;margin-bottom:2px}
+.mech{margin-top:16px;display:grid;grid-template-columns:1.15fr .9fr;gap:12px}
+.panel{background:rgba(243,247,244,.08);border:2px solid rgba(243,247,244,.18);border-radius:14px;padding:16px 18px;color:#e8f5f0}
+.panel .lab{font-family:var(--mono);font-size:15px;font-weight:900;letter-spacing:.14em;color:var(--teal)}
+.steps{margin-top:8px;display:flex;gap:8px;align-items:stretch}
+.st{flex:1;background:rgba(15,26,22,.45);border-radius:10px;padding:10px 10px;font-size:20px;font-weight:800;line-height:1.35;text-align:center}
+.st b{display:block;font-family:var(--mono);font-size:15px;color:var(--amber);letter-spacing:.06em;margin-bottom:2px}
+.chips{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+.chips span{font-size:19px;font-weight:800;padding:5px 11px;border-radius:8px;background:rgba(94,234,212,.12);border:1px solid rgba(94,234,212,.28);color:#d1faf3}
+.take{margin-top:16px;background:var(--teal);color:#042f2e;border-radius:14px;padding:16px 22px;font-size:27px;font-weight:900;line-height:1.4}
+.take small{display:block;font-family:var(--mono);font-size:15px;letter-spacing:.16em;opacity:.8;margin-bottom:2px}
+.todo{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:10px 14px}
+.todo .h{grid-column:1/-1;font-family:var(--mono);font-size:16px;font-weight:900;letter-spacing:.16em;color:var(--teal)}
+.it{display:flex;gap:12px;align-items:flex-start;background:var(--card);border-radius:12px;padding:12px 16px}
+.it i{font-style:normal;font-family:var(--mono);font-size:28px;font-weight:900;color:#0f766e;line-height:1}
+.it div{font-size:22px;font-weight:800;line-height:1.35;color:var(--ink)}
+.end{margin-top:auto;background:#0b1814;color:#f3f7f4;padding:18px 22px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;border-left:8px solid var(--amber)}
+.end b{font-size:30px;font-weight:900}.end b em{font-style:normal;color:var(--teal)}
+.end span{font-family:var(--mono);font-size:16px;color:#9bb0a8;text-align:right;line-height:1.5}
+</style></head><body><div class="card">
+<div class="top">
+  <span class="cap">GEMINI DECISIONS API</span>
+  <span class="cap dim">gemini-decision-1 · v1beta</span>
+  <span class="cap w">2026-11-11</span>
+</div>
+<h1>判断别再让模型<br/><em>写出来</em></h1>
+<div class="hrow"><span class="strike">先生成再解析</span><span class="arrow">→</span><span class="signal">选项写死，一次打分</span></div>
+<div class="nums">
+  <div class="n"><div class="v">150–250<small style="font-size:22px">ms</small></div><div class="d">官方端到端延迟（前提：≤16K）</div></div>
+  <div class="n"><div class="v">1000</div><div class="d">一次请求最多可附的独立题</div></div>
+  <div class="n"><div class="v">$0.10</div><div class="d">每百万输入 token，输出计 0</div></div>
+  <div class="n"><div class="v">0</div><div class="d">不生成输出文本，分支直接拿返回值</div></div>
+</div>
+<div class="types">
+  <div class="ty"><div class="lab">NOUL</div><b>是 / 否</b><p>概率落在 0.01–0.99，另给置信度。门槛写成 &gt;0.99 不会命中。</p></div>
+  <div class="ty mid"><div class="lab">CHOICE</div><b>多选 2–255 项</b><p>返回胜出项和每项概率。没有合适项时，概率仍会分完。</p></div>
+  <div class="ty last"><div class="lab">SCORE</div><b>按量规打分</b><p>档次从 0 起算，返回加权分和每一档概率。同分可能来自不同分布。</p></div>
+</div>
+<div class="warn"><small>延迟数字的前提</small>150–250ms、计算中位数 50–100ms，测的是上下文在 16K token 以内、题数 1 到 100 几乎持平。256K 上限和「最多 1000 题」是能力边界，不是这组延迟测试的条件。</div>
+<div class="mech">
+  <div class="panel"><div class="lab">怎么跑</div>
+    <div class="steps">
+      <div class="st"><b>INPUT</b>多模态输入，最长 256K</div>
+      <div class="st"><b>PASS</b>一次前向打分，题与题互相看不见</div>
+      <div class="st"><b>CODE</b>用概率和置信度在你这边写分支</div>
+    </div>
+  </div>
+  <div class="panel"><div class="lab">Google 已在用</div>
+    <div class="chips"><span>Notebook 日常路由，延迟最多 −40%</span><span>Search：MCP 工具对抗检测</span><span>Stitch / CC 控制面</span><span>Google Cloud：即将提供</span></div>
+  </div>
+</div>
+<div class="take"><small>我的看法</small>路由、过门、分级，不该再让生成模型写一段话再解析。选项你先写死，分支写在代码里，低置信度再升级。</div>
+<div class="todo"><div class="h">我的建议 · 四件事</div>
+  <div class="it"><i>1</i><div>题要写窄，一道题只问一件事，组合放在代码里</div></div>
+  <div class="it"><i>2</i><div>是/否门槛不要写成 1，也不要大于 0.99</div></div>
+  <div class="it"><i>3</i><div>多选加 catch-all，并单独看置信度</div></div>
+  <div class="it"><i>4</i><div>延迟预算按 16K 以内的数字估，更长上下文先自己压测</div></div>
+</div>
+<div class="end"><b>这是把判断从生成里拆出来，<em>不是更快的聊天接口</em></b><span>来源：Google 博文 2026-11-11<br/>Gemini Decisions API 文档</span></div>
+</div></body></html>
