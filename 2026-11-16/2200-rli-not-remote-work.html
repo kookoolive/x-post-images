@@ -1,0 +1,93 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"/><title>41% 不是远程工作的 41%</title><style>
+:root{--bg:#d9e2ea;--red:#b42318;--navy:#1b365d;--card:#f7fafc;--ink:#141820;--muted:#4a5564;
+--sans:"Noto Sans CJK SC","Noto Sans SC",sans-serif;--mono:"Noto Sans Mono CJK SC","DejaVu Sans Mono",monospace;}
+*{box-sizing:border-box}html,body{margin:0;width:1500px;height:2000px;overflow:hidden}
+.card{zoom:1.15;width:1304px;height:1739px;padding:28px 44px 24px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+background:
+radial-gradient(circle at 8% 8%,rgba(180,35,24,.14) 0 140px,transparent 420px),
+radial-gradient(circle at 96% 94%,rgba(27,54,93,.16) 0 150px,transparent 460px),
+repeating-linear-gradient(180deg,rgba(27,54,93,.045) 0 1px,transparent 1px 22px),
+var(--bg)}
+.top{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.cap{font-family:var(--mono);font-size:16px;font-weight:900;letter-spacing:.12em;padding:7px 14px;border-radius:999px;border:2px solid var(--navy);color:var(--navy);background:rgba(247,250,252,.7)}
+.cap.w{border-color:var(--red);color:var(--red)}
+.cap.dim{border-color:rgba(20,24,32,.28);color:var(--muted)}
+h1{margin:20px 0 0;font-size:82px;line-height:1.06;font-weight:900;letter-spacing:-.03em;color:var(--ink)}
+h1 em{font-style:normal;color:var(--red)}
+.hrow{margin-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.strike{font-size:26px;font-weight:900;color:#6b7280;text-decoration:line-through;text-decoration-thickness:4px;text-decoration-color:var(--red)}
+.arrow{font-size:26px;font-weight:900;color:var(--navy)}
+.signal{font-size:26px;font-weight:900;background:var(--red);color:#fff7f6;padding:6px 16px;border-radius:6px}
+.nums{margin-top:20px;display:grid;grid-template-columns:repeat(4,1fr);background:var(--card);border-radius:16px;overflow:hidden;border:3px solid var(--navy)}
+.n{padding:18px 16px 16px;border-right:2px dashed rgba(27,54,93,.22)}.n:last-child{border-right:0}
+.n .v{font-family:var(--mono);font-size:38px;font-weight:900;color:var(--ink);letter-spacing:-.03em;line-height:1.15}
+.n .d{margin-top:8px;font-size:19px;font-weight:700;color:var(--muted);line-height:1.35}
+.warn{margin-top:16px;background:#fde8e6;color:#3b0a08;border-radius:12px;padding:16px 18px;font-size:22px;font-weight:800;line-height:1.45;border-left:10px solid var(--red)}
+.warn small{display:block;font-family:var(--mono);font-size:15px;letter-spacing:.14em;color:#8a1f18;margin-bottom:2px}
+.row{margin-top:16px;display:grid;grid-template-columns:1.05fr .95fr;gap:12px}
+.panel{background:var(--card);border:2px solid rgba(27,54,93,.16);border-radius:14px;padding:16px 16px 14px}
+.panel .lab{font-family:var(--mono);font-size:15px;font-weight:900;letter-spacing:.14em;color:var(--navy)}
+.chips{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+.chips span{font-size:19px;font-weight:800;padding:6px 11px;border-radius:8px;background:#eef3f8;border:1px solid rgba(27,54,93,.2);color:var(--navy)}
+.chips span.x{background:#fde8e6;border-color:rgba(180,35,24,.3);color:#8a1f18}
+.bars{margin-top:10px;display:flex;flex-direction:column;gap:10px}
+.bar{display:grid;grid-template-columns:150px 1fr 92px;gap:8px;align-items:center}
+.bar .name{font-size:20px;font-weight:800}
+.track{height:18px;background:#e6edf3;border-radius:999px;overflow:hidden}
+.fill{height:100%;border-radius:999px;background:var(--navy)}
+.fill.top{background:var(--red)}
+.bar .pct{font-family:var(--mono);font-size:20px;font-weight:900;text-align:right}
+.take{margin-top:16px;background:var(--navy);color:#f4f7fb;border-radius:14px;padding:18px 22px;font-size:27px;font-weight:900;line-height:1.4}
+.take small{display:block;font-family:var(--mono);font-size:15px;letter-spacing:.16em;opacity:.8;margin-bottom:2px;color:#c9d6e6}
+.todo{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px 14px}
+.todo .h{grid-column:1/-1;font-family:var(--mono);font-size:16px;font-weight:900;letter-spacing:.16em;color:var(--navy)}
+.it{display:flex;gap:12px;align-items:flex-start;background:var(--card);border-radius:12px;padding:16px 16px;border:1px solid rgba(27,54,93,.12)}
+.it i{font-style:normal;font-family:var(--mono);font-size:28px;font-weight:900;color:var(--red);line-height:1}
+.it div{font-size:21px;font-weight:800;line-height:1.35;color:var(--ink)}
+.end{margin-top:auto;background:var(--ink);color:#f7fafc;padding:18px 20px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;border-left:8px solid var(--red)}
+.end b{font-size:28px;font-weight:900}.end b em{font-style:normal;color:#ffb4ad}
+.end span{font-family:var(--mono);font-size:15px;color:#9aa7b5;text-align:right;line-height:1.5}
+</style></head><body><div class="card">
+<div class="top">
+  <span class="cap">SCALE × CAIS · RLI</span>
+  <span class="cap dim">系统卡 99 / 240 · High effort</span>
+  <span class="cap w">分母先看清</span>
+</div>
+<h1>41% 不是远程工作的<br/><em>41%</em></h1>
+<div class="hrow"><span class="strike">自由职业四成能交给 agent</span><span class="arrow">→</span><span class="signal">材料齐、一次交卷，客户会不会收</span></div>
+<div class="nums">
+  <div class="n"><div class="v">41.25%</div><div class="d">排行榜自动化率（系统卡写成 41.3%）</div></div>
+  <div class="n"><div class="v">99/240</div><div class="d">系统卡写明的通过项</div></div>
+  <div class="n"><div class="v">2.5%</div><div class="d">上线时最好成绩（Manus）</div></div>
+  <div class="n"><div class="v">11.5h</div><div class="d">人类完成中位数（均值 28.9h）</div></div>
+</div>
+<div class="warn"><small>分母对不上的地方</small>排行榜页写定量评测用私有集 230 项、公开集 10 项。但 41.25% 正好是 99÷240，21.25% 是 51÷240，20.83% 是 50÷240。用 230 去除，对不上整数。没看到官方说明该认哪个分母。</div>
+<div class="row">
+  <div class="panel"><div class="lab">考场从一开始就没算进去</div>
+    <div class="chips">
+      <span class="x">排除直接对接客户</span>
+      <span class="x">排除要长期才能验收</span>
+      <span class="x">排除体力劳动</span>
+      <span>550 项筛到 240 项</span>
+      <span>完整 brief + 全部输入文件</span>
+      <span>三名评审多数决 · 一致率 94.4%</span>
+    </div>
+  </div>
+  <div class="panel"><div class="lab">排行榜前三</div>
+    <div class="bars">
+      <div class="bar"><div class="name">Fable 5.2</div><div class="track"><div class="fill top" style="width:100%"></div></div><div class="pct">41.25%</div></div>
+      <div class="bar"><div class="name">Opus 5.5</div><div class="track"><div class="fill" style="width:51.5%"></div></div><div class="pct">21.25%</div></div>
+      <div class="bar"><div class="name">GPT-6 Astra</div><div class="track"><div class="fill" style="width:50.5%"></div></div><div class="pct">20.83%</div></div>
+    </div>
+    <div class="chips" style="margin-top:12px"><span>Claude 默认：High effort · 200K · 单次 32K</span></div>
+  </div>
+</div>
+<div class="take"><small>我的看法</small>这个数测的是材料齐、一次交卷、合理客户会不会收。不是远程工作已经有四成能交给 agent。</div>
+<div class="todo"><div class="h">我的建议 · 四件事</div>
+  <div class="it"><i>1</i><div>对外引用这个数，把排除项和分母一并写上</div></div>
+  <div class="it"><i>2</i><div>适合投的是 brief 清楚、一次能验收的活，不要拿它估要改稿的项目</div></div>
+  <div class="it"><i>3</i><div>过了验收线不等于省下 41% 的钱，拆需求、对客户、质检还在人这边</div></div>
+  <div class="it"><i>4</i><div>用自己的 brief 复测，别只看榜</div></div>
+</div>
+<div class="end"><b>材料已经齐了，<em>仍有约六成过不了</em></b><span>来源：Scale Labs 排行榜<br/>Anthropic 系统卡 8.14.7 · remotelabor.ai</span></div>
+</div></body></html>
