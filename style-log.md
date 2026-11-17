@@ -191,3 +191,7 @@
 - 2026-11-17 12:00 | checks-out-of-reach (Claude Code 团队校验文章：改动不能改审它的规则)
   | 骨架：方块标签顶栏（CLAUDE CODE 团队 / 校验 / claude.dev 日期）+巨号标题（荧光柠檬下划高亮）+删除线「agent 写完再自己审一遍」/茄紫「规则放在改动够不着的分支」+五段 CI 管道条（RUN/DIFF/REVIEW 柠檬高亮/FIX/HUMAN 茄紫底）+顶粗边四数格 ~90%/39/3轮/+10点+三类测试虚线卡+门禁三档拨杆（off/observe/enforce）vs flaky 删除线芯片+墨底柠檬左边条判断带+我的建议 2×2+漏 bug→规则四段条+茄紫底通栏结论
   | 背景苔灰 #dfe5d3（方格纸+茄紫/柠檬光晕），强调深茄紫 #4c1d4f，点缀荧光柠檬 #d9f23a，卡面 #fbfcf7，墨字 #171a14；整卡 zoom 1.38
+
+- 2026-11-17 22:00 | commands-into-sandbox (Prime Radiant × Simon Willison external sandboxes：进沙箱的是命令，不是 agent)
+  | 骨架：胶囊顶栏（PRIME RADIANT / EXTERNAL SANDBOX / 日期）+巨号标题（铜金「不是 agent」青绿下划）+删除线「把 agent 关进沙箱」/铜金「agent 留在 Mac，命令送进去」+三端口格 8686/8687/8688 +三栏 agent 对照（Pi 全套进 / Codex 含 apply_patch / Claude Code 只有 Bash 高亮警示）+网络默认关 vs 凭证替换双栏+边界芯片三条+青绿左边条判断带+我的建议 2×2+铜金底通栏结论
+  | 背景深柏木夜 #16110c（细横线+铜金/青绿光晕），强调铜金 #e8b84a，点缀青绿 #2dd4bf，警示酒红 #9f1239，卡面米白 #faf6ee，墨字 #1c1410；整卡 zoom 1.40
