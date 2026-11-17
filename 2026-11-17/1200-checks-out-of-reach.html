@@ -1,0 +1,98 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"/><title>改动不能改审它的规则</title><style>
+:root{--bg:#dfe5d3;--plum:#4c1d4f;--lime:#d9f23a;--card:#fbfcf7;--ink:#171a14;--muted:#545a4c;
+--sans:"Noto Sans CJK SC","Noto Sans SC",sans-serif;--mono:"Noto Sans Mono CJK SC","DejaVu Sans Mono",monospace;}
+*{box-sizing:border-box}html,body{margin:0;width:1500px;height:2000px;overflow:hidden}
+.card{zoom:1.38;width:1087px;height:1449px;padding:30px 44px 26px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+background:radial-gradient(circle at 92% 6%,rgba(76,29,79,.16) 0 130px,transparent 430px),radial-gradient(circle at 4% 96%,rgba(217,242,58,.45) 0 120px,transparent 420px),
+repeating-linear-gradient(90deg,rgba(76,29,79,.05) 0 1px,transparent 1px 26px),repeating-linear-gradient(0deg,rgba(76,29,79,.05) 0 1px,transparent 1px 26px),var(--bg)}
+.top{display:flex;gap:10px;align-items:center}
+.cap{font-family:var(--mono);font-size:16px;font-weight:900;letter-spacing:.1em;padding:7px 14px;border-radius:6px;background:var(--plum);color:#fff}
+.cap.l{background:var(--lime);color:var(--ink)}.cap.o{background:transparent;border:2px solid rgba(23,26,20,.3);color:var(--muted)}
+h1{margin:22px 0 0;font-size:84px;line-height:1.05;font-weight:900;letter-spacing:-.03em}
+h1 em{font-style:normal;color:var(--plum);background:linear-gradient(transparent 62%,var(--lime) 62%)}
+.hrow{margin-top:18px;display:flex;gap:12px;align-items:center}
+.strike{font-size:26px;font-weight:900;color:#7a7f72;text-decoration:line-through;text-decoration-thickness:4px;text-decoration-color:var(--plum)}
+.arrow{font-size:26px;font-weight:900;color:var(--plum)}
+.signal{font-size:26px;font-weight:900;background:var(--plum);color:#fff;padding:6px 16px;border-radius:6px}
+.pipe{margin-top:22px;display:flex;align-items:stretch;gap:0}
+.st{flex:1;background:var(--card);border:2px solid var(--plum);padding:12px 12px 10px;position:relative}
+.st:not(:last-child){border-right:0}
+.st:first-child{border-radius:12px 0 0 12px}.st:last-child{border-radius:0 12px 12px 0;background:var(--plum);color:#fff}
+.st .k{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.12em;color:var(--plum)}
+.st:last-child .k{color:var(--lime)}
+.st .t{margin-top:4px;font-size:21px;font-weight:900;line-height:1.3}
+.st .s{margin-top:4px;font-size:16px;font-weight:700;color:var(--muted);line-height:1.35}.st:last-child .s{color:#e9d9ea}
+.st.hot{background:var(--lime)}
+.nums{margin-top:18px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.n{background:var(--card);border-radius:12px;padding:14px 16px;border-top:8px solid var(--plum)}
+.n .v{font-family:var(--mono);font-size:42px;font-weight:900;letter-spacing:-.03em;line-height:1.1}
+.n .d{margin-top:6px;font-size:18px;font-weight:700;color:var(--muted);line-height:1.35}
+.tests{margin-top:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.tc{background:var(--card);border:2px dashed rgba(76,29,79,.35);border-radius:12px;padding:14px 16px}
+.tc b{display:block;font-size:24px;font-weight:900;color:var(--plum)}
+.tc span{display:block;margin-top:6px;font-size:18px;font-weight:700;line-height:1.4;color:var(--ink)}
+.row{margin-top:16px;display:grid;grid-template-columns:1.1fr .9fr;gap:12px}
+.panel{background:var(--card);border-radius:12px;padding:14px 16px}
+.lab{font-family:var(--mono);font-size:15px;font-weight:900;letter-spacing:.14em;color:var(--plum)}
+.mode{margin-top:10px;display:flex;border:2px solid var(--ink);border-radius:999px;overflow:hidden}
+.mode div{flex:1;text-align:center;font-family:var(--mono);font-size:20px;font-weight:900;padding:8px 0}
+.mode .on{background:var(--lime)}.mode .en{background:var(--ink);color:#fff}
+.note{margin-top:10px;font-size:18px;font-weight:700;line-height:1.45;color:var(--ink)}
+.no{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+.no span{font-size:19px;font-weight:800;padding:6px 11px;border-radius:8px;background:#f1e6f1;color:var(--plum);text-decoration:line-through;text-decoration-thickness:3px}
+.no em{font-style:normal;font-size:19px;font-weight:800;padding:6px 11px;border-radius:8px;background:var(--lime);color:var(--ink)}
+.judge{margin-top:20px;background:var(--ink);color:#f4f6ee;border-radius:12px;padding:16px 20px;font-size:23px;font-weight:800;line-height:1.5;border-left:12px solid var(--lime)}
+.judge small{display:block;font-family:var(--mono);font-size:14px;letter-spacing:.16em;color:var(--lime)}
+.adv{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.a{background:var(--card);border-radius:12px;padding:12px 14px;display:flex;gap:12px;align-items:flex-start;font-size:20px;font-weight:800;line-height:1.4}
+.a i{font-style:normal;font-family:var(--mono);font-size:26px;font-weight:900;color:var(--plum);line-height:1.1}
+.advh{margin-top:16px;font-family:var(--mono);font-size:15px;font-weight:900;letter-spacing:.14em;color:var(--plum)}
+.end{margin-top:auto;background:var(--plum);color:#fff;border-radius:12px;padding:16px 22px;font-size:27px;font-weight:900;display:flex;justify-content:space-between;align-items:center}
+.end span{font-family:var(--mono);font-size:14px;font-weight:700;color:#e2cfe3;letter-spacing:.06em}
+</style></head><body><div class="card">
+<div class="top"><span class="cap">CLAUDE CODE 团队</span><span class="cap l">校验</span><span class="cap o">claude.dev · 2026-11-16</span></div>
+<h1>改动不能<em>改审它的规则</em></h1>
+<div class="hrow"><span class="strike">agent 写完再自己审一遍</span><span class="arrow">→</span><span class="signal">规则放在改动够不着的分支</span></div>
+<div class="pipe">
+<div class="st"><div class="k">01 · RUN</div><div class="t">verify skill 冒烟</div><div class="s">起模拟器、跑服务，提交前先跑</div></div>
+<div class="st"><div class="k">02 · DIFF</div><div class="t">39 条清单按触发核</div><div class="s">每次命中通常 3–10 条</div></div>
+<div class="st hot"><div class="k">03 · REVIEW</div><div class="t">REVIEW.md 读默认分支</div><div class="s">不读 PR 里那份</div></div>
+<div class="st"><div class="k">04 · FIX</div><div class="t">Claude 自己修</div><div class="s">只认当前 commit 的结论</div></div>
+<div class="st"><div class="k">05 · HUMAN</div><div class="t">三轮还红才叫人</div><div class="s">失败决定谁要看</div></div>
+</div>
+<div class="nums">
+<div class="n"><div class="v">~90%</div><div class="d">团队代码由 Claude 写、由 Claude 审</div></div>
+<div class="n"><div class="v">39</div><div class="d">可靠性清单条目，每条连着事故或 PR</div></div>
+<div class="n"><div class="v">3 轮</div><div class="d">修不绿就停，交给人</div></div>
+<div class="n"><div class="v">+10 点</div><div class="d">独立评分器对照 rubric，成功率最多提升</div></div>
+</div>
+<div class="tests">
+<div class="tc"><b>E2E</b><span>整条用户路径通或不通，最难糊弄</span></div>
+<div class="tc"><b>属性测试</b><span>成千上万个输入去推翻往返、不变量、幂等</span></div>
+<div class="tc"><b>差分测试</b><span>旧系统当标准答案，新旧跑同一批输入</span></div>
+</div>
+<div class="row">
+<div class="panel"><div class="lab">新门禁 · 三档</div>
+<div class="mode"><div>off</div><div class="on">observe</div><div class="en">enforce</div></div>
+<div class="note">commit 盖章写明怎么验的，值里包括 none。同一会话被拦两次，第三次放行。</div></div>
+<div class="panel"><div class="lab">FLAKY 测试 · 不许绕</div>
+<div class="no"><span>跳过</span><span>加 sleep</span><span>重试到绿</span><em>删掉并写明原因</em></div>
+<div class="note">找不到根因，宁可删测试，也不让它反复重跑。</div></div>
+</div>
+<div class="judge"><small>我的看法</small>规则和改动在同一个分支上，agent 改代码时能顺手改规则，那绿灯就不说明问题。</div>
+<div class="advh">我的建议</div>
+<div class="adv">
+<div class="a"><i>1</i>REVIEW.md、CI 配置、门禁脚本从默认分支读</div>
+<div class="a"><i>2</i>新门禁先 observe，看完误拦再 enforce</div>
+<div class="a"><i>3</i>写一个 verify skill，提交前让 agent 自己跑起来</div>
+<div class="a"><i>4</i>每条规则写明出自哪次事故，定期删</div>
+</div>
+<div class="advh">漏掉的 bug 怎么变成规则</div>
+<div class="pipe" style="margin-top:10px">
+<div class="st"><div class="k">A</div><div class="t">≥2 个 PR 出现</div><div class="s">还要能从 diff 看出来</div></div>
+<div class="st"><div class="k">B</div><div class="t">3 个 agent 试着推翻</div><div class="s">推不翻才留下</div></div>
+<div class="st hot"><div class="k">C</div><div class="t">人在 PR 里批准</div><div class="s">写进 REVIEW.md</div></div>
+<div class="st"><div class="k">D</div><div class="t">定期清理</div><div class="s">规则只会越攒越多</div></div>
+</div>
+<div class="end">审查只对那个 commit 有效<span>来源：claude.dev/blog · Addy Osmani</span></div>
+</div></body></html>
