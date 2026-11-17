@@ -6,21 +6,21 @@ Simon Willison 和 Prime Radiant 发了一套叫 external sandboxes 的原型。
 ---
 3/9
 三套实现走同一套协议，可以并排开。
-v86：Node.js 把 Alpine Linux 跑在 WebAssembly 里，默认端口 8686，要 Node.js 22.19 及以上。
-Apple Containers：Python 封装，8687，需要 Apple silicon 和官方 container CLI。
-Microsoft Quicksand + QEMU：Python，8688，QEMU 和 Alpine 镜像以 wheel 形式带上，不用另装。
+v86：Node 在 WebAssembly 里跑 Alpine，端口 8686，要 22.19 及以上。
+Apple Containers：Python 封装，8687，需 Apple silicon 和官方 CLI。
+Quicksand + QEMU：Python，8688，镜像以 wheel 带上，不用另装。
 ---
 4/9
 接入深度不一样。
-Pi 1.5 起：bash、read、write、edit、grep、find、ls 都进沙箱；加 --no-builtin-tools，扩展没加载成功也不会退回本机。
-Codex：进程和文件系统操作，包括原生 apply_patch，走 exec-server 的 WebSocket。他们的自动测试过的是 Codex CLI 0.164.0，协议仍标实验，别的版本要自己核。启动时要用 --sandbox danger-full-access，意思是别再叠一层它自己的沙箱。
+Pi 1.5 起：bash、read、write、edit、grep、find、ls 都进沙箱；加 --no-builtin-tools，扩展失败也不退回本机。
+Codex：进程和文件操作，含原生 apply_patch，走 exec-server。自动测试过 0.164.0，协议仍标实验。启动要用 --sandbox danger-full-access，别再叠一层自带沙箱。
 ---
 5/9
 Claude Code 不一样。只有 Bash 会经 CLAUDE_CODE_SHELL_PREFIX 进沙箱。原生 Read 和 Edit 仍在本机跑。挂载规则限制的是 Bash 能碰的目录，挡不住它直接读写你 Mac 上的文件。临时目录 .external-sandbox-claude-tmp 还得放在可写挂载里，因为它拿来记账。
 ---
 6/9
 默认没有外网。要上网，加 --proxy，按主机和 HTTP 方法做白名单。直连、不走代理环境变量的请求，照样会被拦。
-还有凭证替换：沙箱里只放占位符，真密钥留在本机代理上，请求出门时再换上。他们写明，被放行的主机如果在响应里回显密钥，仍可能漏出去，所以只对信任的服务开，方法和路径要收窄。
+还有凭证替换：沙箱里只放占位符，真密钥留在本机代理上，请求出门时再换上。被放行的主机若在响应里回显密钥，仍可能漏，只对信任的服务开，路径要收窄。
 ---
 7/9
 文里还写了两条使用边界。可写挂载里的东西，agent 照样能毁掉，所以目录要进版本管理，能只读就只读。沙箱跑的是 Linux，项目里给 macOS 编的 node_modules、.venv，可能要在沙箱里重装。
@@ -31,9 +31,9 @@ Claude Code 不一样。只有 Bash 会经 CLAUDE_CODE_SHELL_PREFIX 进沙箱。
 ---
 9/9
 我的建议：
-1. 先核这个 agent 有哪些工具会进沙箱。Claude Code 只用它跑 Bash，别以为文件操作也被罩住
-2. 默认定网关，按主机和方法开白名单；密钥走凭证替换，别写进沙箱环境
-3. 可写挂载只挂当前项目，能只读的挂只读，目录进 git
+1. 先核哪些工具会进沙箱。Claude Code 只用它跑 Bash，别当成文件操作也被罩住
+2. 默认定网关，密钥走凭证替换，别写进沙箱环境
+3. 可写挂载只挂当前项目，能只读就只读，目录进 git
 4. 敏感仓库先别用，文里写明还没审计到那一步
-来源：https://blog.primeradiant.com/external-sandboxes-for-coding-agents/
+https://blog.primeradiant.com/external-sandboxes-for-coding-agents/
 https://github.com/prime-radiant-inc/external-sandbox
