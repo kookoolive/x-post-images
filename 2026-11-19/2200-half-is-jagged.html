@@ -1,0 +1,98 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"/><title>将近一半，要先看是哪一类活</title><style>
+:root{--bg:#0b1c2c;--gold:#f5c542;--rose:#e8a0bf;--card:#faf6ee;--ink:#141820;--muted:#5c564c;
+--sans:"Noto Sans CJK SC","Noto Sans SC","Noto Sans CJK",sans-serif;--mono:"Noto Sans Mono CJK SC","DejaVu Sans Mono",monospace;}
+*{box-sizing:border-box}html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{zoom:1.28;width:1172px;height:1563px;padding:24px 36px 20px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+background:
+  radial-gradient(circle at 94% 4%,rgba(245,197,66,.28) 0 150px,transparent 430px),
+  radial-gradient(circle at 8% 96%,rgba(232,160,191,.22) 0 140px,transparent 440px),
+  radial-gradient(#ffffff 0.9px,transparent 0.9px),
+  var(--bg);
+background-size:auto,auto,18px 18px,auto}
+.top{display:flex;gap:10px;align-items:center}
+.cap{font-family:var(--mono);font-size:15px;font-weight:900;letter-spacing:.1em;padding:7px 14px;border-radius:999px;background:var(--gold);color:var(--ink)}
+.cap.r{background:var(--rose);color:#2a1018}
+.cap.o{background:transparent;border:2px solid rgba(250,246,238,.38);color:#e8dcc6}
+h1{margin:16px 0 0;font-size:70px;line-height:1.08;font-weight:900;letter-spacing:-.03em;color:#faf6ee}
+h1 em{font-style:normal;color:var(--gold);background:linear-gradient(transparent 64%,rgba(232,160,191,.55) 64%)}
+.hrow{margin-top:14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.strike{font-size:23px;font-weight:900;color:#9aa6b2;text-decoration:line-through;text-decoration-thickness:4px;text-decoration-color:var(--rose)}
+.arrow{font-size:23px;font-weight:900;color:var(--gold)}
+.signal{font-size:23px;font-weight:900;background:var(--gold);color:var(--ink);padding:6px 14px;border-radius:6px}
+.rates{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.rt{background:var(--card);border-radius:14px;padding:16px 20px 18px;border-top:8px solid var(--gold)}
+.rt.b{border-top-color:var(--rose)}
+.rt .pair{display:flex;align-items:baseline;gap:8px;font-family:var(--mono);font-weight:900;letter-spacing:-.03em;line-height:1}
+.rt .from{font-size:28px;color:#7a7468}
+.rt .to{font-size:48px;color:var(--ink)}
+.rt .n{margin-top:6px;font-size:22px;font-weight:900}
+.rt .d{margin-top:4px;font-size:16px;font-weight:700;color:var(--muted);line-height:1.35}
+.tasks{margin-top:14px;display:grid;grid-template-columns:1.15fr 1fr 1.2fr;gap:10px}
+.tk{background:var(--card);border-radius:12px;padding:14px 16px 16px}
+.tk.hot{border:3px solid var(--rose);padding:11px 13px}
+.tk .k{font-family:var(--mono);font-size:13px;font-weight:900;letter-spacing:.12em;color:#8a5a08}
+.tk.hot .k{color:#9f1239}
+.tk .v{margin-top:2px;font-family:var(--mono);font-size:44px;font-weight:900;letter-spacing:-.04em;line-height:1.05}
+.tk.hot .v{color:#9f1239}
+.tk .n{margin-top:4px;font-size:20px;font-weight:900;line-height:1.3}
+.tk .s{margin-top:4px;font-size:15px;font-weight:700;color:var(--muted);line-height:1.35}
+.cats{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
+.cats span{background:rgba(250,246,238,.94);color:var(--ink);border-radius:8px;padding:8px 12px;font-size:17px;font-weight:800}
+.cats b{font-family:var(--mono);font-weight:900;color:#7a2f4d}
+.nums{margin-top:14px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.n{background:var(--card);border-radius:12px;padding:14px 14px 14px;border-top:6px solid var(--gold)}
+.n .v{font-family:var(--mono);font-size:30px;font-weight:900;letter-spacing:-.04em;line-height:1.1}
+.n .d{margin-top:6px;font-size:16px;font-weight:700;color:var(--muted);line-height:1.35}
+.judge{margin-top:14px;background:var(--card);color:var(--ink);border-radius:12px;padding:16px 20px;font-size:22px;font-weight:800;line-height:1.5;border-left:12px solid var(--gold)}
+.judge small{display:block;font-family:var(--mono);font-size:13px;letter-spacing:.16em;color:#8a5a08;margin-bottom:4px}
+.advh{margin-top:14px;font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.14em;color:var(--gold)}
+.adv{margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.a{background:var(--card);border-radius:12px;padding:14px 16px;display:flex;gap:10px;align-items:flex-start;font-size:19px;font-weight:800;line-height:1.4}
+.a i{font-style:normal;font-family:var(--mono);font-size:22px;font-weight:900;color:#b8860b;line-height:1.1}
+.foot{margin-top:auto}.note{margin-top:0;display:grid;grid-template-columns:1.2fr .8fr;gap:10px}
+.note .panel{background:var(--card);border-radius:12px;padding:12px 16px;font-size:18px;font-weight:800;line-height:1.45}
+.note .panel b{font-family:var(--mono);font-size:22px;font-weight:900}
+.note .panel .k{font-family:var(--mono);font-size:13px;font-weight:900;letter-spacing:.12em;color:#8a5a08;margin-bottom:4px}
+.end{margin-top:12px;background:var(--gold);color:var(--ink);border-radius:12px;padding:14px 18px;font-size:23px;font-weight:900;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.end span{font-family:var(--mono);font-size:13px;font-weight:700;color:#5c4310;letter-spacing:.03em;white-space:nowrap}
+</style></head><body><div class="card">
+<div class="top"><span class="cap">OPENAI</span><span class="cap r">RESEARCH ACCELERATION</span><span class="cap o">JAGGED FRONTIER · 2026-11-18</span></div>
+<h1>将近一半，要先看是<em>哪一类活</em></h1>
+<div class="hrow"><span class="strike">agent 已经能独立做完一半研究</span><span class="arrow">→</span><span class="signal">2–4 小时档 23%→46%，按任务类型差很多</span></div>
+<div class="rates">
+  <div class="rt"><div class="pair"><span class="from">23%</span><span class="arrow">→</span><span class="to">46%</span></div><div class="n">估需人类 2–4 小时</div><div class="d">3 月到 10 月，零干预完成率。分母不是「全部研究」。</div></div>
+  <div class="rt b"><div class="pair"><span class="from">13%</span><span class="arrow">→</span><span class="to">35%</span></div><div class="n">估需人类 4–8 小时</div><div class="d">同一时期、同一口径：中间没人插手才算成功。</div></div>
+</div>
+<div class="tasks">
+  <div class="tk"><div class="k">文首举例</div><div class="v">79%</div><div class="n">盯训练跑、找问题</div><div class="s">monitoring runs for issues</div></div>
+  <div class="tk"><div class="k">文首举例</div><div class="v">35%</div><div class="n">启动训练跑</div><div class="s">launching training runs</div></div>
+  <div class="tk hot"><div class="k">低的那一档</div><div class="v">25%</div><div class="n">写推理和 serving 代码</div><div class="s">inference / serving stacks</div></div>
+</div>
+<div class="cats">
+  <span>8/1–10/18 分类：Communicate <b>69%</b></span>
+  <span>Analyze <b>58%</b></span>
+  <span>Build <b>43%</b></span>
+  <span>答技术问题 <b>72%</b></span>
+  <span>搭评测 / RL / 环境 <b>29%</b></span>
+</div>
+<div class="nums">
+  <div class="n"><div class="v">$2,400</div><div class="d">10 月中位数 / 天，API 标价，较 9 月 $1,500 升 62%</div></div>
+  <div class="n"><div class="v">$23,000</div><div class="d">10 月 90 分位 / 天，较 9 月 $11,000 升 105%</div></div>
+  <div class="n"><div class="v">0.5→5.7</div><div class="d">agent workday（8 小时计 1），文称十一倍，起点月份未写</div></div>
+  <div class="n"><div class="v">≥4 / ≥16</div><div class="d">10 月中旬：超 2/3 日峰值至少 4 个并发，超 10% 至少 16 个</div></div>
+</div>
+<div class="judge"><small>我的看法</small>46% 只能说明 2–4 小时这一档的零干预完成率在涨。桶里的任务类型也可能变了。盯训练和写 serving 代码差了五十多个百分点，不能把「将近一半」读成研究已经半自动化。</div>
+<div class="advh">我的建议</div>
+<div class="adv">
+  <div class="a"><i>1</i>引用 46% 时写上分母：估需人类 2–4 小时、零干预</div>
+  <div class="a"><i>2</i>拆开看任务类型，不要用一个平均数做默认能力</div>
+  <div class="a"><i>3</i>用量按 API 标价；9 月薪酬比是非股权的两倍，不含股权</div>
+  <div class="a"><i>4</i>做规划时记住：文里写了桶内任务组成可能变了</div>
+</div>
+<div class="foot"><div class="note">
+  <div class="panel"><div class="k">2026-09 · API 等价用量</div>约等于非股权薪酬的 <b>2 倍</b>。股权通常占目标薪酬 70–80%，此比例不含股权。</div>
+  <div class="panel"><div class="k">占全部研究算力</div>内部 Codex + ChatGPT + API 合计只有 <b>2%</b></div>
+</div>
+<div class="end">低的那几档，才可能是整体加速的卡口<span>openai.com/index/research-acceleration-jagged-frontier</span></div>
+</div>
+</div></body></html>
