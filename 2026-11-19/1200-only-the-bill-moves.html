@@ -1,0 +1,106 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"/><title>付账到你这边，请求还在应用那头</title><style>
+:root{--bg:#efece3;--green:#0f3d34;--red:#c0392b;--card:#fffcf6;--ink:#1a1a16;--muted:#5c5850;
+--line:rgba(15,61,52,.08);--sans:"Noto Sans CJK SC","Noto Sans SC","Noto Sans CJK","Noto Sans",sans-serif;
+--mono:"Noto Sans Mono CJK SC","Noto Sans CJK SC","DejaVu Sans Mono",monospace;}
+*{box-sizing:border-box}html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:#fff}
+.card{zoom:1.25;width:1200px;height:1600px;padding:26px 40px 22px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+background:
+  radial-gradient(circle at 94% 4%,rgba(15,61,52,.16) 0 140px,transparent 420px),
+  radial-gradient(circle at 6% 96%,rgba(192,57,43,.14) 0 130px,transparent 400px),
+  repeating-linear-gradient(0deg,var(--line) 0 1px,transparent 1px 28px),
+  var(--bg)}
+.top{display:flex;gap:10px;align-items:center}
+.cap{font-family:var(--mono);font-size:15px;font-weight:900;letter-spacing:.1em;padding:7px 14px;border-radius:6px;background:var(--green);color:#fff}
+.cap.r{background:var(--red);color:#fff}
+.cap.o{background:transparent;border:2px solid rgba(26,26,22,.28);color:var(--muted)}
+h1{margin:16px 0 0;font-size:74px;line-height:1.08;font-weight:900;letter-spacing:-.03em}
+h1 em{font-style:normal;color:var(--green);background:linear-gradient(transparent 62%,#e8c4bf 62%)}
+.hrow{margin-top:16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.strike{font-size:24px;font-weight:900;color:#7a756c;text-decoration:line-through;text-decoration-thickness:4px;text-decoration-color:var(--red)}
+.arrow{font-size:24px;font-weight:900;color:var(--green)}
+.signal{font-size:24px;font-weight:900;background:var(--green);color:#fff;padding:6px 16px;border-radius:6px}
+.pipe{margin-top:18px;display:flex;align-items:stretch;gap:0}
+.st{flex:1;background:var(--card);border:2px solid var(--green);padding:16px 16px 16px;position:relative}
+.st:not(:last-child){border-right:0}
+.st:first-child{border-radius:12px 0 0 12px}
+.st:last-child{border-radius:0 12px 12px 0;background:var(--green);color:#fff}
+.st .k{font-family:var(--mono);font-size:13px;font-weight:900;letter-spacing:.12em;color:var(--green)}
+.st:last-child .k{color:#e8d2cf}
+.st .t{margin-top:4px;font-size:22px;font-weight:900;line-height:1.3}
+.st .s{margin-top:4px;font-size:16px;font-weight:700;color:var(--muted);line-height:1.35}
+.st:last-child .s{color:#ecd9d6}
+.nums{margin-top:14px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.n{background:var(--card);border-radius:12px;padding:18px 16px 16px;border-top:8px solid var(--green)}
+.n.warn{border-top-color:var(--red)}
+.n .v{font-family:var(--mono);font-size:36px;font-weight:900;letter-spacing:-.03em;line-height:1.1}
+.n.warn .v{color:var(--red)}
+.n .d{margin-top:6px;font-size:17px;font-weight:700;color:var(--muted);line-height:1.35}
+.row{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.panel{background:var(--card);border-radius:12px;padding:18px 20px}
+.lab{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.14em}
+.lab.on{color:var(--green)}.lab.off{color:var(--red)}
+.panel ul{margin:10px 0 0;padding:0;list-style:none}
+.panel li{display:flex;gap:10px;align-items:flex-start;font-size:20px;font-weight:800;line-height:1.45;margin-top:8px}
+.panel li:first-child{margin-top:0}
+.mark{flex:none;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:14px;font-weight:900;margin-top:3px;color:#fff}
+.ok .mark{background:var(--green)}.no .mark{background:var(--red)}
+.chips{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+.chips span{background:var(--card);border:1.5px solid rgba(15,61,52,.18);border-radius:999px;padding:8px 14px;font-size:17px;font-weight:800;color:var(--ink)}
+.chips span b{color:var(--red);font-weight:900}
+.judge{margin-top:14px;background:var(--ink);color:#f6f3ec;border-radius:12px;padding:16px 20px;font-size:23px;font-weight:800;line-height:1.5;border-left:12px solid var(--red)}
+.judge small{display:block;font-family:var(--mono);font-size:13px;letter-spacing:.16em;color:#e8c4bf;margin-bottom:6px}
+.advh{margin-top:14px;font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.14em;color:var(--green)}
+.adv{margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.a{background:var(--card);border-radius:12px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;font-size:20px;font-weight:800;line-height:1.4}
+.a i{font-style:normal;font-family:var(--mono);font-size:24px;font-weight:900;color:var(--green);line-height:1.1}
+.end{margin-top:auto;background:var(--green);color:#fff;border-radius:12px;padding:16px 22px;font-size:26px;font-weight:900;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.end span{font-family:var(--mono);font-size:13px;font-weight:700;color:#c9ddd6;letter-spacing:.06em;white-space:nowrap}
+</style></head><body><div class="card">
+<div class="top"><span class="cap">CLAUDE PLATFORM</span><span class="cap r">LINKED BILLING</span><span class="cap o">BETA · 2026-11-17</span></div>
+<h1>付账到你这边，<br><em>请求还在应用那头</em></h1>
+<div class="hrow"><span class="strike">不交密钥就安全了</span><span class="arrow">→</span><span class="signal">转到你这边的只有账单</span></div>
+<div class="pipe">
+<div class="st"><div class="k">01 · 连接</div><div class="t">管理员批准一次</div><div class="s">Admin 或 Billing 成员，可随时取消</div></div>
+<div class="st"><div class="k">02 · 记账</div><div class="t">应用逐条选择谁付钱</div><div class="s">客户，或应用自己</div></div>
+<div class="st"><div class="k">03 · 拒绝</div><div class="t">付不了就直接拒绝</div><div class="s">不会改打到应用头上</div></div>
+</div>
+<div class="nums">
+<div class="n"><div class="v">19 家</div><div class="d">官方点名的首批平台，含 Linear、Railway、Factory</div></div>
+<div class="n warn"><div class="v">403</div><div class="d">只有订阅计划的组织：user_profile_not_billable</div></div>
+<div class="n warn"><div class="v">云市场</div><div class="d">AWS、Google Cloud、Azure 走不通</div></div>
+<div class="n warn"><div class="v">可略超</div><div class="d">越过上限的那一笔仍会完成，在跑的也会跑完</div></div>
+</div>
+<div class="row">
+<div class="panel">
+<div class="lab on">转到你这边的</div>
+<ul>
+<li class="ok"><span class="mark">✓</span><span>账单打到你的 Claude 组织</span></li>
+<li class="ok"><span class="mark">✓</span><span>可按应用设月度上限，也可随时取消</span></li>
+<li class="ok"><span class="mark">✓</span><span>不用把 API key 交给应用</span></li>
+</ul>
+</div>
+<div class="panel">
+<div class="lab off">仍在应用那边的</div>
+<ul>
+<li class="no"><span class="mark">✕</span><span>请求本身，在应用的组织里跑</span></li>
+<li class="no"><span class="mark">✕</span><span>速率限制、模型权限、服务等级</span></li>
+<li class="no"><span class="mark">✕</span><span>ZDR、BAA、CMEK、IP 白名单都不覆盖</span></li>
+</ul>
+</div>
+</div>
+<div class="chips">
+<span>Max / Ultra / Team 自带月度 API 积分<b>不能付</b></span>
+<span>合作伙伴、VC、创业项目积分<b>不能付</b></span>
+<span>测试中的应用上限须 <b>≤ $50</b></span>
+<span>每月 <b>1 日 UTC</b> 重置</span>
+</div>
+<div class="judge"><small>帮助页口径</small>这只改变这笔用量怎么计费，不改变你的组织在该应用里使用 Claude 时适用的条款和数据安排。需要 HIPAA、FERPA 或 CMEK 的，测试期不要连。</div>
+<div class="advh">我的建议</div>
+<div class="adv">
+<div class="a"><i>1</i><span>链之前确认是直接向 Anthropic 付 API 账；订阅和云市场现在走不通</span></div>
+<div class="a"><i>2</i><span>要 ZDR、BAA、HIPAA、FERPA 或 CMEK 的用量，测试期不要走这条连接</span></div>
+<div class="a"><i>3</i><span>每个应用单独设上限，并记住限额可能被略微超过</span></div>
+<div class="a"><i>4</i><span>连上后核对哪些请求会被标成你付，取消连接随时能做</span></div>
+</div>
+<div class="end">不交密钥，不等于请求跑在你的组织里。<span>CLAUDE PLATFORM · LINKED BILLING</span></div>
+</div></body></html>

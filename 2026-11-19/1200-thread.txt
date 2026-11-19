@@ -1,0 +1,38 @@
+1/9
+Anthropic 11 月 17 日在 Claude Platform 上线了 linked billing，还在 beta。第三方工具里用 Claude，不必再把 API key 交出去。管理员批准一条连接，这笔用量的账单打到你自己的 Claude 组织。
+---
+2/9
+链上之后，应用在每一条请求上选择谁付钱：客户，或应用自己。标成客户付、却付不了的，接口直接拒绝，不会改打到应用头上。客户可以随时取消连接。
+---
+3/9
+能这样记账的，只有直接向 Anthropic 付 API 账的组织。预付额度和发票都算。走 AWS、Google Cloud、Azure 市场的不行。只有 Claude 订阅计划的也不行，会返回 403 user_profile_not_billable。
+Max、Ultra、Team 自带的每月 API 积分，以及合作伙伴、VC、创业项目的积分，都不能付这类请求。账户上没有可付额度时可能返回 402，但响应不会说明是额度不够，还是撞了支出上限。
+---
+4/9
+请求跑在应用的组织里，不是你的。转到你这边的只有账单。
+你组织里的速率限制、模型权限、服务等级、数据保留和加密密钥，都不覆盖这些请求。包括零数据保留（ZDR）、BAA，和客户管理密钥（CMEK）。需要 HIPAA、FERPA 或 CMEK 的，官方写明测试期不要连。IP 白名单同样不适用。
+---
+5/9
+支出上限在 Console 的 Linked platforms 页，按应用单独设，单位是美元，也可以设一个默认上限，分别作用到每个应用，不是所有应用共用一个池。某个应用页上单独设的会覆盖默认值。组织自己的月度限额仍然生效，碰到任一就拒绝请求。
+限额是可选的。设 $0 等于拒绝该应用的全部请求。测试中的应用必须设不超过 50 美元。到达上限后，要等你提高限额，或等到每月 1 日 UTC 重置。
+---
+6/9
+上限不是精确切断。越过上限的那一笔仍会完成，已经在跑的请求也会跑完，总额可能略超。
+还有两处边界。客户付的请求不能使用计费的 code execution，会返回 400。Message Batches 目前也不能把账打给客户。另外，应用的 operator 服务账号，默认可以把账记到该应用下任何一个已连接客户；请求里如果写了另一个 profile，Anthropic 会按那个组织记账，而且不会报错。
+---
+7/9
+官方点名了 19 家首批平台，包括 Linear、Railway、Factory、Ramp、Warp。能做这件事的是 Admin 或 Billing 成员。
+这只改变这笔用量怎么计费，不改变你的组织在该应用里使用 Claude 时适用的条款和数据安排。
+---
+8/9
+我的看法：不交密钥，只是不再把「能从你账户拉用量的密码」交给应用。请求还在应用的组织里跑，数据安排也还是应用那边的。支出上限能挡新请求，但挡不住刚好越过的那一笔，也挡不住已经在跑的调用。
+---
+9/9
+我的建议：
+1. 链之前先看清：自己是不是直接向 Anthropic 付 API 账，订阅和云市场这条路现在走不通
+2. 需要 ZDR、BAA、HIPAA、FERPA 或 CMEK 的用量，测试期不要走这条连接
+3. 给每个应用单独设上限，并记住限额可能被略微超过
+4. 连上后核对应用会把哪些请求标成你付，取消连接随时能做
+来源：Claude Platform 文档；Claude 帮助页；@ClaudeDevs 2026-11-17
+https://platform.claude.com/docs/en/manage-claude/oauth-apps/organization-billing-connections
+https://support.claude.com/en/articles/18467148-use-your-claude-platform-account-in-a-third-party-app

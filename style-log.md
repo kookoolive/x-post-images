@@ -195,3 +195,7 @@
 - 2026-11-17 22:00 | commands-into-sandbox (Prime Radiant × Simon Willison external sandboxes：进沙箱的是命令，不是 agent)
   | 骨架：胶囊顶栏（PRIME RADIANT / EXTERNAL SANDBOX / 日期）+巨号标题（铜金「不是 agent」青绿下划）+删除线「把 agent 关进沙箱」/铜金「agent 留在 Mac，命令送进去」+三端口格 8686/8687/8688 +三栏 agent 对照（Pi 全套进 / Codex 含 apply_patch / Claude Code 只有 Bash 高亮警示）+网络默认关 vs 凭证替换双栏+边界芯片三条+青绿左边条判断带+我的建议 2×2+铜金底通栏结论
   | 背景深柏木夜 #16110c（细横线+铜金/青绿光晕），强调铜金 #e8b84a，点缀青绿 #2dd4bf，警示酒红 #9f1239，卡面米白 #faf6ee，墨字 #1c1410；整卡 zoom 1.40
+- 2026-11-19 12:00 | only-the-bill-moves (Claude Platform Linked billing：付账到你这边，请求还在应用那头)
+  | 骨架：胶囊顶栏（CLAUDE PLATFORM / LINKED BILLING / BETA · 2026-11-17）+巨号标题（朱戳粉底「请求还在应用那头」）+删除线「不交密钥就安全了」/墨绿信号「转到你这边的只有账单」+三步流程条（连接/记账/拒绝末格墨绿色）+四格 19家/403/云市场/可略超 +双栏（转到你这边 ✓ vs 仍在应用那边 ✕）+限制芯片四枚 +墨底朱红左边条判断带 +我的建议 2×2 +墨绿底通栏结论
+  | 背景浅账本米 #efece3（细横账线+墨绿/朱红光晕），强调墨绿 #0f3d34，点缀朱戳红 #c0392b，卡面 #fffcf6，墨字 #1a1a16；整卡 zoom 1.25
+
