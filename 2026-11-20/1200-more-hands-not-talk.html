@@ -1,0 +1,98 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"/><title>八人组更高，不是因为会商量</title><style>
+:root{--bg:#d7efe6;--ink:#0b3d32;--accent:#d946a8;--card:#f7fffb;--mute:#4a6a62;--deep:#072821;
+--sans:"Noto Sans CJK SC","Noto Sans CJK","Noto Sans SC",sans-serif;--mono:"Noto Sans Mono CJK SC","DejaVu Sans Mono",monospace;}
+*{box-sizing:border-box}html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{zoom:1.30;width:1154px;height:1538px;padding:22px 34px 18px;font-family:var(--sans);color:var(--deep);display:flex;flex-direction:column;
+background:
+  radial-gradient(circle at 92% 6%,rgba(217,70,168,.22) 0 140px,transparent 420px),
+  radial-gradient(circle at 8% 94%,rgba(11,61,50,.18) 0 150px,transparent 440px),
+  repeating-linear-gradient(135deg,rgba(11,61,50,.05) 0 2px,transparent 2px 16px),
+  var(--bg)}
+.top{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.cap{font-family:var(--mono);font-size:15px;font-weight:900;letter-spacing:.1em;padding:7px 14px;border-radius:999px;background:var(--ink);color:#e8fff6}
+.cap.p{background:var(--accent);color:#fff}
+.cap.o{background:transparent;border:2px solid rgba(11,61,50,.35);color:var(--ink)}
+h1{margin:14px 0 0;font-size:64px;line-height:1.08;font-weight:900;letter-spacing:-.03em;color:var(--ink)}
+h1 em{font-style:normal;color:var(--accent);background:linear-gradient(transparent 62%,rgba(217,70,168,.28) 62%)}
+.hrow{margin-top:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.strike{font-size:22px;font-weight:900;color:#7a9a90;text-decoration:line-through;text-decoration-thickness:4px;text-decoration-color:var(--accent)}
+.arrow{font-size:22px;font-weight:900;color:var(--ink)}
+.signal{font-size:22px;font-weight:900;background:var(--ink);color:#e8fff6;padding:6px 14px;border-radius:6px}
+.rates{margin-top:14px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.rt{background:var(--card);border-radius:14px;padding:14px 16px 16px;border-top:8px solid #9bb8ae}
+.rt.mid{border-top-color:var(--ink)}
+.rt.hot{border-top-color:var(--accent);border:3px solid var(--accent);border-top-width:8px;padding:11px 13px 13px}
+.rt .v{font-family:var(--mono);font-size:52px;font-weight:900;letter-spacing:-.04em;line-height:1;color:var(--ink)}
+.rt.hot .v{color:#9d196e}
+.rt .n{margin-top:6px;font-size:22px;font-weight:900}
+.rt .d{margin-top:4px;font-size:16px;font-weight:700;color:var(--mute);line-height:1.35}
+.split{margin-top:12px;display:grid;grid-template-columns:1.15fr .85fr;gap:10px}
+.box{background:var(--card);border-radius:12px;padding:14px 16px}
+.box .k{font-family:var(--mono);font-size:13px;font-weight:900;letter-spacing:.12em;color:#9d196e}
+.box .pair{display:flex;align-items:baseline;gap:8px;margin-top:4px}
+.box .from{font-family:var(--mono);font-size:34px;font-weight:900;color:var(--ink)}
+.box .s{font-size:18px;font-weight:800;color:var(--mute)}
+.models{margin-top:12px;display:grid;grid-template-columns:1.15fr 1fr 1.15fr;gap:10px}
+.tk{background:var(--card);border-radius:12px;padding:12px 14px 14px}
+.tk.hot{border:3px solid var(--ink)}
+.tk .k{font-family:var(--mono);font-size:13px;font-weight:900;letter-spacing:.1em;color:#3d6b5e}
+.tk .v{margin-top:2px;font-family:var(--mono);font-size:40px;font-weight:900;letter-spacing:-.04em;line-height:1.05;color:var(--ink)}
+.tk .n{margin-top:4px;font-size:18px;font-weight:900;line-height:1.3}
+.tk .s{margin-top:4px;font-size:15px;font-weight:700;color:var(--mute);line-height:1.35}
+.nums{margin-top:12px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.n{background:var(--card);border-radius:12px;padding:12px 14px;border-top:6px solid var(--ink)}
+.n .v{font-family:var(--mono);font-size:28px;font-weight:900;letter-spacing:-.04em;line-height:1.1}
+.n .d{margin-top:6px;font-size:15px;font-weight:700;color:var(--mute);line-height:1.35}
+.chips{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
+.chips span{background:rgba(247,255,251,.96);color:var(--deep);border-radius:8px;padding:8px 12px;font-size:16px;font-weight:800}
+.chips b{font-family:var(--mono);font-weight:900;color:#9d196e}
+.judge{margin-top:12px;background:var(--card);color:var(--deep);border-radius:12px;padding:14px 18px;font-size:21px;font-weight:800;line-height:1.5;border-left:12px solid var(--ink)}
+.judge small{display:block;font-family:var(--mono);font-size:13px;letter-spacing:.16em;color:#3d6b5e;margin-bottom:4px}
+.advh{margin-top:12px;font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.14em;color:var(--ink)}
+.adv{margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.a{background:var(--card);border-radius:12px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start;font-size:18px;font-weight:800;line-height:1.4}
+.a i{font-style:normal;font-family:var(--mono);font-size:22px;font-weight:900;color:var(--accent);line-height:1.1}
+.foot{margin-top:auto}
+.end{margin-top:12px;background:var(--ink);color:#e8fff6;border-radius:12px;padding:14px 18px;font-size:22px;font-weight:900;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.end span{font-family:var(--mono);font-size:13px;font-weight:700;color:#9bb8ae;letter-spacing:.03em;white-space:nowrap}
+</style></head><body><div class="card">
+<div class="top"><span class="cap">BESPOKE LABS</span><span class="cap p">MAC BENCH</span><span class="cap o">12 任务 · 2026-11-18</span></div>
+<h1>八人组更高，不是因为会<em>商量</em></h1>
+<div class="hrow"><span class="strike">组队就会配合</span><span class="arrow">→</span><span class="signal">多出来的分来自人手变多</span></div>
+<div class="rates">
+  <div class="rt"><div class="v">0.35</div><div class="n">单人</div><div class="d">三模型平均最终分。隐藏确定性打分器，分值 0–1。</div></div>
+  <div class="rt mid"><div class="v">0.44</div><div class="n">无协调的八个</div><div class="d">对照因任务类型而不同，见下方判断带。</div></div>
+  <div class="rt hot"><div class="v">0.42</div><div class="n">可发消息的八人组</div><div class="d">平均分并不比无协调更高。</div></div>
+</div>
+<div class="split">
+  <div class="box"><div class="k">人手变多　无协调八人 − 单人</div><div class="pair"><span class="from">+0.087</span><span class="s">95% 区间 0.067–0.107</span></div></div>
+  <div class="box"><div class="k">协调　八人组 − 无协调八人</div><div class="pair"><span class="from">−0.018</span><span class="s">−0.038 到 0.003，过零</span></div></div>
+</div>
+<div class="models">
+  <div class="tk hot"><div class="k">八人组 · 会听</div><div class="v">0.53</div><div class="n">Opus 5.5</div><div class="s">文称唯一从发消息拿到增益。排行榜 0.534。</div></div>
+  <div class="tk"><div class="k">八人组 · 广播</div><div class="v">0.41</div><div class="n">GPT-6.1 Sol</div><div class="s">单人分与 Opus 接近。广播，不听回去。</div></div>
+  <div class="tk"><div class="k">八人组 · 各干各的</div><div class="v">0.32</div><div class="n">Gemini 4 Argon</div><div class="s">16 次八人运行里，9 次看不出稳定分工。</div></div>
+</div>
+<div class="nums">
+  <div class="n"><div class="v">8.8×</div><div class="d">模型调用标价相对单人的倍数，36 组几何平均</div></div>
+  <div class="n"><div class="v">分美元比</div><div class="d">随人数倍增下降，36 组均为单人最高</div></div>
+  <div class="n"><div class="v">2.2×</div><div class="d">30/36 组能在 4 小时内赶到单人最终分，中位更快，不是 8 倍</div></div>
+  <div class="n"><div class="v">84 / 156 / 109</div><div class="d">八人组中位分钟数；八倍加速本该是 30 分钟</div></div>
+</div>
+<div class="chips">
+  <span>Holdout：单人 <b>0.13</b></span>
+  <span>无协调八人 <b>0.37</b></span>
+  <span>八人组 <b>0.42</b>，协调 <b>+0.052</b></span>
+  <span>重复劳动 <b>64%</b> 团队运行至少一次</span>
+  <span>两人组留言板占工具调用 <b>22%</b></span>
+</div>
+<div class="judge"><small>我的判断</small>关掉协调，平均分并没有更差。数字描述的是模型和它自家 harness 绑在一起的组合。共享任务的无协调对照，常常是八个独立单人里最好的那个，不是八个人挤在一起却不许说话。</div>
+<div class="advh">我的建议</div>
+<div class="adv">
+  <div class="a"><i>1</i>引 0.42 vs 0.35 时，写上无协调 0.44，以及区间过零</div>
+  <div class="a"><i>2</i>先看是不是分布式：要交换彼此看不见的信息，协调才有用</div>
+  <div class="a"><i>3</i>算成本用标价模型调用：8.8 倍费用只换来约 2.2 倍赶到单人分数的速度</div>
+  <div class="a"><i>4</i>跨模型比较团队成绩时，标明用的是各家自己的 harness</div>
+</div>
+<div class="foot"><div class="end">加人，先把「人手变多」和「会不会配合」拆开看<span>benchmarks.bespokelabs.ai</span></div></div>
+</div></body></html>
