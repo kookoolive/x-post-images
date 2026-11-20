@@ -1,0 +1,127 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"/><title>五次里中一次，不是日常概率</title><style>
+:root{--bg:#f3e6d4;--wine:#7f1d1d;--wine-deep:#5c1212;--teal:#0f766e;--card:#fffaf3;--ink:#1c1410;--muted:#6b5848;
+--sans:"Noto Sans CJK SC","Noto Sans SC","Noto Sans CJK",sans-serif;--mono:"Noto Sans Mono CJK SC","DejaVu Sans Mono",monospace;}
+*{box-sizing:border-box}html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{zoom:1.46;width:1027px;height:1370px;padding:18px 28px 20px;font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column;
+background:
+  radial-gradient(circle at 92% 6%,rgba(127,29,29,.18) 0 140px,transparent 420px),
+  radial-gradient(circle at 8% 94%,rgba(15,118,110,.16) 0 130px,transparent 400px),
+  repeating-linear-gradient(180deg,rgba(28,20,16,.045) 0 1px,transparent 1px 22px),
+  var(--bg);}
+.top{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.cap{font-family:var(--mono);font-size:15px;font-weight:900;letter-spacing:.1em;padding:7px 14px;border-radius:999px;background:var(--wine);color:#fffaf3}
+.cap.t{background:var(--teal);color:#fffaf3}
+.cap.o{background:transparent;border:2px solid rgba(127,29,29,.35);color:var(--wine)}
+h1{margin:12px 0 0;font-size:56px;line-height:1.08;font-weight:900;letter-spacing:-.03em;color:var(--ink)}
+h1 em{font-style:normal;color:var(--wine);background:linear-gradient(transparent 64%,rgba(15,118,110,.28) 64%)}
+.hrow{margin-top:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.strike{font-size:22px;font-weight:900;color:#8a7464;text-decoration:none;background:linear-gradient(transparent 58%,var(--wine) 58% 70%,transparent 70%)}
+.arrow{font-size:22px;font-weight:900;color:var(--teal)}
+.signal{font-size:22px;font-weight:900;background:var(--wine);color:#fffaf3;padding:6px 14px;border-radius:6px}
+.rates{margin-top:14px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.rt{background:var(--card);border-radius:14px;padding:14px 16px 16px;border-top:8px solid var(--teal)}
+.rt.mid{border-top-color:#b45309}
+.rt.hot{border-top-color:var(--wine);border:3px solid var(--wine);border-top-width:8px;padding:11px 13px 13px}
+.rt .k{font-family:var(--mono);font-size:13px;font-weight:900;letter-spacing:.12em;color:var(--teal)}
+.rt.hot .k{color:var(--wine)}
+.rt .v{margin-top:2px;font-family:var(--mono);font-size:52px;font-weight:900;letter-spacing:-.04em;line-height:1}
+.rt.hot .v{color:var(--wine)}
+.rt .n{margin-top:6px;font-size:20px;font-weight:900;line-height:1.3}
+.rt .d{margin-top:4px;font-size:15px;font-weight:700;color:var(--muted);line-height:1.35}
+.entry{margin-top:12px;display:grid;grid-template-columns:1.2fr .9fr .95fr .9fr;gap:8px}
+.en{background:var(--card);border-radius:12px;padding:12px 14px 14px}
+.en.hot{border:3px solid var(--wine);padding:9px 11px 11px}
+.en .k{font-family:var(--mono);font-size:12px;font-weight:900;letter-spacing:.1em;color:#8a5a08}
+.en.hot .k{color:var(--wine)}
+.en .v{margin-top:2px;font-family:var(--mono);font-size:36px;font-weight:900;letter-spacing:-.04em;line-height:1.05}
+.en.hot .v{color:var(--wine)}
+.en .n{margin-top:3px;font-size:17px;font-weight:800;line-height:1.3}
+.obj{margin-top:12px;display:grid;grid-template-columns:1.15fr 1fr;gap:10px}
+.ob{background:var(--card);border-radius:12px;padding:14px 16px}
+.ob .k{font-family:var(--mono);font-size:13px;font-weight:900;letter-spacing:.12em;color:var(--teal)}
+.ob .row{margin-top:6px;display:flex;align-items:baseline;gap:10px}
+.ob .v{font-family:var(--mono);font-size:40px;font-weight:900;letter-spacing:-.04em;color:var(--wine);line-height:1}
+.ob .n{font-size:20px;font-weight:900}
+.ob .d{margin-top:4px;font-size:16px;font-weight:700;color:var(--muted);line-height:1.4}
+.chips{margin-top:6px;display:flex;flex-wrap:wrap;gap:6px}
+.chips span{background:#f3e6d4;border-radius:8px;padding:5px 10px;font-size:15px;font-weight:800}
+.chips b{font-family:var(--mono);font-weight:900;color:var(--wine-deep)}
+.ind{margin-top:12px;display:grid;grid-template-columns:1.1fr 1.4fr;gap:10px}
+.ind .box{background:var(--card);border-radius:12px;padding:14px 16px}
+.ind .k{font-family:var(--mono);font-size:13px;font-weight:900;letter-spacing:.12em;color:var(--wine)}
+.ind .v{margin-top:2px;font-family:var(--mono);font-size:40px;font-weight:900;letter-spacing:-.04em;line-height:1.05;color:var(--wine)}
+.ind .n{margin-top:4px;font-size:18px;font-weight:800;line-height:1.35}
+.ind .list{display:flex;flex-wrap:wrap;gap:7px;align-content:center}
+.ind .list span{background:var(--card);border-radius:8px;padding:8px 11px;font-size:16px;font-weight:800}
+.ind .list b{font-family:var(--mono);font-weight:900;color:var(--teal)}
+.score{margin-top:12px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.sc{background:var(--card);border-radius:12px;padding:12px 14px}
+.sc .k{font-family:var(--mono);font-size:12px;font-weight:900;letter-spacing:.1em;color:var(--teal)}
+.sc .n{margin-top:4px;font-size:18px;font-weight:900;line-height:1.35}
+.judge{margin-top:10px;background:var(--card);color:var(--ink);border-radius:12px;padding:12px 16px;font-size:19px;font-weight:800;line-height:1.5;border-left:12px solid var(--wine)}
+.judge small{display:block;font-family:var(--mono);font-size:13px;letter-spacing:.16em;color:var(--wine);margin-bottom:4px}
+.advh{margin-top:12px;font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.14em;color:var(--wine)}
+.adv{margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.a{background:var(--card);border-radius:12px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start;font-size:18px;font-weight:800;line-height:1.4}
+.a i{font-style:normal;font-family:var(--mono);font-size:22px;font-weight:900;color:var(--wine);line-height:1.1}
+.foot{margin-top:10px}
+.end{margin-top:12px;background:var(--wine);color:#fffaf3;border-radius:12px;padding:13px 18px;font-size:22px;font-weight:900;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.end span{font-family:var(--mono);font-size:13px;font-weight:700;color:#f0d2c8;letter-spacing:.03em;white-space:nowrap}
+</style></head><body><div class="card">
+<div class="top"><span class="cap">PROMPTARMOR</span><span class="cap t">FRONTIERBREACH</span><span class="cap o">企业工作流 · 2026-11-18</span></div>
+<h1>34.9%，要先看清是<em>五次里中一次</em></h1>
+<div class="hrow"><span class="strike">日常任务三成会被劫持</span><span class="arrow">→</span><span class="signal">选最强注入，五次里中一次就算</span></div>
+<div class="rates">
+  <div class="rt"><div class="k">ARGON</div><div class="v">4.3%</div><div class="n">Gemini 4 Argon</div><div class="d">原始分析里最抗的前沿模型</div></div>
+  <div class="rt mid"><div class="k">FABLE 5.2</div><div class="v">10.0%</div><div class="n">Claude Fable 5.2</div><div class="d">Palo Alto 同模型报的是 0%</div></div>
+  <div class="rt hot"><div class="k">最高</div><div class="v">91.4%</div><div class="n">Grok 4.5</div><div class="d">官方写超过平均的两倍</div></div>
+</div>
+<div class="entry">
+  <div class="en hot"><div class="k">最高入口</div><div class="v">45.5%</div><div class="n">技能 · 本地文件的 1.6×</div></div>
+  <div class="en"><div class="k">连接器</div><div class="v">33.9%</div><div class="n">如收件箱邮件</div></div>
+  <div class="en"><div class="k">文档系统</div><div class="v">31.5%</div><div class="n">共享工作区文件</div></div>
+  <div class="en"><div class="k">本地文件</div><div class="v">28.5%</div><div class="n">机器上的文件</div></div>
+</div>
+<div class="obj">
+  <div class="ob">
+    <div class="k">攻击目标 · ACROSS MODELS TESTED</div>
+    <div class="row"><div class="v">63.2%</div><div class="n">任意代码执行最高</div></div>
+    <div class="d">Argon 在这项是 8.3%，几乎是其 4.3% 总分的两倍。代码执行能用上 agent 运行时权限。</div>
+  </div>
+  <div class="ob">
+    <div class="k">其余目标</div>
+    <div class="chips">
+      <span>钓鱼 <b>57.8%</b></span>
+      <span>数据销毁 <b>41.8%</b></span>
+      <span>数据窃取 <b>16.8%</b></span>
+      <span>勒索软件 <b>13.5%</b></span>
+      <span>持久化 <b>12.7%</b></span>
+    </div>
+  </div>
+</div>
+<div class="ind">
+  <div class="box"><div class="k">最高行业</div><div class="v">44.4%</div><div class="n">医疗与社会救助，比 34.9% 平均高出近 10 个百分点</div></div>
+  <div class="list">
+    <span>制造业 <b>40.7%</b></span>
+    <span>金融保险 <b>38.3%</b></span>
+    <span>批发贸易 <b>37.9%</b></span>
+    <span>房地产 <b>36.1%</b></span>
+    <span>高低差 <b>17.1 个百分点</b></span>
+  </div>
+</div>
+<div class="score">
+  <div class="sc"><div class="k">K=5</div><div class="n">每个用例跑 5 次，中等努力档</div></div>
+  <div class="sc"><div class="k">ANY OF 5</div><div class="n">环境里任意一次发生有害动作就算</div></div>
+  <div class="sc"><div class="k">选最强</div><div class="n">每个组合只留下 ASR 最高的注入</div></div>
+  <div class="sc"><div class="k">看证据</div><div class="n">核验执行痕迹，不采信模型自述</div></div>
+</div>
+<div class="judge"><small>我的看法</small>34.9% 是原始 21 模型、选最强注入、五次里中一次就算的用例成功率，不是日常被劫持的概率。核验看执行证据，不采信模型自述。Carbon 的模型卡（Gray Swan）报 0%，本基准打出了 ASR，但没有公布 Carbon 的分数。</div>
+<div class="advh">我的建议</div>
+<div class="adv">
+  <div class="a"><i>1</i>引 34.9% 时写上 k=5，以及流水线会选出最强注入</div>
+  <div class="a"><i>2</i>把第三方 skill、邮件连接器里进来的内容，当成不信任输入</div>
+  <div class="a"><i>3</i>发信、付款、执行代码、加密或删除，另外过闸，不要只过滤提示词</div>
+  <div class="a"><i>4</i>跨基准对比时标明 k 和计分，如 Gray Swan 对 Argon 是 k=15 的 0.7%</div>
+</div>
+<div class="foot"><div class="end">不要把 34.9% 读成日常三分之一会被劫持<span>@leozhangai</span></div></div>
+</div></body></html>
