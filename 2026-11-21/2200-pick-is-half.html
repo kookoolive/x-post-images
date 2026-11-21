@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<title>挑下一个大约一半</title>
+<style>
+:root{
+  --bg:#12162a;
+  --ink:#12141c;
+  --accent:#ff6b4a;
+  --cyan:#7dd3d0;
+  --card:#f3f6fb;
+  --mute:#5b6170;
+  --paper:#f3f6fb;
+  --sans:"Noto Sans CJK SC","Noto Sans SC","Noto Sans CJK",sans-serif;
+  --mono:"Noto Sans Mono CJK SC","Noto Sans CJK SC","DejaVu Sans Mono",monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{
+  width:1500px;height:2000px;padding:32px 46px 30px;
+  font-family:var(--sans);color:var(--paper);
+  display:flex;flex-direction:column;justify-content:space-between;gap:12px;
+  background:
+    radial-gradient(circle at 88% 6%,rgba(255,107,74,.28) 0 160px,transparent 520px),
+    radial-gradient(circle at 8% 94%,rgba(125,211,208,.22) 0 180px,transparent 560px),
+    repeating-linear-gradient(135deg,rgba(125,211,208,.045) 0 2px,transparent 2px 18px),
+    var(--bg);
+}
+.top{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.cap{font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.1em;padding:8px 16px;border-radius:999px;background:#f3f6fb;color:var(--ink)}
+.cap.p{background:var(--accent);color:#fff}
+.cap.o{background:transparent;border:2px solid rgba(243,246,251,.4);color:#f3f6fb}
+.dates{display:flex;gap:10px;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:16px;font-weight:800;letter-spacing:.04em;padding:5px 12px;border-radius:7px;background:rgba(243,246,251,.1);color:#e8edf6}
+h1{margin:0;font-size:64px;line-height:1.08;font-weight:900;letter-spacing:-.03em;color:#f7f9fd}
+h1 em{font-style:normal;color:var(--cyan);background:linear-gradient(transparent 62%,rgba(125,211,208,.35) 62%)}
+.hrow{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.strike{font-size:24px;font-weight:900;color:#9aa3b5;text-decoration:line-through;text-decoration-thickness:4px;text-decoration-color:var(--accent)}
+.arrow{font-size:24px;font-weight:900;color:#f3f6fb}
+.signal{font-size:24px;font-weight:900;background:var(--cyan);color:#102226;padding:6px 14px;border-radius:7px}
+.rates{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.rt{background:var(--card);border-radius:14px;padding:18px 16px 16px;color:var(--ink);border-top:8px solid #c9d0dc}
+.rt.hot{border:3px solid var(--accent);border-top:8px solid var(--accent)}
+.rt.cool{border-top-color:var(--cyan)}
+.rt .v{font-family:var(--mono);font-size:52px;font-weight:900;letter-spacing:-.05em;line-height:1;color:var(--ink)}
+.rt.hot .v{color:#c4452d}
+.rt .n{margin-top:8px;font-size:22px;font-weight:900;line-height:1.25}
+.rt .d{margin-top:4px;font-size:16px;font-weight:700;color:var(--mute);line-height:1.35}
+.comps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.cp{background:rgba(243,246,251,.08);border:1px solid rgba(243,246,251,.16);border-radius:12px;padding:14px 14px 16px}
+.cp .k{font-family:var(--mono);font-size:13px;font-weight:900;letter-spacing:.1em;color:var(--cyan)}
+.cp .t{margin-top:6px;font-size:22px;font-weight:800;line-height:1.3}
+.split{display:grid;grid-template-columns:1.05fr .95fr;gap:10px}
+.box{background:var(--card);color:var(--ink);border-radius:14px;padding:18px 20px}
+.box .k{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.1em;color:var(--mute)}
+.box .t{margin-top:6px;font-size:30px;font-weight:900;line-height:1.28}
+.box .d{margin-top:6px;font-size:20px;font-weight:700;color:var(--mute);line-height:1.4}
+.box.ok{border-left:10px solid #2a9d8f}
+.box.bad{border-left:10px solid var(--accent)}
+.box.ok .k{color:#1f7a70}
+.box.bad .k{color:#c4452d}
+.limits{display:flex;flex-wrap:wrap;gap:8px}
+.lim{font-family:var(--mono);font-size:16px;font-weight:800;padding:7px 12px;border-radius:8px;background:rgba(243,246,251,.1);color:#e8edf6;border:1px solid rgba(243,246,251,.14)}
+.judge{background:rgba(255,107,74,.16);color:#fff7f4;border-radius:14px;padding:16px 20px;border-left:10px solid var(--accent)}
+.judge .k{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.12em;color:var(--accent)}
+.judge .d{margin-top:6px;font-size:26px;font-weight:800;line-height:1.4}
+.tips-k{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.12em;color:var(--cyan);margin-bottom:8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tip{background:var(--card);color:var(--ink);border-radius:12px;padding:14px 16px}
+.tip .n{font-family:var(--mono);font-size:16px;font-weight:900;color:var(--accent)}
+.tip .d{margin-top:5px;font-size:20px;font-weight:800;line-height:1.4}
+
+.factor{background:rgba(243,246,251,.08);border-radius:14px;padding:14px 18px;display:flex;gap:14px;align-items:flex-start;border-left:8px solid var(--cyan)}
+.factor .k{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.1em;color:var(--cyan);white-space:nowrap;padding-top:4px}
+.factor .d{font-size:22px;font-weight:700;line-height:1.4;color:#eef2f8}
+.foot{background:var(--cyan);color:#102226;border-radius:14px;padding:18px 22px;font-size:25px;font-weight:800;line-height:1.4}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="top">
+    <span class="cap">OPENAI</span>
+    <span class="cap p">MEDCHEMBENCH</span>
+    <span class="cap o">药物化学推理 · 2026-11-20</span>
+  </div>
+  <div class="dates">
+    <span class="chip">99 题 · 117 篇论文和专利 · 761 个分子</span>
+    <span class="chip">xhigh 档 · 公开分数只覆盖 GPT</span>
+  </div>
+  <h1>认分子接近满分，<em>挑下一个大约一半</em></h1>
+  <div class="hrow">
+    <span class="strike">84.5% 就会选化合物</span>
+    <span class="arrow">→</span>
+    <span class="signal">总体分，分项要分开看</span>
+  </div>
+  <div class="rates">
+    <div class="rt cool">
+      <div class="v">84.5%</div>
+      <div class="n">GPT-6.2 Astra</div>
+      <div class="d">xhigh 档总体可用分<br>本帖头条数字</div>
+    </div>
+    <div class="rt">
+      <div class="v">83.3%</div>
+      <div class="n">GPT-6 Astra</div>
+      <div class="d">同档总体分<br>max 档到 83.8%</div>
+    </div>
+    <div class="rt">
+      <div class="v">95.4%</div>
+      <div class="n">结构重建</div>
+      <div class="d">GPT-6 Astra · xhigh<br>页上未给 6.2 分项</div>
+    </div>
+    <div class="rt hot">
+      <div class="v">约一半</div>
+      <div class="n">选择 · 数值预测</div>
+      <div class="d">同样是 GPT-6 Astra<br>官方写 about half</div>
+    </div>
+  </div>
+  <div class="comps">
+    <div class="cp"><div class="k">01</div><div class="t">重建分子结构</div></div>
+    <div class="cp"><div class="k">02</div><div class="t">解释实验证据</div></div>
+    <div class="cp"><div class="k">03</div><div class="t">排序和选择化合物</div></div>
+    <div class="cp"><div class="k">04</div><div class="t">预测数值和类别</div></div>
+  </div>
+  <div class="split">
+    <div class="box ok">
+      <div class="k">18 原子环 · GPT-6 ASTRA</div>
+      <div class="t">10 次全对</div>
+      <div class="d">中心结构加两个基团，要保住 18 原子环。十一模型共用的 xhigh 档上，它全部重建正确。</div>
+    </div>
+    <div class="box bad">
+      <div class="k">同题 · GPT-5.6 SOL / LUNA</div>
+      <div class="t">10 次全错</div>
+      <div class="d">示意图里，Sol 拼成 15 原子环，Luna 拆成两截不相连的碎片。环数错了，分析的就不是原来那个化合物。</div>
+    </div>
+  </div>
+
+  <div class="factor">
+    <div class="k">PRMT5 例</div>
+    <div class="d">化合物 23 在细胞里用更低浓度就能挡住这个蛋白；化合物 24 更容易穿过屏障，也被肝酶分解得更慢。对靶点更强，并不自动带来更好的透过或更慢的分解。</div>
+  </div>
+  <div class="limits">
+    <span class="lim">单次作答</span>
+    <span class="lim">无工具、无反馈、无新实验</span>
+    <span class="lim">材料来自已发表文献</span>
+    <span class="lim">不能排除事先见过</span>
+    <span class="lim">不能据此说已能发现新药</span>
+  </div>
+  <div class="judge">
+    <div class="k">我的看法</div>
+    <div class="d">84.5% 是 GPT-6.2 Astra 的总体可用分，不能读成已经能在八成以上的时候选对下一个化合物。认对分子，和决定下一步试哪个，不是同一件事。</div>
+  </div>
+  <div>
+    <div class="tips-k">我的建议</div>
+    <div class="grid">
+      <div class="tip"><div class="n">01</div><div class="d">写 84.5% 时标清：这是 6.2 Astra 在 xhigh 档的总体可用分</div></div>
+      <div class="tip"><div class="n">02</div><div class="d">95.4% 和大约一半是 6 Astra 分项，不要混到 6.2 头上</div></div>
+      <div class="tip"><div class="n">03</div><div class="d">使用时记住：单次、无工具，材料来自已发表文献</div></div>
+      <div class="tip"><div class="n">04</div><div class="d">真实课题里，选择和数值预测仍要用人或实验把关</div></div>
+    </div>
+  </div>
+  <div class="foot">公开分数只覆盖 GPT。会不会选对下一个化合物，要另看选择和预测那两块，而且那两块写的是 GPT-6 Astra。</div>
+</div>
+</body>
+</html>
