@@ -1,0 +1,98 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"/><title>修绿的那个不负责放行</title><style>
+:root{--bg:#e6e0ee;--ink:#102a43;--accent:#e8b923;--card:#fcfaff;--mute:#5b5670;--deep:#12141c;
+--sans:"Noto Sans CJK SC","Noto Sans SC",sans-serif;--mono:"Noto Sans Mono CJK SC","DejaVu Sans Mono",monospace;}
+*{box-sizing:border-box}html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:34px 48px 36px;font-family:var(--sans);color:var(--deep);
+display:flex;flex-direction:column;justify-content:space-between;
+background:
+  radial-gradient(circle at 88% 6%,rgba(232,185,35,.22) 0 180px,transparent 520px),
+  radial-gradient(circle at 8% 96%,rgba(16,42,67,.18) 0 190px,transparent 540px),
+  radial-gradient(circle,rgba(16,42,67,.055) 1.2px,transparent 1.4px),
+  var(--bg);
+background-size:auto,auto,18px 18px,auto}
+.top{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.cap{font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.1em;padding:8px 16px;border-radius:999px;background:var(--ink);color:#f7f1de}
+.cap.p{background:var(--accent);color:#102a43}
+.cap.o{background:transparent;border:2px solid rgba(16,42,67,.35);color:var(--ink)}
+.dates{display:flex;gap:10px;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:16px;font-weight:800;letter-spacing:.04em;padding:5px 12px;border-radius:7px;background:rgba(16,42,67,.08);color:var(--ink)}
+h1{margin:0;font-size:68px;line-height:1.08;font-weight:900;letter-spacing:-.03em;color:var(--ink)}
+h1 em{font-style:normal;color:var(--ink);background:linear-gradient(transparent 62%,rgba(232,185,35,.55) 62%)}
+.hrow{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.strike{font-size:24px;font-weight:900;color:#3d3754;text-decoration:line-through;text-decoration-thickness:4px;text-decoration-color:#b42318}
+.arrow{font-size:24px;font-weight:900;color:var(--ink)}
+.signal{font-size:24px;font-weight:900;background:var(--ink);color:#f7f1de;padding:6px 14px;border-radius:7px}
+.agents{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.ag{background:var(--card);border-radius:14px;padding:18px 18px 20px;min-height:168px}
+.ag.hot{border:3px solid var(--accent)}
+.ag .n{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.08em;color:var(--accent)}
+.ag .t{margin-top:6px;font-size:28px;font-weight:900;line-height:1.25;color:var(--ink)}
+.ag .d{margin-top:8px;font-size:20px;font-weight:700;line-height:1.4;color:var(--mute)}
+.rates{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.rt{background:var(--card);border-radius:14px;padding:18px 18px 18px;border-top:8px solid #c9c3d4}
+.rt.hot{border-top-color:var(--accent);border:3px solid var(--accent);border-top-width:8px}
+.rt .v{font-family:var(--mono);font-size:44px;font-weight:900;letter-spacing:-.04em;line-height:1.05;color:var(--ink)}
+.rt .n{margin-top:8px;font-size:24px;font-weight:900}
+.rt .d{margin-top:4px;font-size:17px;font-weight:700;color:var(--mute);line-height:1.35}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.box{background:var(--card);border-radius:14px;padding:18px 20px}
+.box .k{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.1em;color:var(--mute)}
+.box.now{border:3px solid var(--ink)}
+.box.now .k{color:#b8860b}
+.box .t{margin-top:6px;font-size:30px;font-weight:900;line-height:1.3;color:var(--ink)}
+.box .d{margin-top:6px;font-size:20px;font-weight:700;color:var(--mute);line-height:1.4}
+.factor{background:var(--card);border-radius:14px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start;border-left:8px solid var(--ink)}
+.factor .k{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.1em;color:var(--ink);white-space:nowrap;padding-top:3px}
+.factor .d{font-size:21px;font-weight:700;line-height:1.45}
+.judge{background:var(--ink);color:#f7f1de;border-radius:14px;padding:18px 22px;border-left:10px solid var(--accent)}
+.judge .k{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.12em;color:var(--accent)}
+.judge .d{margin-top:6px;font-size:25px;font-weight:800;line-height:1.4}
+.tips .k{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.12em;color:var(--ink);margin-bottom:8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tip{background:var(--card);border-radius:12px;padding:15px 18px}
+.tip .n{font-family:var(--mono);font-size:16px;font-weight:900;color:#b8860b}
+.tip .d{margin-top:5px;font-size:20px;font-weight:800;line-height:1.4;color:var(--ink)}
+.foot{background:var(--ink);color:#f7f1de;border-radius:14px;padding:18px 24px;font-size:25px;font-weight:800;line-height:1.4}
+</style></head><body><div class="card">
+  <div class="top">
+    <span class="cap">CLAUDE SHIP</span>
+    <span class="cap p">BETA</span>
+    <span class="cap o">2026-11-23</span>
+  </div>
+  <div class="dates">
+    <span class="chip">Team · Enterprise</span>
+    <span class="chip">GitHub 仓库</span>
+    <span class="chip">Code Review 已正式可用</span>
+  </div>
+  <h1>把 PR 修绿的那个，<em>不负责放行</em></h1>
+  <div class="hrow">
+    <span class="strike">开了 Ship 就会自动合并</span>
+    <span class="arrow">→</span>
+    <span class="signal">修绿的那个不批、不合</span>
+  </div>
+  <div class="agents">
+    <div class="ag"><div class="n">01 · 已正式可用</div><div class="t">Code Review</div><div class="d">多角度审 PR，结论分成 Important、Nit、Pre-existing；可选 Quick / Standard / Deep</div></div>
+    <div class="ag hot"><div class="n">02 · BETA</div><div class="t">PR Steward</div><div class="d">修失败的 CI、冲突和审阅意见。产品页写明：设计上不批准、不合并</div></div>
+    <div class="ag"><div class="n">03 · BETA</div><div class="t">Claude Approvals</div><div class="d">读默认分支上的策略文件。官方建议先开观察模式，再写进 branch protection</div></div>
+  </div>
+  <div class="rates">
+    <div class="rt"><div class="v">一倍以上</div><div class="n">合入 PR</div><div class="d">Claude Code 团队，6 月到 9 月</div></div>
+    <div class="rt"><div class="v">&gt;40%</div><div class="n">回退比例下降</div><div class="d">同一时期、同一支团队</div></div>
+    <div class="rt hot"><div class="v">只是一层</div><div class="n">审查的位置</div><div class="d">官方写明：是更宽流程里的一层</div></div>
+  </div>
+  <div class="split">
+    <div class="box"><div class="k">本机命令 /ship · /steward</div><div class="t">跑在你的会话里</div><div class="d">用你的 gh 登录，GitHub 上显示成你的名字。文档里的合并步骤是：PR 就绪后，自己合并。云端会话没有这两个命令。</div></div>
+    <div class="box now"><div class="k">仓库级 Claude Ship</div><div class="t">管理员按仓库打开</div><div class="d">Team 或 Enterprise 才能开。本机 /steward 和组织里的 PR Steward 不是同一个东西；后者已经在干活时，本机看守不会启动。</div></div>
+  </div>
+  <div class="factor"><div class="k">范围限制</div><div class="d">只支持 GitHub。开了零数据保留、HIPAA 配置或客户自管密钥的组织用不了。按 token 计费；策略若调用 Claude 的审查，观察模式下也会产生 Code Review 费用。</div></div>
+  <div class="judge"><div class="k">我的看法</div><div class="d">评审、修绿、放行拆成三个 agent，边界才清楚。修绿的不负责放行；本机 /ship 也不是云端自动合并。</div></div>
+  <div class="tips"><div class="k">我的建议</div>
+    <div class="grid">
+      <div class="tip"><div class="n">01</div><div class="d">引用翻倍和回退下降时，写上这是 Claude Code 团队、审查只是其中一层</div></div>
+      <div class="tip"><div class="n">02</div><div class="d">开 Approvals 先走观察模式，再写进 branch protection</div></div>
+      <div class="tip"><div class="n">03</div><div class="d">把 PR Steward 和本机 /steward 分开配，不要默认它们会彼此接上</div></div>
+      <div class="tip"><div class="n">04</div><div class="d">本机看守只开在你信任主干合入权限的仓库；公共库先自己提交再跑 /ship</div></div>
+    </div>
+  </div>
+  <div class="foot">把 Ship 听成会自动合并，会把边界看错。放行仍取决于策略、权限和分支规则。</div>
+</div></body></html>
