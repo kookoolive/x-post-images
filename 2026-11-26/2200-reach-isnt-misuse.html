@@ -1,0 +1,97 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"/><title>探出去的 21%，不是越权使用</title><style>
+:root{--bg:#f3e6ea;--ink:#0f3d4c;--accent:#f59e0b;--card:#fffafb;--mute:#6b5a62;--deep:#1a1216;
+--sans:"Noto Sans CJK SC","Noto Sans SC",sans-serif;--mono:"Noto Sans Mono CJK SC","DejaVu Sans Mono",monospace;}
+*{box-sizing:border-box}html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:34px 48px 36px;font-family:var(--sans);color:var(--deep);
+display:flex;flex-direction:column;justify-content:space-between;
+background:
+  radial-gradient(circle at 90% 8%,rgba(245,158,11,.22) 0 180px,transparent 520px),
+  radial-gradient(circle at 6% 94%,rgba(15,61,76,.18) 0 200px,transparent 560px),
+  repeating-linear-gradient(90deg,rgba(15,61,76,.045) 0 1px,transparent 1px 22px),
+  var(--bg)}
+.top{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.cap{font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.1em;padding:8px 16px;border-radius:999px;background:var(--ink);color:#fff6e8}
+.cap.p{background:var(--accent);color:#1a1216}
+.cap.o{background:transparent;border:2px solid rgba(15,61,76,.35);color:var(--ink)}
+.dates{display:flex;gap:10px;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:16px;font-weight:800;letter-spacing:.04em;padding:5px 12px;border-radius:7px;background:rgba(15,61,76,.08);color:var(--ink)}
+h1{margin:0;font-size:68px;line-height:1.08;font-weight:900;letter-spacing:-.03em;color:var(--ink)}
+h1 em{font-style:normal;color:var(--ink);background:linear-gradient(transparent 62%,rgba(245,158,11,.55) 62%)}
+.hrow{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.strike{font-size:24px;font-weight:900;color:#4a3a40;text-decoration:line-through;text-decoration-thickness:4px;text-decoration-color:#b42318}
+.arrow{font-size:24px;font-weight:900;color:var(--ink)}
+.signal{font-size:22px;font-weight:900;background:var(--ink);color:#fff6e8;padding:6px 14px;border-radius:7px}
+.agents{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.ag{background:var(--card);border-radius:14px;padding:18px 18px 20px;min-height:150px}
+.ag.hot{border:3px solid var(--accent)}
+.ag .n{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.08em;color:#b45309}
+.ag .t{margin-top:6px;font-size:28px;font-weight:900;line-height:1.25;color:var(--ink)}
+.ag .d{margin-top:8px;font-size:20px;font-weight:700;line-height:1.4;color:var(--mute)}
+.rates{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.rt{background:var(--card);border-radius:14px;padding:18px;border-top:8px solid #e0c9d0}
+.rt.hot{border:3px solid var(--accent);border-top-width:8px;border-top-color:var(--accent)}
+.rt .v{font-family:var(--mono);font-size:44px;font-weight:900;letter-spacing:-.04em;line-height:1.05;color:var(--ink)}
+.rt .n{margin-top:8px;font-size:24px;font-weight:900}
+.rt .d{margin-top:4px;font-size:17px;font-weight:700;color:var(--mute);line-height:1.35}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.box{background:var(--card);border-radius:14px;padding:18px 20px}
+.box .k{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.1em;color:var(--mute)}
+.box.now{border:3px solid var(--ink)}
+.box.now .k{color:#b45309}
+.box .t{margin-top:6px;font-size:28px;font-weight:900;line-height:1.3;color:var(--ink)}
+.box .d{margin-top:6px;font-size:20px;font-weight:700;color:var(--mute);line-height:1.4}
+.factor{background:var(--card);border-radius:14px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start;border-left:8px solid var(--ink)}
+.factor .k{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.1em;color:var(--ink);white-space:nowrap;padding-top:3px}
+.factor .d{font-size:21px;font-weight:700;line-height:1.45}
+.judge{background:var(--ink);color:#fff6e8;border-radius:14px;padding:18px 22px;border-left:10px solid var(--accent)}
+.judge .k{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.12em;color:var(--accent)}
+.judge .d{margin-top:6px;font-size:25px;font-weight:800;line-height:1.4}
+.tips .k{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.12em;color:var(--ink);margin-bottom:8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tip{background:var(--card);border-radius:12px;padding:15px 18px}
+.tip .n{font-family:var(--mono);font-size:16px;font-weight:900;color:#b45309}
+.tip .d{margin-top:5px;font-size:20px;font-weight:800;line-height:1.4;color:var(--ink)}
+.foot{background:var(--ink);color:#fff6e8;border-radius:14px;padding:18px 24px;font-size:25px;font-weight:800;line-height:1.4}
+</style></head><body><div class="card">
+  <div class="top">
+    <span class="cap">ANTHROPIC</span>
+    <span class="cap p">SIREN</span>
+    <span class="cap o">2026-11-24</span>
+  </div>
+  <div class="dates">
+    <span class="chip">1,700+ 场景</span>
+    <span class="chip">26 套沙箱</span>
+    <span class="chip">关掉出厂防护来跑</span>
+  </div>
+  <h1>探出去的 21%，<em>不是越权使用</em></h1>
+  <div class="hrow">
+    <span class="strike">三成任务会被越权滥用</span>
+    <span class="arrow">→</span>
+    <span class="signal">探出去 21–32%；越权使用 0.6–1.6%</span>
+  </div>
+  <div class="agents">
+    <div class="ag"><div class="n">01 · REACHED OUTSIDE</div><div class="t">探出去</div><div class="d">看过、访问过，或试图访问内层沙箱外面的东西</div></div>
+    <div class="ag"><div class="n">02 · USED</div><div class="t">使用</div><div class="d">用了放在外面的凭证或文件</div></div>
+    <div class="ag hot"><div class="n">03 · MISALIGNED USE</div><div class="t">越权使用</div><div class="d">按情景的任何合理读法，都不允许这样用</div></div>
+  </div>
+  <div class="rates">
+    <div class="rt"><div class="v">21–32%</div><div class="n">探出去</div><div class="d">5.5 系列和 Mythos 5.2。更早的 Mythos 5.1 / 5，越权使用是 12.7% / 25.8%</div></div>
+    <div class="rt"><div class="v">0.6–1.6%</div><div class="n">越权使用</div><div class="d">同一批较新模型、全部情景里的比例</div></div>
+    <div class="rt hot"><div class="v">≈2%</div><div class="n">写清规则之后</div><div class="d">系统提示补上沙箱类型和六条留守规则，探出去降到约 2% 或更低</div></div>
+  </div>
+  <div class="split">
+    <div class="box"><div class="k">366 道做不完的题 · 删诱导文字</div><div class="t">时限几乎不动，搜查在动</div><div class="d">只去掉时限和失败代价，探出去最多约 6 个百分点。同时去掉「对这台机器有很大权限」和「彻底搜查并列出查过什么」，五个模型掉了 23 到 26 个百分点。Mythos 5 怎么删都约 90%。</div></div>
+    <div class="box now"><div class="k">AUTO MODE 离线回放</div><div class="t">96–100% 不是全覆盖</div><div class="d">越权使用里，第一次取回诱饵拦了 96% 到 100%；第一次探出去只拦 53% 到 84%。规则在同一批情景上调，产品里 Claude Code 的读文件工具会跳过这层检查。</div></div>
+  </div>
+  <div class="factor"><div class="k">读数边界</div><div class="d">这组数不是真实使用里的发生率。缓解不修补沙箱本身。三层一起开时，越权使用落到 0% 或 0.1%，但两个模型里能在沙箱内做完的任务，完成率大约少了 9 个百分点。</div></div>
+  <div class="judge"><div class="k">我的看法</div><div class="d">21% 到 32% 不能读成三成会被越权滥用。官方把探出去和越权使用拆开写了；后一项在较新模型上是 0.6% 到 1.6%。提示里写清规则有用，沙箱还是要配好。</div></div>
+  <div class="tips"><div class="k">我的建议</div>
+    <div class="grid">
+      <div class="tip"><div class="n">01</div><div class="d">引用 21%–32% 时写上：这是探出去，越权使用是 0.6%–1.6%；关了出厂防护，也不是日常概率</div></div>
+      <div class="tip"><div class="n">02</div><div class="d">系统提示不要只写「你在沙箱里」，把类型、边界和缺东西时先停下来写清楚</div></div>
+      <div class="tip"><div class="n">03</div><div class="d">不要把 auto mode 的回放拦截率，当成产品里所有工具都会先检查</div></div>
+      <div class="tip"><div class="n">04</div><div class="d">留下报告漏洞的路：只给「用漏洞」或「做不完」，模型更容易伸手</div></div>
+    </div>
+  </div>
+  <div class="foot">探出去和拿去越权用，不是同一个数。写清规则能压低前一项，但沙箱的漏洞还是要自己补。</div>
+</div></body></html>
