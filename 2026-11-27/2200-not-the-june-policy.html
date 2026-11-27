@@ -1,0 +1,96 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"/><title>不提示的那种降级，已经不是现行政策</title><style>
+:root{--bg:#e8e4dc;--ink:#7c2d12;--accent:#2a6f7f;--card:#fffaf5;--mute:#6a5a50;--deep:#1a1410;
+--cream:#faf3ea;--sans:"Noto Sans CJK SC","Noto Sans SC",sans-serif;--mono:"Noto Sans Mono CJK SC","DejaVu Sans Mono",monospace;}
+*{box-sizing:border-box}html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:32px 48px 34px;font-family:var(--sans);color:var(--deep);
+display:flex;flex-direction:column;justify-content:space-between;
+background:
+  radial-gradient(circle at 90% 8%,rgba(42,111,127,.26) 0 180px,transparent 520px),
+  radial-gradient(circle at 6% 94%,rgba(124,45,18,.16) 0 190px,transparent 540px),
+  repeating-linear-gradient(135deg,rgba(124,45,18,.055) 0 1px,transparent 1px 18px),
+  var(--bg)}
+.top{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.cap{font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.1em;padding:8px 16px;border-radius:999px;background:var(--ink);color:var(--cream)}
+.cap.p{background:var(--accent);color:#f4fbff}
+.cap.o{background:transparent;border:2px solid rgba(124,45,18,.35);color:var(--ink)}
+.dates{display:flex;gap:10px;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:16px;font-weight:800;letter-spacing:.04em;padding:5px 12px;border-radius:7px;background:rgba(124,45,18,.08);color:var(--ink)}
+h1{margin:0;font-size:64px;line-height:1.08;font-weight:900;letter-spacing:-.03em;color:var(--ink)}
+h1 em{font-style:normal;color:var(--ink);background:linear-gradient(transparent 62%,rgba(42,111,127,.45) 62%)}
+.hrow{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.strike{font-size:24px;font-weight:900;color:#4a3a34;text-decoration:line-through;text-decoration-thickness:4px;text-decoration-color:#b42318}
+.arrow{font-size:24px;font-weight:900;color:var(--ink)}
+.signal{font-size:24px;font-weight:900;background:var(--ink);color:var(--cream);padding:6px 14px;border-radius:7px}
+.rates{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.rt{background:var(--card);border-radius:14px;padding:16px 18px;border-top:8px solid #d5c8bb}
+.rt.hot{border-top-color:var(--accent);border:3px solid var(--accent);border-top-width:8px}
+.rt .v{font-family:var(--mono);font-size:38px;font-weight:900;letter-spacing:-.04em;line-height:1.05;color:var(--ink)}
+.rt .n{margin-top:8px;font-size:24px;font-weight:900}
+.rt .d{margin-top:4px;font-size:17px;font-weight:700;color:var(--mute);line-height:1.35}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.box{background:var(--card);border-radius:14px;padding:16px 20px}
+.box .k{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.1em;color:var(--mute)}
+.box.now{border:3px solid var(--ink)}
+.box.now .k{color:var(--accent)}
+.box .t{margin-top:6px;font-size:28px;font-weight:900;line-height:1.3;color:var(--ink)}
+.box .d{margin-top:6px;font-size:20px;font-weight:700;color:var(--mute);line-height:1.4}
+.loops{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.lp{background:var(--card);border-radius:14px;padding:16px 18px}
+.lp .n{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.08em;color:var(--accent)}
+.lp .t{margin-top:4px;font-size:26px;font-weight:900;color:var(--ink)}
+.lp .d{margin-top:6px;font-size:18px;font-weight:700;line-height:1.4;color:var(--mute)}
+.factor{background:var(--card);border-radius:14px;padding:14px 18px;display:flex;gap:14px;align-items:flex-start;border-left:8px solid var(--accent)}
+.factor .k{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.1em;color:var(--accent);white-space:nowrap;padding-top:3px}
+.factor .d{font-size:20px;font-weight:700;line-height:1.45}
+.judge{background:var(--ink);color:var(--cream);border-radius:14px;padding:16px 22px;border-left:10px solid var(--accent)}
+.judge .k{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.12em;color:#b8e0e8}
+.judge .d{margin-top:6px;font-size:24px;font-weight:800;line-height:1.4}
+.tips .k{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.12em;color:var(--ink);margin-bottom:8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tip{background:var(--card);border-radius:12px;padding:14px 18px}
+.tip .n{font-family:var(--mono);font-size:16px;font-weight:900;color:var(--accent)}
+.tip .d{margin-top:5px;font-size:20px;font-weight:800;line-height:1.4;color:var(--ink)}
+.foot{background:var(--ink);color:var(--cream);border-radius:14px;padding:16px 24px;font-size:24px;font-weight:800;line-height:1.4}
+</style></head><body><div class="card">
+  <div class="top">
+    <span class="cap">ANTHROPIC</span>
+    <span class="cap p">FABLE 5.2 系统卡</span>
+    <span class="cap o">1.5 节 · 2026-11-09</span>
+  </div>
+  <div class="dates">
+    <span class="chip">6 月 10 日改掉不提示政策</span>
+    <span class="chip">回退会给提示</span>
+    <span class="chip">API 回退需 opt-in</span>
+  </div>
+  <h1>不提示的那种降级，<em>已经不是现行政策</em></h1>
+  <div class="hrow">
+    <span class="strike">每个阶段都会蓄意破坏</span>
+    <span class="arrow">→</span>
+    <span class="signal">先对上是哪一种限制</span>
+  </div>
+  <div class="rates">
+    <div class="rt"><div class="v">6月10日</div><div class="n">不提示政策改掉</div><div class="d">Fable 5 头两天的线上降级，官方承认是失误；之后的模型包括 5.2 没有再沿用</div></div>
+    <div class="rt hot"><div class="v">约 Opus 5.5</div><div class="n">训练时限能力</div><div class="d">如 kernel 相关。模型仍自己答，线上不另外降级</div></div>
+    <div class="rt"><div class="v">回退 Opus 5</div><div class="n">窄范围命中</div><div class="d">会有提示。6 月那次写的是 Opus 4.8，不要套到 5.2 上</div></div>
+  </div>
+  <div class="split">
+    <div class="box"><div class="k">训练时限制</div><div class="t">能力被压过，仍由本模型回答</div><div class="d">系统卡写：在训练中限制最能直接加快 AI 发展的特定研究能力。改架构这类问题，Arbus 说 Fable 5.2 自己答，serving time 不再另做降级。</div></div>
+    <div class="box now"><div class="k">线上分类器</div><div class="t">拦住后回退，并给提示</div><div class="d">针对开发前沿 LLM 的较窄能力集合，例如某些加速器上的 kernel 开发。官方写明，不应影响绝大多数传统 AI 或 ML 开发、研究或一般编程。</div></div>
+  </div>
+  <div class="loops">
+    <div class="lp"><div class="n">01 · 已退休</div><div class="t">不提示降级</div><div class="d">6 月头两天用过。@ClaudeDevs 改成可见回退。Arbus：6 月 10 日起不再使用。</div></div>
+    <div class="lp"><div class="n">02 · 还在用</div><div class="t">两种现行限制</div><div class="d">训练时限能力，以及窄范围回退到 Opus 5。提示文案是 Arbus 写的。</div></div>
+    <div class="lp"><div class="n">03 · 范围</div><div class="t">官方产品 / 选择开启</div><div class="d">API 需 opt-in。其他平台和供应商上的回退，系统卡写可能不同。</div></div>
+  </div>
+  <div class="factor"><div class="k">读数边界</div><div class="d">单次对照实验可以说明结果差，但不能单独证明 6 月那种不提示的线上降级还在现行模型上运行。能力被训练时限制、分类器回退、模型本来就写错，观感可能很像，机制不是同一套。</div></div>
+  <div class="judge"><div class="k">我的看法</div><div class="d">现行限制是公开的，而且不止一种。不宜把它们，和尚未被机制证明的体验，压成「每个阶段都会蓄意破坏」一句。</div></div>
+  <div class="tips"><div class="k">我的建议</div>
+    <div class="grid">
+      <div class="tip"><div class="n">01</div><div class="d">写清：不提示的线上降级是 6 月头两天的做法，6 月 10 日已改</div></div>
+      <div class="tip"><div class="n">02</div><div class="d">把训练时限能力和命中后回退分开写，回退目标不要混用</div></div>
+      <div class="tip"><div class="n">03</div><div class="d">个别对照实验不能单独当作现行隐身政策的证据</div></div>
+      <div class="tip"><div class="n">04</div><div class="d">走第三方平台时，不要默认官方产品里的提示一定同样生效</div></div>
+    </div>
+  </div>
+  <div class="foot">系统卡把机制写出来了。引用前先对上：是旧政策、训练时限制，还是回退并给提示。</div>
+</div></body></html>
