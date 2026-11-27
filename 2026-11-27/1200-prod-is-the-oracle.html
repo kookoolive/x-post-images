@@ -1,0 +1,98 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"/><title>生产流量才是验准器</title><style>
+:root{--bg:#dce8f2;--ink:#2e1065;--accent:#d4e157;--card:#f7fbff;--mute:#5a5870;--deep:#12141c;
+--sans:"Noto Sans CJK SC","Noto Sans SC",sans-serif;--mono:"Noto Sans Mono CJK SC","DejaVu Sans Mono",monospace;}
+*{box-sizing:border-box}html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:32px 48px 34px;font-family:var(--sans);color:var(--deep);
+display:flex;flex-direction:column;justify-content:space-between;
+background:
+  radial-gradient(circle at 88% 6%,rgba(212,225,87,.28) 0 180px,transparent 520px),
+  radial-gradient(circle at 8% 96%,rgba(46,16,101,.16) 0 190px,transparent 540px),
+  linear-gradient(rgba(46,16,101,.05) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(46,16,101,.05) 1px,transparent 1px),
+  var(--bg);
+background-size:auto,auto,22px 22px,22px 22px,auto}
+.top{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.cap{font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.1em;padding:8px 16px;border-radius:999px;background:var(--ink);color:#f4f7de}
+.cap.p{background:var(--accent);color:#2e1065}
+.cap.o{background:transparent;border:2px solid rgba(46,16,101,.35);color:var(--ink)}
+.dates{display:flex;gap:10px;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:16px;font-weight:800;letter-spacing:.04em;padding:5px 12px;border-radius:7px;background:rgba(46,16,101,.08);color:var(--ink)}
+h1{margin:0;font-size:68px;line-height:1.08;font-weight:900;letter-spacing:-.03em;color:var(--ink)}
+h1 em{font-style:normal;color:var(--ink);background:linear-gradient(transparent 62%,rgba(212,225,87,.7) 62%)}
+.hrow{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.strike{font-size:24px;font-weight:900;color:#3d3754;text-decoration:line-through;text-decoration-thickness:4px;text-decoration-color:#b42318}
+.arrow{font-size:24px;font-weight:900;color:var(--ink)}
+.signal{font-size:24px;font-weight:900;background:var(--ink);color:#f4f7de;padding:6px 14px;border-radius:7px}
+.rates{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.rt{background:var(--card);border-radius:14px;padding:16px 18px;border-top:8px solid #c9d4e2}
+.rt.hot{border-top-color:var(--accent);border:3px solid var(--accent);border-top-width:8px}
+.rt .v{font-family:var(--mono);font-size:42px;font-weight:900;letter-spacing:-.04em;line-height:1.05;color:var(--ink)}
+.rt .n{margin-top:8px;font-size:24px;font-weight:900}
+.rt .d{margin-top:4px;font-size:17px;font-weight:700;color:var(--mute);line-height:1.35}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.box{background:var(--card);border-radius:14px;padding:16px 20px}
+.box .k{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.1em;color:var(--mute)}
+.box.now{border:3px solid var(--ink)}
+.box.now .k{color:#6b6f12}
+.box .t{margin-top:6px;font-size:28px;font-weight:900;line-height:1.3;color:var(--ink)}
+.box .d{margin-top:6px;font-size:20px;font-weight:700;color:var(--mute);line-height:1.4}
+.loops{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.lp{background:var(--card);border-radius:14px;padding:16px 18px}
+.lp .n{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.08em;color:#6b6f12}
+.lp .t{margin-top:4px;font-size:26px;font-weight:900;color:var(--ink)}
+.lp .d{margin-top:6px;font-size:18px;font-weight:700;line-height:1.4;color:var(--mute)}
+.factor{background:var(--card);border-radius:14px;padding:14px 18px;display:flex;gap:14px;align-items:flex-start;border-left:8px solid var(--ink)}
+.factor .k{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.1em;color:var(--ink);white-space:nowrap;padding-top:3px}
+.factor .d{font-size:20px;font-weight:700;line-height:1.45}
+.judge{background:var(--ink);color:#f4f7de;border-radius:14px;padding:16px 22px;border-left:10px solid var(--accent)}
+.judge .k{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.12em;color:var(--accent)}
+.judge .d{margin-top:6px;font-size:24px;font-weight:800;line-height:1.4}
+.tips .k{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.12em;color:var(--ink);margin-bottom:8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tip{background:var(--card);border-radius:12px;padding:14px 18px}
+.tip .n{font-family:var(--mono);font-size:16px;font-weight:900;color:#6b6f12}
+.tip .d{margin-top:5px;font-size:20px;font-weight:800;line-height:1.4;color:var(--ink)}
+.foot{background:var(--ink);color:#f4f7de;border-radius:14px;padding:16px 24px;font-size:24px;font-weight:800;line-height:1.4}
+</style></head><body><div class="card">
+  <div class="top">
+    <span class="cap">ANTHROPIC</span>
+    <span class="cap p">MESSAGES API</span>
+    <span class="cap o">RUST · 2026-11-25</span>
+  </div>
+  <div class="dates">
+    <span class="chip">流量约 1800 倍</span>
+    <span class="chip">公众流量 2026-09 切过去</span>
+    <span class="chip">全程未停服</span>
+  </div>
+  <h1>对齐这件事，<em>生产流量才是验准器</em></h1>
+  <div class="hrow">
+    <span class="strike">写完第一版就算迁完</span>
+    <span class="arrow">→</span>
+    <span class="signal">验证才是瓶颈</span>
+  </div>
+  <div class="rates">
+    <div class="rt"><div class="v">约一周</div><div class="n">写出第一版</div><div class="d">核心请求路径，不是上线完成</div></div>
+    <div class="rt hot"><div class="v">98% vs 约1/4</div><div class="n">测试 vs 生产对齐</div><div class="d">4 月：测试大约过了，生产输入对齐大约四分之一</div></div>
+    <div class="rt"><div class="v">8–10%</div><div class="n">增量改写的 CPU</div><div class="d">每个回复 token 还要在 Python 与 Rust 之间穿三次</div></div>
+  </div>
+  <div class="split">
+    <div class="box"><div class="k">增量改写</div><div class="t">收益不抵复杂度</div><div class="d">用 Rust 解析模型输出，再从 Python 调用。CPU 大约只降 8% 到 10%，跨语言三次，于是改走完整迁移。</div></div>
+    <div class="box now"><div class="k">完整迁移 · 生产 oracle</div><div class="t">把还在跑的 Python 版当验准器</div><div class="d">对生产流量做 shadow。模型只跑一次，把同一段输出回放到 Rust。只记录差异形状，不读请求正文。</div></div>
+  </div>
+  <div class="loops">
+    <div class="lp"><div class="n">01 · 内圈</div><div class="t">沙箱复现</div><div class="d">智能体用自写请求复现指纹。本地检查往往不到一秒，不调用模型。</div></div>
+    <div class="lp"><div class="n">02 · 外圈</div><div class="t">生产 shadow</div><div class="d">过了人工审的修复才部署。用生产流量看这个指纹还在不在。</div></div>
+    <div class="lp"><div class="n">03 · 记忆</div><div class="t">纠正变规则</div><div class="d">拷文件凑对齐被退回。约 60 条审阅意见后来写进 CLAUDE.md。</div></div>
+  </div>
+  <div class="factor"><div class="k">读数边界</div><div class="d">最终每请求 CPU 大约少 70%，首 token 中位时延大约少 20%。图注写明：CPU 取一个区域，内存取全部生产，时延取一段 Claude Code 请求。正文没有给出内存下降的百分比。</div></div>
+  <div class="judge"><div class="k">我的看法</div><div class="d">测试通过和生产对齐不是一回事。生产系统可以做成验准信号，但校验器判不了这个修法能不能上线。</div></div>
+  <div class="tips"><div class="k">我的建议</div>
+    <div class="grid">
+      <div class="tip"><div class="n">01</div><div class="d">引用 70% 和 20% 时，写上图注里的分母</div></div>
+      <div class="tip"><div class="n">02</div><div class="d">不要把「测试过了 98%」读成已经和线上一致</div></div>
+      <div class="tip"><div class="n">03</div><div class="d">不要采用正文没写的「内存降 80%」</div></div>
+      <div class="tip"><div class="n">04</div><div class="d">不要写成 Claude 独自重写并上线了生产 API</div></div>
+    </div>
+  </div>
+  <div class="foot">协调、修复和放行中间还有人审。校验器能告诉你两边齐了没有，判不了该不该这样修。</div>
+</div></body></html>
