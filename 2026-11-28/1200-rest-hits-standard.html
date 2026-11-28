@@ -1,0 +1,104 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"/><title>直连 REST，会被卡在 Standard 档</title><style>
+:root{--bg:#f3ddd0;--ink:#14532d;--accent:#e11d48;--card:#fff8f3;--mute:#6b5348;--deep:#1a1410;
+--sans:"Noto Sans CJK SC","Noto Sans SC",sans-serif;--mono:"Noto Sans Mono CJK SC","DejaVu Sans Mono",monospace;}
+*{box-sizing:border-box}html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:32px 48px 34px;font-family:var(--sans);color:var(--deep);
+display:flex;flex-direction:column;justify-content:space-between;
+background:
+  radial-gradient(circle at 88% 6%,rgba(225,29,72,.22) 0 180px,transparent 520px),
+  radial-gradient(circle at 8% 96%,rgba(20,83,45,.16) 0 190px,transparent 540px),
+  radial-gradient(circle,rgba(20,83,45,.10) 1.1px,transparent 1.2px),
+  var(--bg);
+background-size:auto,auto,18px 18px,auto}
+.top{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.cap{font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.1em;padding:8px 16px;border-radius:999px;background:var(--ink);color:#fff8f3}
+.cap.p{background:var(--accent);color:#fff8f3}
+.cap.o{background:transparent;border:2px solid rgba(20,83,45,.35);color:var(--ink)}
+.dates{display:flex;gap:10px;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:16px;font-weight:800;letter-spacing:.04em;padding:5px 12px;border-radius:7px;background:rgba(20,83,45,.08);color:var(--ink)}
+h1{margin:0;font-size:64px;line-height:1.08;font-weight:900;letter-spacing:-.03em;color:var(--ink)}
+h1 em{font-style:normal;color:var(--ink);background:linear-gradient(transparent 62%,rgba(225,29,72,.45) 62%)}
+.hrow{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.strike{font-size:24px;font-weight:900;color:#5a4038;text-decoration:line-through;text-decoration-thickness:4px;text-decoration-color:#b42318}
+.arrow{font-size:24px;font-weight:900;color:var(--ink)}
+.signal{font-size:24px;font-weight:900;background:var(--ink);color:#fff8f3;padding:6px 14px;border-radius:7px}
+.rates{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.rt{background:var(--card);border-radius:14px;padding:16px 18px;border-top:8px solid #e4c9ba}
+.rt.hot{border-top-color:var(--accent);border:3px solid var(--accent);border-top-width:8px}
+.rt .v{font-family:var(--mono);font-size:40px;font-weight:900;letter-spacing:-.04em;line-height:1.05;color:var(--ink)}
+.rt .n{margin-top:8px;font-size:24px;font-weight:900}
+.rt .d{margin-top:4px;font-size:17px;font-weight:700;color:var(--mute);line-height:1.35}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.box{background:var(--card);border-radius:14px;padding:16px 20px}
+.box .k{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.1em;color:var(--mute)}
+.box.now{border:3px solid var(--ink)}
+.box.now .k{color:var(--accent)}
+.box .t{margin-top:6px;font-size:28px;font-weight:900;line-height:1.3;color:var(--ink)}
+.box .d{margin-top:6px;font-size:20px;font-weight:700;color:var(--mute);line-height:1.4}
+.loops{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.lp{background:var(--card);border-radius:14px;padding:16px 18px}
+.lp .n{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.08em;color:var(--accent)}
+.lp .t{margin-top:4px;font-size:26px;font-weight:900;color:var(--ink)}
+.lp .d{margin-top:6px;font-size:18px;font-weight:700;line-height:1.4;color:var(--mute)}
+.factor{background:var(--card);border-radius:14px;padding:14px 18px;display:flex;gap:14px;align-items:flex-start;border-left:8px solid var(--ink)}
+.factor .k{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.1em;color:var(--ink);white-space:nowrap;padding-top:3px}
+.factor .d{font-size:20px;font-weight:700;line-height:1.45}
+.judge{background:var(--ink);color:#fff8f3;border-radius:14px;padding:16px 22px;border-left:10px solid var(--accent)}
+.judge .k{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.12em;color:#f8b4c0}
+.judge .d{margin-top:6px;font-size:24px;font-weight:800;line-height:1.4}
+.tips .k{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.12em;color:var(--ink);margin-bottom:8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tip{background:var(--card);border-radius:12px;padding:14px 18px}
+.tip .n{font-family:var(--mono);font-size:16px;font-weight:900;color:var(--accent)}
+.tip .d{margin-top:5px;font-size:20px;font-weight:800;line-height:1.4;color:var(--ink)}
+.foot{background:var(--ink);color:#fff8f3;border-radius:14px;padding:16px 24px;font-size:24px;font-weight:800;line-height:1.4}
+</style></head><body><div class="card">
+  <div class="top">
+    <span class="cap">GOOGLE WORKSPACE</span>
+    <span class="cap p">MCP · CLI · GA</span>
+    <span class="cap o">AI TOOLS ADDENDUM · 2026-11-24</span>
+  </div>
+  <div class="dates">
+    <span class="chip">8 个 MCP + 官方 CLI</span>
+    <span class="chip">普通应用仍可走 REST</span>
+    <span class="chip">Keep 还在后面</span>
+  </div>
+  <h1>Agent 进 Workspace，<em>直连 REST 会被卡在 Standard 档</em></h1>
+  <div class="hrow">
+    <span class="strike">旧 API 照样给 Agent 用</span>
+    <span class="arrow">→</span>
+    <span class="signal">2 月 1 日起按 Standard 档卡住</span>
+  </div>
+  <div class="rates">
+    <div class="rt"><div class="v">2月1日</div><div class="n">技术执行换门</div><div class="d">Agent 必须走 MCP 或 CLI，不能再把 REST 当默认入口</div></div>
+    <div class="rt hot"><div class="v">Standard 档</div><div class="n">直连 REST 的上限</div><div class="d">跟项目有没有开 Scaled 无关，付费升档也抬不起来</div></div>
+    <div class="rt"><div class="v">5,000</div><div class="n">Standard 档 MCP</div><div class="d">每个项目、每个产品、每天；有的工具会记多次</div></div>
+  </div>
+  <div class="split">
+    <div class="box now"><div class="k">2027-02-01 · 换门</div><div class="t">附则生效，直连 REST 限 Standard 档</div><div class="d">只要工具是或由 Agent、Harness、或使用模型的服务驱动，就必须走 Google MCP，不能伪装成普通应用。</div></div>
+    <div class="box"><div class="k">2027-04-01 · 账单</div><div class="t">Scaled 开始计费，别跟换门混在一起</div><div class="d">REST 超过每日免费额度后才收费；Scaled 档的 Gmail、Calendar、Drive MCP 从第一次请求起算。</div></div>
+  </div>
+  <div class="loops">
+    <div class="lp"><div class="n">身份</div><div class="t">OAuth 要拆开</div><div class="d">Agent 单独建客户端，勾上 is_agentic；非 Agent 功能不要共用。</div></div>
+    <div class="lp"><div class="n">确认</div><div class="t">高风险动作要人点头</div><div class="d">寄出外部邮件、改 Drive 分享、批量编辑，按 Workspace 策略确认。写草稿可以自动走。</div></div>
+    <div class="lp"><div class="n">附则</div><div class="t">训练和刮取不行</div><div class="d">不能拿用户数据训练或蒸馏；技术信息最多存 30 天，断开后必须删。</div></div>
+  </div>
+  <div class="factor">
+    <div class="k">读数边界</div>
+    <div class="d">两档模型目前先从 Gmail、Calendar、Drive 铺开。限时批准、用户自己撤销权限、把某些邮件和文件夹挡在外部 Agent 外面，官方仍标着即将推出。</div>
+  </div>
+  <div class="judge">
+    <div class="k">判断</div>
+    <div class="d">要先改的是入口和身份，不是先换模型。2 月 1 日之后，Agent 继续直连 REST，配额会被按 Standard 档卡住。</div>
+  </div>
+  <div class="tips">
+    <div class="k">我的建议</div>
+    <div class="grid">
+      <div class="tip"><div class="n">01</div><div class="d">2 月 1 日是门，4 月 1 日才是 Scaled 账单，分开记</div></div>
+      <div class="tip"><div class="n">02</div><div class="d">Agent 的 OAuth 客户端单独建，勾上 is_agentic</div></div>
+      <div class="tip"><div class="n">03</div><div class="d">不要写成「Gmail MCP 不能发信」；官方有 send_message，发信要确认</div></div>
+      <div class="tip"><div class="n">04</div><div class="d">写 5,000 次时带上分母；有的 MCP 工具会记成多次请求</div></div>
+    </div>
+  </div>
+  <div class="foot">普通应用还可以走 REST。Agent 要更高配额，只能改走 MCP，再加入 Scaled；内部使用例外也抬不高 MCP 配额。</div>
+</div></body></html>
