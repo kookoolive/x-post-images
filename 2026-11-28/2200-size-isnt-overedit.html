@@ -1,0 +1,103 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"/><title>补丁大 2.33 倍，多半不是乱改</title><style>
+:root{--bg:#10161c;--ink:#e8c36a;--accent:#c4b5fd;--card:#f7f3ea;--mute:#6f6a62;--deep:#14120e;--paper:#f7f3ea;
+--sans:"Noto Sans CJK SC","Noto Sans SC",sans-serif;--mono:"Noto Sans Mono CJK SC","DejaVu Sans Mono",monospace;}
+*{box-sizing:border-box}html,body{margin:0;width:1500px;height:2000px;overflow:hidden;background:var(--bg)}
+.card{width:1500px;height:2000px;padding:32px 48px 34px;font-family:var(--sans);color:var(--paper);
+display:flex;flex-direction:column;justify-content:space-between;
+background:
+  radial-gradient(circle at 88% 6%,rgba(232,195,106,.22) 0 180px,transparent 520px),
+  radial-gradient(circle at 8% 96%,rgba(196,181,253,.16) 0 190px,transparent 540px),
+  repeating-linear-gradient(0deg,transparent,transparent 11px,rgba(232,195,106,.06) 11px,rgba(232,195,106,.06) 12px),
+  var(--bg);}
+.top{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.cap{font-family:var(--mono);font-size:18px;font-weight:900;letter-spacing:.1em;padding:8px 16px;border-radius:999px;background:var(--ink);color:#14120e}
+.cap.p{background:var(--accent);color:#14120e}
+.cap.o{background:transparent;border:2px solid rgba(232,195,106,.4);color:var(--ink)}
+.dates{display:flex;gap:10px;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:16px;font-weight:800;letter-spacing:.04em;padding:5px 12px;border-radius:7px;background:rgba(232,195,106,.12);color:var(--ink)}
+h1{margin:0;font-size:62px;line-height:1.08;font-weight:900;letter-spacing:-.03em;color:var(--paper)}
+h1 em{font-style:normal;color:var(--paper);background:linear-gradient(transparent 62%,rgba(232,195,106,.55) 62%)}
+.hrow{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.strike{font-size:24px;font-weight:900;color:#b8b0a4;text-decoration:line-through;text-decoration-thickness:4px;text-decoration-color:#a78bfa}
+.arrow{font-size:24px;font-weight:900;color:var(--ink)}
+.signal{font-size:24px;font-weight:900;background:var(--ink);color:#14120e;padding:6px 14px;border-radius:7px}
+.rates{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.rt{background:var(--card);border-radius:14px;padding:16px 18px;border-top:8px solid #d9d0c2;color:var(--deep)}
+.rt.hot{border-top-color:var(--accent);border:3px solid var(--accent);border-top-width:8px}
+.rt .v{font-family:var(--mono);font-size:40px;font-weight:900;letter-spacing:-.04em;line-height:1.05;color:#14120e}
+.rt .n{margin-top:8px;font-size:24px;font-weight:900;color:#14120e}
+.rt .d{margin-top:4px;font-size:17px;font-weight:700;color:var(--mute);line-height:1.35}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.box{background:var(--card);border-radius:14px;padding:16px 20px;color:var(--deep)}
+.box .k{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.1em;color:var(--mute)}
+.box.now{border:3px solid var(--ink)}
+.box.now .k{color:#8a6a1a}
+.box .t{margin-top:6px;font-size:28px;font-weight:900;line-height:1.3;color:#14120e}
+.box .d{margin-top:6px;font-size:20px;font-weight:700;color:var(--mute);line-height:1.4}
+.loops{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.lp{background:var(--card);border-radius:14px;padding:16px 18px;color:var(--deep)}
+.lp .n{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.08em;color:#7c3aed}
+.lp .t{margin-top:4px;font-size:26px;font-weight:900;color:#14120e}
+.lp .d{margin-top:6px;font-size:18px;font-weight:700;line-height:1.4;color:var(--mute)}
+.factor{background:rgba(247,243,234,.1);border-radius:14px;padding:14px 18px;display:flex;gap:14px;align-items:flex-start;border-left:8px solid var(--ink);color:var(--paper)}
+.factor .k{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.1em;color:var(--ink);white-space:nowrap;padding-top:3px}
+.factor .d{font-size:20px;font-weight:700;line-height:1.45;color:#e6e0d4}
+.judge{background:var(--ink);color:#14120e;border-radius:14px;padding:16px 22px;border-left:10px solid var(--accent)}
+.judge .k{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.12em;color:#5b21b6}
+.judge .d{margin-top:6px;font-size:24px;font-weight:800;line-height:1.4}
+.tips .k{font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.12em;color:var(--ink);margin-bottom:8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tip{background:var(--card);border-radius:12px;padding:14px 18px;color:var(--deep)}
+.tip .n{font-family:var(--mono);font-size:16px;font-weight:900;color:#7c3aed}
+.tip .d{margin-top:5px;font-size:20px;font-weight:800;line-height:1.4;color:#14120e}
+.foot{background:#1c2430;color:#f7f3ea;border-radius:14px;padding:16px 24px;font-size:24px;font-weight:800;line-height:1.4;border-top:4px solid var(--ink)}
+</style></head><body><div class="card">
+  <div class="top">
+    <span class="cap">MICROSOFT</span>
+    <span class="cap p">DRA · COPILOT CLI</span>
+    <span class="cap o">预印本 · 2026-11-25</span>
+  </div>
+  <div class="dates">
+    <span class="chip">7,660 条已解出轨迹</span>
+    <span class="chip">18 个模型 / 4 家</span>
+    <span class="chip">Verified 6,728 · DeepSWE 932</span>
+  </div>
+  <h1>补丁大 2.33 倍，<em>多半不是乱改</em></h1>
+  <div class="hrow">
+    <span class="strike">补丁更大就是过度编辑</span>
+    <span class="arrow">→</span>
+    <span class="signal">先把测试和代码分开看</span>
+  </div>
+  <div class="rates">
+    <div class="rt"><div class="v">2.33倍</div><div class="n">中位模型行数比</div><div class="d">SWE-bench Verified，相对开发者补丁，含测试文件</div></div>
+    <div class="rt hot"><div class="v">61% + 13%</div><div class="n">Verified 多出来的部分</div><div class="d">测试 61%、文档 13%、代码 21%、注释或格式 5%</div></div>
+    <div class="rt"><div class="v">0.887 / 0.864</div><div class="n">代码必要度</div><div class="d">Agent vs 同一批实例上的开发者；平均仍有 11% 不必要</div></div>
+  </div>
+  <div class="split">
+    <div class="box now"><div class="k">SWE-BENCH VERIFIED · 构成</div><div class="t">多出来的主要是测试和文档</div><div class="d">81.5% 的 Agent 补丁会改测试文件。只看代码单元，行数比是 0.86；不算测试文件，中位是 1.09 倍。</div></div>
+    <div class="box"><div class="k">DEEPSWE · 构成反了</div><div class="t">多出来的 58% 是代码</div><div class="d">任务偏功能实现，单元大约是前者的六倍；测试只占 26%。不要拿 Verified 的构成去套。</div></div>
+  </div>
+  <div class="loops">
+    <div class="lp"><div class="n">残留</div><div class="t">11% 仍不必要</div><div class="d">3,559 个探测里，89% 会改行为。调试只贡献 154 / 3,987；83% 写在修复时。</div></div>
+    <div class="lp"><div class="n">自审</div><div class="t">召回 35.5%</div><div class="d">精确率 65.7%，17 个模型。丢掉说不清的块，会弄坏 1.8% 已解出补丁。</div></div>
+    <div class="lp"><div class="n">剪枝</div><div class="t">精确率 46.3%</div><div class="d">召回 67.3%，2,495 份合格补丁；89.1% 剪完仍过关。</div></div>
+  </div>
+  <div class="factor">
+    <div class="k">读数边界</div>
+    <div class="d">只统计已解出的 Copilot CLI 轨迹。「不必要」相对任务测试，是过剩的上界。18 个里有 11 个比开发者干净，3 个 Gemini Flash 更脏。加强版 oracle 下，Verified 上的优势会翻转。</div>
+  </div>
+  <div class="judge">
+    <div class="k">判断</div>
+    <div class="d">行数比不能拿来当过度编辑的证据。该盯的是那 11% 仍会改行为的代码，以及 DeepSWE 上已经翻转的结构。</div>
+  </div>
+  <div class="tips">
+    <div class="k">我的建议</div>
+    <div class="grid">
+      <div class="tip"><div class="n">01</div><div class="d">写 2.33 倍时带上：Verified、中位模型、含测试文件</div></div>
+      <div class="tip"><div class="n">02</div><div class="d">不要把「多半是测试」套到 DeepSWE，那边 58% 是代码</div></div>
+      <div class="tip"><div class="n">03</div><div class="d">过关率高不代表更干净；DeepSWE 上两者还负相关</div></div>
+      <div class="tip"><div class="n">04</div><div class="d">别指望自己审完 diff；召回约三分之一，自动剪枝精确率不到一半</div></div>
+    </div>
+  </div>
+  <div class="foot">Agent 新增测试在 1,962 个变异上抓住 68.1%，低于任务测试的 77.1%，但抓住了任务测试漏掉的 22.7%（占全部变异的 5.2%）。</div>
+</div></body></html>
